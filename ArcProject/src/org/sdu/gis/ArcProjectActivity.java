@@ -6,6 +6,7 @@ import android.os.Bundle;
 public class ArcProjectActivity extends Activity {
 	//sdujq
 	//jobean
+	//wxl
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
