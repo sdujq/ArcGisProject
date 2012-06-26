@@ -2,7 +2,7 @@ package org.sdu.gis;
 
 import android.app.Activity;
 import android.os.Bundle;
-
+//WXL
 public class ArcProjectActivity extends Activity {
 	//sdujq
     @Override
