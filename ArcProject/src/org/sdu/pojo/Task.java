@@ -38,6 +38,8 @@ public class Task implements Serializable{
 	private long cycle;
 	@Column(name="tag")
 	private String tag;
+	@Column(name="state")
+	private String state;
 	public int getId() {
 		return id;
 	}
@@ -115,5 +117,11 @@ public class Task implements Serializable{
 	}
 	public void setTag(String tag) {
 		this.tag = tag;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
 	}
 }

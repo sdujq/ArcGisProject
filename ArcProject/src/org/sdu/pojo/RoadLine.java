@@ -14,6 +14,8 @@ public class RoadLine implements Serializable{
 	private int id;
 	@Column(name="points")
 	private String points;
+	@Column(name="name")
+	private String name;
 	public int getId() {
 		return id;
 	}
@@ -25,5 +27,11 @@ public class RoadLine implements Serializable{
 	}
 	public void setPoints(String points) {
 		this.points = points;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 }
