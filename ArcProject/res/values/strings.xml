@@ -4,4 +4,34 @@
     <string name="hello">Hello World, ArcProjectActivity!</string>
     <string name="app_name">ArcProject</string>
 
+    
+  
+     <!--*************任务建立页面的string********************-->
+     <string name="nameOfRoad">路段名</string>
+     <string name="bt_zhiding">制定</string>
+     <string name="bt_qingkong">清空</string>
+     <string name="renwuleibir">任务类别</string>
+     <string name="sp_xuanze">请选择</string>
+     <string name="bt_xuanzequyu">选择区域</string>
+     <string name="bt_xunjianquyu">巡检区域</string>
+     <string name="xunjianrenyuan">巡检人员</string>
+     <string name="renwuneirong">任务内容</string>
+     <string name="kaishishijian">开始时间</string>
+     <string name="jiezhishijian">截止时间</string>
+     <string name="xunjianzhouqi">巡检周期</string>
+     <string name="tian">（天）</string>
+     <string name="check_zidongshengcheng">按巡检周期自动生成</string>
+     <string name="gerenwu">个任务</string>
+     <string name="check_zidongfabu">自动发布巡检任务</string>
+     <string name="beizhu">备注</string>
+     <string name="zhidingren">制定人</string>
+     <string name="zhidingshijian">制定时间</string>
+     <string name="bt_baocunrenwu">保存任务</string>
+     <string name="bt_faburenwu">发布任务</string>
+     <!--*************************************************-->
+     
+     
+     
+     
+    
 </resources>
