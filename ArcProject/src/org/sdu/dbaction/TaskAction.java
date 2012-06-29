@@ -45,7 +45,7 @@ public class TaskAction  {
 	 * @param taskId	任务的id
 	 * @return			返回一个任务对象
 	 */
-	public Task taskDetail(int taskId){
+	public Task getDetail(int taskId){
 		return taskDao.get(taskId);
 	}
 	/**
