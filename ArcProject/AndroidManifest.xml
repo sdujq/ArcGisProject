@@ -18,6 +18,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="org.sdu.view.taskshow.TaskShowActivity"></activity>
+        <activity android:name="org.sdu.view.taskinput.TaskInputActivity"></activity>
+        <activity android:name="org.sdu.view.bugshow.BugShowActivity"></activity>
+        <activity android:name="org.sdu.view.buginput.BugInputActivity"></activity>
     </application>
 
 </manifest>
