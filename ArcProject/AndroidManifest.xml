@@ -22,6 +22,7 @@
         <activity android:name="org.sdu.view.taskinput.TaskInputActivity"></activity>
         <activity android:name="org.sdu.view.bugshow.BugShowActivity"></activity>
         <activity android:name="org.sdu.view.buginput.BugInputActivity"></activity>
+        <activity android:name="org.sdu.dbaction.DBDebug"></activity>
     </application>
 
 </manifest>

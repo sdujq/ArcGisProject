@@ -1,6 +1,7 @@
 package org.sdu.gis;
 
 import org.sdu.db.DBHelper;
+import org.sdu.dbaction.DBDebug;
 import org.sdu.view.buginput.BugInputActivity;
 import org.sdu.view.bugshow.BugShowActivity;
 import org.sdu.view.taskinput.TaskInputActivity;
@@ -89,6 +90,16 @@ public class ArcProjectActivity extends Activity {
 					public void onClick(View v) {
 						Intent i=new Intent();
 						i.setClass(ArcProjectActivity.this, BugShowActivity.class);
+						ArcProjectActivity.this.startActivity(i);
+					}
+				});
+			}else if(n==4){
+				t.setText("ต๗สิศ๋ฟฺ");
+				v.setOnClickListener(new OnClickListener() {	
+					@Override
+					public void onClick(View v) {
+						Intent i=new Intent();
+						i.setClass(ArcProjectActivity.this, DBDebug.class);
 						ArcProjectActivity.this.startActivity(i);
 					}
 				});
