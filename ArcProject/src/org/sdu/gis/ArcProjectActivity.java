@@ -6,6 +6,7 @@ import org.sdu.view.buginput.BugInputActivity;
 import org.sdu.view.bugshow.BugShowActivity;
 import org.sdu.view.taskinput.TaskInputActivity;
 import org.sdu.view.taskshow.TaskShowActivity;
+import org.sdujq.map.MapShowActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -109,7 +110,7 @@ public class ArcProjectActivity extends Activity {
 					@Override
 					public void onClick(View v) {
 						Intent i=new Intent();
-						i.setClass(ArcProjectActivity.this, DBDebug.class);
+						i.setClass(ArcProjectActivity.this, MapShowActivity.class);
 						ArcProjectActivity.this.startActivity(i);
 					}
 				});
