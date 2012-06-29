@@ -35,7 +35,7 @@ public class ArcProjectActivity extends Activity {
 
 		@Override
 		public int getCount() {
-			return 5;
+			return 7;
 		}
 
 		@Override
@@ -95,6 +95,16 @@ public class ArcProjectActivity extends Activity {
 				});
 			}else if(n==4){
 				t.setText("调试入口");
+				v.setOnClickListener(new OnClickListener() {	
+					@Override
+					public void onClick(View v) {
+						Intent i=new Intent();
+						i.setClass(ArcProjectActivity.this, DBDebug.class);
+						ArcProjectActivity.this.startActivity(i);
+					}
+				});
+			}else if(n==5){
+				t.setText("地图调试入口");
 				v.setOnClickListener(new OnClickListener() {	
 					@Override
 					public void onClick(View v) {
