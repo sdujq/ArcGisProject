@@ -6,6 +6,7 @@ import org.sdu.view.buginput.BugInputActivity;
 import org.sdu.view.bugshow.BugShowActivity;
 import org.sdu.view.taskinput.TaskInputActivity;
 import org.sdu.view.taskshow.TaskShowActivity;
+import org.sdujq.map.MapShowActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -35,7 +36,7 @@ public class ArcProjectActivity extends Activity {
 
 		@Override
 		public int getCount() {
-			return 5;
+			return 7;
 		}
 
 		@Override
@@ -100,6 +101,16 @@ public class ArcProjectActivity extends Activity {
 					public void onClick(View v) {
 						Intent i=new Intent();
 						i.setClass(ArcProjectActivity.this, DBDebug.class);
+						ArcProjectActivity.this.startActivity(i);
+					}
+				});
+			}else if(n==5){
+				t.setText("地图调试入口");
+				v.setOnClickListener(new OnClickListener() {	
+					@Override
+					public void onClick(View v) {
+						Intent i=new Intent();
+						i.setClass(ArcProjectActivity.this, MapShowActivity.class);
 						ArcProjectActivity.this.startActivity(i);
 					}
 				});

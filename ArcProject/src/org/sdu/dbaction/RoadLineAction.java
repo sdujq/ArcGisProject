@@ -54,4 +54,18 @@ public class RoadLineAction {
 		}
 		return plist;
 	}
+	
+	public ArrayList<Point> getRoadLine(RoadLine roadLine){
+		this.plist.clear();
+		String line=roadLine.getPoints();
+		for(String temp:line.split(":")){
+			String[] point=temp.split(",");
+			plist.add(new Point(Double.parseDouble(point[0]), Double.parseDouble(point[1])));
+		}
+		return plist;
+	}
+	
+	public ArrayList<Point> getPointList(){
+		return plist;
+	}
 }

@@ -46,7 +46,7 @@ public class BugAction  {
 	 * @param bugId	标识问题的id
 	 * @return		返回一个问题(bug)对象
 	 */
-	public Bug BugDetail(int bugId){
+	public Bug getDetail(int bugId){
 		return bugDao.get(bugId);
 	}
 	/**
@@ -56,6 +56,7 @@ public class BugAction  {
 	public void finish(int bugId){
 		Bug bug=bugDao.get(bugId);
 		bug.setState("1");
+		bugDao.update(bug);
 	}
 	
 }

@@ -124,4 +124,8 @@ public class Task implements Serializable{
 	public void setState(String state) {
 		this.state = state;
 	}
+	public String toString(){
+		return getState()+" "+getCreatePersonId()
+				+" "+getContent()+" "+getCycle();
+	}
 }
