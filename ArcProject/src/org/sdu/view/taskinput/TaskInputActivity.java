@@ -4,7 +4,7 @@ import org.sdu.gis.R;
 
 import android.app.Activity;
 import android.os.Bundle;
-//testwxl
+
 public class TaskInputActivity extends Activity{
 
 	@Override
