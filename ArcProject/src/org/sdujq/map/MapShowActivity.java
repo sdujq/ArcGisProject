@@ -1,7 +1,9 @@
 
 package org.sdujq.map;
 
+import org.sdu.dbaction.RoadLineAction;
 import org.sdu.gis.R;
+import org.sdu.pojo.RoadLine;
 
 import android.app.Activity;
 import android.graphics.Color;
@@ -29,21 +31,13 @@ public class MapShowActivity extends Activity implements OnClickListener{
 	GraphicsLayer glayer;
 	GraphicsLayer lineLayer;
 	MultiPath path;
+	public static RoadLine roadLine;
+	RoadLineAction action;
 	/** Called when the activity is first created. */
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mapview);
-		map = (MapView) findViewById(R.id.map);
-		bt1=(Button)findViewById(R.id.button1);
-		bt2=(Button)findViewById(R.id.button2);
-		bt3=(Button)findViewById(R.id.button3);
-		bt4=(Button)findViewById(R.id.button4);
-		bt5=(Button)findViewById(R.id.button5);
-		bt1.setOnClickListener(this);
-		bt2.setOnClickListener(this);
-		bt3.setOnClickListener(this);
-		bt4.setOnClickListener(this);
-		bt5.setOnClickListener(this);
+		
 		Object init = getLastNonConfigurationInstance();
 		if (init != null) {
 			map.restoreState((String) init);
@@ -70,21 +64,28 @@ public class MapShowActivity extends Activity implements OnClickListener{
 			@Override
 			public void onStatusChanged(View arg0, STATUS arg1) {
 				if(arg1==STATUS.INITIALIZED){
-					/*if(currentData!=null){
-						Point p=getGPoint(currentData.getLocationX(), currentData.getLocationY());
-						map.centerAt(p);
-						glayer=new GraphicsLayer(MapShowActivity.this);
-						glayer.setRenderer(new SimpleRenderer(new PictureMarkerSymbol(getResources().getDrawable(R.drawable.ic_launcher))));
-						Graphic g=new Graphic();
-						g.setGeometry(p);
-						glayer.addGraphic(g);
-						map.addLayer(glayer);
-					}*/
+					if(roadLine!=null){
+						action=new RoadLineAction(MapShowActivity.this);
+						
+					}
 				}
 			}});
 		
 	}
 
+	public void init(){
+		map = (MapView) findViewById(R.id.map);
+		bt1=(Button)findViewById(R.id.button1);
+		bt2=(Button)findViewById(R.id.button2);
+		bt3=(Button)findViewById(R.id.button3);
+		bt4=(Button)findViewById(R.id.button4);
+		bt5=(Button)findViewById(R.id.button5);
+		bt1.setOnClickListener(this);
+		bt2.setOnClickListener(this);
+		bt3.setOnClickListener(this);
+		bt4.setOnClickListener(this);
+		bt5.setOnClickListener(this);
+	}
 	public Point getGPoint(double a,double b){
 		Point p=new Point(a ,b
 				);
