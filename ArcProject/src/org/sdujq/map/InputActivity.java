@@ -1,20 +1,11 @@
 package org.sdujq.map;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.util.Date;
 
-import org.sdu.bmputil.BitmapTool;
 import org.sdu.gis.R;
-import org.sdujq.db.dao.RecordDao;
-import org.sdujq.pojo.Record;
 
 import android.app.Activity;
-import android.content.ContentResolver;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -60,31 +51,7 @@ public class InputActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Record r = new Record();
-				r.setTag(tag.getText().toString());
-				String[] loc = location.getText().toString().split(",");
-				try {
-					r.setLocationX(Double.parseDouble(loc[0]));
-					r.setLocationY(Double.parseDouble(loc[1]));
-				} catch (Exception e) {
-					r.setLocationX(0);
-					r.setLocationY(0);
-				}
-				r.setTime(new Date().getTime());
-				try {
-					ContentResolver cr = getContentResolver();
-					InputStream in = cr.openInputStream(Uri.fromFile(new File(
-							"/mnt/sdcard/temp100.jpg")));
-					Bitmap bitmap = BitmapFactory.decodeStream(in);
-					r.setPhoto(BitmapTool.Bitmap2Bytes(bitmap));
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-					r.setPhoto(null);
-				}
-				RecordDao rdao=new RecordDao();
-				rdao.insert(r);
-				Home.home_con.refreshlst();
-				Home.home_con.viewPager.setCurrentItem(1);
+
 			}
 		});
 	}

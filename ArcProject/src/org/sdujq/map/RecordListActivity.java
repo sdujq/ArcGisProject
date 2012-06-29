@@ -1,19 +1,15 @@
 package org.sdujq.map;
 
-import java.sql.Timestamp;
 import java.util.List;
 
-import org.sdu.bmputil.BitmapTool;
 import org.sdu.gis.R;
+import org.sdu.pojo.Task;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
@@ -28,19 +24,19 @@ public class RecordListActivity extends Activity{
 		super.onCreate(saved);
 		setContentView(R.layout.recordlist);
 		listview=(ListView)findViewById(R.id.listView1);
-		BugDao rdao=new RecordDao();
-		List<Record> lst=rdao.find();
-		listview.setAdapter(new HomeAdapter(this, lst));
-		Log.e("qq", lst.size()+"");
+		/*BugDao rdao=new RecordDao();
+		List<Record> lst=rdao.find();*/
+		//listview.setAdapter(new HomeAdapter(this, lst));
+		//Log.e("qq", lst.size()+"");
 	}
 	
 	
 	class HomeAdapter extends BaseAdapter {
 		private Context context;
 		private LayoutInflater inflater;
-		private List<Record> list;
+		private List<Task> list;
 
-		public HomeAdapter(Context context, List<Record> list) {
+		public HomeAdapter(Context context, List<Task> list) {
 			super();
 			this.context = context;
 			this.list = list;
@@ -65,7 +61,7 @@ public class RecordListActivity extends Activity{
 		@Override
 		public View getView(final int position, View itemView, ViewGroup parent) {
 			HomeViewHolder currentItem = new HomeViewHolder();
-			final Record data = (Record) list.get(position);
+			final Task data = (Task) list.get(position);
 			itemView = inflater.inflate(R.layout.lst_item, null);
 
 			currentItem.icon = (ImageView) itemView
@@ -84,7 +80,7 @@ public class RecordListActivity extends Activity{
 			currentItem.brandName=(TextView)itemView.findViewById(R.id.cake_brand);
 			if (data != null) {
 				try {
-					// TODO set
+					/*// TODO set
 					if (data.getPhoto()!=null) {
 						currentItem.icon.setImageBitmap(BitmapTool.Bytes2Bimap(data.getPhoto()));
 					}
@@ -98,7 +94,7 @@ public class RecordListActivity extends Activity{
 									Intent it=new Intent(RecordListActivity.this,MapShowActivity.class);
 									RecordListActivity.this.startActivity(it);
 								}
-							});
+							});*/
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
