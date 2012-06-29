@@ -25,6 +25,8 @@ public class Bug implements Serializable{
 	private String tag;
 	@Column(name="attachment")
 	private byte[] attachment;
+	@Column(name="state")
+	private String state;
 	public int getId() {
 		return id;
 	}
@@ -66,5 +68,11 @@ public class Bug implements Serializable{
 	}
 	public void setAttachment(byte[] attachment) {
 		this.attachment = attachment;
+	}
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
 	}
 }
