@@ -16,7 +16,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-//11
+
 public class TaskInputActivity extends Activity {
 	public Button bt_zhiding, bt_qingkong, bt_xuanzequyu, bt_xunjianquyu,
 			bt_baocunrenwu, bt_faburenwu;
@@ -77,7 +77,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// æŒ‰é’® åˆ¶å®š çš„ç›‘å¬
+	// °´Å¥ ÖÆ¶¨ µÄ¼àÌı
 	class ZhidingListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -97,7 +97,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// æŒ‰é’® æ¸…ç©º çš„ç›‘å¬
+	//  °´Å¥ Çå¿Õ µÄ¼àÌı
 	class QingkongListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -115,7 +115,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// æŒ‰é’® é€‰æ‹©åŒºåŸŸ çš„ç›‘å¬
+	 // °´Å¥ Ñ¡ÔñÇøÓò µÄ¼àÌı
 	class XuanzequyuListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -133,7 +133,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// æŒ‰é’® å·¡æ£€åŒºåŸŸ çš„ç›‘å¬
+	// °´Å¥ Ñ²¼ìÇøÓò  µÄ¼àÌı
 	class XunjianquyuListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -151,7 +151,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// æŒ‰é’® ä¿å­˜ä»»åŠ¡ çš„ç›‘å¬
+	// °´Å¥ ±£´æÈÎÎñ  µÄ¼àÌı
 	class BaocunrenwuListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -169,7 +169,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// æŒ‰é’® å‘å¸ƒä»»åŠ¡ çš„ç›‘å¬
+	// °´Å¥ ·¢²¼ÈÎÎñ  µÄ¼àÌı
 	class FaburenwuListener implements OnClickListener {
 
 		public void onClick(View v) {
