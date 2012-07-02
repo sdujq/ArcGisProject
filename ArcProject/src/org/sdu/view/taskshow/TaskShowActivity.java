@@ -177,8 +177,7 @@ public class TaskShowActivity extends Activity{
 	       }
 	        );
 	       
-	       
-	       
+	      
 	}
 	
 
