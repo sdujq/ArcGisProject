@@ -99,6 +99,7 @@ public class ArcProjectActivity extends Activity {
 			}else if(n==4){
 				t.setText("ต๗สิศ๋ฟฺ");
 				v.setOnClickListener(new OnClickListener() {	
+					
 					@Override
 					public void onClick(View v) {
 						Intent i=new Intent();

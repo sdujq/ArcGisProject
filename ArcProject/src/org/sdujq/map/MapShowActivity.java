@@ -61,6 +61,7 @@ public class MapShowActivity extends Activity implements OnClickListener{
 
 			private static final long serialVersionUID = -1001740038201073031L;
 
+			//asd
 			@Override
 			public void onStatusChanged(View arg0, STATUS arg1) {
 				if(arg1==STATUS.INITIALIZED){
