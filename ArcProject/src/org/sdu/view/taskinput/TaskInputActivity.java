@@ -1,14 +1,16 @@
 package org.sdu.view.taskinput;
 
 import java.util.Calendar;
-
 import org.sdu.gis.R;
 import com.tgb.lk.ahibernate.annotation.Id;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -36,11 +38,11 @@ public class TaskInputActivity extends Activity {
 
 	public Spinner sp_selectTask, sp_kaishishijian, sp_jiezhishijian;
 
-	private int mYear;
-
-	private int mMonth;
-
-	private int mDay;
+	private int year;
+	private int month;
+	private int day;
+	private int check = 0, count = 0, x = 0;
+	private int REQUEST_CODE = 0;
 
 	@Override
 	public void onCreate(Bundle saved) {
@@ -98,29 +100,51 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// public void onClick(View v) {
-	// if(v.getId()==(R.id.t_kaishiriqi)){
-	//
-	// System.out.println("11");
-	// Log.v("click..", "tx1");
-	// }
-	// if(v.getId()==(R.id.t_jiezhiriqi)){
-	//
-	// System.out.println("22");
-	//
-	// }
-	//
-	//
-	// }
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-	// 按钮 "jieshuriqi" 的监听
-	class JieshuriqiListener implements OnClickListener {
+		if (requestCode == REQUEST_CODE) {
 
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
+			if (resultCode == RESULT_CANCELED) {
 
-			
-			
+			} else if (resultCode == RESULT_OK) {
+
+				String txt = "";
+
+				Bundle extras = data.getExtras();
+
+				if (extras != null) {
+
+					int a = extras.getInt("values");
+					year = extras.getInt("year");
+					month = extras.getInt("month");
+					day = extras.getInt("day");
+
+					String Smonth = "", Sday = "";
+					if (month < 10) {
+						Smonth = "0" + month;
+					} else {
+						Smonth = month + "";
+					}
+
+					if (day < 10) {
+						Sday = "0" + day;
+					} else {
+						Sday = day + "";
+					}
+
+					if (a == 1) {
+
+						bt_kaishiriqi.setText(year + "-" + Smonth + "-" + Sday);
+
+					} else if (a == 2) {
+						bt_jieshuriqi.setText(year + "-" + Smonth + "-" + Sday);
+
+					}
+
+				}
+
+			}
+
 		}
 
 	}
@@ -130,16 +154,29 @@ public class TaskInputActivity extends Activity {
 
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
-			Intent intent=new Intent();
-			
-			
-			intent.setClass(TaskInputActivity.this,DatePickActivity.class);
-			
-			
-			TaskInputActivity.this.startActivity(intent);
-			
-			
-			
+
+			Intent intent1 = new Intent(TaskInputActivity.this,
+					DatePickActivity.class);
+
+			intent1.putExtra("values", 1);
+
+			startActivityForResult(intent1, REQUEST_CODE);
+
+		}
+
+	}
+
+	// 按钮 "jieshuriqi" 的监听
+	class JieshuriqiListener implements OnClickListener {
+
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+
+			Intent intent = new Intent(TaskInputActivity.this,
+					DatePickActivity.class);
+			intent.putExtra("values", 2);
+			startActivityForResult(intent, REQUEST_CODE);
+
 		}
 
 	}
