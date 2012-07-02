@@ -3,12 +3,11 @@ package org.sdu.view.taskinput;
 import java.util.Calendar;
 
 import org.sdu.gis.R;
-import org.sdu.view.taskinput.TaskInputActivity.XuanzequyuListener;
 
 import android.app.Activity;
-import android.content.ContentValues;
+
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
+
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -20,7 +19,7 @@ import android.widget.DatePicker.OnDateChangedListener;
 public class DatePickActivity extends Activity {
 
 	public Button bt_shezhi, bt_quxiao;
-	private int a = 0, b = 0;
+	private int a = 0;
 	private DatePicker dp_datepick;
 	private int year;
 	private int month;

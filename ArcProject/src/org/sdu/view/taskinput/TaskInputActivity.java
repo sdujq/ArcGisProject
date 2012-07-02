@@ -1,27 +1,20 @@
 package org.sdu.view.taskinput;
 
-import java.util.Calendar;
 import org.sdu.gis.R;
-import com.tgb.lk.ahibernate.annotation.Id;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
-import android.content.ContentValues;
+
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
+
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
-import android.widget.DatePicker;
+
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -41,7 +34,7 @@ public class TaskInputActivity extends Activity {
 	private int year;
 	private int month;
 	private int day;
-	private int check = 0, count = 0, x = 0;
+
 	private int REQUEST_CODE = 0;
 
 	@Override
@@ -107,8 +100,6 @@ public class TaskInputActivity extends Activity {
 			if (resultCode == RESULT_CANCELED) {
 
 			} else if (resultCode == RESULT_OK) {
-
-				String txt = "";
 
 				Bundle extras = data.getExtras();
 
