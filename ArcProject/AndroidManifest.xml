@@ -19,6 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name="org.sdu.view.taskshow.TaskShowActivity"></activity>
+        <activity android:name="org.sdu.view.taskshow.TaskDetialShow"></activity>
         <activity android:name="org.sdu.view.taskinput.TaskInputActivity"></activity>
         <activity android:name="org.sdu.view.bugshow.BugShowActivity"></activity>
         <activity android:name="org.sdu.view.buginput.BugInputActivity"></activity>

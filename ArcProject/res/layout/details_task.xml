@@ -1,72 +1,131 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?> 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/listitem_selector"
-    android:orientation="horizontal"
-    android:paddingTop="3.0dip" >
-
-    <RelativeLayout
-        android:layout_width="87dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/cakeiconbg" >
-
-         <ImageView
-            android:id="@+id/cake_icon"
-            android:layout_width="65.0dip"
-            android:layout_height="65.0dip"
-            android:layout_centerInParent="true"
-            android:scaleType="fitCenter" />
-    </RelativeLayout>
-
-    <RelativeLayout
+    android:layout_height="fill_parent"
+    >
+    
+  <TextView
+        android:id="@+id/detial_task"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_weight="1.0"
-        android:orientation="vertical"
-        android:padding="4.0dip" >
+        android:text="任务详情"
+        android:textColor="#FF0000"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <ImageView
-            android:id="@+id/clicker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_centerInParent="true"
-            android:src="@drawable/tab_explore_active" />
+  <TextView
+      android:id="@+id/task_num"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Medium Text"
+      android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+  <TextView
+      android:id="@+id/task_type"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Medium Text"
+      android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView
-                android:id="@+id/cake_name"
-                android:layout_width="wrap_content"
-                android:layout_height="32.0dip"
-                android:textColor="#000000"
-                android:textSize="14.0sp" />
+  <TextView
+      android:id="@+id/road_name"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Medium Text"
+      android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView
-                android:id="@+id/cake_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/red"
-                android:textSize="12.0sp" android:gravity="center_vertical|center_horizontal|center"/>
+  <TextView
+      android:id="@+id/task_neirong"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Medium Text"
+      android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView
-                android:id="@+id/cake_brand"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="" 
-                android:textSize="12.0sp"/>
+  <TextView
+      android:id="@+id/maker_name"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Medium Text"
+      android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView
-                android:id="@+id/cake_timestamp"
-                android:layout_width="wrap_content"
-                android:layout_height="32.0dip"
-                android:textSize="12.0sp" />
+  <TextView
+      android:id="@+id/make_time"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Medium Text"
+      android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        </LinearLayout>
-    </RelativeLayout>
+  <TextView
+      android:id="@+id/worker_name"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Medium Text"
+      android:textAppearance="?android:attr/textAppearanceMedium" />
+
+  <TextView
+      android:id="@+id/cycle_time"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Medium Text"
+      android:textAppearance="?android:attr/textAppearanceMedium" />
+
+  <TextView
+      android:id="@+id/time_begin"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Medium Text"
+      android:textAppearance="?android:attr/textAppearanceMedium" />
+
+  <TextView
+      android:id="@+id/time_end"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Medium Text"
+      android:textAppearance="?android:attr/textAppearanceMedium" />
+
+  <TextView
+      android:id="@+id/over"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Medium Text"
+      android:textAppearance="?android:attr/textAppearanceMedium" />
+
+  <TextView
+      android:id="@+id/beizhu"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Medium Text"
+      android:textAppearance="?android:attr/textAppearanceMedium" />
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" >
+
+      <Button
+          android:id="@+id/gettask"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentLeft="true"
+          android:layout_alignParentTop="true"
+          android:text="Button" />
+
+      <Button
+          android:id="@+id/completetask"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentRight="true"
+          android:layout_alignParentTop="true"
+          android:layout_marginRight="28dp"
+          android:text="Button" />
+
+      <Button
+          android:id="@+id/lookmap"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_alignParentTop="true"
+          android:layout_centerHorizontal="true"
+          android:text="Button" />
+
+  </RelativeLayout>
 
 </LinearLayout>
