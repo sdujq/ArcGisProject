@@ -21,7 +21,7 @@
      <string name="jiezhishijian">截止时间</string>
      <string name="jiezhiriqi">2012-06-29</string>
      <string name="xunjianzhouqi">巡检周期</string>
-     <string name="tian">（天）</string>
+     <string name="tian">（小时）</string>
      <string name="check_zidongshengcheng">按巡检周期自动生成</string>
      <string name="gerenwu">个任务</string>
      <string name="check_zidongfabu">自动发布巡检任务</string>
@@ -32,13 +32,17 @@
      <string name="bt_faburenwu">发布任务</string>
      <!--*************************************************-->
      
-          <!--*************日期选择页面的string********************-->
+     <!--*************日期选择页面的string********************-->
      <string name="bt_shezhi">设置</string>
      <string name="bt_quxiao">取消</string>
      <!--*************************************************-->
      
-     
-     
+     <!-- 任务类别的数组 -->
+     <string-array name="str_array_renwuleibie">
+         <item >设施监护</item>
+         <item >设施巡检</item>
+     </string-array>     
+     <!--*************************************************-->
      
      
      

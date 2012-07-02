@@ -1,6 +1,10 @@
 package org.sdu.view.taskinput;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.sdu.gis.R;
+import org.sdu.pojo.Task;
 
 import android.app.Activity;
 
@@ -15,9 +19,12 @@ import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.AdapterView.OnItemSelectedListener;
 
 public class TaskInputActivity extends Activity {
 	public Button bt_zhiding, bt_qingkong, bt_xuanzequyu, bt_xunjianquyu,
@@ -26,10 +33,16 @@ public class TaskInputActivity extends Activity {
 			tv_renwuneirong, tv_qx_kaishishijian, tv_qx_jiezhishijian,
 			tv_xunjianzhouqi, tv_gerenwu, tv_beizhu, tv_zhidingren,
 			tv_zhidingshijian, tv_kaishiriqi, tv_jiezhiriqi;
-	public EditText et_luduanming, et_xunjianrenyuan, et_renwuneirong,
-			et_beizhu;
+	public EditText et_luduanming, et_renwuneirong, et_beizhu,
+			et_xunjianzhouqi, et_gerenwu;
 
-	public Spinner sp_selectTask, sp_kaishishijian, sp_jiezhishijian;
+	public String str_luduanming, str_renwuleibie, str_xunjianrenyuan,
+			str_renwuneirong, str_kaishishijian, str_jiezhishijian,
+			str_xunjianzhouqi, str_gerenwu, str_beizhu, str_zhidingren;
+
+	public Spinner sp_selectTask, sp_kaishishijian, sp_jiezhishijian,sp_xunjianrenyuan;
+
+	private Task task;
 
 	private int year;
 	private int month;
@@ -78,21 +91,63 @@ public class TaskInputActivity extends Activity {
 		tv_gerenwu = (TextView) findViewById(R.id.t_gerenwu);
 		tv_beizhu = (TextView) findViewById(R.id.t_beizhu);
 		tv_zhidingren = (TextView) findViewById(R.id.t_zhidingren);
-		tv_zhidingshijian = (TextView) findViewById(R.id.t_zhidingshijian);
+		// tv_zhidingshijian = (TextView) findViewById(R.id.t_zhidingshijian);
 
 		sp_selectTask = (Spinner) findViewById(R.id.t_spinner_selectTask);
+		// 通过createFromResource方法创建一个ArrayAdapter对象
+
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+				this, R.array.str_array_renwuleibie,
+				android.R.layout.simple_spinner_item);
+		// 设置Spinner当中每个条目的样式，引用一个Android系统提供的布局文件
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+		sp_selectTask.setAdapter(adapter);
+		sp_selectTask.setPrompt("任务类型");
+		sp_selectTask
+				.setOnItemSelectedListener(new SpinnerOnSelectedListener());
+        
+		sp_xunjianrenyuan=(Spinner) findViewById(R.id.t_spinner_xunjianrenyuan);
 		sp_kaishishijian = (Spinner) findViewById(R.id.t_spinner_kaishishijian);
 		sp_jiezhishijian = (Spinner) findViewById(R.id.t_spinner_jiezhishijian);
-
+        
 		// tv_kaishiriqi.setText(R.string.kaishiriqi);
 		bt_kaishiriqi.setText(R.string.kaishiriqi);
 		bt_jieshuriqi.setText(R.string.jiezhiriqi);
 		// tv_jiezhiriqi.setText(R.string.jiezhiriqi);
-		tv_zhidingshijian.setText(R.string.zhidingren);
+		// tv_zhidingshijian.setText(R.string.zhidingren);
 		tv_zhidingren.setText(R.string.zhidingshijian);
+
+		et_luduanming = (EditText) findViewById(R.id.t_text_nameOfRoad);
+
+		et_renwuneirong = (EditText) findViewById(R.id.t_text_renwuneirong);
+		et_beizhu = (EditText) findViewById(R.id.t_text_beizhu);
+		et_xunjianzhouqi = (EditText) findViewById(R.id.t_text_xunjianzhouqi);
+		et_gerenwu = (EditText) findViewById(R.id.t_text_gerenwu);
 
 	}
 
+	// 这个监听器主要用来监听用户选择列表的动作
+	class SpinnerOnSelectedListener implements OnItemSelectedListener {
+
+		// 当用户选定了一个条目时，就会调用该方法
+		@Override
+		public void onItemSelected(AdapterView<?> adapterView, View view,
+				int position, long id) {
+			String selected = adapterView.getItemAtPosition(position)
+					.toString();
+			System.out.println(selected);
+		}
+
+		@Override
+		public void onNothingSelected(AdapterView<?> adapterView) {
+			// TODO Auto-generated method stub
+			System.out.println("nothingSelected");
+		}
+
+	}
+
+	// 用于返回从DataPickActivity中设置的日期，并设置在本activity中显示
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 		if (requestCode == REQUEST_CODE) {
@@ -257,6 +312,22 @@ public class TaskInputActivity extends Activity {
 			animationSet.setFillBefore(true);
 			animationSet.setDuration(200);
 			bt_baocunrenwu.startAnimation(animationSet);
+
+			str_luduanming = et_luduanming.getText().toString();
+			task.setRoadName(str_luduanming);
+
+		//	str_xunjianrenyuan = et_xunjianrenyuan.getText().toString();
+			task.setInspectionPersonId(Integer.parseInt(str_xunjianrenyuan));
+
+			str_renwuneirong = et_renwuneirong.getText().toString();
+			task.setContent(str_renwuneirong);
+
+			str_xunjianzhouqi = et_xunjianzhouqi.getText().toString();
+			// task。setCycle(str_xunjianzhouqi);
+
+			str_gerenwu = et_gerenwu.getText().toString();
+
+			str_beizhu = et_beizhu.getText().toString();
 
 		}
 

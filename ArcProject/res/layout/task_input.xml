@@ -75,12 +75,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/bt_xuanzequyu" />
-
-                <Button
-                    android:id="@+id/t_button_xunjianquyu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/bt_xunjianquyu" />
             </LinearLayout>
 
             <LinearLayout
@@ -94,13 +88,18 @@
                     android:layout_height="wrap_content"
                     android:text="@string/xunjianrenyuan" />
 
-                <EditText
-                    android:id="@+id/t_text_xunjianrenyuan"
+                <Spinner
+                    android:id="@+id/t_spinner_xunjianrenyuan"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/t_button_xunjianquyu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bt_xunjianquyu" />
+
             </LinearLayout>
 
             <LinearLayout
@@ -201,14 +200,14 @@
                     android:id="@+id/t_tian"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tian"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:text="@string/tian" />
 
                 <CheckBox
                     android:id="@+id/t_checkBox_zidongfabu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/check_zidongfabu" />
+                    android:text="@string/check_zidongfabu"
+                    android:textSize="12dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -223,7 +222,7 @@
                     android:text="@string/check_zidongshengcheng" />
 
                 <EditText
-                    android:id="@+id/t_text_zidongshengcheng"
+                    android:id="@+id/t_text_gerenwu"
                     android:layout_width="48dp"
                     android:layout_height="wrap_content"
                     android:ems="10" />
@@ -274,11 +273,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
 
+                <!--
                 <TextView
                     android:id="@+id/t_zhidingshijian"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                -->
+
             </LinearLayout>
 
             <LinearLayout
