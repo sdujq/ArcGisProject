@@ -46,6 +46,8 @@ public class TaskDetialShow extends Activity{
 		v12.setText("是否完成:");
 		v13.setText("备注：");
 		
+		
+		
 		b1=(Button)findViewById(R.id.gettask);
 		b1.setText("接受任务");
 		b2=(Button)findViewById(R.id.lookmap);

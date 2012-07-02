@@ -13,6 +13,7 @@
         android:textColor="#FF0000"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
+  
   <TextView
       android:id="@+id/task_num"
       android:layout_width="wrap_content"
