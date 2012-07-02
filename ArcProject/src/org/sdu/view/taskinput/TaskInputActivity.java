@@ -1,25 +1,32 @@
 package org.sdu.view.taskinput;
 
-import org.sdu.gis.R;
+import java.util.Calendar;
 
+import org.sdu.gis.R;
 import com.tgb.lk.ahibernate.annotation.Id;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-
 public class TaskInputActivity extends Activity {
 	public Button bt_zhiding, bt_qingkong, bt_xuanzequyu, bt_xunjianquyu,
-			bt_baocunrenwu, bt_faburenwu;
+			bt_baocunrenwu, bt_faburenwu, bt_kaishiriqi, bt_jieshuriqi;
 	public TextView tv_luduanming, tv_renwuleibie, tv_xunjianrenyuan,
 			tv_renwuneirong, tv_qx_kaishishijian, tv_qx_jiezhishijian,
 			tv_xunjianzhouqi, tv_gerenwu, tv_beizhu, tv_zhidingren,
@@ -28,6 +35,12 @@ public class TaskInputActivity extends Activity {
 			et_beizhu;
 
 	public Spinner sp_selectTask, sp_kaishishijian, sp_jiezhishijian;
+
+	private int mYear;
+
+	private int mMonth;
+
+	private int mDay;
 
 	@Override
 	public void onCreate(Bundle saved) {
@@ -52,14 +65,20 @@ public class TaskInputActivity extends Activity {
 		bt_faburenwu = (Button) findViewById(R.id.t_button_faburenwu);
 		bt_faburenwu.setOnClickListener(new FaburenwuListener());
 
+		bt_kaishiriqi = (Button) findViewById(R.id.t_bt_kaishiriqi);
+		bt_kaishiriqi.setOnClickListener(new KaishirijiListener());
+
+		bt_jieshuriqi = (Button) findViewById(R.id.t_bt_jieshuriqi);
+		bt_jieshuriqi.setOnClickListener(new JieshuriqiListener());
+
 		tv_luduanming = (TextView) findViewById(R.id.t_nameOfRoad);
 		tv_renwuleibie = (TextView) findViewById(R.id.t_renwuleibie);
 		tv_xunjianrenyuan = (TextView) findViewById(R.id.t_xunjianrenyuan);
 		tv_renwuneirong = (TextView) findViewById(R.id.t_renwuneirong);
 		tv_qx_kaishishijian = (TextView) findViewById(R.id.t_Qx_kaishi);
-		tv_kaishiriqi = (TextView) findViewById(R.id.t_kaishiriqi);
+		// tv_kaishiriqi = (TextView) findViewById(R.id.t_kaishiriqi);
 		tv_qx_jiezhishijian = (TextView) findViewById(R.id.t_Qx_jiezhi);
-		tv_jiezhiriqi = (TextView) findViewById(R.id.t_jiezhiriqi);
+		// tv_jiezhiriqi = (TextView) findViewById(R.id.t_jiezhiriqi);
 		tv_xunjianzhouqi = (TextView) findViewById(R.id.t_xunjianzhouqi);
 		tv_gerenwu = (TextView) findViewById(R.id.t_gerenwu);
 		tv_beizhu = (TextView) findViewById(R.id.t_beizhu);
@@ -70,10 +89,58 @@ public class TaskInputActivity extends Activity {
 		sp_kaishishijian = (Spinner) findViewById(R.id.t_spinner_kaishishijian);
 		sp_jiezhishijian = (Spinner) findViewById(R.id.t_spinner_jiezhishijian);
 
-		tv_kaishiriqi.setText(R.string.kaishiriqi);
-		tv_jiezhiriqi.setText(R.string.jiezhiriqi);
+		// tv_kaishiriqi.setText(R.string.kaishiriqi);
+		bt_kaishiriqi.setText(R.string.kaishiriqi);
+		bt_jieshuriqi.setText(R.string.jiezhiriqi);
+		// tv_jiezhiriqi.setText(R.string.jiezhiriqi);
 		tv_zhidingshijian.setText(R.string.zhidingren);
 		tv_zhidingren.setText(R.string.zhidingshijian);
+
+	}
+
+	// public void onClick(View v) {
+	// if(v.getId()==(R.id.t_kaishiriqi)){
+	//
+	// System.out.println("11");
+	// Log.v("click..", "tx1");
+	// }
+	// if(v.getId()==(R.id.t_jiezhiriqi)){
+	//
+	// System.out.println("22");
+	//
+	// }
+	//
+	//
+	// }
+
+	// 按钮 "jieshuriqi" 的监听
+	class JieshuriqiListener implements OnClickListener {
+
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+
+			
+			
+		}
+
+	}
+
+	// 按钮 “kaishiriqi” 的监听
+	class KaishirijiListener implements OnClickListener {
+
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			Intent intent=new Intent();
+			
+			
+			intent.setClass(TaskInputActivity.this,DatePickActivity.class);
+			
+			
+			TaskInputActivity.this.startActivity(intent);
+			
+			
+			
+		}
 
 	}
 
@@ -91,13 +158,11 @@ public class TaskInputActivity extends Activity {
 			animationSet.setDuration(200);
 			bt_zhiding.startAnimation(animationSet);
 
-			System.out.println("鍒跺畾");
-
 		}
 
 	}
 
-	//  按钮 清空 的监听
+	// 按钮 清空 的监听
 	class QingkongListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -115,7 +180,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	 // 按钮 选择区域 的监听
+	// 按钮 选择区域 的监听
 	class XuanzequyuListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -133,7 +198,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// 按钮 巡检区域  的监听
+	// 按钮 巡检区域 的监听
 	class XunjianquyuListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -151,7 +216,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// 按钮 保存任务  的监听
+	// 按钮 保存任务 的监听
 	class BaocunrenwuListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -169,7 +234,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// 按钮 发布任务  的监听
+	// 按钮 发布任务 的监听
 	class FaburenwuListener implements OnClickListener {
 
 		public void onClick(View v) {
