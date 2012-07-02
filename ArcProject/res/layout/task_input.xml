@@ -124,7 +124,7 @@
                     android:ems="10" />
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
@@ -133,24 +133,26 @@
                     android:id="@+id/t_Qx_kaishi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
                     android:layout_weight="0.16"
                     android:text="@string/kaishishijian" />
 
-                <TextView
-                    android:id="@+id/t_kaishiriqi"
+                <Button
+                    android:id="@+id/t_bt_kaishiriqi"
                     android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.27"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true" >
+                </Button>
 
                 <Spinner
                     android:id="@+id/t_spinner_kaishishijian"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
                     android:layout_weight="0.44" />
-            </LinearLayout>
+            </RelativeLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
@@ -159,22 +161,24 @@
                     android:id="@+id/t_Qx_jiezhi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
                     android:layout_weight="0.41"
                     android:text="@string/jiezhishijian" />
 
-                <TextView
-                    android:id="@+id/t_jiezhiriqi"
+                <Button
+                    android:id="@+id/t_bt_jieshuriqi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.56"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:layout_centerInParent="true" >
+                </Button>
 
                 <Spinner
                     android:id="@+id/t_spinner_jiezhishijian"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
                     android:layout_weight="1" />
-            </LinearLayout>
+            </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
