@@ -1,11 +1,16 @@
 package org.sdu.view.taskinput;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+import org.sdu.db.DBHelper;
 import org.sdu.gis.R;
 import org.sdu.pojo.Task;
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -53,6 +58,8 @@ public class TaskInputActivity extends Activity {
 	public void onCreate(Bundle saved) {
 		super.onCreate(saved);
 		setContentView(R.layout.task_input);
+
+		task = new Task();
 
 		bt_zhiding = (Button) findViewById(R.id.t_button_zhiding);
 		bt_zhiding.setOnClickListener(new ZhidingListener());
@@ -108,6 +115,30 @@ public class TaskInputActivity extends Activity {
 
 		sp_xunjianrenyuan = (Spinner) findViewById(R.id.t_spinner_xunjianrenyuan);
 
+		List<String> list = new ArrayList<String>();
+		DBHelper dbHelper = new DBHelper(TaskInputActivity.this);
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		Cursor cursor = db.query("t_user", new String[]{"id","name"}, null,null, null, null, null);
+		while(cursor.moveToNext()){
+			String id = cursor.getString(cursor.getColumnIndex("id"));
+			String name = cursor.getString(cursor.getColumnIndex("name"));
+			System.out.println("query--->" + name);
+			list.add(id+":"+name);
+		}
+		
+		// 调用ArrayAdapter的构造函数来创建ArrayAdapter对象
+		// 第一个参数是指上下文对象
+		// 第二个参数指定了下拉菜单当中每一个条目的样式
+		// 第三个参数指定了TextView控件的ID
+		// 第四个参数为整个列表提供数据
+		ArrayAdapter adapter_person = new ArrayAdapter(this,
+				R.layout.person_item, R.id.textViewId, list);
+		sp_xunjianrenyuan.setAdapter(adapter_person);
+		sp_xunjianrenyuan.setPrompt("请选择巡检人员");
+		// 为spinner对象绑定监听器
+		sp_xunjianrenyuan
+				.setOnItemSelectedListener(new SpinnerOnSelectedPersonListener());
+
 		sp_kaishishijian = (Spinner) findViewById(R.id.t_spinner_kaishishijian);
 		ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(
 				this, R.array.str_array_time,
@@ -116,13 +147,13 @@ public class TaskInputActivity extends Activity {
 		adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 		sp_kaishishijian.setAdapter(adapter2);
-		sp_kaishishijian.setPrompt("任务类型");
+		sp_kaishishijian.setPrompt("请设置开始时间");
 		sp_kaishishijian
 				.setOnItemSelectedListener(new SpinnerOnSelectedTimeOneListener());
 
 		sp_jiezhishijian = (Spinner) findViewById(R.id.t_spinner_jiezhishijian);
 		sp_jiezhishijian.setAdapter(adapter2);
-		sp_jiezhishijian.setPrompt("任务类型");
+		sp_jiezhishijian.setPrompt("请设置结束时间");
 		sp_jiezhishijian
 				.setOnItemSelectedListener(new SpinnerOnSelectedTimeTwoListener());
 
@@ -191,7 +222,27 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// 这个监听器主要用来监听任务类别选择列表的动作
+	// 这个监听器主要用来监听巡检人员类别选择列表的动作
+	class SpinnerOnSelectedPersonListener implements OnItemSelectedListener {
+
+		// 当用户选定了一个条目时，就会调用该方法
+		@Override
+		public void onItemSelected(AdapterView<?> adapterView, View view,
+				int position, long id) {
+			String selected = adapterView.getItemAtPosition(position)
+					.toString();
+			System.out.println(selected);
+		}
+
+		@Override
+		public void onNothingSelected(AdapterView<?> adapterView) {
+			// TODO Auto-generated method stub
+			System.out.println("nothingSelected");
+		}
+
+	}
+
+	// 这个监听器主要用来监听时间类别选择列表的动作
 	class SpinnerOnSelectedTimeOneListener implements OnItemSelectedListener {
 
 		// 当用户选定了一个条目时，就会调用该方法
@@ -211,7 +262,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// 这个监听器主要用来监听任务类别选择列表的动作
+	// 这个监听器主要用来监听时间类别选择列表的动作
 	class SpinnerOnSelectedTimeTwoListener implements OnItemSelectedListener {
 
 		// 当用户选定了一个条目时，就会调用该方法
@@ -400,14 +451,21 @@ public class TaskInputActivity extends Activity {
 			str_luduanming = et_luduanming.getText().toString();
 			task.setRoadName(str_luduanming);
 
-			// str_xunjianrenyuan = et_xunjianrenyuan.getText().toString();
-			task.setInspectionPersonId(Integer.parseInt(str_xunjianrenyuan));
+			// 巡检人员
+			// str_xunjianrenyuan =;
+			// task.setInspectionPersonId(Integer.parseInt(str_xunjianrenyuan));
 
 			str_renwuneirong = et_renwuneirong.getText().toString();
 			task.setContent(str_renwuneirong);
 
 			str_xunjianzhouqi = et_xunjianzhouqi.getText().toString();
-			// task。setCycle(str_xunjianzhouqi);
+			System.out.println(str_xunjianzhouqi);
+			int cycle = 0;
+			if (str_xunjianzhouqi != null && str_xunjianzhouqi.length() != 0) {
+				cycle = Integer.parseInt(str_xunjianzhouqi);
+			}
+
+			task.setCycle(cycle);
 
 			str_gerenwu = et_gerenwu.getText().toString();
 
