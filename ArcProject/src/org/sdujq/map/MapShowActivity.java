@@ -8,6 +8,7 @@ import org.sdu.gis.R;
 import org.sdu.pojo.RoadLine;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -50,10 +51,13 @@ public class MapShowActivity extends Activity implements OnClickListener,
 	public RoadLineAction action;
 	public int state = 0;
 	ArcGISTiledMapServiceLayer tileLayer;
-
+	boolean needSave=false;
 	/** Called when the activity is first created. */
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		Intent it = this.getIntent();
+		roadLine = (RoadLine) it.getSerializableExtra("roadLine");
+		needSave=it.getBooleanExtra("needSave",false);
 		setContentView(R.layout.mapview);
 		init();
 		tileLayer = new ArcGISTiledMapServiceLayer(
@@ -68,7 +72,7 @@ public class MapShowActivity extends Activity implements OnClickListener,
 		List<Point> plist = action.getPointList();
 		path = new Polyline();
 		graphicsLayer.removeAll();
-		HashMap<Integer, PopupInfo> infoMap=new HashMap<Integer, PopupInfo>();
+		HashMap<Integer, PopupInfo> infoMap = new HashMap<Integer, PopupInfo>();
 		for (int i = 0; i < plist.size(); i++) {
 			Point p = plist.get(i);
 			if (i == 0) {
@@ -76,19 +80,19 @@ public class MapShowActivity extends Activity implements OnClickListener,
 			} else {
 				path.lineTo(p);
 			}
-			PopupInfo pInfo=new PopupInfo();
+			PopupInfo pInfo = new PopupInfo();
 			Graphic pointGraphic = new Graphic(p, new PictureMarkerSymbol(
 					getResources().getDrawable(R.drawable.ic_launcher)));
-			int pid=graphicsLayer.addGraphic(pointGraphic);
-			pInfo.setTitle(pid+"");
+			int pid = graphicsLayer.addGraphic(pointGraphic);
+			pInfo.setTitle(pid + "");
 			infoMap.put(pid, pInfo);
 		}
 		Graphic pathGraphic = new Graphic(path, new SimpleLineSymbol(
 				Color.BLUE, 2));
 		graphicsLayer.addGraphic(pathGraphic);
-		
+
 		graphicsLayer.setPopupInfos(infoMap);
-		
+
 	}
 
 	public void init() {
@@ -151,14 +155,16 @@ public class MapShowActivity extends Activity implements OnClickListener,
 			state = state_nothing;
 			initLineLayer();
 		} else if (v == bt5) {
-			Log.e("qq", "scale"+map.getScale());
-			Log.e("qq", "X"+map.getCenter().getX());
-			Log.e("qq", "Y"+map.getCenter().getY());
-			// Point p = new Point(116.806, 36.555629);
-			// SpatialReference sp = SpatialReference.create(4326);
-			// Point ptMap = (Point) GeometryEngine.project(p, sp,
-			// map.getSpatialReference());
-			// //map.centerAt(ptMap);
+			Log.e("qq", "scale" + map.getScale());
+			Log.e("qq", "X" + map.getCenter().getX());
+			Log.e("qq", "Y" + map.getCenter().getY());
+			if(needSave){
+			int id=action.saveCurrentRoadLine("");
+			Intent it=new Intent();
+			it.putExtra("id", id);
+			setResult(RESULT_OK, it);
+			}
+			finish();
 		}
 	}
 
@@ -176,7 +182,8 @@ public class MapShowActivity extends Activity implements OnClickListener,
 	public void onStatusChanged(Object arg0, STATUS arg1) {
 		if (arg1 == STATUS.INITIALIZED) {
 			map.setScale(150000);
-			map.centerAt(new Point(1.3023393414439667E7, 4393159.951589695), true);
+			map.centerAt(new Point(1.3023393414439667E7, 4393159.951589695),
+					true);
 			action = new RoadLineAction(MapShowActivity.this);
 			if (roadLine != null) {
 				action.getRoadLine(roadLine);
@@ -202,5 +209,12 @@ public class MapShowActivity extends Activity implements OnClickListener,
 	@Override
 	public Object onRetainNonConfigurationInstance() {
 		return map.retainState();
+	}
+
+	public static void startMapForShow(Activity activity, RoadLine roadLine,Boolean needSave) {
+		Intent it = new Intent(activity, MapShowActivity.class);
+		it.putExtra("roadLine", roadLine);
+		it.putExtra("needSave", needSave);
+		activity.startActivityForResult(it, 1);
 	}
 }
