@@ -17,18 +17,21 @@
      <string name="xunjianrenyuan">巡检人员</string>
      <string name="renwuneirong">任务内容</string>
      <string name="kaishishijian">开始时间</string>
+     <string name="kaishiriqi">2012-06-29</string>
      <string name="jiezhishijian">截止时间</string>
+     <string name="jiezhiriqi">2012-06-29</string>
      <string name="xunjianzhouqi">巡检周期</string>
      <string name="tian">（天）</string>
      <string name="check_zidongshengcheng">按巡检周期自动生成</string>
      <string name="gerenwu">个任务</string>
      <string name="check_zidongfabu">自动发布巡检任务</string>
      <string name="beizhu">备注</string>
-     <string name="zhidingren">制定人</string>
-     <string name="zhidingshijian">制定时间</string>
+     <string name="zhidingren">制定人:</string>
+     <string name="zhidingshijian">制定时间:</string>
      <string name="bt_baocunrenwu">保存任务</string>
      <string name="bt_faburenwu">发布任务</string>
      <!--*************************************************-->
+
      <string name="addUser_username">用户名</string>
      <string name="addUser_password1">密码</string>
      <string name="addUser_password2">再次输入密码</string>
@@ -39,6 +42,17 @@
      <string name="addUser_list">查看列表</string>
       <string name="updateUser">保存修改</string>
        <string name="updateUser_back">返回</string>
+
+     
+          <!--*************日期选择页面的string********************-->
+     <string name="bt_shezhi">设置</string>
+     <string name="bt_quxiao">取消</string>
+     <!--*************************************************-->
+     
+     
+     
+     
+
      
      
      

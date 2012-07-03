@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="任务列表"
+        android:textColor="#FF0000"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/task1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+             />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/task1"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tasknum11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:textColor="#00FF00"
+                android:textSize="12.0sp" />
+
+            <TextView
+                android:id="@+id/tasktype12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#00FF00"
+               android:textSize="12.0sp" />
+
+            <TextView
+                android:id="@+id/roadname13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#00FF00"
+                android:textSize="12.0sp" />
+
+            <TextView
+                android:id="@+id/makername14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+               android:textColor="#00FF00"
+                android:textSize="12.0sp" />
+
+            <TextView
+                android:id="@+id/makedate15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#00FF00"
+                android:textSize="12.0sp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/task2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+             />
+
+        <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@+id/task2"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tasknum21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000FF0"
+                android:textSize="12.0sp" />
+
+            <TextView
+                android:id="@+id/tasktype22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000FF0"
+                android:textSize="12.0sp" />
+
+            <TextView
+                android:id="@+id/roadname23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000FF0"
+                android:textSize="12.0sp" />
+
+            <TextView
+                android:id="@+id/makername24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#000FF0"
+                android:textSize="12.0sp" />
+
+            <TextView
+                android:id="@+id/makedate25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 android:textColor="#000FF0"
+                android:textSize="12.0sp" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <Button
+            android:id="@+id/task3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+             />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/task3"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tasknum31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                
+                android:textSize="12.0sp" />
+
+            <TextView
+                android:id="@+id/tasktype32"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                
+                android:textSize="12.0sp" />
+
+            <TextView
+                android:id="@+id/roadname33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                
+                android:textSize="12.0sp" />
+
+            <TextView
+                android:id="@+id/makername34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                
+                android:textSize="12.0sp" />
+
+            <TextView
+                android:id="@+id/makedate35"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 
+                android:textSize="12.0sp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+    <RelativeLayout 
+        android:layout_width="match_parent" 
+        android:layout_height="wrap_content">
+        
+        <Button android:id="@+id/task4"
+             android:layout_width="wrap_content" 
+             android:layout_height="wrap_content" 
+             android:layout_alignParentLeft="true" 
+             android:layout_alignParentTop="true" 
+              />
+        <LinearLayout android:id="@+id/linearLayout2"
+             android:layout_width="wrap_content" 
+             android:layout_height="wrap_content" 
+             android:layout_alignParentTop="true" 
+             android:layout_toRightOf="@+id/task4" 
+             android:orientation="vertical">
+            
+            <TextView 
+                android:id="@+id/tasknum41"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" 
+               android:textColor="#00F0F0"
+                android:textSize="12.0sp"/>
+
+            <TextView
+                android:id="@+id/tasktype42"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#00F0F0"
+                android:textSize="12.0sp" />
+
+            <TextView
+                android:id="@+id/roadname43"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            android:textColor="#00F0F0"
+                android:textSize="12.0sp" />
+
+            <TextView
+                android:id="@+id/makername44"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                 android:textColor="#00F0F0"
+                android:textSize="12.0sp" />
+
+            <TextView
+                android:id="@+id/makedate45"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#00F0F0"
+                android:textSize="12.0sp" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/moretask"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+         />
+  	
+</LinearLayout>
