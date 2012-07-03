@@ -40,8 +40,11 @@
      <string name="addUser_add">添加</string>
      <string name="addUser_cancel">取消</string>
      <string name="addUser_list">查看列表</string>
-      <string name="updateUser">保存修改</string>
-       <string name="updateUser_back">返回</string>
+     <string name="updateUser">保存修改</string>
+     <string name="updateUser_back">返回</string>
+     <string name="updateUser_password1">新密码</string>
+     <string name="updateUser_password2">再次输入新密码</string>
+     <string name="clear">清空</string>
 
      
           <!--*************日期选择页面的string********************-->

@@ -47,6 +47,7 @@ public class AddUserActivity extends Activity{
 			}else if(!_password1.equals(_passwrod2)){
 				//提示两次密码输入不对
 				info="两次密码不匹配";
+				password2.setText("");
 			}else{
 				//添加用户
 				User user=new User();
@@ -56,11 +57,10 @@ public class AddUserActivity extends Activity{
 				user.setTag(_comment);
 				ud.insert(user);
 				clear();
-				info=userAction.getInfo();
-				Toast.makeText(this, userAction.getInfo(), Toast.LENGTH_SHORT);
+				info="添加成功";
 				
 			}
-			Toast.makeText(this, info,Toast.LENGTH_SHORT);
+			Toast.makeText(this, info,Toast.LENGTH_SHORT).show();
 			break;
 		case R.id.addUser_cancel:
 			//取消添加

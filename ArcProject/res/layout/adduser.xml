@@ -123,7 +123,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="UserAction"
-            android:text="@string/addUser_cancel" />
+            android:text="@string/clear" />
          <Button
             android:id="@+id/addUser_list"
             android:layout_width="wrap_content"
