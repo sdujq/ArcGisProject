@@ -6,9 +6,9 @@ import org.sdu.view.buginput.BugInputActivity;
 import org.sdu.view.bugshow.BugShowActivity;
 import org.sdu.view.taskinput.TaskInputActivity;
 import org.sdu.view.taskshow.TaskShowActivity;
-
-
+import org.sdujq.map.Home;
 import org.sdujq.map.MapShowActivity;
+import org.sdujq.map.TabHomeActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -114,6 +114,16 @@ public class ArcProjectActivity extends Activity {
 					public void onClick(View v) {
 						Intent i=new Intent();
 						i.setClass(ArcProjectActivity.this, MapShowActivity.class);
+						ArcProjectActivity.this.startActivity(i);
+					}
+				});
+			}else if(n==6){
+				t.setText("主界面调试入口");
+				v.setOnClickListener(new OnClickListener() {	
+					@Override
+					public void onClick(View v) {
+						Intent i=new Intent();
+						i.setClass(ArcProjectActivity.this, TabHomeActivity.class);
 						ArcProjectActivity.this.startActivity(i);
 					}
 				});

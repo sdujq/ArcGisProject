@@ -18,14 +18,48 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="org.sdu.view.taskshow.TaskShowActivity"></activity>
-        <activity android:name="org.sdu.view.taskinput.TaskInputActivity"></activity>
-        <activity android:name="org.sdu.view.taskinput.DatePickActivity"
-            android:theme="@style/mytheme"></activity>
-        <activity android:name="org.sdu.view.bugshow.BugShowActivity"></activity>
-        <activity android:name="org.sdu.view.buginput.BugInputActivity"></activity>
-        <activity android:name="org.sdu.dbaction.DBDebug"></activity>
-        <activity android:name="org.sdujq.map.MapShowActivity"></activity>
+        <activity android:name="org.sdu.view.taskshow.TaskShowActivity" >
+        </activity>
+        <activity android:name="org.sdu.view.taskinput.TaskInputActivity" >
+        </activity>
+        <activity
+            android:name="org.sdu.view.taskinput.DatePickActivity"
+            android:theme="@android:style/Theme.Dialog" >
+        </activity>
+        <activity android:name="org.sdu.view.bugshow.BugShowActivity" >
+        </activity>
+        <activity android:name="org.sdu.view.buginput.BugInputActivity" >
+        </activity>
+        <activity android:name="org.sdu.dbaction.DBDebug" >
+        </activity>
+        <activity android:name="org.sdujq.map.MapShowActivity" >
+        </activity>
+        <activity android:name="org.sdujq.map.Home"></activity>
+        <activity android:name="org.sdujq.map.WhiteActivity"></activity>
+        <activity android:name="org.sdujq.map.TabHomeActivity"></activity>
     </application>
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" >
+    </uses-permission>
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
 </manifest>

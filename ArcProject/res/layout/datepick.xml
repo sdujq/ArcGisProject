@@ -3,11 +3,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@android:color/transparent" >
+    android:orientation="vertical" >
 
     <DatePicker
-        android:id="@+id/d_datePicker"
+        android:id="@+id/datePicker1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true" />
@@ -16,8 +15,8 @@
         android:id="@+id/d_bt_shezhi"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/d_datePicker"
-        android:layout_below="@id/d_datePicker"
+        android:layout_alignLeft="@id/datePicker1"
+        android:layout_below="@id/datePicker1"
         android:layout_marginLeft="20dip"
         android:text="@string/bt_shezhi" />
 
@@ -25,8 +24,8 @@
         android:id="@+id/d_bt_quxiao"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@id/d_datePicker"
-        android:layout_below="@id/d_datePicker"
+        android:layout_alignRight="@id/datePicker1"
+        android:layout_below="@id/datePicker1"
         android:layout_marginRight="20dip"
         android:text="@string/bt_quxiao" />
 

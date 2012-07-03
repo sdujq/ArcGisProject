@@ -80,9 +80,9 @@ public class Home extends Activity {
 	public void refreshlst(){
 		manager.removeAllActivities();
 		listViews = new ArrayList<View>();
-		Intent intent = new Intent(this, InputActivity.class);
+		Intent intent = new Intent(this, WhiteActivity.class);
 		listViews.add(getView("Home", intent));
-		Intent intent2 = new Intent(this, RecordListActivity.class);
+		Intent intent2 = new Intent(this, WhiteActivity.class);
 		listViews.add(getView("Attention", intent2));
 		Intent intent3 = new Intent(this, WhiteActivity.class);
 		listViews.add(getView("Map", intent3));
@@ -248,7 +248,6 @@ public class Home extends Activity {
 		photo.setOnClickListener(new ButtonListener(3));
 		person.setOnClickListener(new ButtonListener(4));
 
-		title = (Button) findViewById(R.id.title);
 
 	}
 
