@@ -2,6 +2,7 @@ package org.sdu.view.usermanager;
 
 import org.sdu.dbaction.Action;
 import org.sdu.gis.R;
+import org.sdujq.map.TabHomeActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -17,7 +18,7 @@ public class LoginActivity extends Activity {
 	private Action userAction;
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.login);
+		setContentView(R.layout.loginmh);
 		init();
 	}
 
@@ -33,12 +34,15 @@ public class LoginActivity extends Activity {
 			String pwd = password.getText().toString();
 			// 跳转到相应页面
 			if(name.equals("")||pwd.equals("")){
+				 intent=new Intent();
+				 intent.setClass(LoginActivity.this, TabHomeActivity.class);
+				 startActivity(intent);
 				Toast.makeText(this, "用户名或密码不能为空", Toast.LENGTH_LONG).show();
 			}else{
 				if(userAction.login(name, pwd)){
 					//跳转到相关页面
 					 intent=new Intent();
-					 intent.setClass(LoginActivity.this, AddUserActivity.class);
+					 intent.setClass(LoginActivity.this, TabHomeActivity.class);
 					 startActivity(intent);
 				}else{
 					//提示错误并清空密码

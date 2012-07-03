@@ -57,6 +57,8 @@ public class UserInfoActivity extends Activity{
 		case R.id.updateUser:
 			update();
 			Toast.makeText(this, "修改成功", Toast.LENGTH_LONG).show();
+			UserListView.currentView.h.sendEmptyMessage(1);
+			finish();
 			break;
 		case R.id.updateUser_back:
 			clear();
@@ -86,7 +88,7 @@ public class UserInfoActivity extends Activity{
 			pwdEdit2.setText("");
 		}else{
 			//添加用户
-			User user=new User();
+			//User user=new User();
 			user.setName(_name);
 			user.setPassword(_password1);
 			user.setPhoneNum(_telphone);

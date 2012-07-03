@@ -2,12 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
-
+    android:orientation="vertical" android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/kg" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/textView11"
@@ -26,11 +32,11 @@
         </EditText>
 
     </LinearLayout>
-
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/textView22"
@@ -46,10 +52,11 @@
             android:inputType="textPassword" />
 
     </LinearLayout>
+
  	<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+ 	    android:layout_width="match_parent"
+ 	    android:layout_height="wrap_content"
+ 	    android:orientation="vertical" >
 
         <TextView
             android:id="@+id/textView111"
@@ -65,11 +72,11 @@
             android:inputType="textPassword" />
 
     </LinearLayout>
-    
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="vertical" >
 
         <TextView
             android:id="@+id/textView44"
@@ -109,20 +116,20 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal" >
+        android:orientation="horizontal" android:layout_weight="1">
 
         <Button
             android:id="@+id/updateUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/updateUser" android:onClick="updateUserAction"/>
-
+            android:text="@string/updateUser" android:onClick="updateUserAction" android:layout_weight="1"/>
+
         <Button
             android:id="@+id/updateUser_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="updateUserAction"
-            android:text="@string/clear" />
+            android:text="清空重填" android:layout_weight="1"/>
 
     </LinearLayout>
 

@@ -1,6 +1,8 @@
 package org.sdujq.map;
 
 import org.sdu.gis.R;
+import org.sdu.view.usermanager.AccountActivity;
+import org.sdu.view.usermanager.AddUserActivity;
 
 import android.app.TabActivity;
 import android.content.Intent;
@@ -82,7 +84,7 @@ public class TabHomeActivity extends TabActivity {
 				.setText(n5);
 
 		TabHost.TabSpec spec4 = tabHost.newTabSpec(n5).setIndicator(view5)
-				.setContent(new Intent(this, WhiteActivity.class));
+				.setContent(new Intent(this, AccountActivity.class));
 		tabHost.addTab(spec4);
 
 	}
