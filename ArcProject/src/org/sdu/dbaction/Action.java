@@ -19,9 +19,10 @@ public class Action {
 	 * @param name 姓名
 	 * @param phone 电话
 	 * @param pwd 密码
+	 * @param tag 备注信息
 	 * @return
 	 */
-	public boolean reg(String name, String phone, String pwd) {
+	public boolean reg(String name, String phone, String pwd,String tag) {
 		UserDao uDao=new UserDao(context);
 		List<User> u=uDao.find(new String[]{"id","password","name"},"name=?",new String[]{name},null,null,null,null);
 		if(u!=null&&u.size()!=0){
@@ -73,6 +74,12 @@ public class Action {
 			return false;
 		}
 		return login(u.get(0).getId(),pwd);
+	}
+	public String getInfo() {
+		return info;
+	}
+	public void setInfo(String info) {
+		this.info = info;
 	}
 	
 	

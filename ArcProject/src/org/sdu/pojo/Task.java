@@ -35,7 +35,7 @@ public class Task implements Serializable{
 	@Column(name="content")
 	private String content;
 	@Column(name="cycle")
-	private long cycle;
+	private int cycle;
 	@Column(name="tag")
 	private String tag;
 	@Column(name="state")
@@ -109,7 +109,7 @@ public class Task implements Serializable{
 	public long getCycle() {
 		return cycle;
 	}
-	public void setCycle(long cycle) {
+	public void setCycle(int cycle) {
 		this.cycle = cycle;
 	}
 	public String getTag() {

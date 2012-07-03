@@ -33,6 +33,7 @@ public class DBDebug extends Activity{
 		Log.i("TASK", t.toString());
 		//修改任务
 		task.setState("1");
+		ta.releaseTask(task);
 		//获取任务的相关信息
 		Task t1=ta.getDetail(1);
 		Log.i("TASK", t1.toString());
@@ -52,6 +53,7 @@ public class DBDebug extends Activity{
 		Log.i("BUG",b.getId()+" "+b.getContent()+" "+b.getState()+" "+b.getPoint()+" "+b.getBugTypeId());
 		//update
 		bug.setState("1");
+		ba.finish(1);
 		Bug b1=ba.getDetail(1);
 		Log.i("BUG",b1.getId()+" "+b1.getContent()+" "+b1.getState()+" "+b1.getPoint()+" "+b1.getBugTypeId());
 	}

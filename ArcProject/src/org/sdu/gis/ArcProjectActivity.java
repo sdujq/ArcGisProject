@@ -6,6 +6,7 @@ import org.sdu.view.buginput.BugInputActivity;
 import org.sdu.view.bugshow.BugShowActivity;
 import org.sdu.view.taskinput.TaskInputActivity;
 import org.sdu.view.taskshow.TaskShowActivity;
+import org.sdu.view.usermanager.LoginActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -94,12 +95,12 @@ public class ArcProjectActivity extends Activity {
 					}
 				});
 			}else if(n==4){
-				t.setText("调试入口");
+				t.setText("人员管理");
 				v.setOnClickListener(new OnClickListener() {	
 					@Override
 					public void onClick(View v) {
 						Intent i=new Intent();
-						i.setClass(ArcProjectActivity.this, DBDebug.class);
+						i.setClass(ArcProjectActivity.this, LoginActivity.class);
 						ArcProjectActivity.this.startActivity(i);
 					}
 				});
