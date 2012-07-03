@@ -15,9 +15,9 @@
     <string name="xunjianrenyuan">巡检人员</string>
     <string name="renwuneirong">任务内容</string>
     <string name="kaishishijian">开始时间</string>
-    <string name="kaishiriqi">2012-06-29</string>
+    <string name="kaishiriqi">0000-00-00</string>
     <string name="jiezhishijian">截止时间</string>
-    <string name="jiezhiriqi">2012-06-29</string>
+    <string name="jiezhiriqi">0000-00-00</string>
     <string name="xunjianzhouqi">巡检周期</string>
     <string name="tian">（小时）</string>
     <string name="check_zidongshengcheng">按巡检周期自动生成</string>

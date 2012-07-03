@@ -3,6 +3,7 @@ package org.sdu.view.taskinput;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import org.sdu.db.DBHelper;
 import org.sdu.gis.R;
@@ -25,6 +26,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.Toast;
 
 public class TaskInputActivity extends Activity {
 	public Button bt_zhiding, bt_qingkong, bt_xuanzequyu, bt_xunjianquyu,
@@ -48,12 +50,16 @@ public class TaskInputActivity extends Activity {
 	private int year;
 	private int month;
 	private int day;
-	private int mYear, mMonth, mDay, mHour, mMinute, mSecond;
+	private int mHour1, mHour2;
 	private String strmYear, strmMonth, strmDay, strmHour, strmMinute,
-			strmSecond, strTime;
+			strmSecond, strTime,str_mHour1,str_mHour2;
 	private int REQUEST_CODE = 0;
 	private String DEFAULT_TIME_FORMAT = "yyyy-MM-dd hh:mm:ss";
-
+	private String str_typeOfTask, str_idOfPerson, str_timeOfStart,
+			str_timeOfEnd;
+    private int idOfPerson=0;
+    private long long_timeOfStart,long_timeOfEnd;
+    
 	@Override
 	public void onCreate(Bundle saved) {
 		super.onCreate(saved);
@@ -210,15 +216,16 @@ public class TaskInputActivity extends Activity {
 		@Override
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
-			String selected = adapterView.getItemAtPosition(position)
-					.toString();
-			System.out.println(selected);
+			str_typeOfTask = adapterView.getItemAtPosition(position).toString();
+			Toast.makeText(TaskInputActivity.this, "任务类别为：" + str_typeOfTask,
+					Toast.LENGTH_SHORT).show();
 		}
 
 		@Override
 		public void onNothingSelected(AdapterView<?> adapterView) {
 			// TODO Auto-generated method stub
-			System.out.println("nothingSelected");
+			Toast.makeText(TaskInputActivity.this, "你还未选择任务类别",
+					Toast.LENGTH_SHORT).show();
 		}
 
 	}
@@ -230,15 +237,16 @@ public class TaskInputActivity extends Activity {
 		@Override
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
-			String selected = adapterView.getItemAtPosition(position)
-					.toString();
-			System.out.println(selected);
+			str_idOfPerson = adapterView.getItemAtPosition(position).toString();
+			Toast.makeText(TaskInputActivity.this, "巡检人员为：" + str_idOfPerson,
+					Toast.LENGTH_SHORT).show();
 		}
 
 		@Override
 		public void onNothingSelected(AdapterView<?> adapterView) {
 			// TODO Auto-generated method stub
-			System.out.println("nothingSelected");
+			Toast.makeText(TaskInputActivity.this, "你还未选择巡检人员",
+					Toast.LENGTH_SHORT).show();
 		}
 
 	}
@@ -250,15 +258,22 @@ public class TaskInputActivity extends Activity {
 		@Override
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
-			String selected = adapterView.getItemAtPosition(position)
+			str_mHour1 = adapterView.getItemAtPosition(position)
 					.toString();
-			System.out.println(selected);
+			
+			Toast.makeText(TaskInputActivity.this, "任务起始时间为：" + str_mHour1,
+					Toast.LENGTH_SHORT).show();
+			str_mHour1= str_mHour1.substring(0, 2);
+			System.out.println(str_mHour1);
+			
+			
 		}
 
 		@Override
 		public void onNothingSelected(AdapterView<?> adapterView) {
 			// TODO Auto-generated method stub
-			System.out.println("nothingSelected");
+			Toast.makeText(TaskInputActivity.this, "你还未选择任务起始时间",
+					Toast.LENGTH_SHORT).show();
 		}
 
 	}
@@ -270,15 +285,19 @@ public class TaskInputActivity extends Activity {
 		@Override
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
-			String selected = adapterView.getItemAtPosition(position)
+			 str_mHour2 = adapterView.getItemAtPosition(position)
 					.toString();
-			System.out.println(selected);
+			 Toast.makeText(TaskInputActivity.this, "任务结束时间为：" + str_mHour2,
+						Toast.LENGTH_SHORT).show();
+			 str_mHour2= str_mHour2.substring(0, 2);
+			 
 		}
 
 		@Override
 		public void onNothingSelected(AdapterView<?> adapterView) {
 			// TODO Auto-generated method stub
-			System.out.println("nothingSelected");
+			Toast.makeText(TaskInputActivity.this, "你还未选择任务结束时间",
+					Toast.LENGTH_SHORT).show();
 		}
 
 	}
@@ -317,10 +336,11 @@ public class TaskInputActivity extends Activity {
 					if (a == 1) {
 
 						bt_kaishiriqi.setText(year + "-" + Smonth + "-" + Sday);
+						str_timeOfStart=year + "" + Smonth + "" + Sday;
 
 					} else if (a == 2) {
 						bt_jieshuriqi.setText(year + "-" + Smonth + "-" + Sday);
-
+						str_timeOfEnd=year + "" + Smonth + "" + Sday;
 					}
 
 				}
@@ -458,27 +478,43 @@ public class TaskInputActivity extends Activity {
 			str_luduanming = et_luduanming.getText().toString();
 			task.setRoadName(str_luduanming);
 
-			// 巡检人员
-			// str_xunjianrenyuan =;
-			// task.setInspectionPersonId(Integer.parseInt(str_xunjianrenyuan));
-
+			str_typeOfTask=str_typeOfTask;
+			task.setTaskType(str_typeOfTask);
+			
+			idOfPerson=idOfPerson;
+			task.setInspectionPersonId(idOfPerson);
+			
 			str_renwuneirong = et_renwuneirong.getText().toString();
 			task.setContent(str_renwuneirong);
-
+			
+					
+			long_timeOfStart=Integer.parseInt(str_timeOfStart+""+str_mHour1);
+			task.setStartTime(long_timeOfStart);
+			
+			long_timeOfEnd=Integer.parseInt(str_timeOfEnd+""+str_mHour2);
+			task.setEndTime(long_timeOfEnd);
+			
+			
 			str_xunjianzhouqi = et_xunjianzhouqi.getText().toString();
-			System.out.println(str_xunjianzhouqi);
 			int cycle = 0;
 			if (str_xunjianzhouqi != null && str_xunjianzhouqi.length() != 0) {
 				cycle = Integer.parseInt(str_xunjianzhouqi);
 			}
-
 			task.setCycle(cycle);
 
 			str_gerenwu = et_gerenwu.getText().toString();
 
+			
 			str_beizhu = et_beizhu.getText().toString();
 			task.setTag(str_beizhu);
-
+			
+			SimpleDateFormat   formatter   =   new   SimpleDateFormat   ("yyyyMMddHH:mm:ss");    
+			Date   curDate   =   new   Date(System.currentTimeMillis());
+			String   strRealseTime   =   formatter.format(curDate);    
+			
+			//long realseTime=Integer.parseInt(strRealseTime);
+			//task.setRealseTime(realseTime);
+			
 		}
 
 	}
