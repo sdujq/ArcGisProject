@@ -118,14 +118,15 @@ public class TaskInputActivity extends Activity {
 		List<String> list = new ArrayList<String>();
 		DBHelper dbHelper = new DBHelper(TaskInputActivity.this);
 		SQLiteDatabase db = dbHelper.getReadableDatabase();
-		Cursor cursor = db.query("t_user", new String[]{"id","name"}, null,null, null, null, null);
-		while(cursor.moveToNext()){
+		Cursor cursor = db.query("t_user", new String[] { "id", "name" }, null,
+				null, null, null, null);
+		while (cursor.moveToNext()) {
 			String id = cursor.getString(cursor.getColumnIndex("id"));
 			String name = cursor.getString(cursor.getColumnIndex("name"));
 			System.out.println("query--->" + name);
-			list.add(id+":"+name);
+			list.add(id + ":" + name);
 		}
-		
+
 		// 调用ArrayAdapter的构造函数来创建ArrayAdapter对象
 		// 第一个参数是指上下文对象
 		// 第二个参数指定了下拉菜单当中每一个条目的样式
@@ -393,6 +394,12 @@ public class TaskInputActivity extends Activity {
 			animationSet.setFillBefore(true);
 			animationSet.setDuration(200);
 			bt_qingkong.startAnimation(animationSet);
+
+			et_luduanming.setText("");
+			et_renwuneirong.setText("");
+			et_beizhu.setText("");
+			et_xunjianzhouqi.setText("");
+			et_gerenwu.setText("");
 
 		}
 
