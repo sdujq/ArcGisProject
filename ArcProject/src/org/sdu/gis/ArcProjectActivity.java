@@ -1,15 +1,13 @@
 package org.sdu.gis;
 
+import org.sdu.dao.RoadLineDao;
 import org.sdu.db.DBHelper;
-import org.sdu.dbaction.DBDebug;
+import org.sdu.pojo.RoadLine;
 import org.sdu.view.buginput.BugInputActivity;
 import org.sdu.view.bugshow.BugShowActivity;
 import org.sdu.view.taskinput.TaskInputActivity;
 import org.sdu.view.taskshow.TaskShowActivity;
-
 import org.sdu.view.usermanager.LoginActivity;
-
-import org.sdujq.map.Home;
 import org.sdujq.map.MapShowActivity;
 import org.sdujq.map.TabHomeActivity;
 
@@ -17,6 +15,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -115,9 +114,8 @@ public class ArcProjectActivity extends Activity {
 				v.setOnClickListener(new OnClickListener() {	
 					@Override
 					public void onClick(View v) {
-						Intent i=new Intent();
-						i.setClass(ArcProjectActivity.this, MapShowActivity.class);
-						ArcProjectActivity.this.startActivity(i);
+						RoadLine r=(new RoadLineDao(ArcProjectActivity.this)).get(4);
+						MapShowActivity.startMapForShow(ArcProjectActivity.this, r, false);
 					}
 				});
 			}else if(n==6){
@@ -125,14 +123,23 @@ public class ArcProjectActivity extends Activity {
 				v.setOnClickListener(new OnClickListener() {	
 					@Override
 					public void onClick(View v) {
-						Intent i=new Intent();
-						i.setClass(ArcProjectActivity.this, TabHomeActivity.class);
-						ArcProjectActivity.this.startActivity(i);
+						Intent it =new Intent();
+						it.setClass(ArcProjectActivity.this, TabHomeActivity.class);
+						ArcProjectActivity.this.startActivity(it);
 					}
 				});
 			}
+			
 			return v;
 		}
     	
     }
-}
+    
+    @Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if(resultCode==RESULT_OK){
+			int id=data.getIntExtra("id", -1);
+			Log.e("qq", "saved road id is "+id);
+		}
+	}}

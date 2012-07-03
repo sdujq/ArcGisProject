@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.sdu.dbaction.RoadLineAction;
+import org.sdu.gis.ArcProjectActivity;
 import org.sdu.gis.R;
 import org.sdu.pojo.RoadLine;
 
@@ -57,7 +58,8 @@ public class MapShowActivity extends Activity implements OnClickListener,
 		super.onCreate(savedInstanceState);
 		Intent it = this.getIntent();
 		roadLine = (RoadLine) it.getSerializableExtra("roadLine");
-		needSave=it.getBooleanExtra("needSave",false);
+		needSave=it.getBooleanExtra("needSave", false);
+		Log.e("qq", needSave+"");
 		setContentView(R.layout.mapview);
 		init();
 		tileLayer = new ArcGISTiledMapServiceLayer(
@@ -155,9 +157,9 @@ public class MapShowActivity extends Activity implements OnClickListener,
 			state = state_nothing;
 			initLineLayer();
 		} else if (v == bt5) {
-			Log.e("qq", "scale" + map.getScale());
+			/*Log.e("qq", "scale" + map.getScale());
 			Log.e("qq", "X" + map.getCenter().getX());
-			Log.e("qq", "Y" + map.getCenter().getY());
+			Log.e("qq", "Y" + map.getCenter().getY());*/
 			if(needSave){
 			int id=action.saveCurrentRoadLine("");
 			Intent it=new Intent();
@@ -212,9 +214,13 @@ public class MapShowActivity extends Activity implements OnClickListener,
 	}
 
 	public static void startMapForShow(Activity activity, RoadLine roadLine,Boolean needSave) {
-		Intent it = new Intent(activity, MapShowActivity.class);
+		//Intent it = new Intent(activity, MapShowActivity.class);
+		
+		Intent it =new Intent();
+		it.setClass(activity, MapShowActivity.class);
 		it.putExtra("roadLine", roadLine);
 		it.putExtra("needSave", needSave);
 		activity.startActivityForResult(it, 1);
+		
 	}
 }
