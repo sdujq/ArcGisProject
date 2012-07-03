@@ -46,10 +46,12 @@
         <activity android:name="org.sdu.view.usermanager.AddUserActivity"></activity>
         <activity android:name="org.sdu.view.usermanager.LoginActivity"></activity>
         <activity android:name="org.sdu.view.usermanager.UserListActivity"></activity>
-        <activity android:name="org.sdu.view.usermanager.UserInfoActivity"></activity>
+        <activity android:name="org.sdu.view.usermanager.UserInfoActivity"
+            android:theme="@android:style/Theme.Dialog"></activity>
         <activity android:name="org.sdujq.map.Home"></activity>
         <activity android:name="org.sdujq.map.WhiteActivity"></activity>
         <activity android:name="org.sdujq.map.TabHomeActivity"></activity>
+        <activity android:name="org.sdu.view.usermanager.AccountActivity"></activity>
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

@@ -4,29 +4,42 @@ import org.sdu.dao.UserDao;
 import org.sdu.dbaction.Action;
 import org.sdu.gis.R;
 import org.sdu.pojo.User;
+import org.sdujq.frame.AbsShow;
+import org.sdujq.frame.FrameActivity;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class AddUserActivity extends Activity{
+public class AddUserView extends AbsShow implements OnClickListener{
 	private Button addUser,cancelAdd;
 	private EditText name,password1,password2,comment,telphone;
 	private Action userAction;
 	private UserDao ud;
-	@Override
-	public void onCreate(Bundle savedInstanceState){
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.adduser);
-		init();
+	
+	public AddUserView(FrameActivity activity, int layout, String name) {
+		super(activity, layout, name);
 	}
-	/**
-	 * 该方法用来向应点击添加事件或取消添加，查看用户列表等
-	 */
+
+	@Override
+	public View initView() {
+		addUser=(Button) view.findViewById(R.id.addUser);
+		addUser.setOnClickListener(this);
+		cancelAdd=(Button) view.findViewById(R.id.addUser_cancel);
+		cancelAdd.setOnClickListener(this);
+		name=(EditText) view.findViewById(R.id.addUser_name);
+		password1=(EditText) view.findViewById(R.id.addUser_password1);
+		password2=(EditText) view.findViewById(R.id.addUser_password2);
+		comment=(EditText) view.findViewById(R.id.addUser_comment);
+		telphone=(EditText) view.findViewById(R.id.addUser_telphone);
+		userAction=new Action(activity);
+		ud=new UserDao(activity);
+		return view;
+	}
+
 	public void UserAction(View view){
 		switch (view.getId()) {
 		case R.id.addUser:
@@ -60,42 +73,30 @@ public class AddUserActivity extends Activity{
 				info="添加成功";
 				
 			}
-			Toast.makeText(this, info,Toast.LENGTH_SHORT).show();
+			Toast.makeText(activity, info,Toast.LENGTH_SHORT).show();
 			break;
 		case R.id.addUser_cancel:
 			//取消添加
 			clear();
 			break;
-		/*case R.id.addUser_list:
-			Intent intent=new Intent();
+			/*Intent intent=new Intent();
 			intent.setClass(AddUserActivity.this, UserListActivity.class);
 			startActivity(intent);*/
 		default:
 			break;
 		}
 	}
-	/**
-	 * 获取组件
-	 */
-	public void init(){
-		addUser=(Button) this.findViewById(R.id.addUser);
-		cancelAdd=(Button) this.findViewById(R.id.addUser_cancel);
-		name=(EditText) this.findViewById(R.id.addUser_name);
-		password1=(EditText) this.findViewById(R.id.addUser_password1);
-		password2=(EditText) this.findViewById(R.id.addUser_password2);
-		comment=(EditText) this.findViewById(R.id.addUser_comment);
-		telphone=(EditText) this.findViewById(R.id.addUser_telphone);
-		userAction=new Action(this);
-		ud=new UserDao(this);
-	}
-	/**
-	 * 清空各組件
-	 */
+	
 	public void clear(){
 		name.setText("");
 		password1.setText("");
 		password2.setText("");
 		telphone.setText("");
 		comment.setText("");
+	}
+
+	@Override
+	public void onClick(View v) {
+		UserAction(v);
 	}
 }
