@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical" >
-
+<!-- 此xml用于定义TaskInputActivity的布局 -->
     <!-- scrollview用于满屏滑动 -->
 
     <ScrollView

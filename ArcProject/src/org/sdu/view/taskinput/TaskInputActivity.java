@@ -93,16 +93,16 @@ public class TaskInputActivity extends Activity {
 		tv_zhidingshijian = (TextView) findViewById(R.id.t_zhidingshijian);
 
 		sp_selectTask = (Spinner) findViewById(R.id.t_spinner_selectTask);
-		// é€šè¿‡createFromResourceæ–¹æ³•åˆ›å»ºä¸€ä¸ªArrayAdapterå¯¹è±¡
+		// Í¨¹ıcreateFromResource·½·¨´´½¨Ò»¸öArrayAdapter¶ÔÏó
 
 		ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(
 				this, R.array.str_array_renwuleibie,
 				android.R.layout.simple_spinner_item);
-		// è®¾ç½®Spinnerå½“ä¸­æ¯ä¸ªæ¡ç›®çš„æ ·å¼ï¼Œå¼•ç”¨ä¸€ä¸ªAndroidç³»ç»Ÿæä¾›çš„å¸ƒå±€æ–‡ä»¶
+		// ÉèÖÃSpinnerµ±ÖĞÃ¿¸öÌõÄ¿µÄÑùÊ½£¬ÒıÓÃÒ»¸öAndroidÏµÍ³Ìá¹©µÄ²¼¾ÖÎÄ¼ş
 		adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 		sp_selectTask.setAdapter(adapter1);
-		sp_selectTask.setPrompt("ä»»åŠ¡ç±»å‹");
+		sp_selectTask.setPrompt("ÈÎÎñÀàĞÍ");
 		sp_selectTask
 				.setOnItemSelectedListener(new SpinnerOnSelectedListener());
 
@@ -112,17 +112,17 @@ public class TaskInputActivity extends Activity {
 		ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(
 				this, R.array.str_array_time,
 				android.R.layout.simple_spinner_item);
-		// è®¾ç½®Spinnerå½“ä¸­æ¯ä¸ªæ¡ç›®çš„æ ·å¼ï¼Œå¼•ç”¨ä¸€ä¸ªAndroidç³»ç»Ÿæä¾›çš„å¸ƒå±€æ–‡ä»¶
+		// ÉèÖÃSpinnerµ±ÖĞÃ¿¸öÌõÄ¿µÄÑùÊ½£¬ÒıÓÃÒ»¸öAndroidÏµÍ³Ìá¹©µÄ²¼¾ÖÎÄ¼ş
 		adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 		sp_kaishishijian.setAdapter(adapter2);
-		sp_kaishishijian.setPrompt("ä»»åŠ¡ç±»å‹");
+		sp_kaishishijian.setPrompt("ÈÎÎñÀàĞÍ");
 		sp_kaishishijian
 				.setOnItemSelectedListener(new SpinnerOnSelectedTimeOneListener());
 
 		sp_jiezhishijian = (Spinner) findViewById(R.id.t_spinner_jiezhishijian);
 		sp_jiezhishijian.setAdapter(adapter2);
-		sp_jiezhishijian.setPrompt("ä»»åŠ¡ç±»å‹");
+		sp_jiezhishijian.setPrompt("ÈÎÎñÀàĞÍ");
 		sp_jiezhishijian
 				.setOnItemSelectedListener(new SpinnerOnSelectedTimeTwoListener());
 
@@ -140,41 +140,41 @@ public class TaskInputActivity extends Activity {
 		et_xunjianzhouqi = (EditText) findViewById(R.id.t_text_xunjianzhouqi);
 		et_gerenwu = (EditText) findViewById(R.id.t_text_gerenwu);
 
-		// åˆ·æ–°æ—¶é—´çš„çº¿ç¨‹
+		// Ë¢ĞÂÊ±¼äµÄÏß³Ì
 		handler.post(updateThread);
 	}
 
-	// åˆ›å»ºHandlerå¯¹è±¡
+	// ´´½¨Handler¶ÔÏó
 
 	Handler handler = new Handler();
 
-	// æ–°å»ºä¸€ä¸ªçº¿ç¨‹å¯¹è±¡
+	// ĞÂ½¨Ò»¸öÏß³Ì¶ÔÏó
 
 	Runnable updateThread = new Runnable() {
 
-		// å°†è¦æ‰§è¡Œçš„æ“ä½œå†™åœ¨çº¿ç¨‹å¯¹è±¡çš„runæ–¹æ³•å½“ä¸­
+		// ½«ÒªÖ´ĞĞµÄ²Ù×÷Ğ´ÔÚÏß³Ì¶ÔÏóµÄrun·½·¨µ±ÖĞ
 
 		public void run() {
 
 			handler.postDelayed(updateThread, 1000);
-			// è°ƒç”¨Handlerçš„postDelayed()æ–¹æ³•
-			// è¿™ä¸ªæ–¹æ³•çš„ä½œç”¨æ˜¯ï¼šå°†è¦æ‰§è¡Œçš„çº¿ç¨‹å¯¹è±¡æ”¾å…¥åˆ°é˜Ÿåˆ—å½“ä¸­ï¼Œå¾…æ—¶é—´ç»“æŸåï¼Œè¿è¡Œåˆ¶å®šçš„çº¿ç¨‹å¯¹è±¡
-			// ç¬¬ä¸€ä¸ªå‚æ•°æ˜¯Runnableç±»å‹ï¼šå°†è¦æ‰§è¡Œçš„çº¿ç¨‹å¯¹è±¡
-			// ç¬¬äºŒä¸ªå‚æ•°æ˜¯longç±»å‹ï¼šå»¶è¿Ÿçš„æ—¶é—´ï¼Œä»¥æ¯«ç§’ä¸ºå•ä½
+			// µ÷ÓÃHandlerµÄpostDelayed()·½·¨
+			// Õâ¸ö·½·¨µÄ×÷ÓÃÊÇ£º½«ÒªÖ´ĞĞµÄÏß³Ì¶ÔÏó·ÅÈëµ½¶ÓÁĞµ±ÖĞ£¬´ıÊ±¼ä½áÊøºó£¬ÔËĞĞÖÆ¶¨µÄÏß³Ì¶ÔÏó
+			// µÚÒ»¸ö²ÎÊıÊÇRunnableÀàĞÍ£º½«ÒªÖ´ĞĞµÄÏß³Ì¶ÔÏó
+			// µÚ¶ş¸ö²ÎÊıÊÇlongÀàĞÍ£ºÑÓ³ÙµÄÊ±¼ä£¬ÒÔºÁÃëÎªµ¥Î»
 			SimpleDateFormat dateFormatter = new SimpleDateFormat(
 					DEFAULT_TIME_FORMAT);
 
 			strTime = dateFormatter.format(Calendar.getInstance().getTime());
 
-			tv_zhidingshijian.setText("æŒ‡å®šæ—¶é—´ï¼š" + strTime);
+			tv_zhidingshijian.setText("Ö¸¶¨Ê±¼ä£º" + strTime);
 		}
 
 	};
 
-	// è¿™ä¸ªç›‘å¬å™¨ä¸»è¦ç”¨æ¥ç›‘å¬ä»»åŠ¡ç±»åˆ«é€‰æ‹©åˆ—è¡¨çš„åŠ¨ä½œ
+	// Õâ¸ö¼àÌıÆ÷Ö÷ÒªÓÃÀ´¼àÌıÈÎÎñÀà±ğÑ¡ÔñÁĞ±íµÄ¶¯×÷
 	class SpinnerOnSelectedListener implements OnItemSelectedListener {
 
-		// å½“ç”¨æˆ·é€‰å®šäº†ä¸€ä¸ªæ¡ç›®æ—¶ï¼Œå°±ä¼šè°ƒç”¨è¯¥æ–¹æ³•
+		// µ±ÓÃ»§Ñ¡¶¨ÁËÒ»¸öÌõÄ¿Ê±£¬¾Í»áµ÷ÓÃ¸Ã·½·¨
 		@Override
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
@@ -191,10 +191,10 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// è¿™ä¸ªç›‘å¬å™¨ä¸»è¦ç”¨æ¥ç›‘å¬ä»»åŠ¡ç±»åˆ«é€‰æ‹©åˆ—è¡¨çš„åŠ¨ä½œ
+	// Õâ¸ö¼àÌıÆ÷Ö÷ÒªÓÃÀ´¼àÌıÈÎÎñÀà±ğÑ¡ÔñÁĞ±íµÄ¶¯×÷
 	class SpinnerOnSelectedTimeOneListener implements OnItemSelectedListener {
 
-		// å½“ç”¨æˆ·é€‰å®šäº†ä¸€ä¸ªæ¡ç›®æ—¶ï¼Œå°±ä¼šè°ƒç”¨è¯¥æ–¹æ³•
+		// µ±ÓÃ»§Ñ¡¶¨ÁËÒ»¸öÌõÄ¿Ê±£¬¾Í»áµ÷ÓÃ¸Ã·½·¨
 		@Override
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
@@ -211,10 +211,10 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// è¿™ä¸ªç›‘å¬å™¨ä¸»è¦ç”¨æ¥ç›‘å¬ä»»åŠ¡ç±»åˆ«é€‰æ‹©åˆ—è¡¨çš„åŠ¨ä½œ
+	// Õâ¸ö¼àÌıÆ÷Ö÷ÒªÓÃÀ´¼àÌıÈÎÎñÀà±ğÑ¡ÔñÁĞ±íµÄ¶¯×÷
 	class SpinnerOnSelectedTimeTwoListener implements OnItemSelectedListener {
 
-		// å½“ç”¨æˆ·é€‰å®šäº†ä¸€ä¸ªæ¡ç›®æ—¶ï¼Œå°±ä¼šè°ƒç”¨è¯¥æ–¹æ³•
+		// µ±ÓÃ»§Ñ¡¶¨ÁËÒ»¸öÌõÄ¿Ê±£¬¾Í»áµ÷ÓÃ¸Ã·½·¨
 		@Override
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
@@ -231,7 +231,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// ç”¨äºè¿”å›ä»DataPickActivityä¸­è®¾ç½®çš„æ—¥æœŸï¼Œå¹¶è®¾ç½®åœ¨æœ¬activityä¸­æ˜¾ç¤º
+	// ÓÃÓÚ·µ»Ø´ÓDataPickActivityÖĞÉèÖÃµÄÈÕÆÚ£¬²¢ÉèÖÃÔÚ±¾activityÖĞÏÔÊ¾
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 		if (requestCode == REQUEST_CODE) {
@@ -279,7 +279,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// æŒ‰é’® â€œkaishiriqiâ€ çš„ç›‘å¬
+	// °´Å¥ ¡°kaishiriqi¡± µÄ¼àÌı
 	class KaishirijiListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -296,7 +296,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// æŒ‰é’® "jieshuriqi" çš„ç›‘å¬
+	// °´Å¥ "jieshuriqi" µÄ¼àÌı
 	class JieshuriqiListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -311,7 +311,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// æŒ‰é’® åˆ¶å®š çš„ç›‘å¬
+	// °´Å¥ ÖÆ¶¨ µÄ¼àÌı
 	class ZhidingListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -329,7 +329,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// æŒ‰é’® æ¸…ç©º çš„ç›‘å¬
+	// °´Å¥ Çå¿Õ µÄ¼àÌı
 	class QingkongListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -347,7 +347,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// æŒ‰é’® é€‰æ‹©åŒºåŸŸ çš„ç›‘å¬
+	// °´Å¥ Ñ¡ÔñÇøÓò µÄ¼àÌı
 	class XuanzequyuListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -365,7 +365,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// æŒ‰é’® å·¡æ£€åŒºåŸŸ çš„ç›‘å¬
+	// °´Å¥ Ñ²¼ìÇøÓò µÄ¼àÌı
 	class XunjianquyuListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -383,7 +383,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// æŒ‰é’® ä¿å­˜ä»»åŠ¡ çš„ç›‘å¬
+	// °´Å¥ ±£´æÈÎÎñ µÄ¼àÌı
 	class BaocunrenwuListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -407,7 +407,7 @@ public class TaskInputActivity extends Activity {
 			task.setContent(str_renwuneirong);
 
 			str_xunjianzhouqi = et_xunjianzhouqi.getText().toString();
-			// taskã€‚setCycle(str_xunjianzhouqi);
+			// task¡£setCycle(str_xunjianzhouqi);
 
 			str_gerenwu = et_gerenwu.getText().toString();
 
@@ -418,7 +418,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// æŒ‰é’® å‘å¸ƒä»»åŠ¡ çš„ç›‘å¬
+	// °´Å¥ ·¢²¼ÈÎÎñ µÄ¼àÌı
 	class FaburenwuListener implements OnClickListener {
 
 		public void onClick(View v) {

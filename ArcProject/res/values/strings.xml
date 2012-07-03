@@ -47,15 +47,15 @@
 
     <!-- 时间的数组 -->
     <string-array name="str_array_time">
-        <item>1时</item>
-        <item>2时</item>
-        <item>3时</item>
-        <item>4时</item>
-        <item>5时</item>
-        <item>6时</item>
-        <item>7时</item>
-        <item>8时</item>
-        <item>9时</item>
+        <item>01时</item>
+        <item>02时</item>
+        <item>03时</item>
+        <item>04时</item>
+        <item>05时</item>
+        <item>06时</item>
+        <item>07时</item>
+        <item>08时</item>
+        <item>09时</item>
         <item>10时</item>
         <item>11时</item>
         <item>12时</item>

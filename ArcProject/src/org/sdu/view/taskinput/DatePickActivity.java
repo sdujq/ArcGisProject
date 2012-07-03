@@ -59,7 +59,7 @@ public class DatePickActivity extends Activity {
 
 	}
 
-	// æŒ‰é’® "shezhi" çš„ç›‘å¬
+	// °´Å¥ "shezhi" µÄ¼àÌı
 	class ShizhiListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -83,7 +83,7 @@ public class DatePickActivity extends Activity {
 
 	}
 
-	// æŒ‰é’® "quxiao" çš„ç›‘å¬
+	// °´Å¥ "quxiao" µÄ¼àÌı
 	class QuxiaoListener implements OnClickListener {
 
 		public void onClick(View v) {
