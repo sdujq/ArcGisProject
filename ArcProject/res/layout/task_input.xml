@@ -1,304 +1,439 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" >
+package org.sdu.view.taskinput;
 
-    <!-- scrollview用于满屏滑动 -->
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import org.sdu.gis.R;
+import org.sdu.pojo.Task;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
+import android.view.animation.ScaleAnimation;
+import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.AdapterView.OnItemSelectedListener;
 
-    <ScrollView
-        android:id="@+id/scrollView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+public class TaskInputActivity extends Activity {
+	public Button bt_zhiding, bt_qingkong, bt_xuanzequyu, bt_xunjianquyu,
+			bt_baocunrenwu, bt_faburenwu, bt_kaishiriqi, bt_jieshuriqi;
+	public TextView tv_luduanming, tv_renwuleibie, tv_xunjianrenyuan,
+			tv_renwuneirong, tv_qx_kaishishijian, tv_qx_jiezhishijian,
+			tv_xunjianzhouqi, tv_gerenwu, tv_beizhu, tv_zhidingren,
+			tv_zhidingshijian, tv_kaishiriqi, tv_jiezhiriqi;
+	public EditText et_luduanming, et_renwuneirong, et_beizhu,
+			et_xunjianzhouqi, et_gerenwu;
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+	public String str_luduanming, str_renwuleibie, str_xunjianrenyuan,
+			str_renwuneirong, str_kaishishijian, str_jiezhishijian,
+			str_xunjianzhouqi, str_gerenwu, str_beizhu, str_zhidingren;
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+	public Spinner sp_selectTask, sp_kaishishijian, sp_jiezhishijian,
+			sp_xunjianrenyuan;
 
-                <!-- 路段名textview -->
+	private Task task;
 
-                <TextView
-                    android:id="@+id/t_nameOfRoad"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.43"
-                    android:text="@string/nameOfRoad" />
+	private int year;
+	private int month;
+	private int day;
+	private int mYear, mMonth, mDay, mHour, mMinute, mSecond;
+	private String strmYear, strmMonth, strmDay, strmHour, strmMinute,
+			strmSecond, strTime;
+	private int REQUEST_CODE = 0;
+	private String DEFAULT_TIME_FORMAT = "yyyy-MM-dd hh:mm:ss";
 
-                <EditText
-                    android:id="@+id/t_text_nameOfRoad"
-                    android:layout_width="158dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.15"
-                    android:ems="10" >
+	@Override
+	public void onCreate(Bundle saved) {
+		super.onCreate(saved);
+		setContentView(R.layout.task_input);
 
-                    <requestFocus />
-                </EditText>
+		bt_zhiding = (Button) findViewById(R.id.t_button_zhiding);
+		bt_zhiding.setOnClickListener(new ZhidingListener());
 
-                <Button
-                    android:id="@+id/t_button_zhiding"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/bt_zhiding" />
+		bt_qingkong = (Button) findViewById(R.id.t_button_qingkong);
+		bt_qingkong.setOnClickListener(new QingkongListener());
 
-                <Button
-                    android:id="@+id/t_button_qingkong"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/bt_qingkong" />
-            </LinearLayout>
+		bt_xuanzequyu = (Button) findViewById(R.id.t_button_xuanzequyu);
+		bt_xuanzequyu.setOnClickListener(new XuanzequyuListener());
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+		bt_xunjianquyu = (Button) findViewById(R.id.t_button_xunjianquyu);
+		bt_xunjianquyu.setOnClickListener(new XunjianquyuListener());
 
-                <TextView
-                    android:id="@+id/t_renwuleibie"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/renwuleibir" />
+		bt_baocunrenwu = (Button) findViewById(R.id.t_button_baocunrenwu);
+		bt_baocunrenwu.setOnClickListener(new BaocunrenwuListener());
 
-                <Spinner
-                    android:id="@+id/t_spinner_selectTask"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.50" />
+		bt_faburenwu = (Button) findViewById(R.id.t_button_faburenwu);
+		bt_faburenwu.setOnClickListener(new FaburenwuListener());
 
-                <Button
-                    android:id="@+id/t_button_xuanzequyu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/bt_xuanzequyu" />
+		bt_kaishiriqi = (Button) findViewById(R.id.t_bt_kaishiriqi);
+		bt_kaishiriqi.setOnClickListener(new KaishirijiListener());
 
-                <Button
-                    android:id="@+id/t_button_xunjianquyu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/bt_xunjianquyu" />
-            </LinearLayout>
+		bt_jieshuriqi = (Button) findViewById(R.id.t_bt_jieshuriqi);
+		bt_jieshuriqi.setOnClickListener(new JieshuriqiListener());
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+		tv_luduanming = (TextView) findViewById(R.id.t_nameOfRoad);
+		tv_renwuleibie = (TextView) findViewById(R.id.t_renwuleibie);
+		tv_xunjianrenyuan = (TextView) findViewById(R.id.t_xunjianrenyuan);
+		tv_renwuneirong = (TextView) findViewById(R.id.t_renwuneirong);
+		tv_qx_kaishishijian = (TextView) findViewById(R.id.t_Qx_kaishi);
+		// tv_kaishiriqi = (TextView) findViewById(R.id.t_kaishiriqi);
+		tv_qx_jiezhishijian = (TextView) findViewById(R.id.t_Qx_jiezhi);
+		// tv_jiezhiriqi = (TextView) findViewById(R.id.t_jiezhiriqi);
+		tv_xunjianzhouqi = (TextView) findViewById(R.id.t_xunjianzhouqi);
+		tv_gerenwu = (TextView) findViewById(R.id.t_gerenwu);
+		tv_beizhu = (TextView) findViewById(R.id.t_beizhu);
+		tv_zhidingren = (TextView) findViewById(R.id.t_zhidingren);
+		tv_zhidingshijian = (TextView) findViewById(R.id.t_zhidingshijian);
 
-                <TextView
-                    android:id="@+id/t_xunjianrenyuan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/xunjianrenyuan" />
+		sp_selectTask = (Spinner) findViewById(R.id.t_spinner_selectTask);
+		// 通过createFromResource方法创建一个ArrayAdapter对象
 
-                <EditText
-                    android:id="@+id/t_text_xunjianrenyuan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="textPersonName" />
-            </LinearLayout>
+		ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(
+				this, R.array.str_array_renwuleibie,
+				android.R.layout.simple_spinner_item);
+		// 设置Spinner当中每个条目的样式，引用一个Android系统提供的布局文件
+		adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+		sp_selectTask.setAdapter(adapter1);
+		sp_selectTask.setPrompt("任务类型");
+		sp_selectTask
+				.setOnItemSelectedListener(new SpinnerOnSelectedListener());
 
-                <TextView
-                    android:id="@+id/t_renwuneirong"
-                    android:layout_width="52dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.17"
-                    android:text="@string/renwuneirong"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+		sp_xunjianrenyuan = (Spinner) findViewById(R.id.t_spinner_xunjianrenyuan);
 
-                <EditText
-                    android:id="@+id/t_text_renwuneirong"
-                    android:layout_width="wrap_content"
-                    android:layout_height="114dp"
-                    android:layout_weight="1.07"
-                    android:ems="10" />
-            </LinearLayout>
+		sp_kaishishijian = (Spinner) findViewById(R.id.t_spinner_kaishishijian);
+		ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(
+				this, R.array.str_array_time,
+				android.R.layout.simple_spinner_item);
+		// 设置Spinner当中每个条目的样式，引用一个Android系统提供的布局文件
+		adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+		sp_kaishishijian.setAdapter(adapter2);
+		sp_kaishishijian.setPrompt("任务类型");
+		sp_kaishishijian
+				.setOnItemSelectedListener(new SpinnerOnSelectedTimeOneListener());
 
-                <TextView
-                    android:id="@+id/t_Qx_kaishi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_weight="0.16"
-                    android:text="@string/kaishishijian" />
+		sp_jiezhishijian = (Spinner) findViewById(R.id.t_spinner_jiezhishijian);
+		sp_jiezhishijian.setAdapter(adapter2);
+		sp_jiezhishijian.setPrompt("任务类型");
+		sp_jiezhishijian
+				.setOnItemSelectedListener(new SpinnerOnSelectedTimeTwoListener());
 
-                <Button
-                    android:id="@+id/t_bt_kaishiriqi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true" >
-                </Button>
+		// tv_kaishiriqi.setText(R.string.kaishiriqi);
+		bt_kaishiriqi.setText(R.string.kaishiriqi);
+		bt_jieshuriqi.setText(R.string.jiezhiriqi);
+		// tv_jiezhiriqi.setText(R.string.jiezhiriqi);
 
-                <Spinner
-                    android:id="@+id/t_spinner_kaishishijian"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_weight="0.44" />
-            </RelativeLayout>
+		tv_zhidingren.setText(R.string.zhidingren);
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+		et_luduanming = (EditText) findViewById(R.id.t_text_nameOfRoad);
 
-                <TextView
-                    android:id="@+id/t_Qx_jiezhi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_weight="0.41"
-                    android:text="@string/jiezhishijian" />
+		et_renwuneirong = (EditText) findViewById(R.id.t_text_renwuneirong);
+		et_beizhu = (EditText) findViewById(R.id.t_text_beizhu);
+		et_xunjianzhouqi = (EditText) findViewById(R.id.t_text_xunjianzhouqi);
+		et_gerenwu = (EditText) findViewById(R.id.t_text_gerenwu);
 
-                <Button
-                    android:id="@+id/t_bt_jieshuriqi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true" >
-                </Button>
+		// 刷新时间的线程
+		handler.post(updateThread);
+	}
 
-                <Spinner
-                    android:id="@+id/t_spinner_jiezhishijian"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_weight="1" />
-            </RelativeLayout>
+	// 创建Handler对象
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+	Handler handler = new Handler();
 
-                <TextView
-                    android:id="@+id/t_xunjianzhouqi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/xunjianzhouqi" />
+	// 新建一个线程对象
 
-                <EditText
-                    android:id="@+id/t_text_xunjianzhouqi"
-                    android:layout_width="58dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10" />
+	Runnable updateThread = new Runnable() {
 
-                <TextView
-                    android:id="@+id/t_tian"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/tian"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+		// 将要执行的操作写在线程对象的run方法当中
 
-                <CheckBox
-                    android:id="@+id/t_checkBox_zidongfabu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/check_zidongfabu" />
-            </LinearLayout>
+		public void run() {
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+			handler.postDelayed(updateThread, 1000);
+			// 调用Handler的postDelayed()方法
+			// 这个方法的作用是：将要执行的线程对象放入到队列当中，待时间结束后，运行制定的线程对象
+			// 第一个参数是Runnable类型：将要执行的线程对象
+			// 第二个参数是long类型：延迟的时间，以毫秒为单位
+			SimpleDateFormat dateFormatter = new SimpleDateFormat(
+					DEFAULT_TIME_FORMAT);
 
-                <CheckBox
-                    android:id="@+id/t_checkBox_zidongshengcheng"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/check_zidongshengcheng" />
+			strTime = dateFormatter.format(Calendar.getInstance().getTime());
 
-                <EditText
-                    android:id="@+id/t_text_zidongshengcheng"
-                    android:layout_width="48dp"
-                    android:layout_height="wrap_content"
-                    android:ems="10" />
+			tv_zhidingshijian.setText("指定时间：" + strTime);
+		}
 
-                <TextView
-                    android:id="@+id/t_gerenwu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/gerenwu"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-            </LinearLayout>
+	};
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+	// 这个监听器主要用来监听任务类别选择列表的动作
+	class SpinnerOnSelectedListener implements OnItemSelectedListener {
 
-                <TextView
-                    android:id="@+id/t_beizhu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/beizhu"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
+		// 当用户选定了一个条目时，就会调用该方法
+		@Override
+		public void onItemSelected(AdapterView<?> adapterView, View view,
+				int position, long id) {
+			String selected = adapterView.getItemAtPosition(position)
+					.toString();
+			System.out.println(selected);
+		}
 
-                <EditText
-                    android:id="@+id/t_text_beizhu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="114dp"
-                    android:layout_weight="1.07"
-                    android:ems="10"
-                    android:inputType="textMultiLine" />
-            </LinearLayout>
+		@Override
+		public void onNothingSelected(AdapterView<?> adapterView) {
+			// TODO Auto-generated method stub
+			System.out.println("nothingSelected");
+		}
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+	}
 
-                <TextView
-                    android:id="@+id/t_zhidingren"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-            </LinearLayout>
+	// 这个监听器主要用来监听任务类别选择列表的动作
+	class SpinnerOnSelectedTimeOneListener implements OnItemSelectedListener {
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+		// 当用户选定了一个条目时，就会调用该方法
+		@Override
+		public void onItemSelected(AdapterView<?> adapterView, View view,
+				int position, long id) {
+			String selected = adapterView.getItemAtPosition(position)
+					.toString();
+			System.out.println(selected);
+		}
 
-                <TextView
-                    android:id="@+id/t_zhidingshijian"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-            </LinearLayout>
+		@Override
+		public void onNothingSelected(AdapterView<?> adapterView) {
+			// TODO Auto-generated method stub
+			System.out.println("nothingSelected");
+		}
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+	}
 
-                <Button
-                    android:id="@+id/t_button_baocunrenwu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/bt_baocunrenwu" />
+	// 这个监听器主要用来监听任务类别选择列表的动作
+	class SpinnerOnSelectedTimeTwoListener implements OnItemSelectedListener {
 
-                <Button
-                    android:id="@+id/t_button_faburenwu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/bt_faburenwu" />
-            </LinearLayout>
-        </LinearLayout>
-    </ScrollView>
+		// 当用户选定了一个条目时，就会调用该方法
+		@Override
+		public void onItemSelected(AdapterView<?> adapterView, View view,
+				int position, long id) {
+			String selected = adapterView.getItemAtPosition(position)
+					.toString();
+			System.out.println(selected);
+		}
 
-</LinearLayout>
+		@Override
+		public void onNothingSelected(AdapterView<?> adapterView) {
+			// TODO Auto-generated method stub
+			System.out.println("nothingSelected");
+		}
+
+	}
+
+	// 用于返回从DataPickActivity中设置的日期，并设置在本activity中显示
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		if (requestCode == REQUEST_CODE) {
+
+			if (resultCode == RESULT_CANCELED) {
+
+			} else if (resultCode == RESULT_OK) {
+
+				Bundle extras = data.getExtras();
+
+				if (extras != null) {
+
+					int a = extras.getInt("values");
+					year = extras.getInt("year");
+					month = extras.getInt("month");
+					day = extras.getInt("day");
+
+					String Smonth = "", Sday = "";
+					if (month < 10) {
+						Smonth = "0" + month;
+					} else {
+						Smonth = month + "";
+					}
+
+					if (day < 10) {
+						Sday = "0" + day;
+					} else {
+						Sday = day + "";
+					}
+
+					if (a == 1) {
+
+						bt_kaishiriqi.setText(year + "-" + Smonth + "-" + Sday);
+
+					} else if (a == 2) {
+						bt_jieshuriqi.setText(year + "-" + Smonth + "-" + Sday);
+
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+
+	// 按钮 “kaishiriqi” 的监听
+	class KaishirijiListener implements OnClickListener {
+
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+
+			Intent intent1 = new Intent(TaskInputActivity.this,
+					DatePickActivity.class);
+
+			intent1.putExtra("values", 1);
+
+			startActivityForResult(intent1, REQUEST_CODE);
+
+		}
+
+	}
+
+	// 按钮 "jieshuriqi" 的监听
+	class JieshuriqiListener implements OnClickListener {
+
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+
+			Intent intent = new Intent(TaskInputActivity.this,
+					DatePickActivity.class);
+			intent.putExtra("values", 2);
+			startActivityForResult(intent, REQUEST_CODE);
+
+		}
+
+	}
+
+	// 按钮 制定 的监听
+	class ZhidingListener implements OnClickListener {
+
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			AnimationSet animationSet = new AnimationSet(true);
+			ScaleAnimation scaleAnimation = new ScaleAnimation(1, 1.3f, 1,
+					1.3f, Animation.RELATIVE_TO_SELF, 0.5f,
+					Animation.RELATIVE_TO_SELF, 0.5f);
+			animationSet.addAnimation(scaleAnimation);
+			animationSet.setFillBefore(true);
+			animationSet.setDuration(200);
+			bt_zhiding.startAnimation(animationSet);
+
+		}
+
+	}
+
+	// 按钮 清空 的监听
+	class QingkongListener implements OnClickListener {
+
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			AnimationSet animationSet = new AnimationSet(true);
+			ScaleAnimation scaleAnimation = new ScaleAnimation(1, 1.3f, 1,
+					1.3f, Animation.RELATIVE_TO_SELF, 0.5f,
+					Animation.RELATIVE_TO_SELF, 0.5f);
+			animationSet.addAnimation(scaleAnimation);
+			animationSet.setFillBefore(true);
+			animationSet.setDuration(200);
+			bt_qingkong.startAnimation(animationSet);
+
+		}
+
+	}
+
+	// 按钮 选择区域 的监听
+	class XuanzequyuListener implements OnClickListener {
+
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			AnimationSet animationSet = new AnimationSet(true);
+			ScaleAnimation scaleAnimation = new ScaleAnimation(1, 1.3f, 1,
+					1.3f, Animation.RELATIVE_TO_SELF, 0.5f,
+					Animation.RELATIVE_TO_SELF, 0.5f);
+			animationSet.addAnimation(scaleAnimation);
+			animationSet.setFillBefore(true);
+			animationSet.setDuration(200);
+			bt_xuanzequyu.startAnimation(animationSet);
+
+		}
+
+	}
+
+	// 按钮 巡检区域 的监听
+	class XunjianquyuListener implements OnClickListener {
+
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			AnimationSet animationSet = new AnimationSet(true);
+			ScaleAnimation scaleAnimation = new ScaleAnimation(1, 1.3f, 1,
+					1.3f, Animation.RELATIVE_TO_SELF, 0.5f,
+					Animation.RELATIVE_TO_SELF, 0.5f);
+			animationSet.addAnimation(scaleAnimation);
+			animationSet.setFillBefore(true);
+			animationSet.setDuration(200);
+			bt_xunjianquyu.startAnimation(animationSet);
+
+		}
+
+	}
+
+	// 按钮 保存任务 的监听
+	class BaocunrenwuListener implements OnClickListener {
+
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			AnimationSet animationSet = new AnimationSet(true);
+			ScaleAnimation scaleAnimation = new ScaleAnimation(1, 1.3f, 1,
+					1.3f, Animation.RELATIVE_TO_SELF, 0.5f,
+					Animation.RELATIVE_TO_SELF, 0.5f);
+			animationSet.addAnimation(scaleAnimation);
+			animationSet.setFillBefore(true);
+			animationSet.setDuration(200);
+			bt_baocunrenwu.startAnimation(animationSet);
+
+			str_luduanming = et_luduanming.getText().toString();
+			task.setRoadName(str_luduanming);
+
+			// str_xunjianrenyuan = et_xunjianrenyuan.getText().toString();
+			task.setInspectionPersonId(Integer.parseInt(str_xunjianrenyuan));
+
+			str_renwuneirong = et_renwuneirong.getText().toString();
+			task.setContent(str_renwuneirong);
+
+			str_xunjianzhouqi = et_xunjianzhouqi.getText().toString();
+			// task。setCycle(str_xunjianzhouqi);
+
+			str_gerenwu = et_gerenwu.getText().toString();
+
+			str_beizhu = et_beizhu.getText().toString();
+			task.setTag(str_beizhu);
+
+		}
+
+	}
+
+	// 按钮 发布任务 的监听
+	class FaburenwuListener implements OnClickListener {
+
+		public void onClick(View v) {
+			// TODO Auto-generated method stub
+			AnimationSet animationSet = new AnimationSet(true);
+			ScaleAnimation scaleAnimation = new ScaleAnimation(1, 1.3f, 1,
+					1.3f, Animation.RELATIVE_TO_SELF, 0.5f,
+					Animation.RELATIVE_TO_SELF, 0.5f);
+			animationSet.addAnimation(scaleAnimation);
+			animationSet.setFillBefore(true);
+			animationSet.setDuration(200);
+			bt_faburenwu.startAnimation(animationSet);
+
+		}
+
+	}
+
+}
