@@ -73,9 +73,14 @@ public class ArcProjectActivity extends Activity {
 				v.setOnClickListener(new OnClickListener() {	
 					@Override
 					public void onClick(View v) {
+						String show = "show";
 						Intent i=new Intent();
+						i.putExtra("one",show);
 						i.setClass(ArcProjectActivity.this, TaskShowActivity.class);
 						ArcProjectActivity.this.startActivity(i);
+						
+						
+						
 					}
 				});
 			}else if(n==2){

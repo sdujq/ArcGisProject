@@ -1,6 +1,10 @@
 package org.sdu.view.taskshow;
 
+import org.sdu.dao.TaskDao;
+import org.sdu.db.DBHelper;
+import org.sdu.dbaction.TaskAction;
 import org.sdu.gis.R;
+import org.sdu.pojo.Task;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -18,6 +22,8 @@ import android.widget.Toast;
 
 public class TaskShowActivity extends Activity{
 
+	
+//	private int taskId;
 	private Button ButtonTask1,ButtonTask2,ButtonTask3,ButtonTask4,ButtonMoreTask;
 	private TextView tasknum11,tasknum21,tasknum31,tasknum41,
 					tasktype12,tasktype22,tasktype32,tasktype42,
@@ -31,13 +37,97 @@ public class TaskShowActivity extends Activity{
 		super.onCreate(saved);
 		setContentView(R.layout.task_list);
 		
-		 ButtonMoreTask=(Button)findViewById(R.id.moretask);
+		
+		TaskAction ta=new TaskAction(this);
+		Task task=new Task();
+		
+		task.setRoadName("road 1");
+		task.setTaskType("ee");
+		task.setInspectionPersonId(001);
+		task.setCreatePersonId(100);
+		task.setRoadLineId(010);
+		task.setStartTime(1100);
+		task.setEndTime(1200);
+		task.setRealseTime(1000);
+		task.setContent("ww");
+		task.setCycle(1);
+		task.setTag("qq");
+		task.setState("wancheng");
+		
+	//	ta.establishTask(task);
+				
+	//	Task str;
+	//	str=ta.getDetail(1);
+		ta.getDetail(4);
+		task.getId();
+		//String str1=str.getRoadName();
+		System.out.println("--------"+ta.getDetail(1));
+		System.out.println("********************"+ta.getTaskList());
+		System.out.println("aaaaaaaaaaaaaa"+task.getId());
+		
+		
+		
+		 	ButtonMoreTask=(Button)findViewById(R.id.moretask);
 	        ButtonTask1=(Button)findViewById(R.id.task1);
 	        ButtonTask2=(Button)findViewById(R.id.task2);
 	        ButtonTask3=(Button)findViewById(R.id.task3);
 	        ButtonTask4=(Button)findViewById(R.id.task4);
 		
 		
+	        tasknum11=(TextView)findViewById(R.id.tasknum11);
+	        tasknum21=(TextView)findViewById(R.id.tasknum21);
+	        tasknum31=(TextView)findViewById(R.id.tasknum31);
+	        tasknum41=(TextView)findViewById(R.id.tasknum41);
+	        
+	        
+	        tasktype12=(TextView)findViewById(R.id.tasktype12);
+	        tasktype22=(TextView)findViewById(R.id.tasktype22);
+	        tasktype32=(TextView)findViewById(R.id.tasktype32);
+	        tasktype42=(TextView)findViewById(R.id.tasktype42);
+	        
+	        makername14=(TextView)findViewById(R.id.makername14);
+	        makername24=(TextView)findViewById(R.id.makername24);
+	        makername34=(TextView)findViewById(R.id.makername34);
+	        makername44=(TextView)findViewById(R.id.makername44);
+	        
+	        makedate15=(TextView)findViewById(R.id.makedate15);
+	        makedate25=(TextView)findViewById(R.id.makedate25);
+	        makedate35=(TextView)findViewById(R.id.makedate35);
+	        makedate45=(TextView)findViewById(R.id.makedate45);
+	        
+	        
+	        Intent intent = getIntent();
+	        
+	        String show = intent.getStringExtra("one");
+	        
+	        if(show.equalsIgnoreCase("show")){
+	        	
+	        	
+	        	
+	        }
+	        
+	        
+//	        DBHelper dbHelper = new DBHelper(TaskShowActivity.this);
+	        
+//	        
+//	        class QueryListener implements OnClickListener{
+//
+//	    		@Override
+//	    		public void onClick(View v) {
+//	    			System.out.println("aaa------------------");
+//	    			Log.d("myDebug", "myFirstDebugMsg");
+//	    			
+//	    			DatabaseHelper dbHelper = new DatabaseHelper(SQLiteActivity.this,"test_mars_db");
+//	    			SQLiteDatabase db = dbHelper.getReadableDatabase();
+//	    			Cursor cursor = db.query("user", new String[]{"id","name"}, "id=?", new String[]{"1"}, null, null, null);
+//	    			while(cursor.moveToNext()){
+//	    				String name = cursor.getString(cursor.getColumnIndex("name"));
+//	    				System.out.println("query--->" + name);
+//	    			}
+//	    		}
+
+	        
+	        
 	        ButtonMoreTask.setText("点击查看更多任务");
 	        
 	        ButtonTask1.setText("任务"+""+num);//此处num、是在将来如果有更多的任务时进行加1操作后进行显示的
@@ -53,10 +143,6 @@ public class TaskShowActivity extends Activity{
 	        
 	        
 	        
-	        tasknum11=(TextView)findViewById(R.id.tasknum11);
-	        tasknum21=(TextView)findViewById(R.id.tasknum21);
-	        tasknum31=(TextView)findViewById(R.id.tasknum31);
-	        tasknum41=(TextView)findViewById(R.id.tasknum41);
 	    //    tasknum51=(TextView)findViewById(R.id.tasknum51);
 	        
 	        tasknum11.setText("任务编号:"+"");//此处空格是为将来从数据库得到任务编号后进行显示的
@@ -64,11 +150,7 @@ public class TaskShowActivity extends Activity{
 	        tasknum31.setText("任务编号:"+"");
 	        tasknum41.setText("任务编号:"+"");
 	  //      tasknum51.setText(R.string.tasknum+"");
-	        
-	        tasktype12=(TextView)findViewById(R.id.tasktype12);
-	        tasktype22=(TextView)findViewById(R.id.tasktype22);
-	        tasktype32=(TextView)findViewById(R.id.tasktype32);
-	        tasktype42=(TextView)findViewById(R.id.tasktype42);
+
 	    //    tasktype52=(TextView)findViewById(R.id.tasktype52);
 	        
 	        tasktype12.setText("任务类型:"+"");//此书空格作用同上
@@ -89,10 +171,7 @@ public class TaskShowActivity extends Activity{
 	        roadname43.setText("路段名:"+"");
 	     //   roadname53.setText(R.string.roadname+"");
 	        
-	        makername14=(TextView)findViewById(R.id.makername14);
-	        makername24=(TextView)findViewById(R.id.makername24);
-	        makername34=(TextView)findViewById(R.id.makername34);
-	        makername44=(TextView)findViewById(R.id.makername44);
+
 	    //    makername54=(TextView)findViewById(R.id.makername54);
 	        
 	        makername14.setText("制定人员："+"");
@@ -101,10 +180,7 @@ public class TaskShowActivity extends Activity{
 	        makername44.setText("制定人员："+"");
 	    //    makername54.setText(R.string.makername+"");
 	        
-	        makedate15=(TextView)findViewById(R.id.makedate15);
-	        makedate25=(TextView)findViewById(R.id.makedate25);
-	        makedate35=(TextView)findViewById(R.id.makedate35);
-	        makedate45=(TextView)findViewById(R.id.makedate45);
+
 	   //     makedate55=(TextView)findViewById(R.id.makedate55);
 	        
 	        makedate15.setText("制定日期："+"");
@@ -182,7 +258,5 @@ public class TaskShowActivity extends Activity{
 	
 
 	
-		
-		
 	}
 
