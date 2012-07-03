@@ -26,6 +26,7 @@
         <activity android:name="org.sdu.view.usermanager.AddUserActivity"></activity>
         <activity android:name="org.sdu.view.usermanager.LoginActivity"></activity>
         <activity android:name="org.sdu.view.usermanager.UserListActivity"></activity>
+        <activity android:name="org.sdu.view.usermanager.UserInfoActivity"></activity>
     </application>
 
 </manifest>

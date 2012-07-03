@@ -7,12 +7,15 @@ import org.sdu.gis.R;
 import org.sdu.pojo.User;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -35,7 +38,7 @@ public class UserListActivity extends Activity{
 		@Override
 		public int getCount() {
 			// TODO Auto-generated method stub
-			return 8;
+			return userList.size();
 		}
 
 		@Override
@@ -74,6 +77,8 @@ public class UserListActivity extends Activity{
 						//通过id删除用户
 						ud.delete(id);
 						//刷新列表
+						userList=(ArrayList<User>) ud.find();
+						lv.setAdapter(new UserAdapter());
 					}
 					
 				}
@@ -84,7 +89,18 @@ public class UserListActivity extends Activity{
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					
+					String userInfo=tv.getText().toString().trim();
+					String _id=userInfo.substring(0,userInfo.indexOf(" "));
+					int id=Integer.parseInt(_id);
+					User user=ud.get(id);	
+					Intent intent=new Intent();
+					intent.putExtra("user_id", user.getId());
+					intent.putExtra("user_password", user.getPassword());
+					intent.putExtra("user_comment", user.getTag());
+					intent.putExtra("user_name", user.getName());
+					intent.putExtra("user_phone", user.getPhoneNum());
+					intent.setClass(UserListActivity.this, UserInfoActivity.class);
+					startActivity(intent);
 				}
 			});
 			return v;

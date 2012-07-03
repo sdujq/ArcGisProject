@@ -31,18 +31,22 @@ public class AddUserActivity extends Activity{
 		switch (view.getId()) {
 		case R.id.addUser:
 			//添加用户
-			String _name=name.getText().toString();
-			String _password1=password1.getText().toString();
-			String _passwrod2=password2.getText().toString();
-			String _telphone=telphone.getText().toString();
-			String _comment=comment.getText().toString();
+			String _name=name.getText().toString().trim();
+			String _password1=password1.getText().toString().trim();
+			String _passwrod2=password2.getText().toString().trim();
+			String _telphone=telphone.getText().toString().trim();
+			String _comment=comment.getText().toString().trim();
+			String info="";
 			//对信息进行验证，如何符合要求则添加
+			if(_name.equals("")){
+				info="用户名不能为空";
+			}
 			if(_password1.equals("")||_passwrod2.equals("")){
 				//提示密码不能为空
-				Toast.makeText(this, "密码不能为空", Toast.LENGTH_LONG);
+				info="密码不能为空";
 			}else if(!_password1.equals(_passwrod2)){
 				//提示两次密码输入不对
-				Toast.makeText(this, "两次密码不匹配", Toast.LENGTH_LONG);
+				info="两次密码不匹配";
 			}else{
 				//添加用户
 				User user=new User();
@@ -52,9 +56,11 @@ public class AddUserActivity extends Activity{
 				user.setTag(_comment);
 				ud.insert(user);
 				clear();
+				info=userAction.getInfo();
 				Toast.makeText(this, userAction.getInfo(), Toast.LENGTH_SHORT);
 				
 			}
+			Toast.makeText(this, info,Toast.LENGTH_SHORT);
 			break;
 		case R.id.addUser_cancel:
 			//取消添加

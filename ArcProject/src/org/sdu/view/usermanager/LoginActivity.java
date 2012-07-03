@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class LoginActivity extends Activity {
 	private Button login, cancel;
@@ -32,10 +33,7 @@ public class LoginActivity extends Activity {
 			String pwd = password.getText().toString();
 			// 跳转到相应页面
 			if(name.equals("")||pwd.equals("")){
-				//跳转到相关页面
-				 intent=new Intent();
-				 intent.setClass(LoginActivity.this, AddUserActivity.class);
-				 startActivity(intent);
+				Toast.makeText(this, "用户名或密码不能为空", Toast.LENGTH_LONG).show();
 			}else{
 				if(userAction.login(name, pwd)){
 					//跳转到相关页面
@@ -45,6 +43,7 @@ public class LoginActivity extends Activity {
 				}else{
 					//提示错误并清空密码
 					password.setText("");
+					Toast.makeText(this, "用户名或密码错误", Toast.LENGTH_LONG).show();
 				}
 			}
 			break;
