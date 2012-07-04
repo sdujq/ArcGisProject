@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.sdu.dbaction.RoadLineAction;
-import org.sdu.gis.ArcProjectActivity;
 import org.sdu.gis.R;
 import org.sdu.pojo.RoadLine;
 
