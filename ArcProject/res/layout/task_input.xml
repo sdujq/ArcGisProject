@@ -2,8 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical" >
-<!-- 此xml用于定义TaskInputActivity的布局 -->
+    android:orientation="vertical" 
+    android:background="@drawable/bg_task_input">
+
+    <!-- 此xml用于定义TaskInputActivity的布局 -->
     <!-- scrollview用于满屏滑动 -->
 
     <ScrollView
@@ -27,29 +29,31 @@
                     android:id="@+id/t_nameOfRoad"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.43"
+                    android:layout_weight="0.03"
                     android:text="@string/nameOfRoad" />
 
                 <EditText
                     android:id="@+id/t_text_nameOfRoad"
                     android:layout_width="158dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.15"
+                    android:layout_weight="0.06"
                     android:ems="10" >
 
                     <requestFocus />
                 </EditText>
-
+                <!--
                 <Button
                     android:id="@+id/t_button_zhiding"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/bt_zhiding" />
+                    android:text="@string/bt_zhiding" />
+                -->
 
                 <Button
                     android:id="@+id/t_button_qingkong"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="75dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_alibuybutton"
                     android:text="@string/bt_qingkong" />
             </LinearLayout>
 
@@ -72,8 +76,9 @@
 
                 <Button
                     android:id="@+id/t_button_xuanzequyu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="75dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_alibuybutton"
                     android:text="@string/bt_xuanzequyu" />
             </LinearLayout>
 
@@ -96,8 +101,9 @@
 
                 <Button
                     android:id="@+id/t_button_xunjianquyu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="75dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_alibuybutton"
                     android:text="@string/bt_xunjianquyu" />
             </LinearLayout>
 
@@ -193,8 +199,8 @@
                     android:id="@+id/t_text_xunjianzhouqi"
                     android:layout_width="58dp"
                     android:layout_height="wrap_content"
-                    android:ems="10" 
-                    android:inputType="number"/>
+                    android:ems="10"
+                    android:inputType="number" />
 
                 <TextView
                     android:id="@+id/t_tian"
@@ -280,23 +286,29 @@
                     android:textAppearance="?android:attr/textAppearanceMedium" />
             </LinearLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal" >
+              >
 
                 <Button
                     android:id="@+id/t_button_baocunrenwu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/bt_baocunrenwu" />
+                    android:layout_width="75dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_alibuybutton"
+                    android:text="@string/bt_baocunrenwu"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="30dp"/>
 
                 <Button
                     android:id="@+id/t_button_faburenwu"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/bt_faburenwu" />
-            </LinearLayout>
+                    android:layout_width="75dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/bg_alibuybutton"
+                    android:text="@string/bt_faburenwu" 
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="30dp"/>
+            </RelativeLayout>
         </LinearLayout>
     </ScrollView>
 

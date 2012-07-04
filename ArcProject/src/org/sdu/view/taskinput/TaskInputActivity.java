@@ -119,8 +119,8 @@ public class TaskInputActivity extends Activity {
 					}
 				});
 
-		bt_zhiding = (Button) findViewById(R.id.t_button_zhiding);
-		bt_zhiding.setOnClickListener(new ZhidingListener());
+//		bt_zhiding = (Button) findViewById(R.id.t_button_zhiding);
+//		bt_zhiding.setOnClickListener(new ZhidingListener());
 
 		bt_qingkong = (Button) findViewById(R.id.t_button_qingkong);
 		bt_qingkong.setOnClickListener(new QingkongListener());
