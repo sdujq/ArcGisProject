@@ -6,31 +6,35 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import org.sdu.dao.TaskDao;
+import org.sdu.dao.RoadLineDao;
 import org.sdu.db.DBHelper;
 import org.sdu.dbaction.TaskAction;
 import org.sdu.gis.R;
+import org.sdu.pojo.RoadLine;
 import org.sdu.pojo.Task;
+import org.sdujq.map.MapShowActivity;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
-import android.widget.Button;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Toast;
 
 public class TaskInputActivity extends Activity {
@@ -68,7 +72,7 @@ public class TaskInputActivity extends Activity {
 			str_timeOfEnd;
 	private int idOfPerson = 0;
 	private long long_timeOfStart, long_timeOfEnd;
-
+	private int roadLineId=-1;
 	@Override
 	public void onCreate(Bundle saved) {
 		super.onCreate(saved);
@@ -369,7 +373,7 @@ public class TaskInputActivity extends Activity {
 
 			if (resultCode == RESULT_CANCELED) {
 
-			} else if (resultCode == RESULT_OK) {
+			} else if (resultCode == RESULT_OK&&requestCode==0) {
 
 				Bundle extras = data.getExtras();
 
@@ -407,6 +411,9 @@ public class TaskInputActivity extends Activity {
 
 				}
 
+			}else if(requestCode==1){
+				roadLineId=data.getIntExtra("id", -1);
+				Log.e("qq", "saved road id is "+roadLineId);
 			}
 
 		}
@@ -500,7 +507,11 @@ public class TaskInputActivity extends Activity {
 			animationSet.setFillBefore(true);
 			animationSet.setDuration(200);
 			bt_xuanzequyu.startAnimation(animationSet);
-
+			RoadLine r=null;
+			if(roadLineId!=-1){
+				r=(new RoadLineDao(TaskInputActivity.this)).get(roadLineId);
+			}
+			MapShowActivity.startMapForShow(TaskInputActivity.this, r, true);
 		}
 
 	}
@@ -580,7 +591,7 @@ public class TaskInputActivity extends Activity {
 				state=1;
 			}
 
-			if (state == 0) {
+			if (state == 0 || roadLineId==-1) {
 				Toast.makeText(TaskInputActivity.this, "请完善任务信息后再发布！",
 						Toast.LENGTH_SHORT).show();
 			}
@@ -640,14 +651,16 @@ public class TaskInputActivity extends Activity {
 
 		str_beizhu = et_beizhu.getText().toString();
 		task.setTag(str_beizhu);
-
+		
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
 		Date curDate = new Date(System.currentTimeMillis());
 		String strRealseTime = formatter.format(curDate);
 		System.out.println(strRealseTime);
 		long realseTime = Long.parseLong(strRealseTime);
 		task.setRealseTime(realseTime);
-
+		if(roadLineId!=-1){
+			task.setRoadLineId(roadLineId);
+		}
 	}
 
 }
