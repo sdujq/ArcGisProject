@@ -52,6 +52,7 @@
         <activity android:name="org.sdujq.map.WhiteActivity"></activity>
         <activity android:name="org.sdujq.map.TabHomeActivity"></activity>
         <activity android:name="org.sdu.view.usermanager.AccountActivity"></activity>
+        <activity android:name="org.sdu.view.taskinput.TaskInputActivityMh"></activity>
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

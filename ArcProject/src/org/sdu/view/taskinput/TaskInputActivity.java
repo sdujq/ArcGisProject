@@ -76,7 +76,7 @@ public class TaskInputActivity extends Activity {
 	@Override
 	public void onCreate(Bundle saved) {
 		super.onCreate(saved);
-		setContentView(R.layout.task_input);
+		setContentView(R.layout.task_inputmh);
 		ta = new TaskAction(this);
 		task = new Task();
 
