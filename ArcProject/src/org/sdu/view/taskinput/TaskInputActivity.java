@@ -260,7 +260,7 @@ public class TaskInputActivity extends Activity {
 
 			strTime = dateFormatter.format(Calendar.getInstance().getTime());
 
-			tv_zhidingshijian.setText("指定时间：" + strTime);
+			tv_zhidingshijian.setText("制定时间：" + strTime);
 		}
 
 	};
@@ -453,22 +453,22 @@ public class TaskInputActivity extends Activity {
 	}
 
 	// 按钮 制定 的监听
-	class ZhidingListener implements OnClickListener {
-
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			AnimationSet animationSet = new AnimationSet(true);
-			ScaleAnimation scaleAnimation = new ScaleAnimation(1, 1.3f, 1,
-					1.3f, Animation.RELATIVE_TO_SELF, 0.5f,
-					Animation.RELATIVE_TO_SELF, 0.5f);
-			animationSet.addAnimation(scaleAnimation);
-			animationSet.setFillBefore(true);
-			animationSet.setDuration(200);
-			bt_zhiding.startAnimation(animationSet);
-
-		}
-
-	}
+//	class ZhidingListener implements OnClickListener {
+//
+//		public void onClick(View v) {
+//			// TODO Auto-generated method stub
+//			AnimationSet animationSet = new AnimationSet(true);
+//			ScaleAnimation scaleAnimation = new ScaleAnimation(1, 1.3f, 1,
+//					1.3f, Animation.RELATIVE_TO_SELF, 0.5f,
+//					Animation.RELATIVE_TO_SELF, 0.5f);
+//			animationSet.addAnimation(scaleAnimation);
+//			animationSet.setFillBefore(true);
+//			animationSet.setDuration(200);
+//			bt_zhiding.startAnimation(animationSet);
+//
+//		}
+//
+//	}
 
 	// 按钮 清空 的监听
 	class QingkongListener implements OnClickListener {

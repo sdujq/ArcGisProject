@@ -37,16 +37,16 @@ public class BugInputActivity extends Activity{
 		editText7 = (EditText)findViewById(R.id.xianchangfujian_editText);
 		
 		button1 = (Button)findViewById(R.id.xianchangfujian_button);
-		button1.setOnClickListener(new XianchangfujianListener());
+		//button1.setOnClickListener(new XianchangfujianListener());
 		
 		button2 = (Button)findViewById(R.id.shanchu_button);
-		button2.setOnClickListener(new ShanchuListener());
+		//button2.setOnClickListener(new ShanchuListener());
 		
 		button3 = (Button)findViewById(R.id.baocun_button);
-		button3.setOnClickListener(new baocunListener());
+		//button3.setOnClickListener(new baocunListener());
 		
 		button4 = (Button)findViewById(R.id.fabu_button);
-		button4.setOnClickListener(new fabuListener());
+		//button4.setOnClickListener(new fabuListener());
 		
 	}
 }

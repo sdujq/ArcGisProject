@@ -21,9 +21,9 @@ public class BugTypeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {   
         // TODO Auto-generated method stub   
         super.onCreate(savedInstanceState);   
-        setContentView(R.id.bugtype_spinner);   
+      //  setContentView(R.id.bugtype_spinner);   
   
-        bugtype_spinner = (Spinner) findViewById(R.id.bugtype_spinner);     
+     //   bugtype_spinner = (Spinner) findViewById(R.id.bugtype_spinner);     
   
         //将可选内容与ArrayAdapter连接起来   
         adapter = ArrayAdapter.createFromResource(this, R.array.plantes, android.R.layout.simple_spinner_item);   
