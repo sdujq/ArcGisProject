@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import org.sdu.dao.TaskDao;
 import org.sdu.db.DBHelper;
+import org.sdu.dbaction.TaskAction;
 import org.sdu.gis.R;
 import org.sdu.pojo.Task;
 import android.app.Activity;
@@ -22,6 +25,8 @@ import android.view.animation.ScaleAnimation;
 import android.widget.Button;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -45,12 +50,16 @@ public class TaskInputActivity extends Activity {
 	public Spinner sp_selectTask, sp_kaishishijian, sp_jiezhishijian,
 			sp_xunjianrenyuan;
 
-	private Task task;
+	public CheckBox chb_zidongfabu, chb_zidongshengcheng;
 
+	private Task task;
+	private TaskAction ta;
 	private int year;
 	private int month;
 	private int day;
-	private int mHour1, mHour2, mTime1 = 0, mTime2 = 0;
+	private int mHour1, mHour2, mTime1 = 0, mTime2 = 0, timeCount1 = 0,
+			timeCount2 = 0, typeOfTaskCount = 0, perCount = 0, state = 0,
+			timeState = 0;
 	private String strmYear, strmMonth, strmDay, strmHour, strmMinute,
 			strmSecond, strTime, str_mHour1, str_mHour2;
 	private int REQUEST_CODE = 0;
@@ -64,8 +73,51 @@ public class TaskInputActivity extends Activity {
 	public void onCreate(Bundle saved) {
 		super.onCreate(saved);
 		setContentView(R.layout.task_input);
-
+		ta = new TaskAction(this);
 		task = new Task();
+
+		chb_zidongfabu = (CheckBox) findViewById(R.id.t_checkBox_zidongfabu);
+		// 为自动发布按钮添加监听器
+		chb_zidongfabu
+				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+					@Override
+					public void onCheckedChanged(CompoundButton buttonView,
+							boolean isChecked) {
+						// TODO Auto-generated method stub
+						if (isChecked) {
+							Toast.makeText(TaskInputActivity.this, "该任务将自动发布！",
+									Toast.LENGTH_SHORT).show();
+
+						} else {
+							// Toast.makeText(TaskInputActivity.this,
+							// "该任务不会自动发布", Toast.LENGTH_SHORT)
+							// .show();
+
+						}
+					}
+				});
+
+		chb_zidongshengcheng = (CheckBox) findViewById(R.id.t_checkBox_zidongshengcheng);
+		// 为自动生成按钮添加监听器
+		chb_zidongshengcheng
+				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+					@Override
+					public void onCheckedChanged(CompoundButton buttonView,
+							boolean isChecked) {
+						// TODO Auto-generated method stub
+						if (isChecked) {
+							Toast.makeText(TaskInputActivity.this, "将自动生成多个任务",
+									Toast.LENGTH_SHORT).show();
+						} else {
+							// Toast.makeText(TaskInputActivity.this,
+							// "不会生成多个任务", Toast.LENGTH_SHORT)
+							// .show();
+
+						}
+					}
+				});
 
 		bt_zhiding = (Button) findViewById(R.id.t_button_zhiding);
 		bt_zhiding.setOnClickListener(new ZhidingListener());
@@ -217,8 +269,12 @@ public class TaskInputActivity extends Activity {
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
 			str_typeOfTask = adapterView.getItemAtPosition(position).toString();
-			Toast.makeText(TaskInputActivity.this, "任务类别为：" + str_typeOfTask,
-					Toast.LENGTH_SHORT).show();
+			typeOfTaskCount++;
+			if (typeOfTaskCount > 1) {
+				Toast.makeText(TaskInputActivity.this,
+						"任务类别为：" + str_typeOfTask, Toast.LENGTH_SHORT).show();
+			}
+
 		}
 
 		@Override
@@ -238,8 +294,11 @@ public class TaskInputActivity extends Activity {
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
 			str_idOfPerson = adapterView.getItemAtPosition(position).toString();
-			Toast.makeText(TaskInputActivity.this, "巡检人员为：" + str_idOfPerson,
-					Toast.LENGTH_SHORT).show();
+			perCount++;
+			if (perCount > 1) {
+				Toast.makeText(TaskInputActivity.this,
+						"巡检人员为：" + str_idOfPerson, Toast.LENGTH_SHORT).show();
+			}
 		}
 
 		@Override
@@ -259,11 +318,12 @@ public class TaskInputActivity extends Activity {
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
 			str_mHour1 = adapterView.getItemAtPosition(position).toString();
-
-			Toast.makeText(TaskInputActivity.this, "任务起始时间为：" + str_mHour1,
-					Toast.LENGTH_SHORT).show();
+			timeCount1++;
+			if (timeCount1 > 1) {
+				Toast.makeText(TaskInputActivity.this, "任务起始时间为：" + str_mHour1,
+						Toast.LENGTH_SHORT).show();
+			}
 			str_mHour1 = str_mHour1.substring(0, 2);
-
 
 		}
 
@@ -284,10 +344,12 @@ public class TaskInputActivity extends Activity {
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
 			str_mHour2 = adapterView.getItemAtPosition(position).toString();
-			Toast.makeText(TaskInputActivity.this, "任务结束时间为：" + str_mHour2,
-					Toast.LENGTH_SHORT).show();
+			timeCount1++;
+			if (timeCount2 > 1) {
+				Toast.makeText(TaskInputActivity.this, "任务结束时间为：" + str_mHour2,
+						Toast.LENGTH_SHORT).show();
+			}
 			str_mHour2 = str_mHour2.substring(0, 2);
-
 
 		}
 
@@ -475,49 +537,20 @@ public class TaskInputActivity extends Activity {
 			animationSet.setDuration(200);
 			bt_baocunrenwu.startAnimation(animationSet);
 
-			str_luduanming = et_luduanming.getText().toString();
-			task.setRoadName(str_luduanming);
+			saveTask();
+			if (timeState == 1) {
+				// 设置任务状态为未发布
+				task.setState("0");
 
-			str_typeOfTask = str_typeOfTask;
-			task.setTaskType(str_typeOfTask);
+				ta.establishTask(task);
+				Toast.makeText(TaskInputActivity.this, "任务保存成功！",
+						Toast.LENGTH_LONG).show();
 
-			idOfPerson = idOfPerson;
-			task.setInspectionPersonId(idOfPerson);
-
-			str_renwuneirong = et_renwuneirong.getText().toString();
-			task.setContent(str_renwuneirong);
-
-			if (mTime1 == 1) {
-				long_timeOfStart = Integer.parseInt(str_timeOfStart + ""
-						+ str_mHour1);
-				task.setStartTime(long_timeOfStart);
+				finish();
+			} else {
+				Toast.makeText(TaskInputActivity.this, "请保证起止时间的正确性！",
+						Toast.LENGTH_SHORT).show();
 			}
-			if (mTime2 == 1) {
-				long_timeOfEnd = Integer.parseInt(str_timeOfEnd + ""
-						+ str_mHour2);
-				task.setEndTime(long_timeOfEnd);
-			}
-
-			str_xunjianzhouqi = et_xunjianzhouqi.getText().toString();
-			int cycle = 0;
-			if (str_xunjianzhouqi != null && str_xunjianzhouqi.length() != 0) {
-				cycle = Integer.parseInt(str_xunjianzhouqi);
-			}
-			task.setCycle(cycle);
-
-			str_gerenwu = et_gerenwu.getText().toString();
-
-			str_beizhu = et_beizhu.getText().toString();
-			task.setTag(str_beizhu);
-
-			SimpleDateFormat formatter = new SimpleDateFormat(
-					"yyyyMMddHHmmss");
-			Date curDate = new Date(System.currentTimeMillis());
-			String strRealseTime = formatter.format(curDate);
-			System.out.println(strRealseTime);
-			 long realseTime=Long.parseLong(strRealseTime);
-			 task.setRealseTime(realseTime);
-
 		}
 
 	}
@@ -536,7 +569,84 @@ public class TaskInputActivity extends Activity {
 			animationSet.setDuration(200);
 			bt_faburenwu.startAnimation(animationSet);
 
+			str_luduanming = et_luduanming.getText().toString();
+
+			str_renwuneirong = et_renwuneirong.getText().toString();
+
+			str_xunjianzhouqi = et_xunjianzhouqi.getText().toString();
+			if ((str_luduanming != null && str_luduanming.length() != 0)
+					&& (str_renwuneirong != null && str_renwuneirong.length() != 0)
+					&& (str_xunjianzhouqi != null && str_xunjianzhouqi.length() != 0)) {
+				state=1;
+			}
+
+			if (state == 0) {
+				Toast.makeText(TaskInputActivity.this, "请完善任务信息后再发布！",
+						Toast.LENGTH_SHORT).show();
+			}
+
+			else {
+
+				saveTask();
+				// 设置任务状态为已发布
+				task.setState("1");
+
+				ta.establishTask(task);
+				Toast.makeText(TaskInputActivity.this, "任务发布成功！",
+						Toast.LENGTH_LONG).show();
+				finish();
+			}
 		}
+
+	}
+
+	private void saveTask() {
+		str_luduanming = et_luduanming.getText().toString();
+		task.setRoadName(str_luduanming);
+
+		str_typeOfTask = str_typeOfTask;
+		System.out.println(str_typeOfTask);
+		task.setTaskType(str_typeOfTask);
+
+		idOfPerson = idOfPerson;
+		task.setInspectionPersonId(idOfPerson);
+
+		str_renwuneirong = et_renwuneirong.getText().toString();
+		task.setContent(str_renwuneirong);
+
+		if (mTime1 == 1) {
+			long_timeOfStart = Integer.parseInt(str_timeOfStart + ""
+					+ str_mHour1);
+			task.setStartTime(long_timeOfStart);
+		}
+		if (mTime2 == 1) {
+			long_timeOfEnd = Integer.parseInt(str_timeOfEnd + "" + str_mHour2);
+			task.setEndTime(long_timeOfEnd);
+		}
+
+		// 判断时间设置是否正确
+		if (long_timeOfStart < long_timeOfEnd) {
+			timeState = 1;
+		}
+
+		str_xunjianzhouqi = et_xunjianzhouqi.getText().toString();
+		int cycle = 0;
+		if (str_xunjianzhouqi != null && str_xunjianzhouqi.length() != 0) {
+			cycle = Integer.parseInt(str_xunjianzhouqi);
+		}
+		task.setCycle(cycle);
+
+		str_gerenwu = et_gerenwu.getText().toString();
+
+		str_beizhu = et_beizhu.getText().toString();
+		task.setTag(str_beizhu);
+
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+		Date curDate = new Date(System.currentTimeMillis());
+		String strRealseTime = formatter.format(curDate);
+		System.out.println(strRealseTime);
+		long realseTime = Long.parseLong(strRealseTime);
+		task.setRealseTime(realseTime);
 
 	}
 
