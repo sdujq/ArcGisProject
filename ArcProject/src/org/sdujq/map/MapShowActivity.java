@@ -168,6 +168,7 @@ public class MapShowActivity extends Activity implements OnClickListener,
 			Intent it=new Intent();
 			it.putExtra("id", id);
 			setResult(RESULT_OK, it);
+			Log.e("qq", "road saved");
 			}
 			finish();
 		}

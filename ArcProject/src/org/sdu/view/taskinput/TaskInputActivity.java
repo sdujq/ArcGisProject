@@ -38,7 +38,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class TaskInputActivity extends Activity {
-	public Button bt_zhiding, bt_qingkong, bt_xuanzequyu, bt_xunjianquyu,
+	public Button bt_zhiding, bt_qingkong, bt_xuanzequyu,
 			bt_baocunrenwu, bt_faburenwu, bt_kaishiriqi, bt_jieshuriqi;
 	public TextView tv_luduanming, tv_renwuleibie, tv_xunjianrenyuan,
 			tv_renwuneirong, tv_qx_kaishishijian, tv_qx_jiezhishijian,
@@ -131,9 +131,6 @@ public class TaskInputActivity extends Activity {
 
 		bt_xuanzequyu = (Button) findViewById(R.id.t_button_xuanzequyu);
 		bt_xuanzequyu.setOnClickListener(new XuanzequyuListener());
-
-		bt_xunjianquyu = (Button) findViewById(R.id.t_button_xunjianquyu);
-		bt_xunjianquyu.setOnClickListener(new XunjianquyuListener());
 
 		bt_baocunrenwu = (Button) findViewById(R.id.t_button_baocunrenwu);
 		bt_baocunrenwu.setOnClickListener(new BaocunrenwuListener());
@@ -348,7 +345,7 @@ public class TaskInputActivity extends Activity {
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
 			str_mHour2 = adapterView.getItemAtPosition(position).toString();
-			timeCount1++;
+			timeCount2++;
 			if (timeCount2 > 1) {
 				Toast.makeText(TaskInputActivity.this, "任务结束时间为：" + str_mHour2,
 						Toast.LENGTH_SHORT).show();
@@ -372,8 +369,9 @@ public class TaskInputActivity extends Activity {
 		if (requestCode == REQUEST_CODE) {
 
 			if (resultCode == RESULT_CANCELED) {
-
-			} else if (resultCode == RESULT_OK&&requestCode==0) {
+				return;
+			} 
+			if (resultCode == RESULT_OK&&requestCode==0) {
 
 				Bundle extras = data.getExtras();
 
@@ -411,11 +409,12 @@ public class TaskInputActivity extends Activity {
 
 				}
 
-			}else if(requestCode==1){
-				roadLineId=data.getIntExtra("id", -1);
-				Log.e("qq", "saved road id is "+roadLineId);
 			}
 
+		}
+		else if(requestCode==1&&resultCode==RESULT_OK){
+			roadLineId=data.getIntExtra("id", -1);
+			Log.e("qq", "saved road id is "+roadLineId);
 		}
 
 	}
@@ -512,24 +511,6 @@ public class TaskInputActivity extends Activity {
 				r=(new RoadLineDao(TaskInputActivity.this)).get(roadLineId);
 			}
 			MapShowActivity.startMapForShow(TaskInputActivity.this, r, true);
-		}
-
-	}
-
-	// 按钮 巡检区域 的监听
-	class XunjianquyuListener implements OnClickListener {
-
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			AnimationSet animationSet = new AnimationSet(true);
-			ScaleAnimation scaleAnimation = new ScaleAnimation(1, 1.3f, 1,
-					1.3f, Animation.RELATIVE_TO_SELF, 0.5f,
-					Animation.RELATIVE_TO_SELF, 0.5f);
-			animationSet.addAnimation(scaleAnimation);
-			animationSet.setFillBefore(true);
-			animationSet.setDuration(200);
-			bt_xunjianquyu.startAnimation(animationSet);
-
 		}
 
 	}
@@ -660,6 +641,10 @@ public class TaskInputActivity extends Activity {
 		task.setRealseTime(realseTime);
 		if(roadLineId!=-1){
 			task.setRoadLineId(roadLineId);
+			RoadLineDao dao=new RoadLineDao(this);
+			RoadLine line=dao.get(roadLineId);
+			line.setName(str_luduanming);
+			dao.update(line);
 		}
 	}
 

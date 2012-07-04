@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical" 
-    android:background="@drawable/bg_task_input">
+    android:background="@drawable/bg_task_input"
+    android:orientation="vertical" >
 
     <!-- 此xml用于定义TaskInputActivity的布局 -->
     <!-- scrollview用于满屏滑动 -->
@@ -18,19 +18,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
+            <TextView
+                android:id="@+id/t_nameOfRoad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.03"
+                android:text="@string/nameOfRoad" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
 
                 <!-- 路段名textview -->
-
-                <TextView
-                    android:id="@+id/t_nameOfRoad"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.03"
-                    android:text="@string/nameOfRoad" />
 
                 <EditText
                     android:id="@+id/t_text_nameOfRoad"
@@ -46,7 +46,7 @@
                     android:id="@+id/t_button_zhiding"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/bt_zhiding" />
+                    android:text="@string/bt_zhiding" />
                 -->
 
                 <Button
@@ -57,16 +57,17 @@
                     android:text="@string/bt_qingkong" />
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/t_renwuleibie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.03"
+                android:text="@string/renwuleibir" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
-
-                <TextView
-                    android:id="@+id/t_renwuleibie"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/renwuleibir" />
 
                 <Spinner
                     android:id="@+id/t_spinner_selectTask"
@@ -82,43 +83,37 @@
                     android:text="@string/bt_xuanzequyu" />
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/t_xunjianrenyuan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.03"
+                android:text="@string/xunjianrenyuan" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
-
-                <TextView
-                    android:id="@+id/t_xunjianrenyuan"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/xunjianrenyuan" />
 
                 <Spinner
                     android:id="@+id/t_spinner_xunjianrenyuan"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:id="@+id/t_button_xunjianquyu"
-                    android:layout_width="75dp"
-                    android:layout_height="40dp"
-                    android:background="@drawable/bg_alibuybutton"
-                    android:text="@string/bt_xunjianquyu" />
+                     />
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/t_renwuneirong"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.17"
+                android:text="@string/renwuneirong"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
-
-                <TextView
-                    android:id="@+id/t_renwuneirong"
-                    android:layout_width="52dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.17"
-                    android:text="@string/renwuneirong"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
 
                 <EditText
                     android:id="@+id/t_text_renwuneirong"
@@ -128,61 +123,60 @@
                     android:ems="10" />
             </LinearLayout>
 
-            <RelativeLayout
+            <TextView
+                android:id="@+id/t_Qx_kaishi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.16"
+                android:text="@string/kaishishijian" />
+
+            <LinearLayout
+                android:id="@+id/LinearLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:orientation="horizontal" >
-
-                <TextView
-                    android:id="@+id/t_Qx_kaishi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_weight="0.16"
-                    android:text="@string/kaishishijian" />
 
                 <Button
                     android:id="@+id/t_bt_kaishiriqi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true" >
+                    android:layout_weight="1" >
                 </Button>
 
                 <Spinner
                     android:id="@+id/t_spinner_kaishishijian"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
                     android:layout_weight="0.44" />
-            </RelativeLayout>
+            </LinearLayout>
 
-            <RelativeLayout
+            <TextView
+                android:id="@+id/t_Qx_jiezhi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.41"
+                android:text="@string/jiezhishijian" />
+
+            <LinearLayout
+                android:id="@+id/LinearLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
                 android:orientation="horizontal" >
-
-                <TextView
-                    android:id="@+id/t_Qx_jiezhi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_weight="0.41"
-                    android:text="@string/jiezhishijian" />
 
                 <Button
                     android:id="@+id/t_bt_jieshuriqi"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true" >
+                    android:layout_height="wrap_content" android:layout_weight="1">
                 </Button>
 
                 <Spinner
                     android:id="@+id/t_spinner_jiezhishijian"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_weight="1" />
-            </RelativeLayout>
+                    android:layout_weight="0.44" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -288,26 +282,25 @@
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-              >
+                android:layout_height="wrap_content" >
 
                 <Button
                     android:id="@+id/t_button_baocunrenwu"
                     android:layout_width="75dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/bg_alibuybutton"
-                    android:text="@string/bt_baocunrenwu"
                     android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="30dp"/>
+                    android:layout_marginLeft="30dp"
+                    android:background="@drawable/bg_alibuybutton"
+                    android:text="@string/bt_baocunrenwu" />
 
                 <Button
                     android:id="@+id/t_button_faburenwu"
                     android:layout_width="75dp"
                     android:layout_height="40dp"
-                    android:background="@drawable/bg_alibuybutton"
-                    android:text="@string/bt_faburenwu" 
                     android:layout_alignParentRight="true"
-                    android:layout_marginRight="30dp"/>
+                    android:layout_marginRight="30dp"
+                    android:background="@drawable/bg_alibuybutton"
+                    android:text="@string/bt_faburenwu" />
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
