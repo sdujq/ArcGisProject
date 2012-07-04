@@ -5,31 +5,40 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+import org.sdu.dao.RoadLineDao;
 import org.sdu.db.DBHelper;
+import org.sdu.dbaction.TaskAction;
 import org.sdu.gis.R;
+import org.sdu.pojo.RoadLine;
 import org.sdu.pojo.Task;
+import org.sdujq.map.MapShowActivity;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
-import android.widget.Button;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Toast;
 
 public class TaskInputActivity extends Activity {
-	public Button bt_zhiding, bt_qingkong, bt_xuanzequyu, bt_xunjianquyu,
+	public Button bt_zhiding, bt_qingkong, bt_xuanzequyu,
 			bt_baocunrenwu, bt_faburenwu, bt_kaishiriqi, bt_jieshuriqi;
 	public TextView tv_luduanming, tv_renwuleibie, tv_xunjianrenyuan,
 			tv_renwuneirong, tv_qx_kaishishijian, tv_qx_jiezhishijian,
@@ -45,39 +54,83 @@ public class TaskInputActivity extends Activity {
 	public Spinner sp_selectTask, sp_kaishishijian, sp_jiezhishijian,
 			sp_xunjianrenyuan;
 
-	private Task task;
+	public CheckBox chb_zidongfabu, chb_zidongshengcheng;
 
+	private Task task;
+	private TaskAction ta;
 	private int year;
 	private int month;
 	private int day;
-	private int mHour1, mHour2;
+	private int mHour1, mHour2, mTime1 = 0, mTime2 = 0, timeCount1 = 0,
+			timeCount2 = 0, typeOfTaskCount = 0, perCount = 0, state = 0,
+			timeState = 0;
 	private String strmYear, strmMonth, strmDay, strmHour, strmMinute,
-			strmSecond, strTime,str_mHour1,str_mHour2;
+			strmSecond, strTime, str_mHour1, str_mHour2;
 	private int REQUEST_CODE = 0;
 	private String DEFAULT_TIME_FORMAT = "yyyy-MM-dd hh:mm:ss";
 	private String str_typeOfTask, str_idOfPerson, str_timeOfStart,
 			str_timeOfEnd;
-    private int idOfPerson=0;
-    private long long_timeOfStart,long_timeOfEnd;
-    
+	private int idOfPerson = 0;
+	private long long_timeOfStart, long_timeOfEnd;
+	private int roadLineId=-1;
 	@Override
 	public void onCreate(Bundle saved) {
 		super.onCreate(saved);
-		setContentView(R.layout.task_input);
-
+		setContentView(R.layout.task_inputmh);
+		ta = new TaskAction(this);
 		task = new Task();
 
-		bt_zhiding = (Button) findViewById(R.id.t_button_zhiding);
-		bt_zhiding.setOnClickListener(new ZhidingListener());
+		chb_zidongfabu = (CheckBox) findViewById(R.id.t_checkBox_zidongfabu);
+		// 为自动发布按钮添加监听器
+		chb_zidongfabu
+				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+					@Override
+					public void onCheckedChanged(CompoundButton buttonView,
+							boolean isChecked) {
+						// TODO Auto-generated method stub
+						if (isChecked) {
+							Toast.makeText(TaskInputActivity.this, "该任务将自动发布！",
+									Toast.LENGTH_SHORT).show();
+
+						} else {
+							// Toast.makeText(TaskInputActivity.this,
+							// "该任务不会自动发布", Toast.LENGTH_SHORT)
+							// .show();
+
+						}
+					}
+				});
+
+		chb_zidongshengcheng = (CheckBox) findViewById(R.id.t_checkBox_zidongshengcheng);
+		// 为自动生成按钮添加监听器
+		chb_zidongshengcheng
+				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+
+					@Override
+					public void onCheckedChanged(CompoundButton buttonView,
+							boolean isChecked) {
+						// TODO Auto-generated method stub
+						if (isChecked) {
+							Toast.makeText(TaskInputActivity.this, "将自动生成多个任务",
+									Toast.LENGTH_SHORT).show();
+						} else {
+							// Toast.makeText(TaskInputActivity.this,
+							// "不会生成多个任务", Toast.LENGTH_SHORT)
+							// .show();
+
+						}
+					}
+				});
+
+//		bt_zhiding = (Button) findViewById(R.id.t_button_zhiding);
+//		bt_zhiding.setOnClickListener(new ZhidingListener());
 
 		bt_qingkong = (Button) findViewById(R.id.t_button_qingkong);
 		bt_qingkong.setOnClickListener(new QingkongListener());
 
 		bt_xuanzequyu = (Button) findViewById(R.id.t_button_xuanzequyu);
 		bt_xuanzequyu.setOnClickListener(new XuanzequyuListener());
-
-		bt_xunjianquyu = (Button) findViewById(R.id.t_button_xunjianquyu);
-		bt_xunjianquyu.setOnClickListener(new XunjianquyuListener());
 
 		bt_baocunrenwu = (Button) findViewById(R.id.t_button_baocunrenwu);
 		bt_baocunrenwu.setOnClickListener(new BaocunrenwuListener());
@@ -204,7 +257,7 @@ public class TaskInputActivity extends Activity {
 
 			strTime = dateFormatter.format(Calendar.getInstance().getTime());
 
-			tv_zhidingshijian.setText("指定时间：" + strTime);
+			tv_zhidingshijian.setText("制定时间：" + strTime);
 		}
 
 	};
@@ -217,8 +270,12 @@ public class TaskInputActivity extends Activity {
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
 			str_typeOfTask = adapterView.getItemAtPosition(position).toString();
-			Toast.makeText(TaskInputActivity.this, "任务类别为：" + str_typeOfTask,
-					Toast.LENGTH_SHORT).show();
+			typeOfTaskCount++;
+			if (typeOfTaskCount > 1) {
+				Toast.makeText(TaskInputActivity.this,
+						"任务类别为：" + str_typeOfTask, Toast.LENGTH_SHORT).show();
+			}
+
 		}
 
 		@Override
@@ -238,8 +295,11 @@ public class TaskInputActivity extends Activity {
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
 			str_idOfPerson = adapterView.getItemAtPosition(position).toString();
-			Toast.makeText(TaskInputActivity.this, "巡检人员为：" + str_idOfPerson,
-					Toast.LENGTH_SHORT).show();
+			perCount++;
+			if (perCount > 1) {
+				Toast.makeText(TaskInputActivity.this,
+						"巡检人员为：" + str_idOfPerson, Toast.LENGTH_SHORT).show();
+			}
 		}
 
 		@Override
@@ -258,15 +318,14 @@ public class TaskInputActivity extends Activity {
 		@Override
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
-			str_mHour1 = adapterView.getItemAtPosition(position)
-					.toString();
-			
-			Toast.makeText(TaskInputActivity.this, "任务起始时间为：" + str_mHour1,
-					Toast.LENGTH_SHORT).show();
-			str_mHour1= str_mHour1.substring(0, 2);
-			System.out.println(str_mHour1);
-			
-			
+			str_mHour1 = adapterView.getItemAtPosition(position).toString();
+			timeCount1++;
+			if (timeCount1 > 1) {
+				Toast.makeText(TaskInputActivity.this, "任务起始时间为：" + str_mHour1,
+						Toast.LENGTH_SHORT).show();
+			}
+			str_mHour1 = str_mHour1.substring(0, 2);
+
 		}
 
 		@Override
@@ -285,12 +344,14 @@ public class TaskInputActivity extends Activity {
 		@Override
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
-			 str_mHour2 = adapterView.getItemAtPosition(position)
-					.toString();
-			 Toast.makeText(TaskInputActivity.this, "任务结束时间为：" + str_mHour2,
+			str_mHour2 = adapterView.getItemAtPosition(position).toString();
+			timeCount2++;
+			if (timeCount2 > 1) {
+				Toast.makeText(TaskInputActivity.this, "任务结束时间为：" + str_mHour2,
 						Toast.LENGTH_SHORT).show();
-			 str_mHour2= str_mHour2.substring(0, 2);
-			 
+			}
+			str_mHour2 = str_mHour2.substring(0, 2);
+
 		}
 
 		@Override
@@ -308,8 +369,9 @@ public class TaskInputActivity extends Activity {
 		if (requestCode == REQUEST_CODE) {
 
 			if (resultCode == RESULT_CANCELED) {
-
-			} else if (resultCode == RESULT_OK) {
+				return;
+			} 
+			if (resultCode == RESULT_OK&&requestCode==0) {
 
 				Bundle extras = data.getExtras();
 
@@ -336,17 +398,23 @@ public class TaskInputActivity extends Activity {
 					if (a == 1) {
 
 						bt_kaishiriqi.setText(year + "-" + Smonth + "-" + Sday);
-						str_timeOfStart=year + "" + Smonth + "" + Sday;
+						str_timeOfStart = year + "" + Smonth + "" + Sday;
+						mTime1 = 1;
 
 					} else if (a == 2) {
 						bt_jieshuriqi.setText(year + "-" + Smonth + "-" + Sday);
-						str_timeOfEnd=year + "" + Smonth + "" + Sday;
+						str_timeOfEnd = year + "" + Smonth + "" + Sday;
+						mTime2 = 1;
 					}
 
 				}
 
 			}
 
+		}
+		else if(requestCode==1&&resultCode==RESULT_OK){
+			roadLineId=data.getIntExtra("id", -1);
+			Log.e("qq", "saved road id is "+roadLineId);
 		}
 
 	}
@@ -384,22 +452,22 @@ public class TaskInputActivity extends Activity {
 	}
 
 	// 按钮 制定 的监听
-	class ZhidingListener implements OnClickListener {
-
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			AnimationSet animationSet = new AnimationSet(true);
-			ScaleAnimation scaleAnimation = new ScaleAnimation(1, 1.3f, 1,
-					1.3f, Animation.RELATIVE_TO_SELF, 0.5f,
-					Animation.RELATIVE_TO_SELF, 0.5f);
-			animationSet.addAnimation(scaleAnimation);
-			animationSet.setFillBefore(true);
-			animationSet.setDuration(200);
-			bt_zhiding.startAnimation(animationSet);
-
-		}
-
-	}
+//	class ZhidingListener implements OnClickListener {
+//
+//		public void onClick(View v) {
+//			// TODO Auto-generated method stub
+//			AnimationSet animationSet = new AnimationSet(true);
+//			ScaleAnimation scaleAnimation = new ScaleAnimation(1, 1.3f, 1,
+//					1.3f, Animation.RELATIVE_TO_SELF, 0.5f,
+//					Animation.RELATIVE_TO_SELF, 0.5f);
+//			animationSet.addAnimation(scaleAnimation);
+//			animationSet.setFillBefore(true);
+//			animationSet.setDuration(200);
+//			bt_zhiding.startAnimation(animationSet);
+//
+//		}
+//
+//	}
 
 	// 按钮 清空 的监听
 	class QingkongListener implements OnClickListener {
@@ -438,25 +506,11 @@ public class TaskInputActivity extends Activity {
 			animationSet.setFillBefore(true);
 			animationSet.setDuration(200);
 			bt_xuanzequyu.startAnimation(animationSet);
-
-		}
-
-	}
-
-	// 按钮 巡检区域 的监听
-	class XunjianquyuListener implements OnClickListener {
-
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			AnimationSet animationSet = new AnimationSet(true);
-			ScaleAnimation scaleAnimation = new ScaleAnimation(1, 1.3f, 1,
-					1.3f, Animation.RELATIVE_TO_SELF, 0.5f,
-					Animation.RELATIVE_TO_SELF, 0.5f);
-			animationSet.addAnimation(scaleAnimation);
-			animationSet.setFillBefore(true);
-			animationSet.setDuration(200);
-			bt_xunjianquyu.startAnimation(animationSet);
-
+			RoadLine r=null;
+			if(roadLineId!=-1){
+				r=(new RoadLineDao(TaskInputActivity.this)).get(roadLineId);
+			}
+			MapShowActivity.startMapForShow(TaskInputActivity.this, r, true);
 		}
 
 	}
@@ -475,46 +529,20 @@ public class TaskInputActivity extends Activity {
 			animationSet.setDuration(200);
 			bt_baocunrenwu.startAnimation(animationSet);
 
-			str_luduanming = et_luduanming.getText().toString();
-			task.setRoadName(str_luduanming);
+			saveTask();
+			if (timeState == 1) {
+				// 设置任务状态为未发布
+				task.setState("0");
 
-			str_typeOfTask=str_typeOfTask;
-			task.setTaskType(str_typeOfTask);
-			
-			idOfPerson=idOfPerson;
-			task.setInspectionPersonId(idOfPerson);
-			
-			str_renwuneirong = et_renwuneirong.getText().toString();
-			task.setContent(str_renwuneirong);
-			
-					
-			long_timeOfStart=Integer.parseInt(str_timeOfStart+""+str_mHour1);
-			task.setStartTime(long_timeOfStart);
-			
-			long_timeOfEnd=Integer.parseInt(str_timeOfEnd+""+str_mHour2);
-			task.setEndTime(long_timeOfEnd);
-			
-			
-			str_xunjianzhouqi = et_xunjianzhouqi.getText().toString();
-			int cycle = 0;
-			if (str_xunjianzhouqi != null && str_xunjianzhouqi.length() != 0) {
-				cycle = Integer.parseInt(str_xunjianzhouqi);
+				ta.establishTask(task);
+				Toast.makeText(TaskInputActivity.this, "任务保存成功！",
+						Toast.LENGTH_LONG).show();
+
+				finish();
+			} else {
+				Toast.makeText(TaskInputActivity.this, "请保证起止时间的正确性！",
+						Toast.LENGTH_SHORT).show();
 			}
-			task.setCycle(cycle);
-
-			str_gerenwu = et_gerenwu.getText().toString();
-
-			
-			str_beizhu = et_beizhu.getText().toString();
-			task.setTag(str_beizhu);
-			
-			SimpleDateFormat   formatter   =   new   SimpleDateFormat   ("yyyyMMddHH:mm:ss");    
-			Date   curDate   =   new   Date(System.currentTimeMillis());
-			String   strRealseTime   =   formatter.format(curDate);    
-			
-			//long realseTime=Integer.parseInt(strRealseTime);
-			//task.setRealseTime(realseTime);
-			
 		}
 
 	}
@@ -533,8 +561,91 @@ public class TaskInputActivity extends Activity {
 			animationSet.setDuration(200);
 			bt_faburenwu.startAnimation(animationSet);
 
+			str_luduanming = et_luduanming.getText().toString();
+
+			str_renwuneirong = et_renwuneirong.getText().toString();
+
+			str_xunjianzhouqi = et_xunjianzhouqi.getText().toString();
+			if ((str_luduanming != null && str_luduanming.length() != 0)
+					&& (str_renwuneirong != null && str_renwuneirong.length() != 0)
+					&& (str_xunjianzhouqi != null && str_xunjianzhouqi.length() != 0)) {
+				state=1;
+			}
+
+			if (state == 0 || roadLineId==-1) {
+				Toast.makeText(TaskInputActivity.this, "请完善任务信息后再发布！",
+						Toast.LENGTH_SHORT).show();
+			}
+
+			else {
+
+				saveTask();
+				// 设置任务状态为已发布
+				task.setState("1");
+
+				ta.establishTask(task);
+				Toast.makeText(TaskInputActivity.this, "任务发布成功！",
+						Toast.LENGTH_LONG).show();
+				finish();
+			}
 		}
 
+	}
+
+	private void saveTask() {
+		str_luduanming = et_luduanming.getText().toString();
+		task.setRoadName(str_luduanming);
+
+		str_typeOfTask = str_typeOfTask;
+		System.out.println(str_typeOfTask);
+		task.setTaskType(str_typeOfTask);
+
+		idOfPerson = idOfPerson;
+		task.setInspectionPersonId(idOfPerson);
+
+		str_renwuneirong = et_renwuneirong.getText().toString();
+		task.setContent(str_renwuneirong);
+
+		if (mTime1 == 1) {
+			long_timeOfStart = Integer.parseInt(str_timeOfStart + ""
+					+ str_mHour1);
+			task.setStartTime(long_timeOfStart);
+		}
+		if (mTime2 == 1) {
+			long_timeOfEnd = Integer.parseInt(str_timeOfEnd + "" + str_mHour2);
+			task.setEndTime(long_timeOfEnd);
+		}
+
+		// 判断时间设置是否正确
+		if (long_timeOfStart < long_timeOfEnd) {
+			timeState = 1;
+		}
+
+		str_xunjianzhouqi = et_xunjianzhouqi.getText().toString();
+		int cycle = 0;
+		if (str_xunjianzhouqi != null && str_xunjianzhouqi.length() != 0) {
+			cycle = Integer.parseInt(str_xunjianzhouqi);
+		}
+		task.setCycle(cycle);
+
+		str_gerenwu = et_gerenwu.getText().toString();
+
+		str_beizhu = et_beizhu.getText().toString();
+		task.setTag(str_beizhu);
+		
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+		Date curDate = new Date(System.currentTimeMillis());
+		String strRealseTime = formatter.format(curDate);
+		System.out.println(strRealseTime);
+		long realseTime = Long.parseLong(strRealseTime);
+		task.setRealseTime(realseTime);
+		if(roadLineId!=-1){
+			task.setRoadLineId(roadLineId);
+			RoadLineDao dao=new RoadLineDao(this);
+			RoadLine line=dao.get(roadLineId);
+			line.setName(str_luduanming);
+			dao.update(line);
+		}
 	}
 
 }

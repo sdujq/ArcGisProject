@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>  
+ <resources>  
+	<string-array name="plantes">  
+         <item>井盖丢失</item>  
+         <item>阀门损坏</item>  
+         <item>消防漏水</item>  
+         <item>管道占压</item>  
+         <item>管道漏水</item>
+         <item>消防配件丢失</item> 
+         <item>其他故障</item> 
+   </string-array> 
+</resources> 

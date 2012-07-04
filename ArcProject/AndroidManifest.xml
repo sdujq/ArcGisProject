@@ -27,7 +27,7 @@
         </activity>
         <activity
             android:name="org.sdu.view.taskinput.DatePickActivity"
-            android:theme="@android:style/Theme.Dialog" >
+            android:theme="@style/mytheme">
         </activity>
         <activity android:name="org.sdu.view.bugshow.BugShowActivity" >
         </activity>
@@ -52,6 +52,7 @@
         <activity android:name="org.sdujq.map.WhiteActivity"></activity>
         <activity android:name="org.sdujq.map.TabHomeActivity"></activity>
         <activity android:name="org.sdu.view.usermanager.AccountActivity"></activity>
+        <activity android:name="org.sdu.view.taskinput.TaskInputActivityMh"></activity>
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />

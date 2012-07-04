@@ -1,31 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/screen"
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" android:background="@color/white">
+    android:orientation="vertical" 
+    android:background="@color/black">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/wentijianshu_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Large Text"
-            android:textAppearance="?android:attr/textAppearanceLarge" android:textColor="@color/black"/>
-
-        <AutoCompleteTextView
-            android:id="@+id/autoCompleteTextView1"
+            android:text="问题简述"
+            android:textAppearance="?android:attr/textAppearanceLarge" 
+            android:textColor="@color/white"/>
+
+        <EditText
+            android:id="@+id/wentijianshu_editText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:ems="10"
             android:text="AutoCompleteTextView" >
 
             <requestFocus />
-        </AutoCompleteTextView>
+        </EditText>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/wentileibie_textView"
+            android:layout_width="103dp"
+            android:layout_height="wrap_content"
+            android:text="问题类别"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <Spinner
+            android:id="@+id/wentileibie_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 
@@ -34,43 +58,115 @@
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/guzhangneirong_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Large Text"
+            android:text="故障内容"
             android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        <AutoCompleteTextView
-            android:id="@+id/autoCompleteTextView2"
+
+        <EditText
+            android:id="@+id/guzhangneirong_editText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:ems="10"
             android:text="AutoCompleteTextView" />
 
     </LinearLayout>
-
-    <LinearLayout
+            <TextView
+                android:id="@+id/guzhangzuobiao_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="故障坐标"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+     
+            <EditText
+                android:id="@+id/guzhangzuobiao_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text="AutoCompleteTextView" />
+            
+            <TextView
+                android:id="@+id/guzhangdizhi_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="故障地址"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+     
+            <EditText
+                android:id="@+id/guzhangdizhi_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text="XX路XX段XX号" />
+            
+            <TextView
+                android:id="@+id/wentibeizhu_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="问题备注"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+     
+            <EditText
+                android:id="@+id/wentibeizhu_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:text="AutoCompleteTextView" />
+            
+        <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/xianchangfujian_textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Large Text"
+            android:layout_weight="1.45"
+            android:text="现场附件"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
-        <AutoCompleteTextView
-            android:id="@+id/autoCompleteTextView3"
+        <EditText
+            android:id="@+id/xianchangfujian_editText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:ems="10"
             android:text="AutoCompleteTextView" />
 
-    </LinearLayout>
+        </LinearLayout>
 
+        <LinearLayout
+		    android:layout_width="fill_parent"   
+    		android:layout_height="fill_parent"  
+    		android:orientation="horizontal"  
+    		android:gravity="center_horizontal"  
+    		android:layout_weight="3"  
+		    >
+		<Button
+		     android:id="@+id/xianchangfujian_button"
+		     android:layout_width="wrap_content"
+		     android:layout_height="wrap_content"
+		     android:text="现场附件" 
+		/>
+		<Button 
+		     android:id="@+id/shanchu_button"
+		     android:layout_width="wrap_content"
+		     android:layout_height="wrap_content"
+		     android:text="删除"
+		    />
+		<Button 
+		     android:id="@+id/baocun_button"
+		     android:layout_width="fill_parent"
+		     android:layout_height="wrap_content"
+		     android:text="保存"
+		    />
+		</LinearLayout>
+		<Button
+			 android:id="@+id/fabu_button"
+		     android:layout_width="fill_parent"
+		     android:layout_height="wrap_content"
+		     android:text="发布"
+			 />
 </LinearLayout>
+</ScrollView>

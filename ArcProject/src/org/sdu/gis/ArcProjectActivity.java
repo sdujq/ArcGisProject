@@ -120,7 +120,7 @@ public class ArcProjectActivity extends Activity {
 					@Override
 					public void onClick(View v) {
 						RoadLine r=(new RoadLineDao(ArcProjectActivity.this)).get(4);
-						MapShowActivity.startMapForShow(ArcProjectActivity.this, r, false);
+						MapShowActivity.startMapForShow(ArcProjectActivity.this, null, false);
 					}
 				});
 			}else if(n==6){

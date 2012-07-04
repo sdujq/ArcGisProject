@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.sdu.dbaction.RoadLineAction;
-import org.sdu.gis.ArcProjectActivity;
 import org.sdu.gis.R;
 import org.sdu.pojo.RoadLine;
 
@@ -21,6 +20,7 @@ import android.widget.Button;
 import com.esri.android.map.GraphicsLayer;
 import com.esri.android.map.MapOnTouchListener;
 import com.esri.android.map.MapView;
+import com.esri.android.map.ags.ArcGISLocalTiledLayer;
 import com.esri.android.map.ags.ArcGISTiledMapServiceLayer;
 import com.esri.android.map.event.OnStatusChangedListener;
 import com.esri.core.geometry.GeometryEngine;
@@ -52,6 +52,7 @@ public class MapShowActivity extends Activity implements OnClickListener,
 	public RoadLineAction action;
 	public int state = 0;
 	ArcGISTiledMapServiceLayer tileLayer;
+	ArcGISLocalTiledLayer local;
 	boolean needSave=false;
 	/** Called when the activity is first created. */
 	public void onCreate(Bundle savedInstanceState) {
@@ -62,10 +63,12 @@ public class MapShowActivity extends Activity implements OnClickListener,
 		Log.e("qq", needSave+"");
 		setContentView(R.layout.mapview);
 		init();
+		local=new ArcGISLocalTiledLayer("file:///mnt/sdcard/Layers");
 		tileLayer = new ArcGISTiledMapServiceLayer(
 				"http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer");
 		graphicsLayer = new GraphicsLayer();
-		map.addLayer(tileLayer);
+		//map.addLayer(tileLayer);
+		map.addLayer(local);
 		map.setOnStatusChangedListener(this);
 		map.addLayer(graphicsLayer);
 	}
@@ -165,6 +168,7 @@ public class MapShowActivity extends Activity implements OnClickListener,
 			Intent it=new Intent();
 			it.putExtra("id", id);
 			setResult(RESULT_OK, it);
+			Log.e("qq", "road saved");
 			}
 			finish();
 		}

@@ -8,8 +8,7 @@
         android:id="@+id/textViewId"
         style="?android:attr/spinnerDropDownItemStyle"
         android:layout_width="fill_parent"
-        android:layout_height="45dip"
         android:textSize="20dip"
-        />
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
