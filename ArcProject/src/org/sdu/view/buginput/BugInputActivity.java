@@ -11,5 +11,8 @@ public class BugInputActivity extends Activity{
 	public void onCreate(Bundle saved){
 		super.onCreate(saved);
 		setContentView(R.layout.white);
+		
+		
+		
 	}
 }
