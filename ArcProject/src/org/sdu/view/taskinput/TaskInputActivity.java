@@ -50,16 +50,16 @@ public class TaskInputActivity extends Activity {
 	private int year;
 	private int month;
 	private int day;
-	private int mHour1, mHour2;
+	private int mHour1, mHour2, mTime1 = 0, mTime2 = 0;
 	private String strmYear, strmMonth, strmDay, strmHour, strmMinute,
-			strmSecond, strTime,str_mHour1,str_mHour2;
+			strmSecond, strTime, str_mHour1, str_mHour2;
 	private int REQUEST_CODE = 0;
 	private String DEFAULT_TIME_FORMAT = "yyyy-MM-dd hh:mm:ss";
 	private String str_typeOfTask, str_idOfPerson, str_timeOfStart,
 			str_timeOfEnd;
-    private int idOfPerson=0;
-    private long long_timeOfStart,long_timeOfEnd;
-    
+	private int idOfPerson = 0;
+	private long long_timeOfStart, long_timeOfEnd;
+
 	@Override
 	public void onCreate(Bundle saved) {
 		super.onCreate(saved);
@@ -258,15 +258,13 @@ public class TaskInputActivity extends Activity {
 		@Override
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
-			str_mHour1 = adapterView.getItemAtPosition(position)
-					.toString();
-			
+			str_mHour1 = adapterView.getItemAtPosition(position).toString();
+
 			Toast.makeText(TaskInputActivity.this, "任务起始时间为：" + str_mHour1,
 					Toast.LENGTH_SHORT).show();
-			str_mHour1= str_mHour1.substring(0, 2);
-			System.out.println(str_mHour1);
-			
-			
+			str_mHour1 = str_mHour1.substring(0, 2);
+
+
 		}
 
 		@Override
@@ -285,12 +283,12 @@ public class TaskInputActivity extends Activity {
 		@Override
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
-			 str_mHour2 = adapterView.getItemAtPosition(position)
-					.toString();
-			 Toast.makeText(TaskInputActivity.this, "任务结束时间为：" + str_mHour2,
-						Toast.LENGTH_SHORT).show();
-			 str_mHour2= str_mHour2.substring(0, 2);
-			 
+			str_mHour2 = adapterView.getItemAtPosition(position).toString();
+			Toast.makeText(TaskInputActivity.this, "任务结束时间为：" + str_mHour2,
+					Toast.LENGTH_SHORT).show();
+			str_mHour2 = str_mHour2.substring(0, 2);
+
+
 		}
 
 		@Override
@@ -336,11 +334,13 @@ public class TaskInputActivity extends Activity {
 					if (a == 1) {
 
 						bt_kaishiriqi.setText(year + "-" + Smonth + "-" + Sday);
-						str_timeOfStart=year + "" + Smonth + "" + Sday;
+						str_timeOfStart = year + "" + Smonth + "" + Sday;
+						mTime1 = 1;
 
 					} else if (a == 2) {
 						bt_jieshuriqi.setText(year + "-" + Smonth + "-" + Sday);
-						str_timeOfEnd=year + "" + Smonth + "" + Sday;
+						str_timeOfEnd = year + "" + Smonth + "" + Sday;
+						mTime2 = 1;
 					}
 
 				}
@@ -478,23 +478,26 @@ public class TaskInputActivity extends Activity {
 			str_luduanming = et_luduanming.getText().toString();
 			task.setRoadName(str_luduanming);
 
-			str_typeOfTask=str_typeOfTask;
+			str_typeOfTask = str_typeOfTask;
 			task.setTaskType(str_typeOfTask);
-			
-			idOfPerson=idOfPerson;
+
+			idOfPerson = idOfPerson;
 			task.setInspectionPersonId(idOfPerson);
-			
+
 			str_renwuneirong = et_renwuneirong.getText().toString();
 			task.setContent(str_renwuneirong);
-			
-					
-			long_timeOfStart=Integer.parseInt(str_timeOfStart+""+str_mHour1);
-			task.setStartTime(long_timeOfStart);
-			
-			long_timeOfEnd=Integer.parseInt(str_timeOfEnd+""+str_mHour2);
-			task.setEndTime(long_timeOfEnd);
-			
-			
+
+			if (mTime1 == 1) {
+				long_timeOfStart = Integer.parseInt(str_timeOfStart + ""
+						+ str_mHour1);
+				task.setStartTime(long_timeOfStart);
+			}
+			if (mTime2 == 1) {
+				long_timeOfEnd = Integer.parseInt(str_timeOfEnd + ""
+						+ str_mHour2);
+				task.setEndTime(long_timeOfEnd);
+			}
+
 			str_xunjianzhouqi = et_xunjianzhouqi.getText().toString();
 			int cycle = 0;
 			if (str_xunjianzhouqi != null && str_xunjianzhouqi.length() != 0) {
@@ -504,17 +507,17 @@ public class TaskInputActivity extends Activity {
 
 			str_gerenwu = et_gerenwu.getText().toString();
 
-			
 			str_beizhu = et_beizhu.getText().toString();
 			task.setTag(str_beizhu);
-			
-			SimpleDateFormat   formatter   =   new   SimpleDateFormat   ("yyyyMMddHH:mm:ss");    
-			Date   curDate   =   new   Date(System.currentTimeMillis());
-			String   strRealseTime   =   formatter.format(curDate);    
-			
-			//long realseTime=Integer.parseInt(strRealseTime);
-			//task.setRealseTime(realseTime);
-			
+
+			SimpleDateFormat formatter = new SimpleDateFormat(
+					"yyyyMMddHHmmss");
+			Date curDate = new Date(System.currentTimeMillis());
+			String strRealseTime = formatter.format(curDate);
+			System.out.println(strRealseTime);
+			 long realseTime=Long.parseLong(strRealseTime);
+			 task.setRealseTime(realseTime);
+
 		}
 
 	}
