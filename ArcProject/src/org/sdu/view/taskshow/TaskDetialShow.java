@@ -55,6 +55,7 @@ public class TaskDetialShow extends Activity{
 		TaskAction ta=new TaskAction(this);
     	Task task=new Task();
     	
+    	
     	m_name=ta.getDetail(Button_id).getCreatePersonId();
     	t_num=ta.getDetail(Button_id).getId();
     	t_type=ta.getDetail(Button_id).getTaskType();
