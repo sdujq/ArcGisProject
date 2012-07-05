@@ -530,7 +530,7 @@ public class TaskInputActivity extends Activity {
 			bt_baocunrenwu.startAnimation(animationSet);
 
 			saveTask();
-			if (timeState == 1) {
+//			if (timeState == 1) {
 				// 设置任务状态为未发布
 				task.setState("0");
 
@@ -539,10 +539,10 @@ public class TaskInputActivity extends Activity {
 						Toast.LENGTH_LONG).show();
 
 				finish();
-			} else {
-				Toast.makeText(TaskInputActivity.this, "请保证起止时间的正确性！",
-						Toast.LENGTH_SHORT).show();
-			}
+//			} else {
+//				Toast.makeText(TaskInputActivity.this, "请保证起止时间的正确性！",
+//						Toast.LENGTH_SHORT).show();
+//			}
 		}
 
 	}
