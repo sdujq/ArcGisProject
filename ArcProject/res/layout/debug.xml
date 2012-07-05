@@ -141,7 +141,7 @@
     		android:layout_height="fill_parent"  
     		android:orientation="horizontal"  
     		android:gravity="center_horizontal"  
-    		android:layout_weight="3"  
+    		android:layout_weight="2"  
 		    >
 		<Button
 		     android:id="@+id/xianchangfujian_button"
@@ -151,16 +151,11 @@
 		/>
 		<Button 
 		     android:id="@+id/shanchu_button"
-		     android:layout_width="wrap_content"
+		     android:layout_width="fill_parent"
 		     android:layout_height="wrap_content"
 		     android:text="删除"
 		    />
-		<Button 
-		     android:id="@+id/baocun_button"
-		     android:layout_width="fill_parent"
-		     android:layout_height="wrap_content"
-		     android:text="保存"
-		    />
+		
 		</LinearLayout>
 		<Button
 			 android:id="@+id/fabu_button"
