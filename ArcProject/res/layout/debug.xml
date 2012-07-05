@@ -96,12 +96,46 @@
                 android:text="故障坐标"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/black" />
-
-            <EditText
-                android:id="@+id/guzhangzuobiao_editText"
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10" android:hint="长按自动获取"/>
+                android:layout_weight="1"
+                android:gravity="center" >
+
+                <EditText
+                    android:id="@+id/guzhangzuobiao_editText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="如116,36" />
+
+                <Button
+                    android:id="@+id/apn"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="APN" />
+
+                <Button
+                    android:id="@+id/gps"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="GPS" />
+
+                <Button
+                    android:id="@+id/wifi"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="WIFI" />
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/guzhangdizhi_textView"
