@@ -21,10 +21,11 @@ public class BugShowActivity extends Activity{
 	private TextView mtv1,mtv2;
 	private int mYear,mMonth,mDay;
 	static final int DIALOG1=0,DIALOG2=1;
+	
 	public void onCreate(Bundle saved){
 		super.onCreate(saved);
+		System.out.println("test bug");
 		setContentView(R.layout.bugshow);
-		
 		mtv1=(TextView) findViewById(R.id.tv1);
 		mtv2=(TextView) findViewById(R.id.tv2);
 		mbtn1=(Button) findViewById(R.id.btn1);

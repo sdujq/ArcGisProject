@@ -58,5 +58,8 @@ public class BugAction  {
 		bug.setState("1");
 		bugDao.update(bug);
 	}
+	public List<Bug> search(String type,String value){
+		return bugDao.find(new String[]{"id","address","state","userId"}, type, new String[]{value},null,null,null ,null);
+	}
 	
 }

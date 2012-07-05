@@ -87,5 +87,16 @@
     <string name="updateUser_password1">新密码</string>
     <string name="updateUser_password2">再次输入新密码</string>
     <string name="clear">清空</string>
+    <!-- ***************************************************bug -->
+     <string name="bug_id">问题编号</string>
+     <string name="bug_address">问题地址</string>
+     <string name="bug_attachment">附件</string>
+     <string name="bug_tag">问题说明</string>
+     <string name="bug_content">问题内容</string>
+     <string name="bug_state">解决状态</string>
+     <string name="bug_point">问题坐标</string>
+     <string name="bug_bugTypeId">问题类型编号</string>
+     <string name="bug_userId">发布者编号</string>
+     
 
 </resources>

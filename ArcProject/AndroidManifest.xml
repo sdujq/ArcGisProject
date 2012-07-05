@@ -54,6 +54,11 @@
         <activity android:name="org.sdujq.map.TabHomeActivity"></activity>
         <activity android:name="org.sdu.view.usermanager.AccountActivity"></activity>
         <activity android:name="org.sdu.view.taskinput.TaskInputActivityMh"></activity>
+        
+        
+         <activity android:name="org.sdu.view.bugshow.BugListActivity"></activity>
+         <activity android:name="org.sdu.view.bugshow.BugDetailActivity"></activity>
+        <activity android:name="org.sdu.view.taskinput.TaskInputActivityMh"></activity>
         <activity android:name="org.sdu.view.taskshow.TaskShowMhActivity"></activity>
     </application>
 
