@@ -79,14 +79,11 @@ public class TaskInputActivity extends Activity {
 	public void onCreate(Bundle saved) {
 		super.onCreate(saved);
 		setContentView(R.layout.task_inputmh);
-		// è®¾ç½®ä¸ºæ— æ ‡é¢˜æ 
-		// requestWindowFeature(Window.FEATURE_NO_TITLE);
-
 		ta = new TaskAction(this);
 		task = new Task();
 
 		chb_zidongfabu = (CheckBox) findViewById(R.id.t_checkBox_zidongfabu);
-		// ä¸ºè‡ªåŠ¨å‘å¸ƒæŒ‰é’®æ·»åŠ ç›‘å¬å™¨
+		// Îª×Ô¶¯·¢²¼°´Å¥Ìí¼Ó¼àÌıÆ÷
 		chb_zidongfabu
 				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -95,12 +92,12 @@ public class TaskInputActivity extends Activity {
 							boolean isChecked) {
 						// TODO Auto-generated method stub
 						if (isChecked) {
-							Toast.makeText(TaskInputActivity.this, "è¯¥ä»»åŠ¡å°†è‡ªåŠ¨å‘å¸ƒï¼",
+							Toast.makeText(TaskInputActivity.this, "¸ÃÈÎÎñ½«×Ô¶¯·¢²¼£¡",
 									Toast.LENGTH_SHORT).show();
 
 						} else {
 							// Toast.makeText(TaskInputActivity.this,
-							// "è¯¥ä»»åŠ¡ä¸ä¼šè‡ªåŠ¨å‘å¸ƒ", Toast.LENGTH_SHORT)
+							// "¸ÃÈÎÎñ²»»á×Ô¶¯·¢²¼", Toast.LENGTH_SHORT)
 							// .show();
 
 						}
@@ -108,7 +105,7 @@ public class TaskInputActivity extends Activity {
 				});
 
 		chb_zidongshengcheng = (CheckBox) findViewById(R.id.t_checkBox_zidongshengcheng);
-		// ä¸ºè‡ªåŠ¨ç”ŸæˆæŒ‰é’®æ·»åŠ ç›‘å¬å™¨
+		// Îª×Ô¶¯Éú³É°´Å¥Ìí¼Ó¼àÌıÆ÷
 		chb_zidongshengcheng
 				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -117,11 +114,11 @@ public class TaskInputActivity extends Activity {
 							boolean isChecked) {
 						// TODO Auto-generated method stub
 						if (isChecked) {
-							Toast.makeText(TaskInputActivity.this, "å°†è‡ªåŠ¨ç”Ÿæˆå¤šä¸ªä»»åŠ¡",
+							Toast.makeText(TaskInputActivity.this, "½«×Ô¶¯Éú³É¶à¸öÈÎÎñ",
 									Toast.LENGTH_SHORT).show();
 						} else {
 							// Toast.makeText(TaskInputActivity.this,
-							// "ä¸ä¼šç”Ÿæˆå¤šä¸ªä»»åŠ¡", Toast.LENGTH_SHORT)
+							// "²»»áÉú³É¶à¸öÈÎÎñ", Toast.LENGTH_SHORT)
 							// .show();
 
 						}
@@ -164,16 +161,16 @@ public class TaskInputActivity extends Activity {
 		tv_zhidingshijian = (TextView) findViewById(R.id.t_zhidingshijian);
 
 		sp_selectTask = (Spinner) findViewById(R.id.t_spinner_selectTask);
-		// é€šè¿‡createFromResourceæ–¹æ³•åˆ›å»ºä¸€ä¸ªArrayAdapterå¯¹è±¡
+		// Í¨¹ıcreateFromResource·½·¨´´½¨Ò»¸öArrayAdapter¶ÔÏó
 
 		ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(
 				this, R.array.str_array_renwuleibie,
 				android.R.layout.simple_spinner_item);
-		// è®¾ç½®Spinnerå½“ä¸­æ¯ä¸ªæ¡ç›®çš„æ ·å¼ï¼Œå¼•ç”¨ä¸€ä¸ªAndroidç³»ç»Ÿæä¾›çš„å¸ƒå±€æ–‡ä»¶
+		// ÉèÖÃSpinnerµ±ÖĞÃ¿¸öÌõÄ¿µÄÑùÊ½£¬ÒıÓÃÒ»¸öAndroidÏµÍ³Ìá¹©µÄ²¼¾ÖÎÄ¼ş
 		adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 		sp_selectTask.setAdapter(adapter1);
-		sp_selectTask.setPrompt("ä»»åŠ¡ç±»å‹");
+		sp_selectTask.setPrompt("ÈÎÎñÀàĞÍ");
 		sp_selectTask
 				.setOnItemSelectedListener(new SpinnerOnSelectedListener());
 
@@ -191,16 +188,16 @@ public class TaskInputActivity extends Activity {
 			list.add(id + ":" + name);
 		}
 
-		// è°ƒç”¨ArrayAdapterçš„æ„é€ å‡½æ•°æ¥åˆ›å»ºArrayAdapterå¯¹è±¡
-		// ç¬¬ä¸€ä¸ªå‚æ•°æ˜¯æŒ‡ä¸Šä¸‹æ–‡å¯¹è±¡
-		// ç¬¬äºŒä¸ªå‚æ•°æŒ‡å®šäº†ä¸‹æ‹‰èœå•å½“ä¸­æ¯ä¸€ä¸ªæ¡ç›®çš„æ ·å¼
-		// ç¬¬ä¸‰ä¸ªå‚æ•°æŒ‡å®šäº†TextViewæ§ä»¶çš„ID
-		// ç¬¬å››ä¸ªå‚æ•°ä¸ºæ•´ä¸ªåˆ—è¡¨æä¾›æ•°æ®
+		// µ÷ÓÃArrayAdapterµÄ¹¹Ôìº¯ÊıÀ´´´½¨ArrayAdapter¶ÔÏó
+		// µÚÒ»¸ö²ÎÊıÊÇÖ¸ÉÏÏÂÎÄ¶ÔÏó
+		// µÚ¶ş¸ö²ÎÊıÖ¸¶¨ÁËÏÂÀ­²Ëµ¥µ±ÖĞÃ¿Ò»¸öÌõÄ¿µÄÑùÊ½
+		// µÚÈı¸ö²ÎÊıÖ¸¶¨ÁËTextView¿Ø¼şµÄID
+		// µÚËÄ¸ö²ÎÊıÎªÕû¸öÁĞ±íÌá¹©Êı¾İ
 		ArrayAdapter adapter_person = new ArrayAdapter(this,
 				R.layout.person_item, R.id.textViewId, list);
 		sp_xunjianrenyuan.setAdapter(adapter_person);
-		sp_xunjianrenyuan.setPrompt("è¯·é€‰æ‹©å·¡æ£€äººå‘˜");
-		// ä¸ºspinnerå¯¹è±¡ç»‘å®šç›‘å¬å™¨
+		sp_xunjianrenyuan.setPrompt("ÇëÑ¡ÔñÑ²¼ìÈËÔ±");
+		// Îªspinner¶ÔÏó°ó¶¨¼àÌıÆ÷
 		sp_xunjianrenyuan
 				.setOnItemSelectedListener(new SpinnerOnSelectedPersonListener());
 
@@ -208,17 +205,17 @@ public class TaskInputActivity extends Activity {
 		ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(
 				this, R.array.str_array_time,
 				android.R.layout.simple_spinner_item);
-		// è®¾ç½®Spinnerå½“ä¸­æ¯ä¸ªæ¡ç›®çš„æ ·å¼ï¼Œå¼•ç”¨ä¸€ä¸ªAndroidç³»ç»Ÿæä¾›çš„å¸ƒå±€æ–‡ä»¶
+		// ÉèÖÃSpinnerµ±ÖĞÃ¿¸öÌõÄ¿µÄÑùÊ½£¬ÒıÓÃÒ»¸öAndroidÏµÍ³Ìá¹©µÄ²¼¾ÖÎÄ¼ş
 		adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 		sp_kaishishijian.setAdapter(adapter2);
-		sp_kaishishijian.setPrompt("è¯·è®¾ç½®å¼€å§‹æ—¶é—´");
+		sp_kaishishijian.setPrompt("ÇëÉèÖÃ¿ªÊ¼Ê±¼ä");
 		sp_kaishishijian
 				.setOnItemSelectedListener(new SpinnerOnSelectedTimeOneListener());
 
 		sp_jiezhishijian = (Spinner) findViewById(R.id.t_spinner_jiezhishijian);
 		sp_jiezhishijian.setAdapter(adapter2);
-		sp_jiezhishijian.setPrompt("è¯·è®¾ç½®ç»“æŸæ—¶é—´");
+		sp_jiezhishijian.setPrompt("ÇëÉèÖÃ½áÊøÊ±¼ä");
 		sp_jiezhishijian
 				.setOnItemSelectedListener(new SpinnerOnSelectedTimeTwoListener());
 
@@ -236,41 +233,41 @@ public class TaskInputActivity extends Activity {
 		et_xunjianzhouqi = (EditText) findViewById(R.id.t_text_xunjianzhouqi);
 		et_gerenwu = (EditText) findViewById(R.id.t_text_gerenwu);
 
-		// åˆ·æ–°æ—¶é—´çš„çº¿ç¨‹
+		// Ë¢ĞÂÊ±¼äµÄÏß³Ì
 		handler.post(updateThread);
 	}
 
-	// åˆ›å»ºHandlerå¯¹è±¡
+	// ´´½¨Handler¶ÔÏó
 
 	Handler handler = new Handler();
 
-	// æ–°å»ºä¸€ä¸ªçº¿ç¨‹å¯¹è±¡
+	// ĞÂ½¨Ò»¸öÏß³Ì¶ÔÏó
 
 	Runnable updateThread = new Runnable() {
 
-		// å°†è¦æ‰§è¡Œçš„æ“ä½œå†™åœ¨çº¿ç¨‹å¯¹è±¡çš„runæ–¹æ³•å½“ä¸­
+		// ½«ÒªÖ´ĞĞµÄ²Ù×÷Ğ´ÔÚÏß³Ì¶ÔÏóµÄrun·½·¨µ±ÖĞ
 
 		public void run() {
 
 			handler.postDelayed(updateThread, 1000);
-			// è°ƒç”¨Handlerçš„postDelayed()æ–¹æ³•
-			// è¿™ä¸ªæ–¹æ³•çš„ä½œç”¨æ˜¯ï¼šå°†è¦æ‰§è¡Œçš„çº¿ç¨‹å¯¹è±¡æ”¾å…¥åˆ°é˜Ÿåˆ—å½“ä¸­ï¼Œå¾…æ—¶é—´ç»“æŸåï¼Œè¿è¡Œåˆ¶å®šçš„çº¿ç¨‹å¯¹è±¡
-			// ç¬¬ä¸€ä¸ªå‚æ•°æ˜¯Runnableç±»å‹ï¼šå°†è¦æ‰§è¡Œçš„çº¿ç¨‹å¯¹è±¡
-			// ç¬¬äºŒä¸ªå‚æ•°æ˜¯longç±»å‹ï¼šå»¶è¿Ÿçš„æ—¶é—´ï¼Œä»¥æ¯«ç§’ä¸ºå•ä½
+			// µ÷ÓÃHandlerµÄpostDelayed()·½·¨
+			// Õâ¸ö·½·¨µÄ×÷ÓÃÊÇ£º½«ÒªÖ´ĞĞµÄÏß³Ì¶ÔÏó·ÅÈëµ½¶ÓÁĞµ±ÖĞ£¬´ıÊ±¼ä½áÊøºó£¬ÔËĞĞÖÆ¶¨µÄÏß³Ì¶ÔÏó
+			// µÚÒ»¸ö²ÎÊıÊÇRunnableÀàĞÍ£º½«ÒªÖ´ĞĞµÄÏß³Ì¶ÔÏó
+			// µÚ¶ş¸ö²ÎÊıÊÇlongÀàĞÍ£ºÑÓ³ÙµÄÊ±¼ä£¬ÒÔºÁÃëÎªµ¥Î»
 			SimpleDateFormat dateFormatter = new SimpleDateFormat(
 					DEFAULT_TIME_FORMAT);
 
 			strTime = dateFormatter.format(Calendar.getInstance().getTime());
 
-			tv_zhidingshijian.setText("åˆ¶å®šæ—¶é—´ï¼š" + strTime);
+			tv_zhidingshijian.setText("ÖÆ¶¨Ê±¼ä£º" + strTime);
 		}
 
 	};
 
-	// è¿™ä¸ªç›‘å¬å™¨ä¸»è¦ç”¨æ¥ç›‘å¬ä»»åŠ¡ç±»åˆ«é€‰æ‹©åˆ—è¡¨çš„åŠ¨ä½œ
+	// Õâ¸ö¼àÌıÆ÷Ö÷ÒªÓÃÀ´¼àÌıÈÎÎñÀà±ğÑ¡ÔñÁĞ±íµÄ¶¯×÷
 	class SpinnerOnSelectedListener implements OnItemSelectedListener {
 
-		// å½“ç”¨æˆ·é€‰å®šäº†ä¸€ä¸ªæ¡ç›®æ—¶ï¼Œå°±ä¼šè°ƒç”¨è¯¥æ–¹æ³•
+		// µ±ÓÃ»§Ñ¡¶¨ÁËÒ»¸öÌõÄ¿Ê±£¬¾Í»áµ÷ÓÃ¸Ã·½·¨
 		@Override
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
@@ -278,7 +275,7 @@ public class TaskInputActivity extends Activity {
 			typeOfTaskCount++;
 			if (typeOfTaskCount > 1) {
 				Toast.makeText(TaskInputActivity.this,
-						"ä»»åŠ¡ç±»åˆ«ä¸ºï¼š" + str_typeOfTask, Toast.LENGTH_SHORT).show();
+						"ÈÎÎñÀà±ğÎª£º" + str_typeOfTask, Toast.LENGTH_SHORT).show();
 			}
 
 		}
@@ -286,16 +283,16 @@ public class TaskInputActivity extends Activity {
 		@Override
 		public void onNothingSelected(AdapterView<?> adapterView) {
 			// TODO Auto-generated method stub
-			Toast.makeText(TaskInputActivity.this, "ä½ è¿˜æœªé€‰æ‹©ä»»åŠ¡ç±»åˆ«",
+			Toast.makeText(TaskInputActivity.this, "Äã»¹Î´Ñ¡ÔñÈÎÎñÀà±ğ",
 					Toast.LENGTH_SHORT).show();
 		}
 
 	}
 
-	// è¿™ä¸ªç›‘å¬å™¨ä¸»è¦ç”¨æ¥ç›‘å¬å·¡æ£€äººå‘˜ç±»åˆ«é€‰æ‹©åˆ—è¡¨çš„åŠ¨ä½œ
+	// Õâ¸ö¼àÌıÆ÷Ö÷ÒªÓÃÀ´¼àÌıÑ²¼ìÈËÔ±Àà±ğÑ¡ÔñÁĞ±íµÄ¶¯×÷
 	class SpinnerOnSelectedPersonListener implements OnItemSelectedListener {
 
-		// å½“ç”¨æˆ·é€‰å®šäº†ä¸€ä¸ªæ¡ç›®æ—¶ï¼Œå°±ä¼šè°ƒç”¨è¯¥æ–¹æ³•
+		// µ±ÓÃ»§Ñ¡¶¨ÁËÒ»¸öÌõÄ¿Ê±£¬¾Í»áµ÷ÓÃ¸Ã·½·¨
 		@Override
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
@@ -307,30 +304,30 @@ public class TaskInputActivity extends Activity {
 			perCount++;
 			if (perCount > 1) {
 				Toast.makeText(TaskInputActivity.this,
-						"å·¡æ£€äººå‘˜ä¸ºï¼š" + str_idOfPerson, Toast.LENGTH_SHORT).show();
+						"Ñ²¼ìÈËÔ±Îª£º" + str_idOfPerson, Toast.LENGTH_SHORT).show();
 			}
 		}
 
 		@Override
 		public void onNothingSelected(AdapterView<?> adapterView) {
 			// TODO Auto-generated method stub
-			Toast.makeText(TaskInputActivity.this, "ä½ è¿˜æœªé€‰æ‹©å·¡æ£€äººå‘˜",
+			Toast.makeText(TaskInputActivity.this, "Äã»¹Î´Ñ¡ÔñÑ²¼ìÈËÔ±",
 					Toast.LENGTH_SHORT).show();
 		}
 
 	}
 
-	// è¿™ä¸ªç›‘å¬å™¨ä¸»è¦ç”¨æ¥ç›‘å¬æ—¶é—´ç±»åˆ«é€‰æ‹©åˆ—è¡¨çš„åŠ¨ä½œ
+	// Õâ¸ö¼àÌıÆ÷Ö÷ÒªÓÃÀ´¼àÌıÊ±¼äÀà±ğÑ¡ÔñÁĞ±íµÄ¶¯×÷
 	class SpinnerOnSelectedTimeOneListener implements OnItemSelectedListener {
 
-		// å½“ç”¨æˆ·é€‰å®šäº†ä¸€ä¸ªæ¡ç›®æ—¶ï¼Œå°±ä¼šè°ƒç”¨è¯¥æ–¹æ³•
+		// µ±ÓÃ»§Ñ¡¶¨ÁËÒ»¸öÌõÄ¿Ê±£¬¾Í»áµ÷ÓÃ¸Ã·½·¨
 		@Override
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
 			str_mHour1 = adapterView.getItemAtPosition(position).toString();
 			timeCount1++;
 			if (timeCount1 > 1) {
-				Toast.makeText(TaskInputActivity.this, "ä»»åŠ¡èµ·å§‹æ—¶é—´ä¸ºï¼š" + str_mHour1,
+				Toast.makeText(TaskInputActivity.this, "ÈÎÎñÆğÊ¼Ê±¼äÎª£º" + str_mHour1,
 						Toast.LENGTH_SHORT).show();
 			}
 			str_mHour1 = str_mHour1.substring(0, 2);
@@ -340,23 +337,23 @@ public class TaskInputActivity extends Activity {
 		@Override
 		public void onNothingSelected(AdapterView<?> adapterView) {
 			// TODO Auto-generated method stub
-			Toast.makeText(TaskInputActivity.this, "ä½ è¿˜æœªé€‰æ‹©ä»»åŠ¡èµ·å§‹æ—¶é—´",
+			Toast.makeText(TaskInputActivity.this, "Äã»¹Î´Ñ¡ÔñÈÎÎñÆğÊ¼Ê±¼ä",
 					Toast.LENGTH_SHORT).show();
 		}
 
 	}
 
-	// è¿™ä¸ªç›‘å¬å™¨ä¸»è¦ç”¨æ¥ç›‘å¬æ—¶é—´ç±»åˆ«é€‰æ‹©åˆ—è¡¨çš„åŠ¨ä½œ
+	// Õâ¸ö¼àÌıÆ÷Ö÷ÒªÓÃÀ´¼àÌıÊ±¼äÀà±ğÑ¡ÔñÁĞ±íµÄ¶¯×÷
 	class SpinnerOnSelectedTimeTwoListener implements OnItemSelectedListener {
 
-		// å½“ç”¨æˆ·é€‰å®šäº†ä¸€ä¸ªæ¡ç›®æ—¶ï¼Œå°±ä¼šè°ƒç”¨è¯¥æ–¹æ³•
+		// µ±ÓÃ»§Ñ¡¶¨ÁËÒ»¸öÌõÄ¿Ê±£¬¾Í»áµ÷ÓÃ¸Ã·½·¨
 		@Override
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
 			str_mHour2 = adapterView.getItemAtPosition(position).toString();
 			timeCount2++;
 			if (timeCount2 > 1) {
-				Toast.makeText(TaskInputActivity.this, "ä»»åŠ¡ç»“æŸæ—¶é—´ä¸ºï¼š" + str_mHour2,
+				Toast.makeText(TaskInputActivity.this, "ÈÎÎñ½áÊøÊ±¼äÎª£º" + str_mHour2,
 						Toast.LENGTH_SHORT).show();
 			}
 			str_mHour2 = str_mHour2.substring(0, 2);
@@ -366,13 +363,13 @@ public class TaskInputActivity extends Activity {
 		@Override
 		public void onNothingSelected(AdapterView<?> adapterView) {
 			// TODO Auto-generated method stub
-			Toast.makeText(TaskInputActivity.this, "ä½ è¿˜æœªé€‰æ‹©ä»»åŠ¡ç»“æŸæ—¶é—´",
+			Toast.makeText(TaskInputActivity.this, "Äã»¹Î´Ñ¡ÔñÈÎÎñ½áÊøÊ±¼ä",
 					Toast.LENGTH_SHORT).show();
 		}
 
 	}
 
-	// ç”¨äºè¿”å›ä»DataPickActivityä¸­è®¾ç½®çš„æ—¥æœŸï¼Œå¹¶è®¾ç½®åœ¨æœ¬activityä¸­æ˜¾ç¤º
+	// ÓÃÓÚ·µ»Ø´ÓDataPickActivityÖĞÉèÖÃµÄÈÕÆÚ£¬²¢ÉèÖÃÔÚ±¾activityÖĞÏÔÊ¾
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 		if (requestCode == REQUEST_CODE) {
@@ -427,7 +424,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// æŒ‰é’® â€œkaishiriqiâ€ çš„ç›‘å¬
+	// °´Å¥ ¡°kaishiriqi¡± µÄ¼àÌı
 	class KaishirijiListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -444,7 +441,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// æŒ‰é’® "jieshuriqi" çš„ç›‘å¬
+	// °´Å¥ "jieshuriqi" µÄ¼àÌı
 	class JieshuriqiListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -459,7 +456,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// æŒ‰é’® åˆ¶å®š çš„ç›‘å¬
+	// °´Å¥ ÖÆ¶¨ µÄ¼àÌı
 	// class ZhidingListener implements OnClickListener {
 	//
 	// public void onClick(View v) {
@@ -477,7 +474,7 @@ public class TaskInputActivity extends Activity {
 	//
 	// }
 
-	// æŒ‰é’® æ¸…ç©º çš„ç›‘å¬
+	// °´Å¥ Çå¿Õ µÄ¼àÌı
 	class QingkongListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -501,7 +498,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// æŒ‰é’® é€‰æ‹©åŒºåŸŸ çš„ç›‘å¬
+	// °´Å¥ Ñ¡ÔñÇøÓò µÄ¼àÌı
 	class XuanzequyuListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -523,7 +520,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// æŒ‰é’® ä¿å­˜ä»»åŠ¡ çš„ç›‘å¬
+	// °´Å¥ ±£´æÈÎÎñ µÄ¼àÌı
 	class BaocunrenwuListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -539,11 +536,11 @@ public class TaskInputActivity extends Activity {
 
 			saveTask();
 			// if (timeState == 1) {
-			// è®¾ç½®ä»»åŠ¡çŠ¶æ€ä¸ºæœªå‘å¸ƒ
+			// ÉèÖÃÈÎÎñ×´Ì¬ÎªÎ´·¢²¼
 			task.setState("0");
 
 			ta.establishTask(task);
-			Toast.makeText(TaskInputActivity.this, "ä»»åŠ¡ä¿å­˜æˆåŠŸï¼", Toast.LENGTH_LONG)
+			Toast.makeText(TaskInputActivity.this, "ÈÎÎñ±£´æ³É¹¦£¡", Toast.LENGTH_LONG)
 					.show();
 
 			et_luduanming.setText("");
@@ -552,14 +549,14 @@ public class TaskInputActivity extends Activity {
 			et_xunjianzhouqi.setText("");
 			et_gerenwu.setText("");
 			// } else {
-			// Toast.makeText(TaskInputActivity.this, "è¯·ä¿è¯èµ·æ­¢æ—¶é—´çš„æ­£ç¡®æ€§ï¼",
+			// Toast.makeText(TaskInputActivity.this, "Çë±£Ö¤ÆğÖ¹Ê±¼äµÄÕıÈ·ĞÔ£¡",
 			// Toast.LENGTH_SHORT).show();
 			// }
 		}
 
 	}
 
-	// æŒ‰é’® å‘å¸ƒä»»åŠ¡ çš„ç›‘å¬
+	// °´Å¥ ·¢²¼ÈÎÎñ µÄ¼àÌı
 	class FaburenwuListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -585,18 +582,18 @@ public class TaskInputActivity extends Activity {
 			}
 
 			if (state == 0 || roadLineId == -1) {
-				Toast.makeText(TaskInputActivity.this, "è¯·å®Œå–„ä»»åŠ¡ä¿¡æ¯åå†å‘å¸ƒï¼",
+				Toast.makeText(TaskInputActivity.this, "ÇëÍêÉÆÈÎÎñĞÅÏ¢ºóÔÙ·¢²¼£¡",
 						Toast.LENGTH_SHORT).show();
 			}
 
 			else {
 
 				saveTask();
-				// è®¾ç½®ä»»åŠ¡çŠ¶æ€ä¸ºå·²å‘å¸ƒ
+				// ÉèÖÃÈÎÎñ×´Ì¬ÎªÒÑ·¢²¼
 				task.setState("1");
 
 				ta.establishTask(task);
-				Toast.makeText(TaskInputActivity.this, "ä»»åŠ¡å‘å¸ƒæˆåŠŸï¼",
+				Toast.makeText(TaskInputActivity.this, "ÈÎÎñ·¢²¼³É¹¦£¡",
 						Toast.LENGTH_LONG).show();
 				et_luduanming.setText("");
 				et_renwuneirong.setText("");
@@ -632,7 +629,7 @@ public class TaskInputActivity extends Activity {
 			task.setEndTime(long_timeOfEnd);
 		}
 
-		// åˆ¤æ–­æ—¶é—´è®¾ç½®æ˜¯å¦æ­£ç¡®
+		// ÅĞ¶ÏÊ±¼äÉèÖÃÊÇ·ñÕıÈ·
 		if (long_timeOfStart < long_timeOfEnd) {
 			timeState = 1;
 		}
