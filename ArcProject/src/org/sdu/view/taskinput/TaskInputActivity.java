@@ -12,6 +12,7 @@ import org.sdu.dbaction.TaskAction;
 import org.sdu.gis.R;
 import org.sdu.pojo.RoadLine;
 import org.sdu.pojo.Task;
+import org.sdu.view.taskshow.TaskShowMhActivity;
 import org.sdujq.map.MapShowActivity;
 
 import android.app.Activity;
@@ -548,6 +549,8 @@ public class TaskInputActivity extends Activity {
 				et_beizhu.setText("");
 				et_xunjianzhouqi.setText("");
 				et_gerenwu.setText("");
+				TaskShowMhActivity.currentActivity.h.sendEmptyMessage(0);
+				finish();
 //			} else {
 //				Toast.makeText(TaskInputActivity.this, "请保证起止时间的正确性！",
 //						Toast.LENGTH_SHORT).show();

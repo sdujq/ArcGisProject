@@ -2,6 +2,7 @@ package org.sdujq.map;
 
 import org.sdu.gis.R;
 import org.sdu.view.taskinput.TaskInputActivity;
+import org.sdu.view.taskshow.TaskShowMhActivity;
 import org.sdu.view.usermanager.AccountActivity;
 import org.sdu.view.usermanager.AddUserActivity;
 
@@ -57,7 +58,7 @@ public class TabHomeActivity extends TabActivity {
 		((TextView) view2.findViewById(R.id.tab_textview_title)).setText(n2);
 
 		TabHost.TabSpec spec5 = tabHost.newTabSpec(n2).setIndicator(view2)
-				.setContent(new Intent(this, WhiteActivity.class));
+				.setContent(new Intent(this, TaskShowMhActivity.class));
 		tabHost.addTab(spec5);
 		
 		View view3 = View.inflate(TabHomeActivity.this, R.layout.tab, null);
