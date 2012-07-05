@@ -3,6 +3,7 @@ package org.sdujq.map;
 import java.util.HashMap;
 import java.util.List;
 
+import org.sdu.dao.RoadLineDao;
 import org.sdu.dbaction.RoadLineAction;
 import org.sdu.gis.R;
 import org.sdu.pojo.RoadLine;
@@ -15,7 +16,11 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 
 import com.esri.android.map.GraphicsLayer;
 import com.esri.android.map.MapOnTouchListener;
@@ -44,6 +49,7 @@ public class MapShowActivity extends Activity implements OnClickListener,
 
 	MapView map = null;
 	Button bt1, bt2, bt3, bt4, bt5;
+	Spinner spinner;
 	GraphicsLayer glayer;
 	GraphicsLayer lineLayer;
 	GraphicsLayer graphicsLayer;
@@ -54,7 +60,6 @@ public class MapShowActivity extends Activity implements OnClickListener,
 	ArcGISTiledMapServiceLayer tileLayer;
 	ArcGISLocalTiledLayer local;
 	boolean needSave = false;
-
 	/** Called when the activity is first created. */
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -113,6 +118,42 @@ public class MapShowActivity extends Activity implements OnClickListener,
 		bt3.setOnClickListener(this);
 		bt4.setOnClickListener(this);
 		bt5.setOnClickListener(this);
+		
+		spinner =(Spinner)findViewById(R.id.spinner1);
+		List<RoadLine> lineLst=(new RoadLineDao(this)).find();
+		final ArrayAdapter<RoadLine> adapter = new ArrayAdapter<RoadLine>(
+				this,
+				android.R.layout.simple_spinner_item);
+		RoadLine head=new RoadLine();
+		head.setId(-1);
+		head.setName("点击查看已有路径 ");
+		adapter.add(head);
+		for(RoadLine r:lineLst){
+			adapter.add(r);
+		}
+
+		spinner.setAdapter(adapter);
+		spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+				if(arg2==0){
+					return;
+				}
+				action=new RoadLineAction(MapShowActivity.this);
+				action.getRoadLine(adapter.getItem(arg2));
+				drawCurrentLine();
+				if (action.getPointList().size() != 0) {
+					map.centerAt(action.getPointList().get(0), true);
+				}
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				
+			}
+		});
 	}
 
 	public Point getGPoint(double a, double b) {
