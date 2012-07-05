@@ -22,11 +22,8 @@ public class BugTypeActivity extends Activity {
         // TODO Auto-generated method stub   
         super.onCreate(savedInstanceState);   
 
-      //  setContentView(R.id.bugtype_spinner);   
-  
-     //   bugtype_spinner = (Spinner) findViewById(R.id.bugtype_spinner);     
-
         setContentView(R.id.wentileibie_spinner);   
+  
   
         bugtype_spinner = (Spinner) findViewById(R.id.wentileibie_spinner);     
  

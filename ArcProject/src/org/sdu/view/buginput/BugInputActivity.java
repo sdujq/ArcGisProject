@@ -1,19 +1,30 @@
 package org.sdu.view.buginput;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import org.sdu.gis.R;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class BugInputActivity extends Activity{
 	Context mContext = null;
+	
+	//照片文件绝对路径
 	
 	public TextView textView1,textView2,textView3,textView4,textView5,textView6,textView7;
 	public EditText editText1,editText3,editText4,editText5,editText6,editText7; 
@@ -21,8 +32,8 @@ public class BugInputActivity extends Activity{
 	public Button button1,button2,button3,button4;
 	
 	
-	public void onCreate(Bundle saved){
-		super.onCreate(saved);
+	public void onCreate(Bundle savedInstanceState){
+		super.onCreate(savedInstanceState);
 		setContentView(R.layout.debug);
 		mContext = this;
 		
@@ -42,6 +53,7 @@ public class BugInputActivity extends Activity{
 		editText7 = (EditText)findViewById(R.id.xianchangfujian_editText);
 		
 		//现场附件   获取图片（拍照片）
+	                 
 		button1 = (Button)findViewById(R.id.xianchangfujian_button);
 		button1.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0){
@@ -57,13 +69,13 @@ public class BugInputActivity extends Activity{
 			}
 		});
 		
-		//对输入的问题页面进行保存
+		/*//对输入的问题页面进行保存
 		button3 = (Button)findViewById(R.id.baocun_button);
 		button3.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0){
 				
 			}
-		});
+		});*/
 		
 		//确定问题输入后，点击“发布”来发布故障
 		button4 = (Button)findViewById(R.id.fabu_button);
