@@ -33,7 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="32.0dip"
                 android:textColor="@color/black"
-                android:textSize="34.0sp" android:text="bh"/>
+                android:text="bh" android:textAppearance='?android:attr/textAppearanceLarge'/>
 
             <TextView
                 android:id="@+id/cake_price"
@@ -55,6 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="32.0dip"
                 android:textSize="12.0sp" />
+
 
         </LinearLayout>
 

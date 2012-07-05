@@ -65,10 +65,10 @@ public class TaskShowMhActivity extends Activity{
 			TextView tv3=(TextView)v.findViewById(R.id.cake_brand);
 			TextView tv4=(TextView)v.findViewById(R.id.cake_timestamp);
 			Task t=data.get(position);
-			tv1.setText("任务代号"+t.getId());
-			tv2.setText("任务类型"+t.getTaskType());
-			tv3.setText("路段名称"+t.getRoadName());
-			tv4.setText("发布时间"+t.getRealseTime());
+			tv1.setText("任务代号:"+t.getId());
+			tv2.setText("任务类型:"+t.getTaskType());
+			tv3.setText("路段名称:"+t.getRoadName());
+			tv4.setText("发布时间:"+t.getRealseTime());
 			return v;
 		}
 		
