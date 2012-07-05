@@ -193,10 +193,11 @@
                     android:layout_marginRight="30dp"
                     android:layout_weight="0.44" />
             </RelativeLayout>
-
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal|center_vertical"
                 android:orientation="horizontal" >
 
                 <TextView
@@ -225,10 +226,11 @@
                     android:text="@string/check_zidongfabu"
                     android:textSize="12dp" />
             </LinearLayout>
-
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
                 android:orientation="horizontal" >
 
                 <CheckBox
