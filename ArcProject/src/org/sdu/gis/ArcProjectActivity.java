@@ -1,10 +1,8 @@
 package org.sdu.gis;
 
 import org.sdu.dao.BugTypeDao;
-import org.sdu.dao.RoadLineDao;
 import org.sdu.db.DBHelper;
 import org.sdu.pojo.BugType;
-import org.sdu.pojo.RoadLine;
 import org.sdu.view.buginput.BugInputActivity;
 import org.sdu.view.bugshow.BugShowActivity;
 import org.sdu.view.taskinput.TaskInputActivity;
@@ -121,7 +119,7 @@ public class ArcProjectActivity extends Activity {
 				v.setOnClickListener(new OnClickListener() {	
 					@Override
 					public void onClick(View v) {
-						RoadLine r=(new RoadLineDao(ArcProjectActivity.this)).get(4);
+						//RoadLine r=(new RoadLineDao(ArcProjectActivity.this)).get(4);
 						MapShowActivity.startMapForShow(ArcProjectActivity.this, null, false);
 					}
 				});

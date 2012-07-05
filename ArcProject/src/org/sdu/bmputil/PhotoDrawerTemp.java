@@ -5,7 +5,6 @@ import java.io.FileOutputStream;
 
 import org.sdu.bmputil.ColorPickerDialog.OnColorChangedListener;
 import org.sdu.gis.R;
-import org.sdujq.map.Photo;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -21,7 +20,6 @@ import android.graphics.PorterDuff.Mode;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -69,7 +67,7 @@ public class PhotoDrawerTemp extends Activity implements
 	LinearLayout.LayoutParams rlp2;
 	// 拖动条
 	SeekBar sb;
-	SeekBar alph;
+	//SeekBar alph;
 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -87,10 +85,10 @@ public class PhotoDrawerTemp extends Activity implements
 		sb.setProgress(3);
 		sb.setOnSeekBarChangeListener(this);
 
-		alph = new SeekBar(this);
+		/*alph = new SeekBar(this);
 		alph.setMax(100);
 		alph.setProgress(1);
-		alph.setOnSeekBarChangeListener(this);
+		alph.setOnSeekBarChangeListener(this);*/
 
 		// 画面布局
 		all = new LinearLayout(this);
@@ -99,8 +97,8 @@ public class PhotoDrawerTemp extends Activity implements
 		barBox.setOrientation(LinearLayout.HORIZONTAL);
 		barBox.addView(sb, new LinearLayout.LayoutParams(
 				LayoutParams.WRAP_CONTENT, LayoutParams.FILL_PARENT, 1));
-		barBox.addView(alph, new LinearLayout.LayoutParams(
-				LayoutParams.WRAP_CONTENT, LayoutParams.FILL_PARENT, 1));
+	/*	barBox.addView(alph, new LinearLayout.LayoutParams(
+				LayoutParams.WRAP_CONTENT, LayoutParams.FILL_PARENT, 1));*/
 		barBox.setLayoutParams(new LinearLayout.LayoutParams(
 				LayoutParams.WRAP_CONTENT, LayoutParams.FILL_PARENT));
 		if (!derectx) {
@@ -363,7 +361,7 @@ public class PhotoDrawerTemp extends Activity implements
 	public void onProgressChanged(SeekBar seekBar, int progress,
 			boolean fromUser) {
 		mPaint.setStrokeWidth(sb.getProgress());
-		mPaint.setAlpha((int) (1.0 * alph.getProgress() / 100 * 255));
+	//	mPaint.setAlpha((int) (1.0 * alph.getProgress() / 100 * 255));
 
 	}
 

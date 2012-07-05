@@ -40,10 +40,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.maxtech.common.AddressTask;
-import com.maxtech.common.GpsActivity;
 import com.maxtech.common.gps.GpsTask;
-import com.maxtech.common.gps.GpsTaskCallBack;
 import com.maxtech.common.gps.GpsTask.GpsData;
+import com.maxtech.common.gps.GpsTaskCallBack;
 import com.maxtech.common.gps.IAddressTask.MLocation;
 
 public class BugInputActivity extends Activity {
@@ -180,6 +179,7 @@ public class BugInputActivity extends Activity {
 		});
 		gps.setOnClickListener(new OnClickListener() {
 
+			@SuppressWarnings("unchecked")
 			@Override
 			public void onClick(View v) {
 				dialog.show();
