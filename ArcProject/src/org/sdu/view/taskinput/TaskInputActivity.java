@@ -538,7 +538,11 @@ public class TaskInputActivity extends Activity {
 				Toast.makeText(TaskInputActivity.this, "任务保存成功！",
 						Toast.LENGTH_LONG).show();
 
-				finish();
+				et_luduanming.setText("");
+				et_renwuneirong.setText("");
+				et_beizhu.setText("");
+				et_xunjianzhouqi.setText("");
+				et_gerenwu.setText("");
 //			} else {
 //				Toast.makeText(TaskInputActivity.this, "请保证起止时间的正确性！",
 //						Toast.LENGTH_SHORT).show();
@@ -586,7 +590,11 @@ public class TaskInputActivity extends Activity {
 				ta.establishTask(task);
 				Toast.makeText(TaskInputActivity.this, "任务发布成功！",
 						Toast.LENGTH_LONG).show();
-				finish();
+				et_luduanming.setText("");
+				et_renwuneirong.setText("");
+				et_beizhu.setText("");
+				et_xunjianzhouqi.setText("");
+				et_gerenwu.setText("");
 			}
 		}
 
