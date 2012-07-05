@@ -1,7 +1,9 @@
 package org.sdu.gis;
 
+import org.sdu.dao.BugTypeDao;
 import org.sdu.dao.RoadLineDao;
 import org.sdu.db.DBHelper;
+import org.sdu.pojo.BugType;
 import org.sdu.pojo.RoadLine;
 import org.sdu.view.buginput.BugInputActivity;
 import org.sdu.view.bugshow.BugShowActivity;
@@ -128,6 +130,12 @@ public class ArcProjectActivity extends Activity {
 				v.setOnClickListener(new OnClickListener() {	
 					@Override
 					public void onClick(View v) {
+						BugTypeDao dao=new BugTypeDao(ArcProjectActivity.this);
+						BugType bt=new BugType();
+						bt.setName("¶ªÁË¾®¸Ç");
+						dao.insert(bt);
+						bt.setName("¹ÜµÀÆÆÁÑ");
+						dao.insert(bt);
 						Intent it =new Intent();
 						it.setClass(ArcProjectActivity.this, TabHomeActivity.class);
 						ArcProjectActivity.this.startActivity(it);
