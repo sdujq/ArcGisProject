@@ -53,21 +53,22 @@ public class MapShowActivity extends Activity implements OnClickListener,
 	public int state = 0;
 	ArcGISTiledMapServiceLayer tileLayer;
 	ArcGISLocalTiledLayer local;
-	boolean needSave=false;
+	boolean needSave = false;
+
 	/** Called when the activity is first created. */
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Intent it = this.getIntent();
 		roadLine = (RoadLine) it.getSerializableExtra("roadLine");
-		needSave=it.getBooleanExtra("needSave", false);
-		Log.e("qq", needSave+"");
+		needSave = it.getBooleanExtra("needSave", false);
+		Log.e("qq", needSave + "");
 		setContentView(R.layout.mapview);
 		init();
-		local=new ArcGISLocalTiledLayer("file:///mnt/sdcard/Layers");
+		local = new ArcGISLocalTiledLayer("file:///mnt/sdcard/Layers");
 		tileLayer = new ArcGISTiledMapServiceLayer(
 				"http://services.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer");
 		graphicsLayer = new GraphicsLayer();
-		//map.addLayer(tileLayer);
+		// map.addLayer(tileLayer);
 		map.addLayer(local);
 		map.setOnStatusChangedListener(this);
 		map.addLayer(graphicsLayer);
@@ -160,15 +161,17 @@ public class MapShowActivity extends Activity implements OnClickListener,
 			state = state_nothing;
 			initLineLayer();
 		} else if (v == bt5) {
-			/*Log.e("qq", "scale" + map.getScale());
-			Log.e("qq", "X" + map.getCenter().getX());
-			Log.e("qq", "Y" + map.getCenter().getY());*/
-			if(needSave){
-			int id=action.saveCurrentRoadLine("");
-			Intent it=new Intent();
-			it.putExtra("id", id);
-			setResult(RESULT_OK, it);
-			Log.e("qq", "road saved");
+			/*
+			 * Log.e("qq", "scale" + map.getScale()); Log.e("qq", "X" +
+			 * map.getCenter().getX()); Log.e("qq", "Y" +
+			 * map.getCenter().getY());
+			 */
+			if (needSave) {
+				int id = action.saveCurrentRoadLine("");
+				Intent it = new Intent();
+				it.putExtra("id", id);
+				setResult(RESULT_OK, it);
+				Log.e("qq", "road saved");
 			}
 			finish();
 		}
@@ -194,6 +197,9 @@ public class MapShowActivity extends Activity implements OnClickListener,
 			if (roadLine != null) {
 				action.getRoadLine(roadLine);
 				drawCurrentLine();
+				if (action.getPointList().size() != 0) {
+					map.centerAt(action.getPointList().get(0), true);
+				}
 			}
 
 			map.setOnTouchListener(new MapOnTouchListener(this, map) {
@@ -217,14 +223,15 @@ public class MapShowActivity extends Activity implements OnClickListener,
 		return map.retainState();
 	}
 
-	public static void startMapForShow(Activity activity, RoadLine roadLine,Boolean needSave) {
-		//Intent it = new Intent(activity, MapShowActivity.class);
-		
-		Intent it =new Intent();
+	public static void startMapForShow(Activity activity, RoadLine roadLine,
+			Boolean needSave) {
+		// Intent it = new Intent(activity, MapShowActivity.class);
+
+		Intent it = new Intent();
 		it.setClass(activity, MapShowActivity.class);
 		it.putExtra("roadLine", roadLine);
 		it.putExtra("needSave", needSave);
 		activity.startActivityForResult(it, 1);
-		
+
 	}
 }
