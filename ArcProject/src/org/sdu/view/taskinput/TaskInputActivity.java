@@ -23,6 +23,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
@@ -77,6 +78,10 @@ public class TaskInputActivity extends Activity {
 	public void onCreate(Bundle saved) {
 		super.onCreate(saved);
 		setContentView(R.layout.task_inputmh);
+	  //设置为无标题栏
+      //  requestWindowFeature(Window.FEATURE_NO_TITLE);
+  
+		
 		ta = new TaskAction(this);
 		task = new Task();
 
