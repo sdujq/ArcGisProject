@@ -13,7 +13,7 @@ import com.tgb.lk.ahibernate.util.MyDBHelper;
 
 public class DBHelper extends MyDBHelper {
 	private static final String DBNAME = "gis.db";
-	private static final int DBVERSION = 1;
+	private static final int DBVERSION = 2;
 	private static final Class<?>[] classes = { Task.class, Bug.class,
 			TaskType.class, BugType.class, User.class, RoadLine.class };
 
