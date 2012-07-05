@@ -1,19 +1,22 @@
 package org.sdu.view.taskshow;
 
-import java.util.ArrayList;
-
+import org.sdu.dao.RoadLineDao;
+import org.sdu.dao.TaskDao;
 import org.sdu.dbaction.TaskAction;
 import org.sdu.gis.R;
+import org.sdu.pojo.RoadLine;
 import org.sdu.pojo.Task;
+import org.sdujq.map.MapShowActivity;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.TextView;
 
-public class TaskDetialShow extends Activity{
+public class TaskDetialShow extends Activity implements OnClickListener{
 
 	
 	private TextView v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11,v12,v13;
@@ -26,7 +29,7 @@ public class TaskDetialShow extends Activity{
 	int w_name;
 	long m_time;
 	int m_name;
-	
+	Task task;
 	@Override
 	public void onCreate(Bundle saved){
 		super.onCreate(saved);
@@ -53,7 +56,7 @@ public class TaskDetialShow extends Activity{
 		
 		
 		TaskAction ta=new TaskAction(this);
-    	Task task=new Task();
+    	task=ta.getDetail(Button_id);
     	
     	
     	m_name=ta.getDetail(Button_id).getCreatePersonId();
@@ -95,6 +98,29 @@ public class TaskDetialShow extends Activity{
 		b2.setText("查看地图");
 		b3=(Button)findViewById(R.id.completetask);
 		b3.setText("完成任务");
-		
+		b1.setOnClickListener(this);
+		b2.setOnClickListener(this);
+		b3.setOnClickListener(this);
+		Integer state=Integer.parseInt(task.getState().trim());
+		if(state>=2){
+			b1.setEnabled(false);
+		}
+		if(state==3){
+			b3.setEnabled(false);
+		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		if(v==b1){
+			task.setState(2+"");
+			new TaskDao(TaskDetialShow.this).update(task);
+		}else if(v==b2){
+			RoadLine road=(new RoadLineDao(TaskDetialShow.this)).get(task.getRoadLineId());
+			MapShowActivity.startMapForShow(TaskDetialShow.this,road , false);
+		}else if(v==b3){
+			task.setState(3+"");
+			new TaskDao(TaskDetialShow.this).update(task);
+		}
 	}
 }
