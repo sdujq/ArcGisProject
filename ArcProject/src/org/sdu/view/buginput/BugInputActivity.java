@@ -57,7 +57,8 @@ public class BugInputActivity extends Activity{
 		button1 = (Button)findViewById(R.id.xianchangfujian_button);
 		button1.setOnClickListener(new OnClickListener(){
 			public void onClick(View arg0){
-				
+				Intent intent = new Intent(mContext,PhotographActivity.class);
+				startActivity(intent);
 			}
 		});
 		
