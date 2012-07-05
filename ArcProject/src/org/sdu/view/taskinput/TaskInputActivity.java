@@ -12,7 +12,6 @@ import org.sdu.dbaction.TaskAction;
 import org.sdu.gis.R;
 import org.sdu.pojo.RoadLine;
 import org.sdu.pojo.Task;
-import org.sdu.view.taskshow.TaskShowMhActivity;
 import org.sdujq.map.MapShowActivity;
 
 import android.app.Activity;
@@ -40,8 +39,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class TaskInputActivity extends Activity {
-	public Button bt_zhiding, bt_qingkong, bt_xuanzequyu,
-			bt_baocunrenwu, bt_faburenwu, bt_kaishiriqi, bt_jieshuriqi;
+	public Button bt_zhiding, bt_qingkong, bt_xuanzequyu, bt_baocunrenwu,
+			bt_faburenwu, bt_kaishiriqi, bt_jieshuriqi;
 	public TextView tv_luduanming, tv_renwuleibie, tv_xunjianrenyuan,
 			tv_renwuneirong, tv_qx_kaishishijian, tv_qx_jiezhishijian,
 			tv_xunjianzhouqi, tv_gerenwu, tv_beizhu, tv_zhidingren,
@@ -74,20 +73,20 @@ public class TaskInputActivity extends Activity {
 			str_timeOfEnd;
 	private int idOfPerson = 0;
 	private long long_timeOfStart, long_timeOfEnd;
-	private int roadLineId=-1;
+	private int roadLineId = -1;
+
 	@Override
 	public void onCreate(Bundle saved) {
 		super.onCreate(saved);
 		setContentView(R.layout.task_inputmh);
-	  //ÉèÖÃÎªÎŞ±êÌâÀ¸
-      //  requestWindowFeature(Window.FEATURE_NO_TITLE);
-  
-		
+		// è®¾ç½®ä¸ºæ— æ ‡é¢˜æ 
+		// requestWindowFeature(Window.FEATURE_NO_TITLE);
+
 		ta = new TaskAction(this);
 		task = new Task();
 
 		chb_zidongfabu = (CheckBox) findViewById(R.id.t_checkBox_zidongfabu);
-		// Îª×Ô¶¯·¢²¼°´Å¥Ìí¼Ó¼àÌıÆ÷
+		// ä¸ºè‡ªåŠ¨å‘å¸ƒæŒ‰é’®æ·»åŠ ç›‘å¬å™¨
 		chb_zidongfabu
 				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -96,12 +95,12 @@ public class TaskInputActivity extends Activity {
 							boolean isChecked) {
 						// TODO Auto-generated method stub
 						if (isChecked) {
-							Toast.makeText(TaskInputActivity.this, "¸ÃÈÎÎñ½«×Ô¶¯·¢²¼£¡",
+							Toast.makeText(TaskInputActivity.this, "è¯¥ä»»åŠ¡å°†è‡ªåŠ¨å‘å¸ƒï¼",
 									Toast.LENGTH_SHORT).show();
 
 						} else {
 							// Toast.makeText(TaskInputActivity.this,
-							// "¸ÃÈÎÎñ²»»á×Ô¶¯·¢²¼", Toast.LENGTH_SHORT)
+							// "è¯¥ä»»åŠ¡ä¸ä¼šè‡ªåŠ¨å‘å¸ƒ", Toast.LENGTH_SHORT)
 							// .show();
 
 						}
@@ -109,7 +108,7 @@ public class TaskInputActivity extends Activity {
 				});
 
 		chb_zidongshengcheng = (CheckBox) findViewById(R.id.t_checkBox_zidongshengcheng);
-		// Îª×Ô¶¯Éú³É°´Å¥Ìí¼Ó¼àÌıÆ÷
+		// ä¸ºè‡ªåŠ¨ç”ŸæˆæŒ‰é’®æ·»åŠ ç›‘å¬å™¨
 		chb_zidongshengcheng
 				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
@@ -118,19 +117,19 @@ public class TaskInputActivity extends Activity {
 							boolean isChecked) {
 						// TODO Auto-generated method stub
 						if (isChecked) {
-							Toast.makeText(TaskInputActivity.this, "½«×Ô¶¯Éú³É¶à¸öÈÎÎñ",
+							Toast.makeText(TaskInputActivity.this, "å°†è‡ªåŠ¨ç”Ÿæˆå¤šä¸ªä»»åŠ¡",
 									Toast.LENGTH_SHORT).show();
 						} else {
 							// Toast.makeText(TaskInputActivity.this,
-							// "²»»áÉú³É¶à¸öÈÎÎñ", Toast.LENGTH_SHORT)
+							// "ä¸ä¼šç”Ÿæˆå¤šä¸ªä»»åŠ¡", Toast.LENGTH_SHORT)
 							// .show();
 
 						}
 					}
 				});
 
-//		bt_zhiding = (Button) findViewById(R.id.t_button_zhiding);
-//		bt_zhiding.setOnClickListener(new ZhidingListener());
+		// bt_zhiding = (Button) findViewById(R.id.t_button_zhiding);
+		// bt_zhiding.setOnClickListener(new ZhidingListener());
 
 		bt_qingkong = (Button) findViewById(R.id.t_button_qingkong);
 		bt_qingkong.setOnClickListener(new QingkongListener());
@@ -165,16 +164,16 @@ public class TaskInputActivity extends Activity {
 		tv_zhidingshijian = (TextView) findViewById(R.id.t_zhidingshijian);
 
 		sp_selectTask = (Spinner) findViewById(R.id.t_spinner_selectTask);
-		// Í¨¹ıcreateFromResource·½·¨´´½¨Ò»¸öArrayAdapter¶ÔÏó
+		// é€šè¿‡createFromResourceæ–¹æ³•åˆ›å»ºä¸€ä¸ªArrayAdapterå¯¹è±¡
 
 		ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(
 				this, R.array.str_array_renwuleibie,
 				android.R.layout.simple_spinner_item);
-		// ÉèÖÃSpinnerµ±ÖĞÃ¿¸öÌõÄ¿µÄÑùÊ½£¬ÒıÓÃÒ»¸öAndroidÏµÍ³Ìá¹©µÄ²¼¾ÖÎÄ¼ş
+		// è®¾ç½®Spinnerå½“ä¸­æ¯ä¸ªæ¡ç›®çš„æ ·å¼ï¼Œå¼•ç”¨ä¸€ä¸ªAndroidç³»ç»Ÿæä¾›çš„å¸ƒå±€æ–‡ä»¶
 		adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 		sp_selectTask.setAdapter(adapter1);
-		sp_selectTask.setPrompt("ÈÎÎñÀàĞÍ");
+		sp_selectTask.setPrompt("ä»»åŠ¡ç±»å‹");
 		sp_selectTask
 				.setOnItemSelectedListener(new SpinnerOnSelectedListener());
 
@@ -192,16 +191,16 @@ public class TaskInputActivity extends Activity {
 			list.add(id + ":" + name);
 		}
 
-		// µ÷ÓÃArrayAdapterµÄ¹¹Ôìº¯ÊıÀ´´´½¨ArrayAdapter¶ÔÏó
-		// µÚÒ»¸ö²ÎÊıÊÇÖ¸ÉÏÏÂÎÄ¶ÔÏó
-		// µÚ¶ş¸ö²ÎÊıÖ¸¶¨ÁËÏÂÀ­²Ëµ¥µ±ÖĞÃ¿Ò»¸öÌõÄ¿µÄÑùÊ½
-		// µÚÈı¸ö²ÎÊıÖ¸¶¨ÁËTextView¿Ø¼şµÄID
-		// µÚËÄ¸ö²ÎÊıÎªÕû¸öÁĞ±íÌá¹©Êı¾İ
+		// è°ƒç”¨ArrayAdapterçš„æ„é€ å‡½æ•°æ¥åˆ›å»ºArrayAdapterå¯¹è±¡
+		// ç¬¬ä¸€ä¸ªå‚æ•°æ˜¯æŒ‡ä¸Šä¸‹æ–‡å¯¹è±¡
+		// ç¬¬äºŒä¸ªå‚æ•°æŒ‡å®šäº†ä¸‹æ‹‰èœå•å½“ä¸­æ¯ä¸€ä¸ªæ¡ç›®çš„æ ·å¼
+		// ç¬¬ä¸‰ä¸ªå‚æ•°æŒ‡å®šäº†TextViewæ§ä»¶çš„ID
+		// ç¬¬å››ä¸ªå‚æ•°ä¸ºæ•´ä¸ªåˆ—è¡¨æä¾›æ•°æ®
 		ArrayAdapter adapter_person = new ArrayAdapter(this,
 				R.layout.person_item, R.id.textViewId, list);
 		sp_xunjianrenyuan.setAdapter(adapter_person);
-		sp_xunjianrenyuan.setPrompt("ÇëÑ¡ÔñÑ²¼ìÈËÔ±");
-		// Îªspinner¶ÔÏó°ó¶¨¼àÌıÆ÷
+		sp_xunjianrenyuan.setPrompt("è¯·é€‰æ‹©å·¡æ£€äººå‘˜");
+		// ä¸ºspinnerå¯¹è±¡ç»‘å®šç›‘å¬å™¨
 		sp_xunjianrenyuan
 				.setOnItemSelectedListener(new SpinnerOnSelectedPersonListener());
 
@@ -209,17 +208,17 @@ public class TaskInputActivity extends Activity {
 		ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(
 				this, R.array.str_array_time,
 				android.R.layout.simple_spinner_item);
-		// ÉèÖÃSpinnerµ±ÖĞÃ¿¸öÌõÄ¿µÄÑùÊ½£¬ÒıÓÃÒ»¸öAndroidÏµÍ³Ìá¹©µÄ²¼¾ÖÎÄ¼ş
+		// è®¾ç½®Spinnerå½“ä¸­æ¯ä¸ªæ¡ç›®çš„æ ·å¼ï¼Œå¼•ç”¨ä¸€ä¸ªAndroidç³»ç»Ÿæä¾›çš„å¸ƒå±€æ–‡ä»¶
 		adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 		sp_kaishishijian.setAdapter(adapter2);
-		sp_kaishishijian.setPrompt("ÇëÉèÖÃ¿ªÊ¼Ê±¼ä");
+		sp_kaishishijian.setPrompt("è¯·è®¾ç½®å¼€å§‹æ—¶é—´");
 		sp_kaishishijian
 				.setOnItemSelectedListener(new SpinnerOnSelectedTimeOneListener());
 
 		sp_jiezhishijian = (Spinner) findViewById(R.id.t_spinner_jiezhishijian);
 		sp_jiezhishijian.setAdapter(adapter2);
-		sp_jiezhishijian.setPrompt("ÇëÉèÖÃ½áÊøÊ±¼ä");
+		sp_jiezhishijian.setPrompt("è¯·è®¾ç½®ç»“æŸæ—¶é—´");
 		sp_jiezhishijian
 				.setOnItemSelectedListener(new SpinnerOnSelectedTimeTwoListener());
 
@@ -237,41 +236,41 @@ public class TaskInputActivity extends Activity {
 		et_xunjianzhouqi = (EditText) findViewById(R.id.t_text_xunjianzhouqi);
 		et_gerenwu = (EditText) findViewById(R.id.t_text_gerenwu);
 
-		// Ë¢ĞÂÊ±¼äµÄÏß³Ì
+		// åˆ·æ–°æ—¶é—´çš„çº¿ç¨‹
 		handler.post(updateThread);
 	}
 
-	// ´´½¨Handler¶ÔÏó
+	// åˆ›å»ºHandlerå¯¹è±¡
 
 	Handler handler = new Handler();
 
-	// ĞÂ½¨Ò»¸öÏß³Ì¶ÔÏó
+	// æ–°å»ºä¸€ä¸ªçº¿ç¨‹å¯¹è±¡
 
 	Runnable updateThread = new Runnable() {
 
-		// ½«ÒªÖ´ĞĞµÄ²Ù×÷Ğ´ÔÚÏß³Ì¶ÔÏóµÄrun·½·¨µ±ÖĞ
+		// å°†è¦æ‰§è¡Œçš„æ“ä½œå†™åœ¨çº¿ç¨‹å¯¹è±¡çš„runæ–¹æ³•å½“ä¸­
 
 		public void run() {
 
 			handler.postDelayed(updateThread, 1000);
-			// µ÷ÓÃHandlerµÄpostDelayed()·½·¨
-			// Õâ¸ö·½·¨µÄ×÷ÓÃÊÇ£º½«ÒªÖ´ĞĞµÄÏß³Ì¶ÔÏó·ÅÈëµ½¶ÓÁĞµ±ÖĞ£¬´ıÊ±¼ä½áÊøºó£¬ÔËĞĞÖÆ¶¨µÄÏß³Ì¶ÔÏó
-			// µÚÒ»¸ö²ÎÊıÊÇRunnableÀàĞÍ£º½«ÒªÖ´ĞĞµÄÏß³Ì¶ÔÏó
-			// µÚ¶ş¸ö²ÎÊıÊÇlongÀàĞÍ£ºÑÓ³ÙµÄÊ±¼ä£¬ÒÔºÁÃëÎªµ¥Î»
+			// è°ƒç”¨Handlerçš„postDelayed()æ–¹æ³•
+			// è¿™ä¸ªæ–¹æ³•çš„ä½œç”¨æ˜¯ï¼šå°†è¦æ‰§è¡Œçš„çº¿ç¨‹å¯¹è±¡æ”¾å…¥åˆ°é˜Ÿåˆ—å½“ä¸­ï¼Œå¾…æ—¶é—´ç»“æŸåï¼Œè¿è¡Œåˆ¶å®šçš„çº¿ç¨‹å¯¹è±¡
+			// ç¬¬ä¸€ä¸ªå‚æ•°æ˜¯Runnableç±»å‹ï¼šå°†è¦æ‰§è¡Œçš„çº¿ç¨‹å¯¹è±¡
+			// ç¬¬äºŒä¸ªå‚æ•°æ˜¯longç±»å‹ï¼šå»¶è¿Ÿçš„æ—¶é—´ï¼Œä»¥æ¯«ç§’ä¸ºå•ä½
 			SimpleDateFormat dateFormatter = new SimpleDateFormat(
 					DEFAULT_TIME_FORMAT);
 
 			strTime = dateFormatter.format(Calendar.getInstance().getTime());
 
-			tv_zhidingshijian.setText("ÖÆ¶¨Ê±¼ä£º" + strTime);
+			tv_zhidingshijian.setText("åˆ¶å®šæ—¶é—´ï¼š" + strTime);
 		}
 
 	};
 
-	// Õâ¸ö¼àÌıÆ÷Ö÷ÒªÓÃÀ´¼àÌıÈÎÎñÀà±ğÑ¡ÔñÁĞ±íµÄ¶¯×÷
+	// è¿™ä¸ªç›‘å¬å™¨ä¸»è¦ç”¨æ¥ç›‘å¬ä»»åŠ¡ç±»åˆ«é€‰æ‹©åˆ—è¡¨çš„åŠ¨ä½œ
 	class SpinnerOnSelectedListener implements OnItemSelectedListener {
 
-		// µ±ÓÃ»§Ñ¡¶¨ÁËÒ»¸öÌõÄ¿Ê±£¬¾Í»áµ÷ÓÃ¸Ã·½·¨
+		// å½“ç”¨æˆ·é€‰å®šäº†ä¸€ä¸ªæ¡ç›®æ—¶ï¼Œå°±ä¼šè°ƒç”¨è¯¥æ–¹æ³•
 		@Override
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
@@ -279,7 +278,7 @@ public class TaskInputActivity extends Activity {
 			typeOfTaskCount++;
 			if (typeOfTaskCount > 1) {
 				Toast.makeText(TaskInputActivity.this,
-						"ÈÎÎñÀà±ğÎª£º" + str_typeOfTask, Toast.LENGTH_SHORT).show();
+						"ä»»åŠ¡ç±»åˆ«ä¸ºï¼š" + str_typeOfTask, Toast.LENGTH_SHORT).show();
 			}
 
 		}
@@ -287,47 +286,51 @@ public class TaskInputActivity extends Activity {
 		@Override
 		public void onNothingSelected(AdapterView<?> adapterView) {
 			// TODO Auto-generated method stub
-			Toast.makeText(TaskInputActivity.this, "Äã»¹Î´Ñ¡ÔñÈÎÎñÀà±ğ",
+			Toast.makeText(TaskInputActivity.this, "ä½ è¿˜æœªé€‰æ‹©ä»»åŠ¡ç±»åˆ«",
 					Toast.LENGTH_SHORT).show();
 		}
 
 	}
 
-	// Õâ¸ö¼àÌıÆ÷Ö÷ÒªÓÃÀ´¼àÌıÑ²¼ìÈËÔ±Àà±ğÑ¡ÔñÁĞ±íµÄ¶¯×÷
+	// è¿™ä¸ªç›‘å¬å™¨ä¸»è¦ç”¨æ¥ç›‘å¬å·¡æ£€äººå‘˜ç±»åˆ«é€‰æ‹©åˆ—è¡¨çš„åŠ¨ä½œ
 	class SpinnerOnSelectedPersonListener implements OnItemSelectedListener {
 
-		// µ±ÓÃ»§Ñ¡¶¨ÁËÒ»¸öÌõÄ¿Ê±£¬¾Í»áµ÷ÓÃ¸Ã·½·¨
+		// å½“ç”¨æˆ·é€‰å®šäº†ä¸€ä¸ªæ¡ç›®æ—¶ï¼Œå°±ä¼šè°ƒç”¨è¯¥æ–¹æ³•
 		@Override
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
 			str_idOfPerson = adapterView.getItemAtPosition(position).toString();
+
+			str_idOfPerson = str_idOfPerson.substring(0,
+					str_idOfPerson.indexOf(':'));
+			System.out.println(str_idOfPerson);
 			perCount++;
 			if (perCount > 1) {
 				Toast.makeText(TaskInputActivity.this,
-						"Ñ²¼ìÈËÔ±Îª£º" + str_idOfPerson, Toast.LENGTH_SHORT).show();
+						"å·¡æ£€äººå‘˜ä¸ºï¼š" + str_idOfPerson, Toast.LENGTH_SHORT).show();
 			}
 		}
 
 		@Override
 		public void onNothingSelected(AdapterView<?> adapterView) {
 			// TODO Auto-generated method stub
-			Toast.makeText(TaskInputActivity.this, "Äã»¹Î´Ñ¡ÔñÑ²¼ìÈËÔ±",
+			Toast.makeText(TaskInputActivity.this, "ä½ è¿˜æœªé€‰æ‹©å·¡æ£€äººå‘˜",
 					Toast.LENGTH_SHORT).show();
 		}
 
 	}
 
-	// Õâ¸ö¼àÌıÆ÷Ö÷ÒªÓÃÀ´¼àÌıÊ±¼äÀà±ğÑ¡ÔñÁĞ±íµÄ¶¯×÷
+	// è¿™ä¸ªç›‘å¬å™¨ä¸»è¦ç”¨æ¥ç›‘å¬æ—¶é—´ç±»åˆ«é€‰æ‹©åˆ—è¡¨çš„åŠ¨ä½œ
 	class SpinnerOnSelectedTimeOneListener implements OnItemSelectedListener {
 
-		// µ±ÓÃ»§Ñ¡¶¨ÁËÒ»¸öÌõÄ¿Ê±£¬¾Í»áµ÷ÓÃ¸Ã·½·¨
+		// å½“ç”¨æˆ·é€‰å®šäº†ä¸€ä¸ªæ¡ç›®æ—¶ï¼Œå°±ä¼šè°ƒç”¨è¯¥æ–¹æ³•
 		@Override
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
 			str_mHour1 = adapterView.getItemAtPosition(position).toString();
 			timeCount1++;
 			if (timeCount1 > 1) {
-				Toast.makeText(TaskInputActivity.this, "ÈÎÎñÆğÊ¼Ê±¼äÎª£º" + str_mHour1,
+				Toast.makeText(TaskInputActivity.this, "ä»»åŠ¡èµ·å§‹æ—¶é—´ä¸ºï¼š" + str_mHour1,
 						Toast.LENGTH_SHORT).show();
 			}
 			str_mHour1 = str_mHour1.substring(0, 2);
@@ -337,23 +340,23 @@ public class TaskInputActivity extends Activity {
 		@Override
 		public void onNothingSelected(AdapterView<?> adapterView) {
 			// TODO Auto-generated method stub
-			Toast.makeText(TaskInputActivity.this, "Äã»¹Î´Ñ¡ÔñÈÎÎñÆğÊ¼Ê±¼ä",
+			Toast.makeText(TaskInputActivity.this, "ä½ è¿˜æœªé€‰æ‹©ä»»åŠ¡èµ·å§‹æ—¶é—´",
 					Toast.LENGTH_SHORT).show();
 		}
 
 	}
 
-	// Õâ¸ö¼àÌıÆ÷Ö÷ÒªÓÃÀ´¼àÌıÊ±¼äÀà±ğÑ¡ÔñÁĞ±íµÄ¶¯×÷
+	// è¿™ä¸ªç›‘å¬å™¨ä¸»è¦ç”¨æ¥ç›‘å¬æ—¶é—´ç±»åˆ«é€‰æ‹©åˆ—è¡¨çš„åŠ¨ä½œ
 	class SpinnerOnSelectedTimeTwoListener implements OnItemSelectedListener {
 
-		// µ±ÓÃ»§Ñ¡¶¨ÁËÒ»¸öÌõÄ¿Ê±£¬¾Í»áµ÷ÓÃ¸Ã·½·¨
+		// å½“ç”¨æˆ·é€‰å®šäº†ä¸€ä¸ªæ¡ç›®æ—¶ï¼Œå°±ä¼šè°ƒç”¨è¯¥æ–¹æ³•
 		@Override
 		public void onItemSelected(AdapterView<?> adapterView, View view,
 				int position, long id) {
 			str_mHour2 = adapterView.getItemAtPosition(position).toString();
 			timeCount2++;
 			if (timeCount2 > 1) {
-				Toast.makeText(TaskInputActivity.this, "ÈÎÎñ½áÊøÊ±¼äÎª£º" + str_mHour2,
+				Toast.makeText(TaskInputActivity.this, "ä»»åŠ¡ç»“æŸæ—¶é—´ä¸ºï¼š" + str_mHour2,
 						Toast.LENGTH_SHORT).show();
 			}
 			str_mHour2 = str_mHour2.substring(0, 2);
@@ -363,21 +366,21 @@ public class TaskInputActivity extends Activity {
 		@Override
 		public void onNothingSelected(AdapterView<?> adapterView) {
 			// TODO Auto-generated method stub
-			Toast.makeText(TaskInputActivity.this, "Äã»¹Î´Ñ¡ÔñÈÎÎñ½áÊøÊ±¼ä",
+			Toast.makeText(TaskInputActivity.this, "ä½ è¿˜æœªé€‰æ‹©ä»»åŠ¡ç»“æŸæ—¶é—´",
 					Toast.LENGTH_SHORT).show();
 		}
 
 	}
 
-	// ÓÃÓÚ·µ»Ø´ÓDataPickActivityÖĞÉèÖÃµÄÈÕÆÚ£¬²¢ÉèÖÃÔÚ±¾activityÖĞÏÔÊ¾
+	// ç”¨äºè¿”å›ä»DataPickActivityä¸­è®¾ç½®çš„æ—¥æœŸï¼Œå¹¶è®¾ç½®åœ¨æœ¬activityä¸­æ˜¾ç¤º
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 		if (requestCode == REQUEST_CODE) {
 
 			if (resultCode == RESULT_CANCELED) {
 				return;
-			} 
-			if (resultCode == RESULT_OK&&requestCode==0) {
+			}
+			if (resultCode == RESULT_OK && requestCode == 0) {
 
 				Bundle extras = data.getExtras();
 
@@ -417,15 +420,14 @@ public class TaskInputActivity extends Activity {
 
 			}
 
-		}
-		else if(requestCode==1&&resultCode==RESULT_OK){
-			roadLineId=data.getIntExtra("id", -1);
-			Log.e("qq", "saved road id is "+roadLineId);
+		} else if (requestCode == 1 && resultCode == RESULT_OK) {
+			roadLineId = data.getIntExtra("id", -1);
+			Log.e("qq", "saved road id is " + roadLineId);
 		}
 
 	}
 
-	// °´Å¥ ¡°kaishiriqi¡± µÄ¼àÌı
+	// æŒ‰é’® â€œkaishiriqiâ€ çš„ç›‘å¬
 	class KaishirijiListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -442,7 +444,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// °´Å¥ "jieshuriqi" µÄ¼àÌı
+	// æŒ‰é’® "jieshuriqi" çš„ç›‘å¬
 	class JieshuriqiListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -457,25 +459,25 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// °´Å¥ ÖÆ¶¨ µÄ¼àÌı
-//	class ZhidingListener implements OnClickListener {
-//
-//		public void onClick(View v) {
-//			// TODO Auto-generated method stub
-//			AnimationSet animationSet = new AnimationSet(true);
-//			ScaleAnimation scaleAnimation = new ScaleAnimation(1, 1.3f, 1,
-//					1.3f, Animation.RELATIVE_TO_SELF, 0.5f,
-//					Animation.RELATIVE_TO_SELF, 0.5f);
-//			animationSet.addAnimation(scaleAnimation);
-//			animationSet.setFillBefore(true);
-//			animationSet.setDuration(200);
-//			bt_zhiding.startAnimation(animationSet);
-//
-//		}
-//
-//	}
+	// æŒ‰é’® åˆ¶å®š çš„ç›‘å¬
+	// class ZhidingListener implements OnClickListener {
+	//
+	// public void onClick(View v) {
+	// // TODO Auto-generated method stub
+	// AnimationSet animationSet = new AnimationSet(true);
+	// ScaleAnimation scaleAnimation = new ScaleAnimation(1, 1.3f, 1,
+	// 1.3f, Animation.RELATIVE_TO_SELF, 0.5f,
+	// Animation.RELATIVE_TO_SELF, 0.5f);
+	// animationSet.addAnimation(scaleAnimation);
+	// animationSet.setFillBefore(true);
+	// animationSet.setDuration(200);
+	// bt_zhiding.startAnimation(animationSet);
+	//
+	// }
+	//
+	// }
 
-	// °´Å¥ Çå¿Õ µÄ¼àÌı
+	// æŒ‰é’® æ¸…ç©º çš„ç›‘å¬
 	class QingkongListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -499,7 +501,7 @@ public class TaskInputActivity extends Activity {
 
 	}
 
-	// °´Å¥ Ñ¡ÔñÇøÓò µÄ¼àÌı
+	// æŒ‰é’® é€‰æ‹©åŒºåŸŸ çš„ç›‘å¬
 	class XuanzequyuListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -512,16 +514,16 @@ public class TaskInputActivity extends Activity {
 			animationSet.setFillBefore(true);
 			animationSet.setDuration(200);
 			bt_xuanzequyu.startAnimation(animationSet);
-			RoadLine r=null;
-			if(roadLineId!=-1){
-				r=(new RoadLineDao(TaskInputActivity.this)).get(roadLineId);
+			RoadLine r = null;
+			if (roadLineId != -1) {
+				r = (new RoadLineDao(TaskInputActivity.this)).get(roadLineId);
 			}
 			MapShowActivity.startMapForShow(TaskInputActivity.this, r, true);
 		}
 
 	}
 
-	// °´Å¥ ±£´æÈÎÎñ µÄ¼àÌı
+	// æŒ‰é’® ä¿å­˜ä»»åŠ¡ çš„ç›‘å¬
 	class BaocunrenwuListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -536,30 +538,28 @@ public class TaskInputActivity extends Activity {
 			bt_baocunrenwu.startAnimation(animationSet);
 
 			saveTask();
-//			if (timeState == 1) {
-				// ÉèÖÃÈÎÎñ×´Ì¬ÎªÎ´·¢²¼
-				task.setState("0");
+			// if (timeState == 1) {
+			// è®¾ç½®ä»»åŠ¡çŠ¶æ€ä¸ºæœªå‘å¸ƒ
+			task.setState("0");
 
-				ta.establishTask(task);
-				Toast.makeText(TaskInputActivity.this, "ÈÎÎñ±£´æ³É¹¦£¡",
-						Toast.LENGTH_LONG).show();
+			ta.establishTask(task);
+			Toast.makeText(TaskInputActivity.this, "ä»»åŠ¡ä¿å­˜æˆåŠŸï¼", Toast.LENGTH_LONG)
+					.show();
 
-				et_luduanming.setText("");
-				et_renwuneirong.setText("");
-				et_beizhu.setText("");
-				et_xunjianzhouqi.setText("");
-				et_gerenwu.setText("");
-				TaskShowMhActivity.currentActivity.h.sendEmptyMessage(0);
-				finish();
-//			} else {
-//				Toast.makeText(TaskInputActivity.this, "Çë±£Ö¤ÆğÖ¹Ê±¼äµÄÕıÈ·ĞÔ£¡",
-//						Toast.LENGTH_SHORT).show();
-//			}
+			et_luduanming.setText("");
+			et_renwuneirong.setText("");
+			et_beizhu.setText("");
+			et_xunjianzhouqi.setText("");
+			et_gerenwu.setText("");
+			// } else {
+			// Toast.makeText(TaskInputActivity.this, "è¯·ä¿è¯èµ·æ­¢æ—¶é—´çš„æ­£ç¡®æ€§ï¼",
+			// Toast.LENGTH_SHORT).show();
+			// }
 		}
 
 	}
 
-	// °´Å¥ ·¢²¼ÈÎÎñ µÄ¼àÌı
+	// æŒ‰é’® å‘å¸ƒä»»åŠ¡ çš„ç›‘å¬
 	class FaburenwuListener implements OnClickListener {
 
 		public void onClick(View v) {
@@ -580,23 +580,23 @@ public class TaskInputActivity extends Activity {
 			str_xunjianzhouqi = et_xunjianzhouqi.getText().toString();
 			if ((str_luduanming != null && str_luduanming.length() != 0)
 					&& (str_renwuneirong != null && str_renwuneirong.length() != 0)
-					&& (str_xunjianzhouqi != null && str_xunjianzhouqi.length() != 0)) {
-				state=1;
+					) {
+				state = 1;
 			}
 
-			if (state == 0 || roadLineId==-1) {
-				Toast.makeText(TaskInputActivity.this, "ÇëÍêÉÆÈÎÎñĞÅÏ¢ºóÔÙ·¢²¼£¡",
+			if (state == 0 || roadLineId == -1) {
+				Toast.makeText(TaskInputActivity.this, "è¯·å®Œå–„ä»»åŠ¡ä¿¡æ¯åå†å‘å¸ƒï¼",
 						Toast.LENGTH_SHORT).show();
 			}
 
 			else {
 
 				saveTask();
-				// ÉèÖÃÈÎÎñ×´Ì¬ÎªÒÑ·¢²¼
+				// è®¾ç½®ä»»åŠ¡çŠ¶æ€ä¸ºå·²å‘å¸ƒ
 				task.setState("1");
 
 				ta.establishTask(task);
-				Toast.makeText(TaskInputActivity.this, "ÈÎÎñ·¢²¼³É¹¦£¡",
+				Toast.makeText(TaskInputActivity.this, "ä»»åŠ¡å‘å¸ƒæˆåŠŸï¼",
 						Toast.LENGTH_LONG).show();
 				et_luduanming.setText("");
 				et_renwuneirong.setText("");
@@ -616,7 +616,7 @@ public class TaskInputActivity extends Activity {
 		System.out.println(str_typeOfTask);
 		task.setTaskType(str_typeOfTask);
 
-		idOfPerson = idOfPerson;
+		idOfPerson = Integer.parseInt(str_idOfPerson);
 		task.setInspectionPersonId(idOfPerson);
 
 		str_renwuneirong = et_renwuneirong.getText().toString();
@@ -632,7 +632,7 @@ public class TaskInputActivity extends Activity {
 			task.setEndTime(long_timeOfEnd);
 		}
 
-		// ÅĞ¶ÏÊ±¼äÉèÖÃÊÇ·ñÕıÈ·
+		// åˆ¤æ–­æ—¶é—´è®¾ç½®æ˜¯å¦æ­£ç¡®
 		if (long_timeOfStart < long_timeOfEnd) {
 			timeState = 1;
 		}
@@ -648,17 +648,17 @@ public class TaskInputActivity extends Activity {
 
 		str_beizhu = et_beizhu.getText().toString();
 		task.setTag(str_beizhu);
-		
+
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
 		Date curDate = new Date(System.currentTimeMillis());
 		String strRealseTime = formatter.format(curDate);
 		System.out.println(strRealseTime);
 		long realseTime = Long.parseLong(strRealseTime);
 		task.setRealseTime(realseTime);
-		if(roadLineId!=-1){
+		if (roadLineId != -1) {
 			task.setRoadLineId(roadLineId);
-			RoadLineDao dao=new RoadLineDao(this);
-			RoadLine line=dao.get(roadLineId);
+			RoadLineDao dao = new RoadLineDao(this);
+			RoadLine line = dao.get(roadLineId);
 			line.setName(str_luduanming);
 			dao.update(line);
 		}
