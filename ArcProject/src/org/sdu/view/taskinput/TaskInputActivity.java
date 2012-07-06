@@ -8,6 +8,7 @@ import java.util.List;
 
 import org.sdu.dao.RoadLineDao;
 import org.sdu.db.DBHelper;
+import org.sdu.dbaction.Action;
 import org.sdu.dbaction.TaskAction;
 import org.sdu.gis.R;
 import org.sdu.pojo.RoadLine;
@@ -23,7 +24,6 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.Window;
 import android.view.animation.Animation;
 import android.view.animation.AnimationSet;
 import android.view.animation.ScaleAnimation;
@@ -606,6 +606,7 @@ public class TaskInputActivity extends Activity {
 	}
 
 	private void saveTask() {
+		task.setCreatePersonId(Action.currentUser.getId());
 		str_luduanming = et_luduanming.getText().toString();
 		task.setRoadName(str_luduanming);
 

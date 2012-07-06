@@ -10,7 +10,7 @@ import android.content.Context;
 public class Action {
 	String info="";
 	Context context;
-	User currentUser;
+	public static User currentUser;
 	public Action(Context c) {
 		this.context = c;
 	}
