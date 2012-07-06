@@ -1,5 +1,7 @@
 package org.sdu.view.bugshow;
 
+import org.sdu.dao.BugDao;
+import org.sdu.dbaction.BugAction;
 import org.sdu.gis.R;
 import org.sdu.pojo.Bug;
 
@@ -23,6 +25,8 @@ public class BugDetailActivity extends Activity{
 	private TextView _bug_state;
 	private TextView _bug_bugTypeId;
 	private Button finish; 
+	private Bug bug;
+	private BugDao bugDao;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -45,7 +49,7 @@ public class BugDetailActivity extends Activity{
 		finish.setOnClickListener(new FinishListener());
 		Intent intent=this.getIntent();
 		Bundle bundle=intent.getExtras();
-		Bug bug=(Bug) bundle.get("bug");
+		bug=(Bug) bundle.get("bug");
 		_bugId.setText(bug.getId()+"");
 		_bug_address.setText(bug.getAddress());
 		_bug_attachment.setTag(bug.getAttachment());
@@ -55,6 +59,7 @@ public class BugDetailActivity extends Activity{
 		_bug_userId.setText(bug.getUserId()+"");
 		_bug_state.setText(bug.getState());
 		_bug_bugTypeId.setText(bug.getBugTypeId()+"");
+		bugDao=new BugDao(this);
 	}
 	class FinishListener implements OnClickListener{
 
@@ -62,6 +67,8 @@ public class BugDetailActivity extends Activity{
 		public void onClick(View v) {
 			// TODO Auto-generated method stub
 			_bug_state.setText("完成");
+			bug.setState("完成");
+			bugDao.update(bug);
 		}
 		
 	}

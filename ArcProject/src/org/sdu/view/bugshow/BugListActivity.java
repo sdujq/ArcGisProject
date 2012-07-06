@@ -34,12 +34,12 @@ public class BugListActivity extends Activity{
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
 		//获取用户列表
-		setContentView(R.layout.userlist);
+		setContentView(R.layout.bug_listview);
 		//接收传递的参数
 		Intent intent=this.getIntent();
 		Bundle bundle=intent.getExtras();
-		type=bundle.getString("type");
-		value=bundle.getString("value");
+		//type=bundle.getString("type");
+		//value=bundle.getString("value");
 		type="id";
 		value="1";
 		ba=new BugAction(this);
@@ -74,24 +74,26 @@ public class BugListActivity extends Activity{
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
-			View v=View.inflate(BugListActivity.this, R.layout.userlist_item, null);
-			final TextView tv=(TextView)v.findViewById(R.id.userInfo);
+			View v=View.inflate(BugListActivity.this, R.layout.bug_list_item, null);
+			final TextView bugId=(TextView)v.findViewById(R.id.bugId);
+			final TextView bugAdress=(TextView)v.findViewById(R.id.bugAddress);
+			final TextView bugState=(TextView)v.findViewById(R.id.bugState); 
+			final TextView bugUserId=(TextView)v.findViewById(R.id.bugUserId);
 			ImageView delete=(ImageView)v.findViewById(R.id.deleteUser);
 			if(bugList.size()>position){
 				Bug bug=bugList.get(position);
-				//tv.setText(user.getId()+"     "+user.getName());
-				tv.setText(bug.getId()+"     "+bug.getAddress()+"     "+bug.getState()+"     "+bug.getUserId());
+				bugId.setText(bug.getId()+"");
+				bugAdress.setText(bug.getAddress());
+				bugState.setText(bug.getState());
+				bugUserId.setText(bug.getUserId()+"");
 			}
-			else
-				tv.setText("");
 			delete.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
 					if(v.getId()==R.id.deleteUser){
 						 //获取用户id
-						String userInfo=tv.getText().toString().trim();
-						String _id=userInfo.substring(0,userInfo.indexOf(" ") );
+						String _id=bugId.getText().toString().trim();
 						int id=Integer.parseInt(_id);
 						//通过id删除用户
 						bd.delete(id);
@@ -108,8 +110,7 @@ public class BugListActivity extends Activity{
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
-					String bugInfo=tv.getText().toString().trim();
-					String _id=bugInfo.substring(0,bugInfo.indexOf(" "));
+					String _id=bugId.getText().toString().trim();
 					int id=Integer.parseInt(_id);
 					Bug bug=bd.get(id);	
 					Intent intent=new Intent();
