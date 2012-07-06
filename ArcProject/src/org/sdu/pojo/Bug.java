@@ -29,6 +29,8 @@ public class Bug implements Serializable{
 	private String state;
 	@Column(name="userId")
 	private int userId;
+	@Column(name="time")
+	private long time;
 	public int getId() {
 		return id;
 	}
@@ -82,5 +84,11 @@ public class Bug implements Serializable{
 	}
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+	public long getTime() {
+		return time;
+	}
+	public void setTime(long time) {
+		this.time = time;
 	}
 }

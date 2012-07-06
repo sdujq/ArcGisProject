@@ -1,7 +1,7 @@
 package org.sdu.view.bugshow;
 
+import org.sdu.bmputil.BitmapTool;
 import org.sdu.dao.BugDao;
-import org.sdu.dbaction.BugAction;
 import org.sdu.gis.R;
 import org.sdu.pojo.Bug;
 
@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 
 public class BugDetailActivity extends Activity{
@@ -32,6 +33,7 @@ public class BugDetailActivity extends Activity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.bug_detail);
+		getWindow().setLayout(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT);
 		init();
 	}
 	public void init(){
@@ -60,6 +62,8 @@ public class BugDetailActivity extends Activity{
 		_bug_state.setText(bug.getState());
 		_bug_bugTypeId.setText(bug.getBugTypeId()+"");
 		bugDao=new BugDao(this);
+		
+		_bug_attachment.setImageBitmap(BitmapTool.Bytes2Bimap(bug.getAttachment()));
 	}
 	class FinishListener implements OnClickListener{
 

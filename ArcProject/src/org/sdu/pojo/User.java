@@ -50,4 +50,7 @@ public class User implements Serializable{
 	public void setTag(String tag) {
 		this.tag = tag;
 	}
+	public String toString(){
+		return name;
+	}
 }

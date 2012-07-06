@@ -7,12 +7,15 @@ import java.util.Date;
 import java.util.List;
 
 import org.sdu.dao.RoadLineDao;
+import org.sdu.dao.TaskTypeDao;
 import org.sdu.db.DBHelper;
 import org.sdu.dbaction.Action;
 import org.sdu.dbaction.TaskAction;
 import org.sdu.gis.R;
+import org.sdu.pojo.BugType;
 import org.sdu.pojo.RoadLine;
 import org.sdu.pojo.Task;
+import org.sdu.pojo.TaskType;
 import org.sdujq.map.MapShowActivity;
 
 import android.app.Activity;
@@ -163,12 +166,15 @@ public class TaskInputActivity extends Activity {
 		sp_selectTask = (Spinner) findViewById(R.id.t_spinner_selectTask);
 		// 通过createFromResource方法创建一个ArrayAdapter对象
 
-		ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(
-				this, R.array.str_array_renwuleibie,
+		ArrayAdapter<TaskType> adapter1 = new ArrayAdapter<TaskType>(
+				this,
 				android.R.layout.simple_spinner_item);
 		// 设置Spinner当中每个条目的样式，引用一个Android系统提供的布局文件
 		adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
+		List<TaskType> bugTypelst=(new TaskTypeDao(this)).find();
+		for(TaskType b:bugTypelst){
+			adapter1.add(b);
+		}
 		sp_selectTask.setAdapter(adapter1);
 		sp_selectTask.setPrompt("任务类型");
 		sp_selectTask

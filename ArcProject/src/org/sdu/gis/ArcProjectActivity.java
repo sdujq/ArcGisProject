@@ -32,6 +32,7 @@ public class ArcProjectActivity extends Activity {
         setContentView(R.layout.debuglist);
     	dbhelper = new DBHelper(this);
 		db = dbhelper.getWritableDatabase();
+		dbhelper.initDb();
 		lv=(ListView) findViewById(R.id.listView1);
 		lv.setAdapter(new DebugAdapter());
     }

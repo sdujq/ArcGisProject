@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class MyDBHelper extends SQLiteOpenHelper {
+public abstract class MyDBHelper extends SQLiteOpenHelper {
 	private Class<?>[] modelClasses;
 
 	public MyDBHelper(Context context, String databaseName,
@@ -22,4 +22,5 @@ public class MyDBHelper extends SQLiteOpenHelper {
 		TableHelper.dropTablesByClasses(db, this.modelClasses);
 		onCreate(db);
 	}
+	public abstract void initDb();
 }

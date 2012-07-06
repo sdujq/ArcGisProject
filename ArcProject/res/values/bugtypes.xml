@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="bug_types">
+        <item>编号</item>
+        <item>地址</item>
+        <item>状态</item>
+        <item>类型</item>
+        <item>发布者</item>
+        <item >时间</item>
+    </string-array>
+</resources>

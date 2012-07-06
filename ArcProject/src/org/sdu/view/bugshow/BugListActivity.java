@@ -30,6 +30,9 @@ public class BugListActivity extends Activity{
 	private BugAction ba;
 	private String type="";
 	private String value="";
+	private BugTypes bt;
+	private String selection="";
+	private String selectionArgs="";
 	@Override
 	public void onCreate(Bundle savedInstanceState){
 		super.onCreate(savedInstanceState);
@@ -37,17 +40,45 @@ public class BugListActivity extends Activity{
 		setContentView(R.layout.bug_listview);
 		//接收传递的参数
 		Intent intent=this.getIntent();
-		Bundle bundle=intent.getExtras();
-		//type=bundle.getString("type");
-		//value=bundle.getString("value");
-		type="id";
-		value="1";
+		Bundle bundle = intent.getExtras();
+		bt=(BugTypes)bundle.get("bugTypes");
+//		bt=new BugTypes();
+//		bt.setId(1);
+//		bt.setAddress("here");
 		ba=new BugAction(this);
 		bd=new BugDao(this);
 		init();
 	}
 	public void init(){
-		bugList=(ArrayList<Bug>) ba.search(type+"=?",value);
+		if(bt.getId()!=0){
+			selection+="id=? and ";
+			selectionArgs+=bt.getId()+"|";
+		}
+		if(bt.getAddress()!=null){
+			selection+="address=? and ";
+			selectionArgs+=bt.getAddress().trim()+"|";
+		}
+		if(bt.getState()!=null){
+			selection+="state=? and ";
+			selectionArgs+=bt.getState().trim()+"|";
+		}
+		if(bt.getBugTypeId()!=0){
+			selection+="bugTypeId=? and ";
+			selectionArgs+=bt.getBugTypeId()+"|";
+		}
+		if(bt.getUserId()!=0){
+			selection+="userId=? and ";
+			selectionArgs+=bt.getUserId()+"|";
+		}
+		if(bt.getStartTime()!=0&&bt.getEndTime()!=0){
+			selection+="time between ? and ? and";
+			selectionArgs+=bt.getStartTime()+"|"+bt.getEndTime()+"|";
+		}
+		selection=selection.substring(0,selection.lastIndexOf("and"));
+		selectionArgs=selectionArgs.substring(0,selectionArgs.lastIndexOf('|'));
+		System.out.println(selection);
+		System.out.println(selectionArgs);
+		bugList=(ArrayList<Bug>) ba.search(selection,selectionArgs);
 		lv=(ListView) findViewById(R.id.userlist);
 		lv.setAdapter(new UserAdapter());
 	}
@@ -98,7 +129,7 @@ public class BugListActivity extends Activity{
 						//通过id删除用户
 						bd.delete(id);
 						//刷新列表
-						bugList=(ArrayList<Bug>)ba.search(type, value);
+						bugList=(ArrayList<Bug>)ba.search(selection, selectionArgs);
 						lv.setAdapter(new UserAdapter());
 					}
 					

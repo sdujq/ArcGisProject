@@ -1,9 +1,11 @@
 package org.sdu.dbaction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.sdu.dao.BugDao;
 import org.sdu.pojo.Bug;
+import org.sdu.view.bugshow.BugTypes;
 
 import android.content.Context;
 /**
@@ -58,8 +60,21 @@ public class BugAction  {
 		bug.setState("1");
 		bugDao.update(bug);
 	}
-	public List<Bug> search(String type,String value){
-		return bugDao.find(new String[]{"id","address","state","userId"}, type, new String[]{value},null,null,null ,null);
+	public List<Bug> search(String selection,String args){
+		String selectionArgs[]=null;
+		ArrayList<String>list=new ArrayList<String>();
+		while(args.indexOf('|')!=-1){
+			list.add(args.substring(0,args.indexOf('|')));
+			args=args.substring(args.indexOf('|')+1);
+		}
+		list.add(args);
+		selectionArgs=new String[list.size()];
+		int i=0;
+		for(String s:list){
+			selectionArgs[i]=s;
+			 i++;
+		}
+		return bugDao.find(null, selection,selectionArgs,null,null,null ,null);
 	}
 	
 }

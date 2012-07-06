@@ -3,12 +3,14 @@ package org.sdu.view.buginput;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 
 import org.sdu.bmputil.BitmapTool;
 import org.sdu.bmputil.PhotoDrawerTemp;
 import org.sdu.dao.BugDao;
 import org.sdu.dao.BugTypeDao;
+import org.sdu.dbaction.Action;
 import org.sdu.gis.R;
 import org.sdu.pojo.Bug;
 import org.sdu.pojo.BugType;
@@ -121,11 +123,15 @@ public class BugInputActivity extends Activity {
 				bug.setBugTypeId(((BugType) bugtype_spinner.getSelectedItem())
 						.getId());
 				bug.setContent(editText3.getText().toString());
-				bug.setState("" + 0);
+				bug.setState("未完成");
 				bug.setTag(editText6.getText().toString());
 				bug.setPoint(editText4.getText().toString());
-				// TODO
-				bug.setUserId(0);
+				try {
+					bug.setUserId(Action.currentUser.getId());
+				} catch (Exception e) {
+					bug.setUserId(0);
+				}
+				bug.setTime(new Date().getTime());
 				new BugDao(BugInputActivity.this).insert(bug);
 				clear();
 				Toast.makeText(BugInputActivity.this, "保存成功", 0).show();
@@ -189,7 +195,8 @@ public class BugInputActivity extends Activity {
 							@Override
 							public void gpsConnectedTimeOut() {
 								dialog.dismiss();
-								Toast.makeText(BugInputActivity.this, "GPS获取超时", 0).show();
+								Toast.makeText(BugInputActivity.this,
+										"GPS获取超时", 0).show();
 							}
 
 							@Override
