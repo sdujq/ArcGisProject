@@ -34,4 +34,8 @@ public class RoadLine implements Serializable{
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public String toString(){
+		return name!=null?name:"Î´ÃüÃûÂ·Ïß";
+	}
 }

@@ -51,7 +51,8 @@
             android:theme="@android:style/Theme.Dialog"></activity>
         <activity android:name="org.sdujq.map.Home"></activity>
         <activity android:name="org.sdujq.map.WhiteActivity"></activity>
-        <activity android:name="org.sdujq.map.TabHomeActivity"></activity>
+        <activity android:name="org.sdujq.map.TabHomeActivity"
+            android:screenOrientation="portrait"></activity>
         <activity android:name="org.sdu.view.usermanager.AccountActivity"></activity>
         <activity android:name="org.sdu.view.taskinput.TaskInputActivityMh"></activity>
         
@@ -60,6 +61,9 @@
          <activity android:name="org.sdu.view.bugshow.BugDetailActivity"></activity>
         <activity android:name="org.sdu.view.taskinput.TaskInputActivityMh"></activity>
         <activity android:name="org.sdu.view.taskshow.TaskShowMhActivity"></activity>
+        <activity android:name="org.sdu.bmputil.PhotoDrawerTemp"
+            android:theme="@android:style/Theme.Dialog"
+            android:screenOrientation="portrait"></activity>
     </application>
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -84,7 +88,10 @@
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-
+ <uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.READ_CONTACTS"></uses-permission>
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"

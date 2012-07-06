@@ -1,10 +1,10 @@
 package org.sdujq.map;
 
 import org.sdu.gis.R;
+import org.sdu.view.buginput.BugInputActivity;
 import org.sdu.view.taskinput.TaskInputActivity;
 import org.sdu.view.taskshow.TaskShowMhActivity;
 import org.sdu.view.usermanager.AccountActivity;
-import org.sdu.view.usermanager.AddUserActivity;
 
 import android.app.TabActivity;
 import android.content.Intent;
@@ -67,7 +67,7 @@ public class TabHomeActivity extends TabActivity {
 		((TextView) view3.findViewById(R.id.tab_textview_title))
 				.setText(n3);
 		TabHost.TabSpec spec2 = tabHost.newTabSpec(n3).setIndicator(view3)
-				.setContent(new Intent(this, WhiteActivity.class));
+				.setContent(new Intent(this, BugInputActivity.class));
 		tabHost.addTab(spec2);
 		
 		View view4 = View.inflate(TabHomeActivity.this, R.layout.tab, null);

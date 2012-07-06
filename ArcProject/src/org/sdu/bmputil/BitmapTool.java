@@ -8,6 +8,8 @@ import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.PixelFormat;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 public class BitmapTool {
@@ -22,7 +24,31 @@ public class BitmapTool {
 		}
 
 	}
+	public static Bitmap drawableToBitmap(Drawable drawable) {
 
+	       
+
+        Bitmap bitmap = Bitmap.createBitmap(
+
+                                        drawable.getIntrinsicWidth(),
+
+                                        drawable.getIntrinsicHeight(),
+
+                                        drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
+
+                                                        : Bitmap.Config.RGB_565);
+
+        Canvas canvas = new Canvas(bitmap);
+
+        //canvas.setBitmap(bitmap);
+
+        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+
+        drawable.draw(canvas);
+
+        return bitmap;
+
+}
 	public static byte[] Bitmap2Bytes(Bitmap bm) {
 
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
