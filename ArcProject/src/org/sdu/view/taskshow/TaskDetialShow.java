@@ -16,13 +16,12 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class TaskDetialShow extends Activity implements OnClickListener{
+public class TaskDetialShow extends Activity implements OnClickListener {
 
-	
-	private TextView v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11,v12,v13;
-	private Button b1,b2,b3;
+	private TextView v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13;
+	private Button b1, b2, b3;
 	int t_num;
-	private String t_type,r_name,t_neirong,over,beizhu;
+	private String t_type, r_name, t_neirong, over, beizhu;
 	long t_end;
 	long t_begin;
 	long c_time;
@@ -30,6 +29,7 @@ public class TaskDetialShow extends Activity implements OnClickListener{
 	long m_time;
 	int m_name;
 	Task task;
+
 	@Override
 	public void onCreate(Bundle saved){
 		super.onCreate(saved);
@@ -71,7 +71,13 @@ public class TaskDetialShow extends Activity implements OnClickListener{
     	t_end=ta.getDetail(Button_id).getEndTime();
     	over=ta.getDetail(Button_id).getState();
     	beizhu=ta.getDetail(Button_id).getTag();
-    	
+    	if(over.equals("1")){
+    		over="未接受";
+    	}else if(over.equals("2")){
+    		over="未完成";
+    	}else if(over.equals("3")){
+    		over="完成";			
+    	}
 //    	
 //        ArrayList<Task>ls=(ArrayList<Task>) ta.getTaskList();
 //     
@@ -112,15 +118,18 @@ public class TaskDetialShow extends Activity implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
-		if(v==b1){
-			task.setState(2+"");
+		if (v == b1) {
+			task.setState(2 + "");
 			new TaskDao(TaskDetialShow.this).update(task);
-		}else if(v==b2){
-			RoadLine road=(new RoadLineDao(TaskDetialShow.this)).get(task.getRoadLineId());
-			MapShowActivity.startMapForShow(TaskDetialShow.this,road , false);
-		}else if(v==b3){
-			task.setState(3+"");
+		} else if (v == b2) {
+			RoadLine road = (new RoadLineDao(TaskDetialShow.this)).get(task
+					.getRoadLineId());
+			MapShowActivity.startMapForShow(TaskDetialShow.this, road, false);
+		} else if (v == b3) {
+			task.setState(3 + "");
 			new TaskDao(TaskDetialShow.this).update(task);
 		}
+		TaskShowMhActivity.currentActivity.refreshData();
+		this.finish();
 	}
 }

@@ -16,6 +16,7 @@ import org.sdu.pojo.Bug;
 import org.sdu.pojo.BugType;
 import org.sdujq.map.InputActivity;
 import org.sdujq.map.Photo;
+import org.sdujq.map.TabHomeActivity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -96,7 +97,7 @@ public class BugInputActivity extends Activity {
 				File out = new File("/mnt/sdcard/temp100.jpg");
 				Uri uri = Uri.fromFile(out);
 				intent.putExtra(MediaStore.EXTRA_OUTPUT, uri);
-				BugInputActivity.this.startActivityForResult(intent,
+				TabHomeActivity.home.startActivityForResult(intent,
 						Photo.TAKE_PHOTO_REQUEST_CODE);
 			}
 		});
@@ -143,11 +144,15 @@ public class BugInputActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
+				if(image.getDrawable()==null){
+					Toast.makeText(BugInputActivity.this, "«Îœ»≈ƒ’’",0).show();;
+					return;
+				}
 				PhotoDrawerTemp.shareBMP = BitmapTool.drawableToBitmap(image
 						.getDrawable());
 				Intent it = new Intent();
 				it.setClass(BugInputActivity.this, PhotoDrawerTemp.class);
-				BugInputActivity.this.startActivityForResult(it, 111);
+				TabHomeActivity.home.startActivityForResult(it, PhotoDrawerTemp.DrawRquest);
 			}
 		});
 
@@ -227,7 +232,7 @@ public class BugInputActivity extends Activity {
 		image.setImageBitmap(null);
 	}
 
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == InputActivity.TAKE_PHOTO_REQUEST_CODE) {
 
 			if (resultCode == RESULT_OK) {
@@ -261,7 +266,7 @@ public class BugInputActivity extends Activity {
 					e.printStackTrace();
 				}
 			}
-		} else if (requestCode == 111 && resultCode == RESULT_OK) {
+		} else if (requestCode == PhotoDrawerTemp.DrawRquest && resultCode == RESULT_OK) {
 			ContentResolver cr = getContentResolver();
 			try {
 				InputStream in = cr.openInputStream(Uri.fromFile(new File(

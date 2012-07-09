@@ -2,16 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/listitem_selector"
+    android:background="@drawable/round"
     android:orientation="horizontal"
     android:paddingTop="3.0dip" >
 <RelativeLayout
         android:layout_width="87dp"
         android:layout_height="wrap_content"
         android:background="@drawable/cakeiconbg" >
-
+
          <ImageView
-             android:id="@+id/cake_icon"
+             android:id="@+id/task_icon"
              android:layout_width="65.0dip"
              android:layout_height="65.0dip"
              android:layout_centerInParent="true"

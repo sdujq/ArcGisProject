@@ -12,10 +12,10 @@ import org.sdu.db.DBHelper;
 import org.sdu.dbaction.Action;
 import org.sdu.dbaction.TaskAction;
 import org.sdu.gis.R;
-import org.sdu.pojo.BugType;
 import org.sdu.pojo.RoadLine;
 import org.sdu.pojo.Task;
 import org.sdu.pojo.TaskType;
+import org.sdu.view.taskshow.TaskShowMhActivity;
 import org.sdujq.map.MapShowActivity;
 
 import android.app.Activity;
@@ -241,6 +241,8 @@ public class TaskInputActivity extends Activity {
 
 		// 刷新时间的线程
 		handler.post(updateThread);
+		String uname=Action.currentUser==null?"无":Action.currentUser.getName();
+		tv_zhidingren.setText("制定人："+uname);
 	}
 
 	// 创建Handler对象
@@ -607,6 +609,8 @@ public class TaskInputActivity extends Activity {
 				et_xunjianzhouqi.setText("");
 				et_gerenwu.setText("");
 			}
+			TaskInputActivity.this.roadLineId=-1;
+			TaskShowMhActivity.currentActivity.refreshData();
 		}
 
 	}
@@ -666,6 +670,7 @@ public class TaskInputActivity extends Activity {
 			line.setName(str_luduanming);
 			dao.update(line);
 		}
+		TaskShowMhActivity.currentActivity.refreshData();
 	}
 
 }

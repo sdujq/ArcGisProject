@@ -126,7 +126,7 @@ public class BugListView extends AbsShow {
 			final TextView bugState = (TextView) v.findViewById(R.id.bugState);
 			final TextView bugUserId = (TextView) v
 					.findViewById(R.id.bugUserId);
-			ImageView delete = (ImageView) v.findViewById(R.id.deleteUser);
+			//ImageView delete = (ImageView) v.findViewById(R.id.deleteUser);
 			if (bugList.size() > position) {
 				Bug bug = bugList.get(position);
 				bugId.setText(bug.getId() + "");
@@ -134,7 +134,7 @@ public class BugListView extends AbsShow {
 				bugState.setText(bug.getState());
 				bugUserId.setText(udao.get(bug.getUserId()).toString());
 			}
-			delete.setOnClickListener(new OnClickListener() {
+			/*delete.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {
 					// TODO Auto-generated method stub
@@ -151,7 +151,7 @@ public class BugListView extends AbsShow {
 					}
 
 				}
-			});
+			});*/
 			// 为用户查看详情
 			v.setOnClickListener(new OnClickListener() {
 

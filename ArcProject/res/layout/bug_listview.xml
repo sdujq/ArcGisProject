@@ -2,12 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" android:background="@color/white">
-
+    android:orientation="vertical" android:background="@drawable/dybg">
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal" android:layout_marginBottom="10dp" android:layout_marginLeft="10dp" android:layout_marginRight="10dp" android:layout_marginTop="10dp">
 
         <TextView
             android:id="@+id/textView1"
@@ -34,24 +35,21 @@
             android:text="发布人员" android:layout_weight="1" android:textColor="@color/black" android:textSize="17sp"/>
 
     </LinearLayout>
-
-    <ScrollView
-        android:id="@+id/scrollView1"
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <LinearLayout
-            android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical" >
+
+        <ListView
+            android:id="@+id/userlist"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <ListView
-                android:id="@+id/userlist"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" >
-            </ListView>
-
-        </LinearLayout>
-    </ScrollView>
+            android:layout_weight="1" >
+        </ListView>
+    </LinearLayout>
 </LinearLayout>

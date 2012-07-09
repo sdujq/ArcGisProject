@@ -36,6 +36,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 
 public class PhotoDrawerTemp extends Activity implements
 		OnSeekBarChangeListener {
+	public static final int DrawRquest=111;
 	public static Bitmap shareBMP=null;
 	boolean painterBoo = false, eraserBoo = false, shapeBoo = false,
 			colorBoo = false;// Ò»¼¶°´Å¥

@@ -3,18 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    >
+android:background="@drawable/dybg">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical" android:layout_marginLeft="10dp" android:layout_marginRight="10dp" android:layout_marginTop="30dp">
 
         <TextView
             android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/addUser_username" />
+            android:text="@string/addUser_username" android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/addUser_name"
@@ -31,13 +31,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical" android:layout_marginRight="10dp" android:layout_marginLeft="10dp">
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/addUser_password1" />
+            android:text="@string/addUser_password1" android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/addUser_password1"
@@ -51,13 +51,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical" android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
 
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/addUser_password2" />
+            android:text="@string/addUser_password2" android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/addUser_password2"
@@ -71,13 +71,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical" android:layout_marginRight="10dp" android:layout_marginLeft="10dp">
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/addUser_telphone" />
+            android:text="@string/addUser_telphone" android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/addUser_telphone"
@@ -91,13 +91,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:orientation="vertical" android:layout_marginLeft="10dp" android:layout_marginRight="10dp">
 
         <TextView
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/addUser_comment" />
+            android:text="@string/addUser_comment" android:textColor="@color/black"/>
 
         <EditText
             android:id="@+id/addUser_comment"
