@@ -74,7 +74,7 @@ public class BugAction  {
 			selectionArgs[i]=s;
 			 i++;
 		}
-		return bugDao.find(null, selection,selectionArgs,null,null,null ,null);
+		return bugDao.find(new String[]{"id"}, selection,selectionArgs,null,null,null ,null);
 	}
 	/**
 	 * 该方法返回符合条件的问题编号列表

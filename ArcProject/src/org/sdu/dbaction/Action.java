@@ -89,7 +89,7 @@ public class Action {
 	public ArrayList<Integer>getUserIds(){
 		UserDao uDao=new UserDao(context);
 		ArrayList<Integer>ids=new ArrayList<Integer>();
-		ArrayList<User>userList=(ArrayList<User>)uDao.find();
+		ArrayList<User>userList=(ArrayList<User>)uDao.find(new String[]{"id"}, null,null,null,null,null,null);
 		if(userList!=null&&userList.size()>0){
 			for(User user:userList){
 				ids.add(0,user.getId());
