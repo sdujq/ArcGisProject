@@ -76,5 +76,34 @@ public class BugAction  {
 		}
 		return bugDao.find(null, selection,selectionArgs,null,null,null ,null);
 	}
-	
+	/**
+	 * 该方法返回符合条件的问题编号列表
+	 * @param selection 筛选条件
+	 * @param args		条件值
+	 * @return
+	 */
+	public ArrayList<Integer>getBugIds(String selection,String args){
+		ArrayList<Integer>ids=new ArrayList<Integer>();
+		ArrayList<Bug>bugList=(ArrayList<Bug>) search(selection,args);
+		if(bugList!=null&&bugList.size()>0){
+			for(Bug bug:bugList){
+				ids.add(bug.getId());
+			}
+		}
+		return ids;
+	}
+	/**
+	 * 返回给定编号列表的Bug列表
+	 * @param values 问题编号列表
+	 * @return
+	 */
+	public List<Bug> getList(ArrayList<Integer>values){
+		ArrayList<Bug>bugList=new ArrayList<Bug>();
+		for(int value:values){
+			Bug bug=bugDao.get(value);
+			if(bug!=null)
+				bugList.add(bug);
+		}
+		return bugList;
+	}
 }
