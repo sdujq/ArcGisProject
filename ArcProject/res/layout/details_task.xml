@@ -12,11 +12,12 @@
         android:text="任务详情"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="#FF0000" />
-
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:layout_marginLeft="40dip"
+        android:layout_marginRight="40dip"
         android:orientation="vertical" >
 
         <TextView
