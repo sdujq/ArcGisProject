@@ -98,8 +98,8 @@
      <string name="bug_bugTypeId">类型编号 :</string>
      <string name="bug_userId">人员编号 :</string>
      
-<string name="pull_to_refresh_pull_label">Pull to refresh...</string>
-    <string name="pull_to_refresh_release_label">Release to refresh...</string>
-    <string name="pull_to_refresh_refreshing_label">Loading...</string>
-    <string name="pull_to_refresh_tap_label">Tap to refresh...</string>
+<string name="pull_to_refresh_pull_label">继续下拉刷新。。。</string>
+    <string name="pull_to_refresh_release_label">松手时刷新。。。</string>
+    <string name="pull_to_refresh_refreshing_label">载入中。。。</string>
+    <string name="pull_to_refresh_tap_label">Tap to refresh。。。</string>
 </resources>
