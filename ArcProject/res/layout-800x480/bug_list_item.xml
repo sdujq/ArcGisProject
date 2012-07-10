@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/round"
+    android:orientation="horizontal"
+    android:paddingTop="3.0dip" >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:orientation="vertical"
+        android:padding="4.0dip" >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" android:background="@drawable/round">
+
+            <TextView
+                android:id="@+id/bugId"
+                android:layout_width="wrap_content"
+                android:layout_height="32.0dip"
+                android:textColor="@color/black"
+                android:textSize="20.0sp" android:layout_weight="1"/>
+
+
+            <TextView
+                android:id="@+id/bugAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="12.0sp" android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/bugState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" 
+                android:textSize="12.0sp" android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/bugUserId"
+                android:layout_width="wrap_content"
+                android:layout_height="32.0dip"
+                android:textSize="12.0sp" android:layout_weight="1"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

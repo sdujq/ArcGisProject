@@ -40,6 +40,8 @@ public class LoginActivity extends Activity {
 					intent = new Intent();
 					intent.setClass(LoginActivity.this, TabHomeActivity.class);
 					startActivity(intent);
+					overridePendingTransition(R.anim.scale_rotate,
+							R.anim.my_alpha_action);
 					Toast.makeText(this, "请添加系统用户", Toast.LENGTH_LONG)
 					.show();
 				} else {
@@ -52,6 +54,8 @@ public class LoginActivity extends Activity {
 					intent = new Intent();
 					intent.setClass(LoginActivity.this, TabHomeActivity.class);
 					startActivity(intent);
+					overridePendingTransition(R.anim.scale_rotate,
+							R.anim.my_alpha_action);
 				} else {
 					// 提示错误并清空密码
 					password.setText("");

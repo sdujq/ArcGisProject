@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/round"
+    android:orientation="horizontal"
+    android:paddingTop="3.0dip" >
+<RelativeLayout
+        android:layout_width="87dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cakeiconbg" >
+
+         <ImageView
+             android:id="@+id/task_icon"
+             android:layout_width="65.0dip"
+             android:layout_height="65.0dip"
+             android:layout_centerInParent="true"
+             android:scaleType="fitCenter"
+             android:src="@drawable/shwotask" />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:orientation="vertical"
+        android:padding="4.0dip" >
+
+
+
+        <ImageView
+            android:id="@+id/clicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:src="@drawable/tab_explore_active" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/cake_name"
+                android:layout_width="wrap_content"
+                android:layout_height="32.0dip"
+                android:textColor="@color/black"
+                android:text="bh" android:textAppearance='?android:attr/textAppearanceLarge'/>
+
+            <TextView
+                android:id="@+id/cake_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="22.0sp"
+                 android:gravity="center_vertical|center_horizontal|center" android:text="sj"/>
+
+            <TextView
+                android:id="@+id/cake_brand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="lm" 
+                android:textSize="18.0sp" android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/cake_timestamp"
+                android:layout_width="wrap_content"
+                android:layout_height="32.0dip"
+                android:textSize="12.0sp" />
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -2,281 +2,256 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/all"
     android:layout_width="fill_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
+    android:layout_height="fill_parent"
+    android:background="@drawable/dybg"
     android:orientation="vertical" >
-
-    <include
-        android:id="@+id/item_header"
-        layout="@layout/item_header" />
-
-    <ScrollView
-        android:id="@+id/screen"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+     <include
+            android:id="@+id/item_header"
+            layout="@layout/item_header" />
+<ScrollView android:id="@+id/screen"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/round"
+    android:orientation="vertical" android:layout_marginBottom="10dp" android:layout_marginLeft="10dp" android:layout_marginRight="10dp" android:layout_marginTop="10dp">
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@color/white"
         android:orientation="vertical" >
 
         <LinearLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:orientation="vertical" >
 
+            <TextView
+                android:id="@+id/wentijianshu_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="问题简述"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/wentijianshu_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10" >
+
+                <requestFocus />
+            </EditText>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/wentileibie_textView"
+                android:layout_width="103dp"
+                android:layout_height="wrap_content"
+                android:text="问题类别"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/black" />
+
+            <Spinner
+                android:id="@+id/wentileibie_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/guzhangneirong_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="故障内容"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/guzhangneirong_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10" />
+
+            <TextView
+                android:id="@+id/guzhangzuobiao_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="故障坐标"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/black" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:id="@+id/wentijianshu_textView"
+                android:layout_weight="1"
+                android:gravity="center" >
+
+                <EditText
+                    android:id="@+id/guzhangzuobiao_editText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="问题简述"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@color/black" />
-
-                <EditText
-                    android:id="@+id/wentijianshu_editText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10" >
-
-                    <requestFocus />
-                </EditText>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:id="@+id/wentileibie_textView"
-                    android:layout_width="103dp"
-                    android:layout_height="wrap_content"
-                    android:text="问题类别"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@color/black" />
-
-                <Spinner
-                    android:id="@+id/wentileibie_spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:orientation="vertical" >
-
-                <TextView
-                    android:id="@+id/guzhangneirong_textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="故障内容"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@color/black" />
-
-                <EditText
-                    android:id="@+id/guzhangneirong_editText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10" />
-
-                <TextView
-                    android:id="@+id/guzhangzuobiao_textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="故障坐标"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@color/black" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center" >
-
-                    <EditText
-                        android:id="@+id/guzhangzuobiao_editText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:hint="如116,36" />
-
-                    <Button
-                        android:id="@+id/apn"
-                        style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="APN" />
-
-                    <Button
-                        android:id="@+id/gps"
-                        style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="GPS" />
-
-                    <Button
-                        android:id="@+id/wifi"
-                        style="?android:attr/buttonStyleSmall"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="WIFI" />
-                </LinearLayout>
-
-                <TextView
-                    android:id="@+id/guzhangdizhi_textView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="故障地址"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textColor="@color/black" />
-
-                <EditText
-                    android:id="@+id/guzhangdizhi_editText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:ems="10"
-                    android:hint="XX路XX段XX号" />
-
-                <TextView
-                    android:id="@+id/wentibeizhu_textView"
+                    android:hint="如116,36" />
+
+                <Button
+                    android:id="@+id/apn"
+                    style="?android:attr/buttonStyleSmall"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="问题备注"
+                    android:layout_weight="1"
+                    android:text="APN" />
+
+                <Button
+                    android:id="@+id/gps"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="GPS" />
+
+                <Button
+                    android:id="@+id/wifi"
+                    style="?android:attr/buttonStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="WIFI" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/guzhangdizhi_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="故障地址"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/guzhangdizhi_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="XX路XX段XX号" />
+
+            <TextView
+                android:id="@+id/wentibeizhu_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="问题备注"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:id="@+id/wentibeizhu_editText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10" />
+
+            <LinearLayout
+                android:id="@+id/LinearLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/xianchangfujian_textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="现场附件"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@color/black" />
 
-                <EditText
-                    android:id="@+id/wentibeizhu_editText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:ems="10" />
-
                 <LinearLayout
-                    android:id="@+id/LinearLayout1"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:orientation="vertical" >
-
-                    <TextView
-                        android:id="@+id/xianchangfujian_textView"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="现场附件"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textColor="@color/black" />
+                        android:layout_height="match_parent"
+                        android:background="@drawable/cakeiconbg"
+                        android:gravity="center"
+                        android:orientation="vertical" >
 
+                        <ImageView
+                            android:id="@+id/imageView1"
+                            android:layout_width="333dp"
+                            android:layout_height="300dp" android:layout_marginLeft="40dip" android:layout_marginRight="40dip" android:layout_marginTop="40dip" android:layout_marginBottom="40dip"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dip"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <Button
+                            android:id="@+id/xianchangfujian_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/d2" />
+
+                        <Button
+                            android:id="@+id/editphoto"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/d3" />
+
+                        <Button
+                            android:id="@+id/shanchu_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/d4" />
+
+                    </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" >
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <Button
+                            android:id="@+id/fabu_button"
+                            android:layout_width="175dip"
+                            android:layout_height="40dip"
+                            android:background="@drawable/bg_alibuybutton"
+                            android:text="提交保存" />
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:background="@drawable/cakeiconbg"
-                            android:gravity="center"
-                            android:orientation="vertical" >
+                        <Button
+                            android:id="@+id/button5"
+                            android:layout_width="175dip"
+                            android:layout_height="40dip"
+                            android:text="清空重填" android:background="@drawable/bg_alibuybutton" android:layout_marginTop="20dip"/>
 
-                            <ImageView
-                                android:id="@+id/imageView1"
-                                android:layout_width="333dp"
-                                android:layout_height="300dp"
-                                android:layout_marginBottom="40dip"
-                                android:layout_marginLeft="40dip"
-                                android:layout_marginRight="40dip"
-                                android:layout_marginTop="40dip" />
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginLeft="20dip"
-                            android:gravity="center"
-                            android:orientation="vertical" >
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:orientation="vertical" >
-                        </LinearLayout>
                     </LinearLayout>
+
                 </LinearLayout>
+
             </LinearLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-
-                <Button
-                    android:id="@+id/xianchangfujian_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="30dp"
-                    android:background="@drawable/d2" />
-
-                <Button
-                    android:id="@+id/editphoto"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="15dp"
-                    android:layout_toRightOf="@id/xianchangfujian_button"
-                    android:background="@drawable/d3" />
-"
-
-                <Button
-                    android:id="@+id/shanchu_button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/d4" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-
-                <Button
-                    android:id="@+id/fabu_button"
-                    android:layout_width="70dp"
-                    android:layout_height="40dip"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_marginLeft="30dp"
-                    android:background="@drawable/bg_alibuybutton"
-                    android:text="提交保存" />
-
-                <Button
-                    android:id="@+id/button5"
-                    android:layout_width="70dp"
-                    android:layout_height="40dip"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="30dp"
-                    android:background="@drawable/bg_alibuybutton"
-                    android:text="清空重填" />
-            </RelativeLayout>
         </LinearLayout>
-    </ScrollView>
+    </LinearLayout>
 
-</LinearLayout>
+</ScrollView>
+ </LinearLayout>

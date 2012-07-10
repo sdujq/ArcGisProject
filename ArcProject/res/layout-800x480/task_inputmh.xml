@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_task_input"
+    android:background="@drawable/dybg"
     android:orientation="vertical" >
 
     <!-- 此xml用于定义TaskInputActivity的布局 -->
@@ -14,7 +14,7 @@
     <ScrollView
         android:id="@+id/scrollView1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="1178dp" android:layout_marginLeft="10dp" android:layout_marginRight="10dp" android:layout_marginBottom="10dp" android:layout_marginTop="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.03"
-                android:text="@string/nameOfRoad" />
+                android:text="@string/nameOfRoad" android:textColor="@color/black"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -39,8 +39,6 @@
                     android:id="@+id/t_text_nameOfRoad"
                     android:layout_width="158dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
                     android:layout_weight="0.06"
                     android:ems="10" >
 
@@ -51,14 +49,13 @@
                     android:id="@+id/t_button_zhiding"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/bt_zhiding" />
+                    android:text="@string/bt_zhiding" />
                 -->
 
                 <Button
                     android:id="@+id/t_button_qingkong"
                     android:layout_width="75dp"
                     android:layout_height="40dp"
-                    android:layout_marginRight="20dp"
                     android:background="@drawable/bg_alibuybutton"
                     android:text="@string/bt_qingkong" />
             </LinearLayout>
@@ -68,7 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.03"
-                android:text="@string/renwuleibir" />
+                android:text="@string/renwuleibir" android:textColor="@color/black"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -79,15 +76,12 @@
                     android:id="@+id/t_spinner_selectTask"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
                     android:layout_weight="0.50" />
 
                 <Button
                     android:id="@+id/t_button_xuanzequyu"
                     android:layout_width="75dp"
                     android:layout_height="40dp"
-                    android:layout_marginRight="20dp"
                     android:background="@drawable/bg_alibuybutton"
                     android:text="@string/bt_xuanzequyu" />
             </LinearLayout>
@@ -97,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.03"
-                android:text="@string/xunjianrenyuan" />
+                android:text="@string/xunjianrenyuan" android:textColor="@color/black"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -108,8 +102,7 @@
                     android:id="@+id/t_spinner_xunjianrenyuan"
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="30dp" />
+                     />
             </LinearLayout>
 
             <TextView
@@ -118,7 +111,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="0.17"
                 android:text="@string/renwuneirong"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:textAppearance="?android:attr/textAppearanceLarge" android:textColor="@color/black"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -129,8 +122,6 @@
                     android:id="@+id/t_text_renwuneirong"
                     android:layout_width="wrap_content"
                     android:layout_height="114dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
                     android:layout_weight="1.07"
                     android:ems="10" />
             </LinearLayout>
@@ -140,74 +131,66 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.16"
-                android:text="@string/kaishishijian" />
+                android:text="@string/kaishishijian" android:textColor="@color/black"/>
 
-            <RelativeLayout
+            <LinearLayout
+                android:id="@+id/LinearLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical" >
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
 
                 <Button
                     android:id="@+id/t_bt_kaishiriqi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="30dp"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp" >
+                    android:layout_weight="1" >
                 </Button>
 
                 <Spinner
                     android:id="@+id/t_spinner_kaishishijian"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="30dp"
                     android:layout_weight="0.44" />
-            </RelativeLayout>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/t_Qx_jiezhi"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.41"
-                android:text="@string/jiezhishijian" />
-
-            <RelativeLayout
+                android:text="@string/jiezhishijian" android:textColor="@color/black"/>
+
+            <LinearLayout
+                android:id="@+id/LinearLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical" >
+                android:gravity="center_vertical"
+                android:orientation="horizontal" >
 
                 <Button
                     android:id="@+id/t_bt_jieshuriqi"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="30dp"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp" >
+                    android:layout_height="wrap_content" android:layout_weight="1">
                 </Button>
 
                 <Spinner
                     android:id="@+id/t_spinner_jiezhishijian"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="30dp"
                     android:layout_weight="0.44" />
-            </RelativeLayout>
-
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal|center_vertical"
                 android:orientation="horizontal" >
 
                 <TextView
                     android:id="@+id/t_xunjianzhouqi"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/xunjianzhouqi" />
+                    android:text="@string/xunjianzhouqi" android:textColor="@color/black"/>
 
                 <EditText
                     android:id="@+id/t_text_xunjianzhouqi"
@@ -220,61 +203,60 @@
                     android:id="@+id/t_tian"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/tian" />
+                    android:text="@string/tian" android:textColor="@color/black"/>
 
                 <CheckBox
                     android:id="@+id/t_checkBox_zidongfabu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/check_zidongfabu"
-                    android:textSize="12dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:orientation="horizontal" >
+                    android:textSize="12dp" android:textColor="@color/black"/>
 
                 <CheckBox
                     android:id="@+id/t_checkBox_zidongshengcheng"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/check_zidongshengcheng" />
-
+                    android:text="@string/check_zidongshengcheng"
+                    android:textColor="@color/black" />
+
                 <EditText
                     android:id="@+id/t_text_gerenwu"
                     android:layout_width="48dp"
                     android:layout_height="wrap_content"
-                    android:ems="10" />
+                    android:layout_weight="0.06"/>
 
                 <TextView
                     android:id="@+id/t_gerenwu"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/gerenwu"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/black" />
+
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/t_beizhu"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.03"
-                android:text="@string/beizhu"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:orientation="horizontal" >
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal" >
 
+                <TextView
+                    android:id="@+id/t_beizhu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/beizhu"
+                    android:textAppearance="?android:attr/textAppearanceLarge" android:textColor="@color/black"/>
+
                 <EditText
                     android:id="@+id/t_text_beizhu"
                     android:layout_width="wrap_content"
-                    android:layout_height="139dp"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="15dp"
+                    android:layout_height="114dp"
                     android:layout_weight="1.07"
                     android:ems="10"
                     android:inputType="textMultiLine" />
@@ -289,7 +271,7 @@
                     android:id="@+id/t_zhidingren"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textAppearance="?android:attr/textAppearanceMedium" android:textColor="@color/black"/>
             </LinearLayout>
 
             <LinearLayout
@@ -301,7 +283,7 @@
                     android:id="@+id/t_zhidingshijian"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
+                    android:textAppearance="?android:attr/textAppearanceMedium" android:textColor="@color/black"/>
             </LinearLayout>
 
             <RelativeLayout
