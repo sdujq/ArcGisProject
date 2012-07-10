@@ -8,21 +8,20 @@ import java.util.List;
 
 import org.sdu.dao.RoadLineDao;
 import org.sdu.dao.TaskTypeDao;
-import org.sdu.db.DBHelper;
+import org.sdu.dao.UserDao;
 import org.sdu.dbaction.Action;
 import org.sdu.dbaction.TaskAction;
 import org.sdu.gis.R;
 import org.sdu.pojo.RoadLine;
 import org.sdu.pojo.Task;
 import org.sdu.pojo.TaskType;
+import org.sdu.pojo.User;
 import org.sdu.view.taskshow.TaskShowMhActivity;
 import org.sdujq.map.MapShowActivity;
 import org.sdujq.map.TabHomeActivity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -69,8 +68,7 @@ public class TaskInputActivity extends Activity {
 	private int mHour1, mHour2, mTime1 = 0, mTime2 = 0, timeCount1 = 0,
 			timeCount2 = 0, typeOfTaskCount = 0, perCount = 0, state = 0,
 			timeState = 0;
-	private String strmYear, strmMonth, strmDay, strmHour, strmMinute,
-			strmSecond, strTime, str_mHour1, str_mHour2;
+	private String strTime, str_mHour1, str_mHour2;
 	public static  int REQUEST_CODE = 0;
 	public static int roadLineCODE=1;
 	private String DEFAULT_TIME_FORMAT = "yyyy-MM-dd hh:mm:ss";
@@ -185,15 +183,9 @@ public class TaskInputActivity extends Activity {
 		sp_xunjianrenyuan = (Spinner) findViewById(R.id.t_spinner_xunjianrenyuan);
 
 		List<String> list = new ArrayList<String>();
-		DBHelper dbHelper = new DBHelper(TaskInputActivity.this);
-		SQLiteDatabase db = dbHelper.getReadableDatabase();
-		Cursor cursor = db.query("t_user", new String[] { "id", "name" }, null,
-				null, null, null, null);
-		while (cursor.moveToNext()) {
-			String id = cursor.getString(cursor.getColumnIndex("id"));
-			String name = cursor.getString(cursor.getColumnIndex("name"));
-			System.out.println("query--->" + name);
-			list.add(id + ":" + name);
+		List<User> ulist=(new UserDao(this)).find();
+		for(User u:ulist){
+			list.add( u.getId()+ ":" + u.getName());
 		}
 
 		// 调用ArrayAdapter的构造函数来创建ArrayAdapter对象
@@ -201,7 +193,7 @@ public class TaskInputActivity extends Activity {
 		// 第二个参数指定了下拉菜单当中每一个条目的样式
 		// 第三个参数指定了TextView控件的ID
 		// 第四个参数为整个列表提供数据
-		ArrayAdapter adapter_person = new ArrayAdapter(this,
+		ArrayAdapter<String> adapter_person = new ArrayAdapter<String> (this,
 				R.layout.person_item, R.id.textViewId, list);
 		sp_xunjianrenyuan.setAdapter(adapter_person);
 		sp_xunjianrenyuan.setPrompt("请选择巡检人员");
@@ -525,7 +517,7 @@ public class TaskInputActivity extends Activity {
 			if (roadLineId != -1) {
 				r = (new RoadLineDao(TaskInputActivity.this)).get(roadLineId);
 			}
-			MapShowActivity.startMapForShow(TaskInputActivity.this, r, true);
+			MapShowActivity.startMapForShow(TabHomeActivity.home, r, true);
 					}
 
 	}
@@ -622,8 +614,6 @@ public class TaskInputActivity extends Activity {
 		str_luduanming = et_luduanming.getText().toString();
 		task.setRoadName(str_luduanming);
 
-		str_typeOfTask = str_typeOfTask;
-		System.out.println(str_typeOfTask);
 		task.setTaskType(str_typeOfTask);
 
 		idOfPerson = Integer.parseInt(str_idOfPerson);

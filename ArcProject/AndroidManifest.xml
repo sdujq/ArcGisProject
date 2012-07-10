@@ -67,7 +67,21 @@
             android:theme="@android:style/Theme.Dialog"
             android:screenOrientation="portrait"></activity>
         <activity android:name="org.sdu.view.bugshow.BugMhActivity"></activity>
-    </application>
+   <receiver android:name="com.silenceburn.MyNote">
+			<intent-filter>
+				<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+			</intent-filter>
+			<meta-data android:name="android.appwidget.provider"
+				android:resource="@xml/my_note_widget" />
+		</receiver>
+
+		<activity android:name="com.silenceburn.MyNoteConf">
+			<intent-filter>
+				<action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+			</intent-filter>
+		</activity>
+		<activity android:name="com.silenceburn.MyNoteEdit"/>
+        </application>
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />

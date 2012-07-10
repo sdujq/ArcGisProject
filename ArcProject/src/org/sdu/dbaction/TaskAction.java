@@ -72,12 +72,12 @@ public class TaskAction  {
 	}
 	/**
 	 * 该方法返回的是给定id的任务记录
-	 * @param values
+	 * @param list
 	 * @return
 	 */
-	public List<Task> getList(ArrayList<Integer>values){
+	public List<Task> getList(List<Integer> list){
 		ArrayList<Task>taskList=new ArrayList<Task>();
-		for(int value:values){
+		for(int value:list){
 			Task task=taskDao.get(value);
 			if(task!=null)
 				taskList.add(task);

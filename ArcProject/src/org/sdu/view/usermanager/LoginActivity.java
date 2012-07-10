@@ -1,6 +1,7 @@
 package org.sdu.view.usermanager;
 
 import org.sdu.dao.UserDao;
+import org.sdu.db.DBHelper;
 import org.sdu.dbaction.Action;
 import org.sdu.gis.R;
 import org.sdujq.map.TabHomeActivity;
@@ -21,6 +22,10 @@ public class LoginActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.loginmh);
+		DBHelper dbhelper = new DBHelper(this);
+		dbhelper.getWritableDatabase();
+		dbhelper.initDb();
+		dbhelper.close();
 		init();
 	}
 

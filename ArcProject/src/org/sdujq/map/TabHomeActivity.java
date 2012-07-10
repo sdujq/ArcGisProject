@@ -192,7 +192,7 @@ public class TabHomeActivity extends TabActivity {
 			((BugInputActivity) manager.getActivity("3")).onActivityResult(
 					requestCode, resultCode, data);
 		}
-		if (resultCode == RESULT_OK
+		else if (resultCode == RESULT_OK
 				&& requestCode == TaskInputActivity.REQUEST_CODE) {
 			((TaskInputActivity) manager.getActivity("1")).onActivityResult(
 					requestCode, resultCode, data);
@@ -200,6 +200,7 @@ public class TabHomeActivity extends TabActivity {
 			((TaskInputActivity) manager.getActivity("1")).onActivityResult(
 					requestCode, resultCode, data);
 		}
+		Log.e("qq", "request"+requestCode);
 		mpAdapter.notifyDataSetChanged();
 	}
 

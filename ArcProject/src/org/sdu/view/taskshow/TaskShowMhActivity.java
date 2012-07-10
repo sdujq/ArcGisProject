@@ -3,7 +3,6 @@ package org.sdu.view.taskshow;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.sdu.dao.TaskDao;
 import org.sdu.dao.UserDao;
 import org.sdu.dbaction.Action;
 import org.sdu.dbaction.TaskAction;
@@ -19,7 +18,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -67,11 +65,9 @@ public class TaskShowMhActivity extends Activity {
 
 		public TaskShowAdapter() {
 			TaskAction tAction = new TaskAction(TaskShowMhActivity.this);
-			idList = tAction.getTaskIds(Action.currentUser.getId() + "");
-			Log.e("qq", idList.size() + "");
 			try {
-				data = tAction.getList(idList.subList(offset,
-						Math.min(limit, idList.size() - 1)));
+				idList =  tAction.getTaskIds(Action.currentUser.getId() + "");
+				data = tAction.getList(idList.subList(offset,Math.min(limit, idList.size() - 1)));
 			} catch (Exception e) {
 				data = new ArrayList<Task>();
 			}
@@ -157,9 +153,6 @@ public class TaskShowMhActivity extends Activity {
 
 		@Override
 		protected void onPostExecute(List<Task> data) {
-			// mListItems.addFirst("Added after refresh...");
-
-			// Call onRefreshComplete when the list has been refreshed.
 			lv.onRefreshComplete();
 
 			super.onPostExecute(data);

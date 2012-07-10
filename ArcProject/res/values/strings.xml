@@ -102,4 +102,8 @@
     <string name="pull_to_refresh_release_label">松手时刷新。。。</string>
     <string name="pull_to_refresh_refreshing_label">载入中。。。</string>
     <string name="pull_to_refresh_tap_label">Tap to refresh。。。</string>
+    
+    <string name="widget_string"></string>
+    <string name="note_title">请输入便签内容:</string>
+            <string name="edithint">在这里输入内容</string>
 </resources>
