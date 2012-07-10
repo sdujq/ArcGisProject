@@ -34,7 +34,8 @@ public class TaskDetialShow extends Activity implements OnClickListener {
 	public void onCreate(Bundle saved){
 		super.onCreate(saved);
 		setContentView(R.layout.details_task);
-		
+		getWindow().setLayout(500, 620);
+
 		v1=(TextView)findViewById(R.id.detial_task);
 		
 		v2=(TextView)findViewById(R.id.task_num);

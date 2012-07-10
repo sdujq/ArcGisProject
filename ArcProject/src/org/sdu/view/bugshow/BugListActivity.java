@@ -148,6 +148,8 @@ public class BugListActivity extends Activity{
 					intent.putExtra("bug", bug);
 					intent.setClass(BugListActivity.this, BugDetailActivity.class);
 					startActivity(intent);
+					overridePendingTransition(R.anim.myanimation_simple,
+							R.anim.my_alpha_action);
 				}
 			});
 			return v;

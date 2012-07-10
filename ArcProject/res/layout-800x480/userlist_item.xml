@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/listitem_selector"
+    android:orientation="horizontal"
+    android:paddingTop="3.0dip" >
+
+    <RelativeLayout
+        android:layout_width="87dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cakeiconbg" >
+
+
+         <ImageView
+             android:id="@+id/cake_icon"
+             android:layout_width="65.0dip"
+             android:layout_height="65.0dip"
+             android:layout_centerInParent="true"
+             android:scaleType="fitCenter"
+             android:src="@drawable/person" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.0"
+        android:orientation="vertical"
+        android:padding="4.0dip" >
+
+        <ImageView
+            android:id="@+id/deleteUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:src="@drawable/del" android:layout_marginRight="10dip"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+
+
+            <TextView
+                android:id="@+id/userInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="32.0dip"
+                android:textColor="@color/black"
+                android:textSize="20.0sp" />
+
+
+            <TextView
+                android:id="@+id/phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical|center_horizontal|center"
+                android:textSize="12.0sp" />
+
+            <TextView
+                android:id="@+id/cake_brand"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="" 
+                android:textSize="12.0sp"/>
+
+            <TextView
+                android:id="@+id/cake_timestamp"
+                android:layout_width="wrap_content"
+                android:layout_height="32.0dip"
+                android:textSize="12.0sp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -2,29 +2,16 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" android:background="@color/white">
+    android:orientation="vertical" android:background="@drawable/dybg">
 
     <include
         android:id="@+id/item_header"
         layout="@layout/item_header" />
 
-    <ScrollView
-        android:id="@+id/scrollView1"
+    <ListView
+        android:id="@+id/listView1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-
-            <ListView
-                android:id="@+id/listView1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" >
-            </ListView>
-
-        </LinearLayout>
-    </ScrollView>
+        android:layout_height="wrap_content" android:background="@drawable/round" android:layout_marginLeft="10dp" android:layout_marginRight="10dp" android:layout_marginBottom="10dp" android:layout_marginTop="10dp">
+    </ListView>
 
 </LinearLayout>

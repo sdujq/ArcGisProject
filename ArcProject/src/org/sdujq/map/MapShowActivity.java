@@ -1,5 +1,6 @@
 package org.sdujq.map;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -60,12 +61,14 @@ public class MapShowActivity extends Activity implements OnClickListener,
 	ArcGISTiledMapServiceLayer tileLayer;
 	ArcGISLocalTiledLayer local;
 	boolean needSave = false;
+	boolean gpsPoint =false;
 	/** Called when the activity is first created. */
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Intent it = this.getIntent();
 		roadLine = (RoadLine) it.getSerializableExtra("roadLine");
 		needSave = it.getBooleanExtra("needSave", false);
+		gpsPoint=it.getBooleanExtra("gpsPoint", false);
 		Log.e("qq", needSave + "");
 		setContentView(R.layout.mapview);
 		init();
@@ -237,6 +240,13 @@ public class MapShowActivity extends Activity implements OnClickListener,
 			action = new RoadLineAction(MapShowActivity.this);
 			if (roadLine != null) {
 				action.getRoadLine(roadLine);
+				if(gpsPoint){
+					ArrayList<Point> tempPList=new ArrayList<Point>();
+					for(Point p:action.getPointList()){
+						tempPList.add(getGPoint(p.getY(), p.getX()));
+					}
+					action.setPointList(tempPList);
+				}
 				drawCurrentLine();
 				if (action.getPointList().size() != 0) {
 					map.centerAt(action.getPointList().get(0), true);
@@ -265,14 +275,26 @@ public class MapShowActivity extends Activity implements OnClickListener,
 	}
 
 	public static void startMapForShow(Activity activity, RoadLine roadLine,
-			Boolean needSave) {
+			Boolean needSave,boolean gpsPoint) {
 		// Intent it = new Intent(activity, MapShowActivity.class);
 
 		Intent it = new Intent();
 		it.setClass(activity, MapShowActivity.class);
 		it.putExtra("roadLine", roadLine);
 		it.putExtra("needSave", needSave);
+		it.putExtra("gpsPoint", gpsPoint);
 		activity.startActivityForResult(it, 1);
 
+	}
+	
+	public static void startMapForShow(Activity activity, RoadLine roadLine,
+			Boolean needSave) {
+		Intent it = new Intent();
+		it.setClass(activity, MapShowActivity.class);
+		it.putExtra("roadLine", roadLine);
+		it.putExtra("needSave", needSave);
+		activity.startActivityForResult(it, 1);
+		activity.overridePendingTransition(R.anim.myanimation_simple,
+				R.anim.my_alpha_action);
 	}
 }

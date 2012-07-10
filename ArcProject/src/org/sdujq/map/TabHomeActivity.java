@@ -77,13 +77,14 @@ public class TabHomeActivity extends TabActivity {
 		listViews.add(getView("3", intent3));
 		listViews.add(getView("4", intent4));
 		listViews.add(getView("5", intent5));
-		
+
 		View view1 = View.inflate(TabHomeActivity.this, R.layout.tab, null);
 		((ImageView) view1.findViewById(R.id.tab_imageview_icon))
 				.setImageResource(icon1);
 		((TextView) view1.findViewById(R.id.tab_textview_title)).setText(n1);
 
-		TabHost.TabSpec spec1 = tabHost.newTabSpec(n1).setIndicator(view1).setContent(intent5);
+		TabHost.TabSpec spec1 = tabHost.newTabSpec(n1).setIndicator(view1)
+				.setContent(intent5);
 		tabHost.addTab(spec1);
 
 		View view2 = View.inflate(TabHomeActivity.this, R.layout.tab, null);
@@ -91,14 +92,16 @@ public class TabHomeActivity extends TabActivity {
 				.setImageResource(icon2);
 		((TextView) view2.findViewById(R.id.tab_textview_title)).setText(n2);
 
-		TabHost.TabSpec spec5 = tabHost.newTabSpec(n2).setIndicator(view2).setContent(intent5);
+		TabHost.TabSpec spec5 = tabHost.newTabSpec(n2).setIndicator(view2)
+				.setContent(intent5);
 		tabHost.addTab(spec5);
 
 		View view3 = View.inflate(TabHomeActivity.this, R.layout.tab, null);
 		((ImageView) view3.findViewById(R.id.tab_imageview_icon))
 				.setImageResource(icon3);
 		((TextView) view3.findViewById(R.id.tab_textview_title)).setText(n3);
-		TabHost.TabSpec spec2 = tabHost.newTabSpec(n3).setIndicator(view3).setContent(intent5);
+		TabHost.TabSpec spec2 = tabHost.newTabSpec(n3).setIndicator(view3)
+				.setContent(intent5);
 		tabHost.addTab(spec2);
 
 		View view4 = View.inflate(TabHomeActivity.this, R.layout.tab, null);
@@ -106,7 +109,8 @@ public class TabHomeActivity extends TabActivity {
 				.setImageResource(icon4);
 		((TextView) view4.findViewById(R.id.tab_textview_title)).setText(n4);
 
-		TabHost.TabSpec spec3 = tabHost.newTabSpec(n4).setIndicator(view4).setContent(intent5);
+		TabHost.TabSpec spec3 = tabHost.newTabSpec(n4).setIndicator(view4)
+				.setContent(intent5);
 		tabHost.addTab(spec3);
 
 		View view5 = View.inflate(TabHomeActivity.this, R.layout.tab, null);
@@ -114,26 +118,27 @@ public class TabHomeActivity extends TabActivity {
 				.setImageResource(icon5);
 		((TextView) view5.findViewById(R.id.tab_textview_title)).setText(n5);
 
-		TabHost.TabSpec spec4 = tabHost.newTabSpec(n5).setIndicator(view5).setContent(intent5);
+		TabHost.TabSpec spec4 = tabHost.newTabSpec(n5).setIndicator(view5)
+				.setContent(intent5);
 		tabHost.addTab(spec4);
 
 		InitViewPager();
 		tabHost.setOnTabChangedListener(new OnTabChangeListener() {
-			
+
 			@Override
 			public void onTabChanged(String tabId) {
-				if(tabId.equals(n1)){
+				if (tabId.equals(n1)) {
 					mPager.setCurrentItem(0);
-				}else if(tabId.equals(n2)){
+				} else if (tabId.equals(n2)) {
 					mPager.setCurrentItem(1);
 
-				}else if(tabId.equals(n3)){
+				} else if (tabId.equals(n3)) {
 					mPager.setCurrentItem(2);
 
-				}else if(tabId.equals(n4)){
+				} else if (tabId.equals(n4)) {
 					mPager.setCurrentItem(3);
 
-				}else if(tabId.equals(n5)){
+				} else if (tabId.equals(n5)) {
 					mPager.setCurrentItem(4);
 				}
 				mpAdapter.notifyDataSetChanged();
@@ -148,11 +153,12 @@ public class TabHomeActivity extends TabActivity {
 	private void InitViewPager() {
 		mpAdapter = new MyPagerAdapter(listViews);
 		mPager = (ViewPager) findViewById(R.id.vPager);
-	
+
 		mPager.setAdapter(mpAdapter);
 		mPager.setCurrentItem(0);
 		mPager.setOnPageChangeListener(new MyOnPageChangeListener());
 	}
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == InputActivity.TAKE_PHOTO_REQUEST_CODE) {
@@ -178,13 +184,25 @@ public class TabHomeActivity extends TabActivity {
 			}
 		} else if (requestCode == Photo.CUT_PHOTO_REQUEST_CODE) {
 			if (resultCode == RESULT_OK && data != null) {
-					((BugInputActivity)manager.getActivity("3")).onActivityResult(requestCode, resultCode, data);
+				((BugInputActivity) manager.getActivity("3")).onActivityResult(
+						requestCode, resultCode, data);
 			}
-		} else if (requestCode == PhotoDrawerTemp.DrawRquest&& resultCode == RESULT_OK) {
-			((BugInputActivity)manager.getActivity("3")).onActivityResult(requestCode, resultCode, data);
+		} else if (requestCode == PhotoDrawerTemp.DrawRquest
+				&& resultCode == RESULT_OK) {
+			((BugInputActivity) manager.getActivity("3")).onActivityResult(
+					requestCode, resultCode, data);
+		}
+		if (resultCode == RESULT_OK
+				&& requestCode == TaskInputActivity.REQUEST_CODE) {
+			((TaskInputActivity) manager.getActivity("1")).onActivityResult(
+					requestCode, resultCode, data);
+		} else if (requestCode == 1 && resultCode == RESULT_OK) {
+			((TaskInputActivity) manager.getActivity("1")).onActivityResult(
+					requestCode, resultCode, data);
 		}
 		mpAdapter.notifyDataSetChanged();
 	}
+
 	/**
 	 * Ò³¿¨ÇÐ»»¼àÌý
 	 */

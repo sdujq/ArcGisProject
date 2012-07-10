@@ -17,6 +17,7 @@ import org.sdu.pojo.Task;
 import org.sdu.pojo.TaskType;
 import org.sdu.view.taskshow.TaskShowMhActivity;
 import org.sdujq.map.MapShowActivity;
+import org.sdujq.map.TabHomeActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -70,7 +71,8 @@ public class TaskInputActivity extends Activity {
 			timeState = 0;
 	private String strmYear, strmMonth, strmDay, strmHour, strmMinute,
 			strmSecond, strTime, str_mHour1, str_mHour2;
-	private int REQUEST_CODE = 0;
+	public static  int REQUEST_CODE = 0;
+	public static int roadLineCODE=1;
 	private String DEFAULT_TIME_FORMAT = "yyyy-MM-dd hh:mm:ss";
 	private String str_typeOfTask, str_idOfPerson, str_timeOfStart,
 			str_timeOfEnd;
@@ -378,7 +380,7 @@ public class TaskInputActivity extends Activity {
 	}
 
 	// 用于返回从DataPickActivity中设置的日期，并设置在本activity中显示
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 		if (requestCode == REQUEST_CODE) {
 
@@ -443,7 +445,7 @@ public class TaskInputActivity extends Activity {
 
 			intent1.putExtra("values", 1);
 
-			startActivityForResult(intent1, REQUEST_CODE);
+			TabHomeActivity.home.startActivityForResult(intent1, REQUEST_CODE);
 
 		}
 
@@ -458,7 +460,7 @@ public class TaskInputActivity extends Activity {
 			Intent intent = new Intent(TaskInputActivity.this,
 					DatePickActivity.class);
 			intent.putExtra("values", 2);
-			startActivityForResult(intent, REQUEST_CODE);
+			TabHomeActivity.home.startActivityForResult(intent, REQUEST_CODE);
 
 		}
 
@@ -524,7 +526,7 @@ public class TaskInputActivity extends Activity {
 				r = (new RoadLineDao(TaskInputActivity.this)).get(roadLineId);
 			}
 			MapShowActivity.startMapForShow(TaskInputActivity.this, r, true);
-		}
+					}
 
 	}
 

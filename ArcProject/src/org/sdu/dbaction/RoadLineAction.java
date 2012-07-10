@@ -79,6 +79,9 @@ public class RoadLineAction {
 		return plist;
 	}
 	
+	public void setPointList(ArrayList<Point> Lst){
+		this.plist=Lst;
+	}
 	public Point next(){
 		index++;
 		if(index>=plist.size()){

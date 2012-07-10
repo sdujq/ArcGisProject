@@ -13,16 +13,12 @@
         <activity
             android:name="org.sdu.gis.ArcProjectActivity"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+           
         </activity>
         <activity android:name="org.sdu.view.taskshow.TaskShowActivity" >
         </activity>
         <activity android:name="org.sdu.view.taskshow.TaskDetialShow" 
-            android:theme="@android:style/Theme.Dialog">
+            android:theme="@style/Theme.Dialog">
         </activity>
         <activity android:name="org.sdu.view.taskinput.TaskInputActivity" >
         </activity>
@@ -45,7 +41,12 @@
         <activity android:name="org.sdu.view.buginput.BugInputActivity"></activity>
         <activity android:name="org.sdu.dbaction.DBDebug"></activity>
         <activity android:name="org.sdu.view.usermanager.AddUserActivity"></activity>
-        <activity android:name="org.sdu.view.usermanager.LoginActivity"></activity>
+        <activity android:name="org.sdu.view.usermanager.LoginActivity">
+             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name="org.sdu.view.usermanager.UserListActivity"></activity>
         <activity android:name="org.sdu.view.usermanager.UserInfoActivity"
             android:theme="@android:style/Theme.Dialog"></activity>
@@ -59,7 +60,7 @@
         
          <activity android:name="org.sdu.view.bugshow.BugListActivity"></activity>
          <activity android:name="org.sdu.view.bugshow.BugDetailActivity"
-             android:theme="@android:style/Theme.Dialog"></activity>
+             android:theme="@style/Theme.Dialog"></activity>
         <activity android:name="org.sdu.view.taskinput.TaskInputActivityMh"></activity>
         <activity android:name="org.sdu.view.taskshow.TaskShowMhActivity"></activity>
         <activity android:name="org.sdu.bmputil.PhotoDrawerTemp"
@@ -95,8 +96,8 @@
 	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 	<uses-permission android:name="android.permission.READ_CONTACTS"></uses-permission>
     <supports-screens
-        android:anyDensity="true"
+        android:anyDensity="false"
         android:largeScreens="true"
-        android:normalScreens="true"
-        android:smallScreens="true" />
+        android:normalScreens="false"
+        android:smallScreens="false" />
 </manifest>
