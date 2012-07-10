@@ -1,5 +1,6 @@
 package org.sdu.dbaction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.sdu.dao.UserDao;
@@ -81,6 +82,34 @@ public class Action {
 	public void setInfo(String info) {
 		this.info = info;
 	}
-	
-	
+	/**
+	 * 返回用户的id列表
+	 * @return
+	 */
+	public ArrayList<Integer>getUserIds(){
+		UserDao uDao=new UserDao(context);
+		ArrayList<Integer>ids=new ArrayList<Integer>();
+		ArrayList<User>userList=(ArrayList<User>)uDao.find();
+		if(userList!=null&&userList.size()>0){
+			for(User user:userList){
+				ids.add(user.getId());
+			}
+		}
+		return ids;
+	}
+	/**
+	 * 返回给定id列表的用户列表
+	 * @param values
+	 * @return
+	 */
+	public List<User> getList(ArrayList<Integer>values){
+		UserDao uDao=new UserDao(context);
+		ArrayList<User>userList=new ArrayList<User>();
+		for(int value:values){
+			User user=uDao.get(value);
+			if(user!=null)
+				userList.add(user);
+		}
+		return userList;
+	}
 }

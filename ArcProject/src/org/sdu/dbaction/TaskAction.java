@@ -1,5 +1,6 @@
 package org.sdu.dbaction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.sdu.dao.TaskDao;
@@ -56,5 +57,32 @@ public class TaskAction  {
 		Task task=taskDao.get(taskId);
 		task.setState("1");
 		taskDao.update(task);
+	}
+	/**
+	 * 返回符合条件的记录的id
+	 * @param userId 发布人员或制定人员的id
+	 * @return
+	 */
+	public List<Integer> getTaskIds(String userId){
+		ArrayList<Integer>ids=new ArrayList<Integer>();
+		ArrayList<Task>list=(ArrayList<Task>) taskDao.find(null,"select * from t_task where inspectionPersonId= ? or createPersonId= ? ", new String[]{userId,userId},null,null,null, null);
+		for(Task task:list)
+			ids.add(task.getId());
+		return ids;
+	}
+	/**
+	 * 该方法返回的是给定id的任务记录
+	 * @param values
+	 * @return
+	 */
+	public List<Task> getList(ArrayList<Integer>values){
+		ArrayList<Task>taskList=new ArrayList<Task>();
+		for(int value:values){
+			Task task=taskDao.get(value);
+			if(task!=null)
+				taskList.add(task);
+		}
+		return taskList;
+		
 	}
 }
