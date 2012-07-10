@@ -67,7 +67,7 @@ public class TaskAction  {
 		ArrayList<Integer>ids=new ArrayList<Integer>();
 		ArrayList<Task>list=(ArrayList<Task>) taskDao.find(null,"select * from t_task where inspectionPersonId= ? or createPersonId= ? ", new String[]{userId,userId},null,null,null, null);
 		for(Task task:list)
-			ids.add(task.getId());
+			ids.add(0,task.getId());
 		return ids;
 	}
 	/**

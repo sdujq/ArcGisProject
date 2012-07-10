@@ -92,9 +92,10 @@ public class Action {
 		ArrayList<User>userList=(ArrayList<User>)uDao.find();
 		if(userList!=null&&userList.size()>0){
 			for(User user:userList){
-				ids.add(user.getId());
+				ids.add(0,user.getId());
 			}
 		}
+		
 		return ids;
 	}
 	/**

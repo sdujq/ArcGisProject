@@ -87,7 +87,7 @@ public class BugAction  {
 		ArrayList<Bug>bugList=(ArrayList<Bug>) search(selection,args);
 		if(bugList!=null&&bugList.size()>0){
 			for(Bug bug:bugList){
-				ids.add(bug.getId());
+				ids.add(0,bug.getId());
 			}
 		}
 		return ids;
