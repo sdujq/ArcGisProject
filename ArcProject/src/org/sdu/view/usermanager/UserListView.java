@@ -25,10 +25,15 @@ public class UserListView extends AbsShow{
 	private ArrayList<User>userList;
 	public  ListView lv;
 	private UserDao ud;
+	
 	Handler h=new Handler(){
 		@Override
 		public void handleMessage(Message m){
+			if(lv==null){
+				lv=(ListView) view.findViewById(R.id.userlist);
+			}
 			lv.setAdapter(new UserAdapter());
+			view.postInvalidate();
 		}
 	};
 	public UserListView(FrameActivity activity, int layout, String name) {

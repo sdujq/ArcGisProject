@@ -106,4 +106,18 @@
     <string name="widget_string"></string>
     <string name="note_title">请输入便签内容:</string>
             <string name="edithint">在这里输入内容</string>
+     <string name="labelCity"><b><i>请输入您要查看的城市名称:</i></b></string>
+	<string name="btnSave">保存</string>
+	<string name="titleConfigure">配置</string>
+	<string name="titleDetail">四天天气</string>
+	<string name="lableUpdateTime"><b><i>设置应用更新时间：</i></b></string>
+	<string name="empty">数据为空</string>
+	<string name="dateFormat">yyyy年MM月dd日</string>
+	<string name="monday">星期一</string>
+	<string name="tuesday">星期二</string>
+	<string name="wednesday">星期三</string>
+	<string name="thursday">星期四</string>
+	<string name="friday">星期五</string>
+	<string name="saturday">星期六</string>
+	<string name="sunday">星期日</string>
 </resources>
