@@ -17,12 +17,11 @@ public class BugMhActivity extends FrameActivity{
 	public void loadInfo(){
 		this.info=new FrameInfo();
 		info.setTitle("问题查询");
-		AbsShow[][] views=new AbsShow[2][];
+		AbsShow[][] views=new AbsShow[1][];
 		
-		views[0]=new AbsShow[1];
+		views[0]=new AbsShow[2];
 		views[0][0]=new BugSearchView(this,R.layout.bug_search,"查询条件");
-		views[1]=new AbsShow[1];
-		views[1][0]=new BugListView(this,R.layout.bug_listview,"问题列表");
+		views[0][1]=new BugListView(this,R.layout.bug_listview,"问题列表");
 		
 		info.setViews(views);
 	}

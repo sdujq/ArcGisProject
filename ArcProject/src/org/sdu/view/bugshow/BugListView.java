@@ -17,7 +17,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -137,19 +136,8 @@ public class BugListView extends AbsShow {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				Log.e("qq", bug.getAddress()+bug.getState()+bug.getUserId());
 			}
-			/*
-			 * delete.setOnClickListener(new OnClickListener() {
-			 * 
-			 * @Override public void onClick(View v) { // TODO Auto-generated
-			 * method stub if (v.getId() == R.id.deleteUser) { // 获取用户id String
-			 * _id = bugId.getText().toString().trim(); int id =
-			 * Integer.parseInt(_id); // 通过id删除用户 bd.delete(id); // 刷新列表 bugList
-			 * = (ArrayList<Bug>) ba.search(selection, selectionArgs);
-			 * lv.setAdapter(new UserAdapter()); }
-			 * 
-			 * } });
-			 */
 			// 为用户查看详情
 			v.setOnClickListener(new OnClickListener() {
 
