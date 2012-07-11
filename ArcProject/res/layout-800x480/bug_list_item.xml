@@ -31,20 +31,20 @@
                 android:id="@+id/bugAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="12.0sp" android:layout_weight="1"/>
+                android:textSize="12.0sp" android:layout_weight="1" android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/bugState"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="" 
-                android:textSize="12.0sp" android:layout_weight="1"/>
+                android:textSize="12.0sp" android:layout_weight="1" android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/bugUserId"
                 android:layout_width="wrap_content"
                 android:layout_height="32.0dip"
-                android:textSize="12.0sp" android:layout_weight="1"/>
+                android:textSize="12.0sp" android:layout_weight="1" android:textColor="@color/black"/>
 
         </LinearLayout>
 

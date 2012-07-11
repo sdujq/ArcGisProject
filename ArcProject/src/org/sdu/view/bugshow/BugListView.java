@@ -55,21 +55,21 @@ public class BugListView extends AbsShow {
 	public void init() {
 		ba = new BugAction(activity);
 		bd = new BugDao(activity);
-		udao=new UserDao(activity);
-		selection="";
-		selectionArgs="";
+		udao = new UserDao(activity);
+		selection = "";
+		selectionArgs = "";
 		if (bt != null) {
 			if (bt.getId() != 0) {
 				selection += "id=? and ";
 				selectionArgs += bt.getId() + "|";
 			}
-			if (bt.getAddress() != null&&!bt.getAddress().equals("")) {
+			if (bt.getAddress() != null && !bt.getAddress().equals("")) {
 				selection += "address like ? and ";
 				selectionArgs += bt.getAddress().trim() + "|";
 			}
-			if (bt.getState() != null&&!bt.getState().equals("")) {
+			if (bt.getState() != null && !bt.getState().equals("")) {
 				selection += "state=? and ";
-				selectionArgs += "%"+bt.getState().trim() + "%|";
+				selectionArgs += "%" + bt.getState().trim() + "%|";
 			}
 			if (bt.getBugTypeId() != 0) {
 				selection += "bugTypeId=? and ";
@@ -88,9 +88,8 @@ public class BugListView extends AbsShow {
 			selectionArgs = selectionArgs.substring(0,
 					selectionArgs.lastIndexOf('|'));
 			bugList = (ArrayList<Bug>) ba.search(selection, selectionArgs);
-		}
-		else{
-			bugList=(ArrayList<Bug>) (new BugDao(activity)).find();
+		} else {
+			bugList = (ArrayList<Bug>) (new BugDao(activity)).find();
 		}
 		lv = (ListView) view.findViewById(R.id.userlist);
 		lv.setAdapter(new UserAdapter());
@@ -127,32 +126,30 @@ public class BugListView extends AbsShow {
 			final TextView bugState = (TextView) v.findViewById(R.id.bugState);
 			final TextView bugUserId = (TextView) v
 					.findViewById(R.id.bugUserId);
-			//ImageView delete = (ImageView) v.findViewById(R.id.deleteUser);
+			// ImageView delete = (ImageView) v.findViewById(R.id.deleteUser);
 			if (bugList.size() > position) {
 				Bug bug = bugList.get(position);
 				bugId.setText(bug.getId() + "");
 				bugAdress.setText(bug.getAddress());
 				bugState.setText(bug.getState());
-				bugUserId.setText(udao.get(bug.getUserId()).toString());
-			}
-			/*delete.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick(View v) {
-					// TODO Auto-generated method stub
-					if (v.getId() == R.id.deleteUser) {
-						// 获取用户id
-						String _id = bugId.getText().toString().trim();
-						int id = Integer.parseInt(_id);
-						// 通过id删除用户
-						bd.delete(id);
-						// 刷新列表
-						bugList = (ArrayList<Bug>) ba.search(selection,
-								selectionArgs);
-						lv.setAdapter(new UserAdapter());
-					}
-
+				try {
+					bugUserId.setText(udao.get(bug.getUserId()).toString());
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-			});*/
+			}
+			/*
+			 * delete.setOnClickListener(new OnClickListener() {
+			 * 
+			 * @Override public void onClick(View v) { // TODO Auto-generated
+			 * method stub if (v.getId() == R.id.deleteUser) { // 获取用户id String
+			 * _id = bugId.getText().toString().trim(); int id =
+			 * Integer.parseInt(_id); // 通过id删除用户 bd.delete(id); // 刷新列表 bugList
+			 * = (ArrayList<Bug>) ba.search(selection, selectionArgs);
+			 * lv.setAdapter(new UserAdapter()); }
+			 * 
+			 * } });
+			 */
 			// 为用户查看详情
 			v.setOnClickListener(new OnClickListener() {
 
@@ -170,6 +167,7 @@ public class BugListView extends AbsShow {
 			});
 			return v;
 		}
+
 		@Override
 		public void unregisterDataSetObserver(DataSetObserver observer) {
 			if (observer != null) {

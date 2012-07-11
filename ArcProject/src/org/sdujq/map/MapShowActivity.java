@@ -241,7 +241,7 @@ public class MapShowActivity extends Activity implements OnClickListener,
 	public void onStatusChanged(Object arg0, STATUS arg1) {
 		if (arg1 == STATUS.INITIALIZED) {
 			map.setScale(150000);
-			map.centerAt(new Point(1.3023393414439667E7, 4393159.951589695),
+			map.centerAt(new Point(60454.299497581625,55406.27427414925),
 					true);
 			action = new RoadLineAction(MapShowActivity.this);
 			if (roadLine != null) {
