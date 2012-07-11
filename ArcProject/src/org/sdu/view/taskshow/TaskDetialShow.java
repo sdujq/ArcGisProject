@@ -87,18 +87,18 @@ public class TaskDetialShow extends Activity implements OnClickListener {
 //        int alltask = ls.size();
 //		
 		
-		v2.setText("任务编号:"+t_num);
-		v3.setText("任务类型:"+t_type);
-		v4.setText("路段名:"+r_name);
-		v5.setText("任务描述:"+t_neirong);
-		v6.setText("制定人员:"+m_name);
-		v7.setText("制定时间:"+m_time);
-		v8.setText("巡检人员:"+w_name);
-		v9.setText("巡检周期:"+c_time);
-		v10.setText("期限起:"+t_begin);
-		v11.setText("期限止:"+t_end);
-		v12.setText("是否完成:"+over);
-		v13.setText("备注："+beizhu);
+		v2.setText("任务编号: "+t_num);
+		v3.setText("任务类型: "+t_type);
+		v4.setText("路段名称: "+r_name);
+		v5.setText("任务描述: "+t_neirong);
+		v6.setText("制定人员: "+m_name);
+		v7.setText("制定时间: "+m_time);
+		v8.setText("巡检人员: "+w_name);
+		v9.setText("巡检周期: "+c_time);
+		v10.setText("起始时间: "+t_begin);
+		v11.setText("终止时间: "+t_end);
+		v12.setText("是否完成: "+over);
+		v13.setText("备注信息: "+beizhu);
 		
 		
 		b1=(Button)findViewById(R.id.gettask);
