@@ -150,7 +150,7 @@ public class TaskShowMhActivity extends Activity {
 			List<Task> lst = new ArrayList<Task>();
 			try {
 				Thread.sleep(500);
-				refreshData();
+				h.sendEmptyMessage(0);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

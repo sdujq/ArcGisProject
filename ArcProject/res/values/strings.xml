@@ -98,10 +98,10 @@
      <string name="bug_bugTypeId">类型编号 :</string>
      <string name="bug_userId">人员编号 :</string>
      
-<string name="pull_to_refresh_pull_label">继续下拉刷新。。。</string>
-    <string name="pull_to_refresh_release_label">松手时刷新。。。</string>
-    <string name="pull_to_refresh_refreshing_label">载入中。。。</string>
-    <string name="pull_to_refresh_tap_label">Tap to refresh。。。</string>
+<string name="pull_to_refresh_pull_label">继续下拉刷新…</string>
+    <string name="pull_to_refresh_release_label">松开刷新…</string>
+    <string name="pull_to_refresh_refreshing_label">载入中…</string>
+    <string name="pull_to_refresh_tap_label">按下刷新…</string>
     
     <string name="widget_string"></string>
     <string name="note_title">请输入便签内容:</string>
