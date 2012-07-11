@@ -61,14 +61,15 @@ public class MapShowActivity extends Activity implements OnClickListener,
 	ArcGISTiledMapServiceLayer tileLayer;
 	ArcGISLocalTiledLayer local;
 	boolean needSave = false;
-	boolean gpsPoint =false;
+	boolean gpsPoint = false;
+
 	/** Called when the activity is first created. */
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		Intent it = this.getIntent();
 		roadLine = (RoadLine) it.getSerializableExtra("roadLine");
 		needSave = it.getBooleanExtra("needSave", false);
-		gpsPoint=it.getBooleanExtra("gpsPoint", false);
+		gpsPoint = it.getBooleanExtra("gpsPoint", false);
 		Log.e("qq", needSave + "");
 		setContentView(R.layout.mapview);
 		init();
@@ -121,17 +122,16 @@ public class MapShowActivity extends Activity implements OnClickListener,
 		bt3.setOnClickListener(this);
 		bt4.setOnClickListener(this);
 		bt5.setOnClickListener(this);
-		
-		spinner =(Spinner)findViewById(R.id.spinner1);
-		List<RoadLine> lineLst=(new RoadLineDao(this)).find();
-		final ArrayAdapter<RoadLine> adapter = new ArrayAdapter<RoadLine>(
-				this,
+
+		spinner = (Spinner) findViewById(R.id.spinner1);
+		List<RoadLine> lineLst = (new RoadLineDao(this)).find();
+		final ArrayAdapter<RoadLine> adapter = new ArrayAdapter<RoadLine>(this,
 				android.R.layout.simple_spinner_item);
-		RoadLine head=new RoadLine();
+		RoadLine head = new RoadLine();
 		head.setId(-1);
 		head.setName("点击查看已有路径 ");
 		adapter.add(head);
-		for(RoadLine r:lineLst){
+		for (RoadLine r : lineLst) {
 			adapter.add(r);
 		}
 
@@ -141,11 +141,12 @@ public class MapShowActivity extends Activity implements OnClickListener,
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
-				if(arg2==0){
+				if (arg2 == 0) {
 					return;
 				}
-				action=new RoadLineAction(MapShowActivity.this);
-				action.getRoadLine(adapter.getItem(arg2));
+				roadLine = adapter.getItem(arg2);
+				action = new RoadLineAction(MapShowActivity.this);
+				action.getRoadLine(roadLine);
 				drawCurrentLine();
 				if (action.getPointList().size() != 0) {
 					map.centerAt(action.getPointList().get(0), true);
@@ -154,7 +155,7 @@ public class MapShowActivity extends Activity implements OnClickListener,
 
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
-				
+
 			}
 		});
 	}
@@ -211,7 +212,12 @@ public class MapShowActivity extends Activity implements OnClickListener,
 			 * map.getCenter().getY());
 			 */
 			if (needSave) {
-				int id = action.saveCurrentRoadLine("");
+				int id = 0;
+				if (roadLine != null && roadLine.getId() > 0) {
+					id=action.updateRoadLine(roadLine);
+				} else {
+					id = action.saveCurrentRoadLine("");
+				}
 				Intent it = new Intent();
 				it.putExtra("id", id);
 				setResult(RESULT_OK, it);
@@ -240,9 +246,9 @@ public class MapShowActivity extends Activity implements OnClickListener,
 			action = new RoadLineAction(MapShowActivity.this);
 			if (roadLine != null) {
 				action.getRoadLine(roadLine);
-				if(gpsPoint){
-					ArrayList<Point> tempPList=new ArrayList<Point>();
-					for(Point p:action.getPointList()){
+				if (gpsPoint) {
+					ArrayList<Point> tempPList = new ArrayList<Point>();
+					for (Point p : action.getPointList()) {
 						tempPList.add(getGPoint(p.getY(), p.getX()));
 					}
 					action.setPointList(tempPList);
@@ -275,7 +281,7 @@ public class MapShowActivity extends Activity implements OnClickListener,
 	}
 
 	public static void startMapForShow(Activity activity, RoadLine roadLine,
-			Boolean needSave,boolean gpsPoint) {
+			Boolean needSave, boolean gpsPoint) {
 		// Intent it = new Intent(activity, MapShowActivity.class);
 
 		Intent it = new Intent();
@@ -286,7 +292,7 @@ public class MapShowActivity extends Activity implements OnClickListener,
 		activity.startActivityForResult(it, 1);
 
 	}
-	
+
 	public static void startMapForShow(Activity activity, RoadLine roadLine,
 			Boolean needSave) {
 		Intent it = new Intent();

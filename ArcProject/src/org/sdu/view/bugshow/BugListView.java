@@ -11,6 +11,7 @@ import org.sdujq.frame.AbsShow;
 import org.sdujq.frame.FrameActivity;
 
 import android.content.Intent;
+import android.database.DataSetObserver;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -168,6 +169,12 @@ public class BugListView extends AbsShow {
 				}
 			});
 			return v;
+		}
+		@Override
+		public void unregisterDataSetObserver(DataSetObserver observer) {
+			if (observer != null) {
+				super.unregisterDataSetObserver(observer);
+			}
 		}
 
 	}

@@ -9,6 +9,7 @@ import org.sdujq.frame.AbsShow;
 import org.sdujq.frame.FrameActivity;
 
 import android.content.Intent;
+import android.database.DataSetObserver;
 import android.os.Handler;
 import android.os.Message;
 import android.text.util.Linkify;
@@ -123,6 +124,11 @@ public class UserListView extends AbsShow{
 			});
 			return v;
 		}
-		
+		@Override
+		public void unregisterDataSetObserver(DataSetObserver observer) {
+			if (observer != null) {
+				super.unregisterDataSetObserver(observer);
+			}
+		}
 	}
 }

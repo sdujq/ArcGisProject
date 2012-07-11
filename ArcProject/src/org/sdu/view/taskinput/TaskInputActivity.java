@@ -421,6 +421,12 @@ public class TaskInputActivity extends Activity {
 
 		} else if (requestCode == 1 && resultCode == RESULT_OK) {
 			roadLineId = data.getIntExtra("id", -1);
+			if(roadLineId!=-1){
+				RoadLine line=(new RoadLineDao(this)).get(roadLineId);
+				if(line.getName()!=null&&!line.getName().equals("")){
+					et_luduanming.setText(line.getName());
+				}
+			}
 			Log.e("qq", "saved road id is " + roadLineId);
 		}
 

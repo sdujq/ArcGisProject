@@ -13,6 +13,7 @@ import org.sdujq.map.PullToRefreshListView.OnRefreshListener;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.DataSetObserver;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -134,7 +135,12 @@ public class TaskShowMhActivity extends Activity {
 			});
 			return v;
 		}
-
+		@Override
+		public void unregisterDataSetObserver(DataSetObserver observer) {
+			if (observer != null) {
+				super.unregisterDataSetObserver(observer);
+			}
+		}
 	}
 
 	private class GetDataTask extends AsyncTask<Void, Void, List<Task>> {

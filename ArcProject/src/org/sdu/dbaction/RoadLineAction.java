@@ -94,4 +94,10 @@ public class RoadLineAction {
 		last=index;
 		return plist.get(index);
 	}
+	
+	public int updateRoadLine(RoadLine r){
+		RoadLineDao rdao=new RoadLineDao(context);
+		rdao.update(r);
+		return r.getId();
+	}
 }

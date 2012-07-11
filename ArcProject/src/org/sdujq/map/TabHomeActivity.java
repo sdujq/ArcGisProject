@@ -15,6 +15,7 @@ import org.sdu.view.usermanager.AccountActivity;
 import android.app.LocalActivityManager;
 import android.app.TabActivity;
 import android.content.Intent;
+import android.database.DataSetObserver;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -191,8 +192,7 @@ public class TabHomeActivity extends TabActivity {
 				&& resultCode == RESULT_OK) {
 			((BugInputActivity) manager.getActivity("3")).onActivityResult(
 					requestCode, resultCode, data);
-		}
-		else if (resultCode == RESULT_OK
+		} else if (resultCode == RESULT_OK
 				&& requestCode == TaskInputActivity.REQUEST_CODE) {
 			((TaskInputActivity) manager.getActivity("1")).onActivityResult(
 					requestCode, resultCode, data);
@@ -200,7 +200,7 @@ public class TabHomeActivity extends TabActivity {
 			((TaskInputActivity) manager.getActivity("1")).onActivityResult(
 					requestCode, resultCode, data);
 		}
-		Log.e("qq", "request"+requestCode);
+		Log.e("qq", "request" + requestCode);
 		mpAdapter.notifyDataSetChanged();
 	}
 
@@ -225,6 +225,7 @@ public class TabHomeActivity extends TabActivity {
 	}
 
 	private View getView(String id, Intent intent) {
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		return manager.startActivity(id, intent).getDecorView();
 	}
 
@@ -234,6 +235,7 @@ public class TabHomeActivity extends TabActivity {
 		public MyPagerAdapter(List<View> mListViews) {
 			this.mListViews = mListViews;
 		}
+
 
 		@Override
 		public void destroyItem(View arg0, int arg1, Object arg2) {
