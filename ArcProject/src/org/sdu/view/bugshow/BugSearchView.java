@@ -112,7 +112,7 @@ public class BugSearchView extends AbsShow {
 				BugListView.bt=bt;
 				if(BugListView.currentView!=null){
 					BugListView.refreshData();
-					activity.changeTo(1, 0);
+					activity.changeTo(0, 1);
 				}
 				
 			}
@@ -169,7 +169,8 @@ public class BugSearchView extends AbsShow {
 							edate = c.getTime();
 						}
 					}
-				}, mYear, mMonth, mDay);
+				}, mYear, mMonth, mDay){
+		};
 		d.show();
 	}
 }

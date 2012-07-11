@@ -2,6 +2,8 @@ package org.sdu.view.bugshow;
 
 import org.sdu.bmputil.BitmapTool;
 import org.sdu.dao.BugDao;
+import org.sdu.dao.BugTypeDao;
+import org.sdu.dao.UserDao;
 import org.sdu.gis.R;
 import org.sdu.pojo.Bug;
 import org.sdu.pojo.RoadLine;
@@ -65,9 +67,9 @@ public class BugDetailActivity extends Activity implements OnClickListener{
 		_bug_tag.setText(bug.getTag());
 		_bug_content.setText(bug.getContent());
 		_bug_point.setText(bug.getPoint());
-		_bug_userId.setText(bug.getUserId() + "");
+		_bug_userId.setText(new UserDao(this).get(bug.getUserId()) + "");
 		_bug_state.setText(bug.getState());
-		_bug_bugTypeId.setText(bug.getBugTypeId() + "");
+		_bug_bugTypeId.setText(new BugTypeDao(this).get(bug.getBugTypeId()).getName() + "");
 		bugDao = new BugDao(this);
 		if (bug.getAttachment() != null) {
 			_bug_attachment.setImageBitmap(BitmapTool.Bytes2Bimap(bug

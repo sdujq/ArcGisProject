@@ -95,8 +95,8 @@
      <string name="bug_content">问题内容 :</string>
      <string name="bug_state">解决状态 :</string>
      <string name="bug_point">问题坐标 :</string>
-     <string name="bug_bugTypeId">类型编号 :</string>
-     <string name="bug_userId">人员编号 :</string>
+     <string name="bug_bugTypeId">故障类型 :</string>
+     <string name="bug_userId">上报人员 :</string>
      
 <string name="pull_to_refresh_pull_label">继续下拉刷新…</string>
     <string name="pull_to_refresh_release_label">松开刷新…</string>
