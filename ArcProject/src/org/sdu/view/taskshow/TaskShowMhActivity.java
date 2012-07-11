@@ -9,8 +9,10 @@ import org.sdu.dbaction.TaskAction;
 import org.sdu.gis.R;
 import org.sdu.pojo.Task;
 import org.sdujq.map.PullToRefreshListView;
+import org.sdujq.map.PullToRefreshListView.OnLoadMoreListener;
 import org.sdujq.map.PullToRefreshListView.OnRefreshListener;
 
+import android.R.integer;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.DataSetObserver;
@@ -19,6 +21,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -30,6 +33,7 @@ public class TaskShowMhActivity extends Activity {
 
 	PullToRefreshListView lv;
 	public static TaskShowMhActivity currentActivity;
+	TaskShowAdapter adapter;
 	public Handler h = new Handler() {
 		@Override
 		public void handleMessage(Message m) {
@@ -38,7 +42,8 @@ public class TaskShowMhActivity extends Activity {
 	};
 
 	public void refreshData() {
-		this.lv.setAdapter(new TaskShowAdapter());
+		adapter=new TaskShowAdapter();
+		this.lv.setAdapter(adapter);
 	}
 
 	@Override
@@ -47,12 +52,19 @@ public class TaskShowMhActivity extends Activity {
 		setContentView(R.layout.taskshowmh);
 		lv = (PullToRefreshListView) findViewById(R.id.listView1);
 		currentActivity = this;
-		lv.setAdapter(new TaskShowAdapter());
+		adapter=new TaskShowAdapter();
+		lv.setAdapter(adapter);
 		lv.setOnRefreshListener(new OnRefreshListener() {
-
 			@Override
 			public void onRefresh() {
 				new GetDataTask().execute();
+			}
+		});
+		lv.setOnLoadMoreListener(new OnLoadMoreListener() {
+			
+			@Override
+			public void onLoadMore() {
+				adapter.loadMore();
 			}
 		});
 	}
@@ -77,6 +89,23 @@ public class TaskShowMhActivity extends Activity {
 			d3 = getResources().getDrawable(R.drawable.state_3);
 		}
 
+		public void loadMore(){
+			if(limit>idList.size()){
+				return;
+			}
+			limit+=6;
+			TaskAction tAction = new TaskAction(TaskShowMhActivity.this);
+			try {
+				idList =  tAction.getTaskIds(Action.currentUser.getId() + "");
+				data = tAction.getList(idList.subList(offset,Math.min(limit, idList.size())));
+				for(Task i:data){
+					Log.e("qq", ""+i.getId());
+				}
+			} catch (Exception e) {
+				data = new ArrayList<Task>();
+			}
+			notifyDataSetChanged();
+		}
 		@Override
 		public int getCount() {
 			return data.size();
@@ -94,9 +123,9 @@ public class TaskShowMhActivity extends Activity {
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			if (convertView != null) {
+			/*if (convertView != null&&(((Integer)convertView.getTag())==data.size())) {
 				return convertView;
-			}
+			}*/
 			View v = View.inflate(TaskShowMhActivity.this,
 					R.layout.task_show_item, null);
 			TextView tv1 = (TextView) v.findViewById(R.id.cake_name);
@@ -123,8 +152,9 @@ public class TaskShowMhActivity extends Activity {
 				userName = "暂无";
 			}
 			tv4.setText("发布人员:" + userName + " 发布时间:" + t.getRealseTime());
+			v.setTag(data.size());
 			v.setOnClickListener(new OnClickListener() {
-
+			
 				@Override
 				public void onClick(View v) {
 					Intent it = new Intent();

@@ -212,7 +212,6 @@ public class TabHomeActivity extends TabActivity {
 		@Override
 		public void onPageSelected(int arg0) {
 			tabHost.setCurrentTab(arg0);
-			Log.e("qq", "tab action");
 		}
 
 		@Override
