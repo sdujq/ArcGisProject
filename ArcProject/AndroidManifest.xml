@@ -67,20 +67,29 @@
             android:theme="@android:style/Theme.Dialog"
             android:screenOrientation="portrait"></activity>
         <activity android:name="org.sdu.view.bugshow.BugMhActivity"></activity>
-   <receiver android:name="com.silenceburn.MyNote">
+
+		<receiver android:icon="@drawable/weather" android:label="@string/app_name"
+			android:name="com.jsr.controller.WeatherWidget">
 			<intent-filter>
-				<action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+				<action android:name="android.appwidget.action.APPWIDGET_UPDATE"></action>
 			</intent-filter>
 			<meta-data android:name="android.appwidget.provider"
-				android:resource="@xml/my_note_widget" />
+				android:resource="@xml/weatherwidgetimfo"></meta-data>
 		</receiver>
-
-		<activity android:name="com.silenceburn.MyNoteConf">
+		<activity android:name="com.jsr.controller.ConfigureActivity" android:icon="@drawable/weather"
+			android:label="@string/app_name"
+			android:screenOrientation="portrait">
 			<intent-filter>
-				<action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+				<action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"></action>
 			</intent-filter>
 		</activity>
-		<activity android:name="com.silenceburn.MyNoteEdit"/>
+		<activity android:name="com.jsr.controller.DetailForecastActivity"
+			android:excludeFromRecents="true"
+			android:screenOrientation="portrait"></activity>
+		<service android:name="com.jsr.model.DataForecastService"></service>
+		<provider android:name="com.jsr.model.WeatherProvider"
+			      android:authorities="org.sdu.gis"></provider>
+	  <service android:name="com.jsr.model.DataTimeService"></service>
         </application>
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
