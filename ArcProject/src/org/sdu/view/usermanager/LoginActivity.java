@@ -37,8 +37,8 @@ public class LoginActivity extends Activity {
 		switch (view.getId()) {
 		case R.id.login:
 			// 首先获取登录信息
-			String name = username.getText().toString();
-			String pwd = password.getText().toString();
+			String name = username.getText().toString().trim();
+			String pwd = password.getText().toString().trim();
 			// 跳转到相应页面
 			if (name.equals("") || pwd.equals("")) {
 				if (new UserDao(LoginActivity.this).find().size() == 0) {
