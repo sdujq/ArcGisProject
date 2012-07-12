@@ -2,53 +2,75 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
 	android:layout_height="fill_parent" 
-	android:layout_width="fill_parent">
-	
-	<TextView 
-	android:id="@+id/TextView01" 
-	android:layout_height="wrap_content"
-	android:text="@string/labelCity" 
-	android:layout_width="fill_parent"
-	android:ellipsize="marquee" 
+	android:layout_width="fill_parent" android:background="@drawable/round">
 
-    android:marqueeRepeatLimit="marquee_forever"
-  
-    android:scrollHorizontally="true"
-    android:textSize="25sp"/>
-			
-	<EditText 
-	android:layout_height="wrap_content" 
-	android:text="shenzhen"	
-	android:editable="true" 
-	android:layout_width="fill_parent" 
-	android:id="@+id/editCity"
-	/>
-			
-	<TextView   
-	android:layout_height="wrap_content" 
-	android:layout_width="fill_parent" 
-	android:id="@+id/lableUpdateTime" 
-	android:text="@string/lableUpdateTime"
-    android:ellipsize="marquee" 
-    
-    android:marqueeRepeatLimit="marquee_forever"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" android:layout_marginLeft="20dp" android:layout_marginRight="20dp" android:layout_marginTop="20dp" android:layout_marginBottom="20dp">
 
-    android:scrollHorizontally="true"
-    android:textSize="25sp"
-	/>
-	
-	<EditText
-    android:layout_height="wrap_content" 
-	android:id="@+id/editUpdatetime" 
-	android:text="2" 
-	android:layout_width="fill_parent"
-	/>
-	<Button 
-	android:layout_height="wrap_content" 
-	android:id="@+id/btnSave"
-	android:text="@string/btnSave" 
-	android:layout_width="fill_parent"
-	/>
+        <TextView
+            android:id="@+id/lableUpdateTime"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:text="消息更新时间(s)"
+            android:textSize="20sp" 
+            android:textColor="@color/black"/>
+
+        <EditText
+            android:id="@+id/editUpdatetime"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:text="2" >
+
+            <requestFocus />
+        </EditText>
+		<TextView
+            android:id="@+id/lableUpdateTime"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:text="登陆用户"
+            android:textSize="20sp"
+            android:textColor="@color/black" />
+
+		<EditText
+		    android:id="@+id/uname"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:ems="10" />
+
+		<TextView
+            android:id="@+id/lableUpdateTime"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:scrollHorizontally="true"
+            android:text="用户密码"
+            android:textSize="20sp" 
+            android:textColor="@color/black"/>
+
+		<EditText
+		    android:id="@+id/upwd"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:ems="10"
+		    android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btnSave" />
+
+    </LinearLayout>
 	
 		
 </LinearLayout>

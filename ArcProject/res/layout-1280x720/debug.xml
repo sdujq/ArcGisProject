@@ -108,7 +108,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="如116,36"/>
+                    android:ems="10"
+                    android:hint="如116,36" />
 
                 <Button
                     android:id="@+id/apn"
@@ -179,75 +180,73 @@
                     android:text="现场附件"
                     android:textAppearance="?android:attr/textAppearanceLarge"
                     android:textColor="@color/black" />
-
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" >
 
                     <LinearLayout
-                        android:layout_width="176dp"
-                        android:layout_height="204dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
                         android:background="@drawable/cakeiconbg"
                         android:gravity="center"
                         android:orientation="vertical" >
 
                         <ImageView
                             android:id="@+id/imageView1"
-                            android:layout_width="158dp"
-                            android:layout_height="145dp"
-                            android:layout_marginBottom="40dip"
-                            android:layout_marginLeft="40dip"
-                            android:layout_marginRight="40dip"
-                            android:layout_marginTop="40dip" />
-                    </LinearLayout>
+                            android:layout_width="333dp"
+                            android:layout_height="300dp" android:layout_marginLeft="40dip" android:layout_marginRight="40dip" android:layout_marginTop="40dip" android:layout_marginBottom="40dip"/>
 
+                    </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="20dip"
                         android:gravity="center"
                         android:orientation="vertical" >
-
+
                         <Button
                             android:id="@+id/xianchangfujian_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/d2" android:layout_weight="1"/>
-
+                            android:background="@drawable/d2" />
+
                         <Button
                             android:id="@+id/editphoto"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/d3" android:layout_weight="1"/>
-
+                            android:background="@drawable/d3" />
+
                         <Button
                             android:id="@+id/shanchu_button"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/d4" android:layout_weight="1"/>
+                            android:background="@drawable/d4" />
+
                     </LinearLayout>
-                </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical" >
+
+                        <Button
+                            android:id="@+id/fabu_button"
+                            android:layout_width="175dip"
+                            android:layout_height="40dip"
+                            android:background="@drawable/bg_alibuybutton"
+                            android:text="提交保存" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical" >
+                        <Button
+                            android:id="@+id/button5"
+                            android:layout_width="175dip"
+                            android:layout_height="40dip"
+                            android:text="清空重填" android:background="@drawable/bg_alibuybutton" android:layout_marginTop="20dip"/>
 
-                    <Button
-                        android:id="@+id/fabu_button"
-                        android:layout_width="175dip"
-                        android:layout_height="40dip"
-                        android:background="@drawable/bg_alibuybutton"
-                        android:text="提交保存" />
+                    </LinearLayout>
 
-                    <Button
-                        android:id="@+id/button5"
-                        android:layout_width="175dip"
-                        android:layout_height="40dip"
-                        android:layout_marginTop="20dip"
-                        android:background="@drawable/bg_alibuybutton"
-                        android:text="清空重填" />
                 </LinearLayout>
 
             </LinearLayout>

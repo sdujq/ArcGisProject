@@ -39,7 +39,7 @@ public class BugDetailActivity extends Activity implements OnClickListener{
 		setContentView(R.layout.bug_detail);
 		// getWindow().setLayout(LayoutParams.FILL_PARENT,
 		// LayoutParams.FILL_PARENT);
-		getWindow().setLayout(500, 620);
+		//getWindow().setLayout(500, 620);
 		init();
 	}
 
@@ -61,6 +61,7 @@ public class BugDetailActivity extends Activity implements OnClickListener{
 		Intent intent = this.getIntent();
 		Bundle bundle = intent.getExtras();
 		bug = (Bug) bundle.get("bug");
+		bug=new BugDao(this).get(bug.getId());
 		_bugId.setText(bug.getId() + "");
 		_bug_address.setText(bug.getAddress());
 		_bug_attachment.setTag(bug.getAttachment());

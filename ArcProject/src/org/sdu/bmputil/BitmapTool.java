@@ -15,7 +15,7 @@ import android.util.Log;
 public class BitmapTool {
 
 	public static Bitmap Bytes2Bimap(byte[] b) {
-		Log.e("qq", "byte length is"+b.length);
+		// Log.e("qq", "byte length is"+b.length);
 		if (b.length != 0) {
 			return BitmapFactory.decodeByteArray(b, 0, b.length);
 		} else {
@@ -24,31 +24,32 @@ public class BitmapTool {
 		}
 
 	}
+
 	public static Bitmap drawableToBitmap(Drawable drawable) {
 
-	       
+		Bitmap bitmap = Bitmap.createBitmap(
 
-        Bitmap bitmap = Bitmap.createBitmap(
+		drawable.getIntrinsicWidth(),
 
-                                        drawable.getIntrinsicWidth(),
+		drawable.getIntrinsicHeight(),
 
-                                        drawable.getIntrinsicHeight(),
+		drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
 
-                                        drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888
+		: Bitmap.Config.RGB_565);
 
-                                                        : Bitmap.Config.RGB_565);
+		Canvas canvas = new Canvas(bitmap);
 
-        Canvas canvas = new Canvas(bitmap);
+		// canvas.setBitmap(bitmap);
 
-        //canvas.setBitmap(bitmap);
+		drawable.setBounds(0, 0, drawable.getIntrinsicWidth(),
+				drawable.getIntrinsicHeight());
 
-        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+		drawable.draw(canvas);
 
-        drawable.draw(canvas);
+		return bitmap;
 
-        return bitmap;
+	}
 
-}
 	public static byte[] Bitmap2Bytes(Bitmap bm) {
 
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -57,12 +58,13 @@ public class BitmapTool {
 
 		try {
 			baos.flush();
+			bm.recycle();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		byte[] b=baos.toByteArray();
-		Log.e("qq", "byte length is"+b.length);
+		byte[] b = baos.toByteArray();
+		Log.e("qq", "byte length is" + b.length);
 
 		return b;
 

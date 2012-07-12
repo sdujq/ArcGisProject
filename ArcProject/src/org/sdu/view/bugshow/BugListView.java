@@ -128,6 +128,7 @@ public class BugListView extends AbsShow {
 			// ImageView delete = (ImageView) v.findViewById(R.id.deleteUser);
 			if (bugList.size() > position) {
 				Bug bug = bugList.get(position);
+				bug.setAttachment(null);
 				bugId.setText(bug.getId() + "");
 				bugAdress.setText(bug.getAddress());
 				bugState.setText(bug.getState());
