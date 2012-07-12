@@ -14,7 +14,7 @@ import android.provider.BaseColumns;
 
 public class WeatherProvider extends ContentProvider {
 	// Content URI
-	public static final String AUTHORITY = "com.jsr.model";
+	public static final String AUTHORITY = "org.sdu.gis";
 	// table weather name
 	public static final String TABLE_WIDGET = "weatherwidget";
 	// table weather detail name

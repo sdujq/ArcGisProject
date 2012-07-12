@@ -80,7 +80,7 @@ public class TaskShowMhActivity extends Activity {
 			TaskAction tAction = new TaskAction(TaskShowMhActivity.this);
 			try {
 				idList =  tAction.getTaskIds(Action.currentUser.getId() + "");
-				data = tAction.getList(idList.subList(offset,Math.min(limit, idList.size() - 1)));
+				data = tAction.getList(idList.subList(offset,Math.min(limit, idList.size())));
 			} catch (Exception e) {
 				data = new ArrayList<Task>();
 			}
