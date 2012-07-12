@@ -1,206 +1,224 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="fill_parent" 
-  android:layout_height="fill_parent"    
-  android:id="@+id/absoluteLayout" 
-  android:visibility="visible" 
-  android:background="@drawable/weatherbg">
+    android:id="@+id/absoluteLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/weatherbg"
+    android:visibility="visible" >
 
+    <ImageView
+        android:id="@+id/forecastImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="120dip"
+        android:layout_y="80dip"
+        android:adjustViewBounds="true"
+        android:clickable="true"
+        android:maxHeight="131dip"
+        android:maxWidth="131dip"
+        android:minHeight="131dip"
+        android:minWidth="131dip"
+        android:scaleType="fitXY"
+        android:visibility="visible" />
 
+    <TextView
+        android:id="@+id/dateText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="10dip"
+        android:layout_y="130dip"
+        android:clickable="true"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text=""
+        android:textColor="@color/widgetFontColor"
+        android:textSize="11sp"
+        android:width="120sp" />
 
-<ImageView 
-    android:layout_height="wrap_content" 
-    android:layout_width="wrap_content" 
-    android:id="@+id/forecastImage" 
-    android:visibility="visible" 
-    android:layout_x="120dip" 
-    android:layout_y="80dip" 
-    android:maxHeight="131dip" 
-    android:maxWidth="131dip" 
-    android:minHeight="131dip" 
-    android:minWidth="131dip" 
-    android:adjustViewBounds="true" 
-    android:scaleType="fitXY"
-    android:clickable="true"/>
+    <TextView
+        android:id="@+id/cityText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="10dip"
+        android:layout_y="150dip"
+        android:clickable="true"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@color/widgetFontColor"
+        android:textSize="11sp"
+        android:width="120sp" />
 
-<TextView 
-    android:layout_height="wrap_content" 
-    android:layout_width="wrap_content" 
-    android:id="@+id/dateText" 
-    android:text="" 
-    android:singleLine="true" 
-    android:textSize="11sp" 
-    android:layout_x="10dip" 
-    android:width="120sp" 
-    android:gravity="center" 
-    android:layout_y="130dip" 
-    android:clickable="true"
-    android:textColor="@color/widgetFontColor"/>
+    <TextView
+        android:id="@+id/conditionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="10dip"
+        android:layout_y="170dip"
+        android:clickable="true"
+        android:gravity="center"
+        android:singleLine="true"
+        android:textColor="@color/widgetFontColor"
+        android:textSize="12sp"
+        android:width="120sp" />
 
-<TextView 
-    android:layout_height="wrap_content" 
-    android:layout_width="wrap_content" 
-    android:id="@+id/cityText" 
-    android:singleLine="true" 
-    android:textSize="11sp" 
-    android:layout_x="10dip" 
-    android:width="120sp" 
-    android:layout_y="150dip"
-    android:clickable="true" 
-    android:textColor="@color/widgetFontColor" 
-    android:gravity="center"/>
+    <ImageView
+        android:id="@+id/dotsImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="150dip"
+        android:layout_y="26dip"
+        android:adjustViewBounds="true"
+        android:maxHeight="60dip"
+        android:maxWidth="30dip"
+        android:minHeight="60dip"
+        android:minWidth="30dip"
+        android:scaleType="fitXY"
+        android:src="@drawable/dots" />
 
-<TextView 
-    android:layout_width="wrap_content" 
-    android:layout_height="wrap_content" 
-    android:id="@+id/conditionText" 
-    android:layout_x="10dip" 
-    android:gravity="center" 
-    android:width="120sp" 
-    android:singleLine="true" 
-    android:clickable="true"
-    android:textSize="12sp" 
-    android:layout_y="170dip" 
-    android:textColor="@color/widgetFontColor"/>
-<ImageView 
-    android:layout_width="wrap_content" 
-    android:layout_x="150dip" 
-    android:layout_height="wrap_content" 
-    android:id="@+id/dotsImage" 
-    android:src="@drawable/dots" 
-    android:adjustViewBounds="true" 
-    android:maxHeight="60dip"
-    android:maxWidth="30dip" 
-    android:minHeight="60dip" 
-    android:minWidth="30dip" 
-    android:scaleType="fitXY" 
-    android:layout_y="26dip"/>
-<ImageView 
-    android:id="@+id/hour01Image" 
-    android:src="@drawable/number_0_tahoma" 
-    android:layout_y="15dip" 
-    android:layout_height="wrap_content" 
-    android:layout_width="wrap_content" 
-    android:scaleType="fitXY" 
-    android:maxHeight="73dip" 
-    android:maxWidth="60dip" 
-    android:minHeight="73dip" 
-    android:minWidth="60dip" 
-    android:adjustViewBounds="true" 
-    android:layout_x="50dip"
-    android:clickable="true"/>
-<ImageView 
-    android:src="@drawable/number_0_tahoma" 
-    android:layout_y="15dip" 
-    android:layout_height="wrap_content" 
-    android:layout_width="wrap_content" 
-    android:scaleType="fitXY" 
-    android:maxHeight="73dip" 
-    android:maxWidth="60dip" 
-    android:minHeight="73dip" 
-    android:minWidth="60dip" 
-    android:adjustViewBounds="true" 
-    android:layout_x="170dip" 
-    android:id="@+id/minute01Image"
-    android:clickable="true"/>
-<ImageView 
-    android:layout_width="wrap_content" 
-    android:layout_height="wrap_content" 
-    android:adjustViewBounds="true" 
-    android:id="@+id/hour02Image" 
-    android:layout_y="15dip" 
-    android:scaleType="fitXY" 
-    android:maxHeight="73dip" 
-    android:maxWidth="60dip" 
-    android:minHeight="73dip" 
-    android:minWidth="60dip" 
-    android:layout_x="100dip" 
-    android:src="@drawable/number_0_tahoma"
-    android:clickable="true"/>
-<ImageView 
-    android:layout_width="wrap_content" 
-    android:layout_height="wrap_content" 
-    android:adjustViewBounds="true" 
-    android:layout_y="15dip" 
-    android:scaleType="fitXY" 
-    android:maxHeight="73dip" 
-    android:maxWidth="60dip" 
-    android:minHeight="73dip" 
-    android:minWidth="60dip" 
-    android:id="@+id/minute02Image" 
-    android:layout_x="220dip" 
-    android:src="@drawable/number_0_tahoma"
-    android:clickable="true"/>
-<TextView 
-    android:layout_width="wrap_content" 
-    android:layout_height="wrap_content" 
-    android:layout_x="250dip" 
-    android:layout_y="100dip" 
-    android:id="@+id/hightText" 
-    android:textSize="15sp" 
-    android:width="60sp" 
-    android:textColor="@color/zoneTempColor" 
-    android:text=""/>
-<TextView 
-    android:layout_width="wrap_content" 
-    android:layout_height="wrap_content" 
-    android:layout_x="250dip" 
-    android:layout_y="120dip" 
-    android:id="@+id/lowText" 
-    android:textSize="16sp" 
-    android:width="60sp" 
-    android:textColor="@color/zoneTempColor" 
-    android:text=""
-    android:clickable="true"/>
-<TextView 
-    android:layout_width="wrap_content" 
-    android:layout_height="wrap_content" 
-    android:id="@+id/tempCText" 
-    android:textSize="30sp" 
-    android:width="80sp" 
-    android:gravity="center" 
-    android:textColor="@color/tempCColor" 
-    android:layout_x="235dip" 
-    android:layout_y="140dip" 
-    android:text=""
-    android:clickable="true"/>
-<TextView 
-    android:layout_width="wrap_content" 
-    android:layout_height="wrap_content" 
-    android:layout_x="10dip" 
-    android:layout_y="90dip" 
-    android:gravity="center" 
-    android:id="@+id/dayText" 
-    android:textSize="30sp" 
-    android:width="120sp" 
-    android:textColor="@color/widgetFontColor"
-    android:clickable="true"/>
+    <ImageView
+        android:id="@+id/hour01Image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="50dip"
+        android:layout_y="15dip"
+        android:adjustViewBounds="true"
+        android:clickable="true"
+        android:maxHeight="73dip"
+        android:maxWidth="60dip"
+        android:minHeight="73dip"
+        android:minWidth="60dip"
+        android:scaleType="fitXY"
+        android:src="@drawable/number_0_tahoma" />
 
-<LinearLayout
-    android:id="@+id/message"
-    android:layout_width="239dp"
-    android:layout_height="124dp"
-    android:layout_x="320dp"
-    android:layout_y="43dp"
-    android:flipInterval="2000"
-    android:inAnimation="@anim/push_left_in"
-    android:orientation="vertical"
-    android:outAnimation="@anim/push_left_out" >
+    <ImageView
+        android:id="@+id/minute01Image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="170dip"
+        android:layout_y="15dip"
+        android:adjustViewBounds="true"
+        android:clickable="true"
+        android:maxHeight="73dip"
+        android:maxWidth="60dip"
+        android:minHeight="73dip"
+        android:minWidth="60dip"
+        android:scaleType="fitXY"
+        android:src="@drawable/number_0_tahoma" />
+
+    <ImageView
+        android:id="@+id/hour02Image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="100dip"
+        android:layout_y="15dip"
+        android:adjustViewBounds="true"
+        android:clickable="true"
+        android:maxHeight="73dip"
+        android:maxWidth="60dip"
+        android:minHeight="73dip"
+        android:minWidth="60dip"
+        android:scaleType="fitXY"
+        android:src="@drawable/number_0_tahoma" />
+
+    <ImageView
+        android:id="@+id/minute02Image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="220dip"
+        android:layout_y="15dip"
+        android:adjustViewBounds="true"
+        android:clickable="true"
+        android:maxHeight="73dip"
+        android:maxWidth="60dip"
+        android:minHeight="73dip"
+        android:minWidth="60dip"
+        android:scaleType="fitXY"
+        android:src="@drawable/number_0_tahoma" />
+
+    <TextView
+        android:id="@+id/hightText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="250dip"
+        android:layout_y="100dip"
+        android:text=""
+        android:textColor="@color/zoneTempColor"
+        android:textSize="15sp"
+        android:width="60sp" />
+
+    <TextView
+        android:id="@+id/lowText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="250dip"
+        android:layout_y="120dip"
+        android:clickable="true"
+        android:text=""
+        android:textColor="@color/zoneTempColor"
+        android:textSize="16sp"
+        android:width="60sp" />
+
+    <TextView
+        android:id="@+id/tempCText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="235dip"
+        android:layout_y="140dip"
+        android:clickable="true"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/tempCColor"
+        android:textSize="30sp"
+        android:width="80sp" />
+
+    <TextView
+        android:id="@+id/dayText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="10dip"
+        android:layout_y="90dip"
+        android:clickable="true"
+        android:gravity="center"
+        android:textColor="@color/widgetFontColor"
+        android:textSize="30sp"
+        android:width="120sp" />
 
     <TextView
         android:id="@+id/textView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Large1"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:layout_x="13dp"
+        android:layout_y="212dp"
+        android:text="当前任务"
+        android:textColor="@color/black" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Large Text"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-</LinearLayout>
+        android:layout_x="14dp"
+        android:layout_y="268dp"
+        android:text="巡检故障"
+        android:textColor="@color/black" />
+
+    <LinearLayout
+        android:id="@+id/message"
+        android:layout_width="226dp"
+        android:layout_height="37dp"
+        android:layout_x="55dp"
+        android:layout_y="230dp"
+        android:flipInterval="2000"
+        android:inAnimation="@anim/push_left_in"
+        android:orientation="vertical"
+        android:outAnimation="@anim/push_left_out" >
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/bugs"
+        android:layout_width="228dp"
+        android:layout_height="79dp"
+        android:layout_x="57dp"
+        android:layout_y="283dp" >
+    </FrameLayout>
 
 </AbsoluteLayout>

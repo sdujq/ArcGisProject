@@ -3,23 +3,9 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@drawable/loading2"
-    android:gravity="center_vertical"
+    android:gravity="center"
     android:orientation="vertical" >
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical" android:layout_marginLeft="15dp" android:background="@drawable/fog">
 
-        <TextView
-            android:id="@+id/textView1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="管道巡视系统"
-            android:textAppearance="?android:attr/textAppearanceLarge" android:textColor="@color/black"/>
-
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -122,7 +108,7 @@
 		    android:layout_marginLeft="10dp"
 		    android:layout_marginTop="10dp"
 		    android:background="@drawable/login_logbutton"
-		    android:text="清空"
+		    android:text="注册"
 		    android:textColor="@color/white"
 		    android:textSize="28sp" android:onClick="LoginAction"/>
 

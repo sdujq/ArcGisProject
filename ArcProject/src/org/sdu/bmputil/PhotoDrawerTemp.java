@@ -403,6 +403,8 @@ public class PhotoDrawerTemp extends Activity implements
 			/*DisplayMetrics dm = getResources().getDisplayMetrics();
 			mScreenWidth = dm.widthPixels;
 			mScreenHeight = dm.heightPixels;*/
+			System.gc();
+			Log.e("qq",shareBMP.getWidth()+","+shareBMP.getHeight() );
 			mBitmap = Bitmap.createBitmap(shareBMP.getWidth(), shareBMP.getHeight(),
 					Bitmap.Config.ARGB_8888);
 			tempBitmap = Bitmap.createBitmap(shareBMP.getWidth(), shareBMP.getHeight(),

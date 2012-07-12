@@ -261,6 +261,7 @@ public class BugInputActivity extends Activity {
 					InputStream in = cr.openInputStream(Uri.fromFile(new File(
 							"/mnt/sdcard/temp100.jpg")));
 					Bitmap bitmap = BitmapFactory.decodeStream(in);
+					bitmap =BitmapTool.lessenBitmap(bitmap, 0.25f);
 					image.setImageBitmap(bitmap);
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();

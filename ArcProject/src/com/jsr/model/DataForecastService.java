@@ -80,7 +80,8 @@ public class DataForecastService extends Service implements Runnable {
 		// TODO Auto-generated method stub
 		super.onStart(intent, startId);
 		System.out.println("service started");
-		if (ACTION_UPDATE_ALL.equals(intent.getAction())) {
+		//TODO if (ACTION_UPDATE_ALL.equals(intent.getAction()))
+		{
 			System.out.println("Requested UPDATE_ALL action");
 			AppWidgetManager manager = AppWidgetManager.getInstance(this);
 			addWidgetIDs(manager.getAppWidgetIds(new ComponentName(this,

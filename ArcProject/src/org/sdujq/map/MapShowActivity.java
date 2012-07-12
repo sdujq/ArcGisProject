@@ -49,7 +49,7 @@ public class MapShowActivity extends Activity implements OnClickListener,
 	static final int state_delating = 2;
 
 	MapView map = null;
-	Button bt1, bt2, bt3, bt4, bt5;
+	Button bt1, bt2, bt3, bt5;
 	Spinner spinner;
 	GraphicsLayer glayer;
 	GraphicsLayer lineLayer;
@@ -97,7 +97,7 @@ public class MapShowActivity extends Activity implements OnClickListener,
 			}
 			PopupInfo pInfo = new PopupInfo();
 			Graphic pointGraphic = new Graphic(p, new PictureMarkerSymbol(
-					getResources().getDrawable(R.drawable.ic_launcher)));
+					getResources().getDrawable(R.drawable.pointer)));
 			int pid = graphicsLayer.addGraphic(pointGraphic);
 			pInfo.setTitle(pid + "");
 			infoMap.put(pid, pInfo);
@@ -115,12 +115,12 @@ public class MapShowActivity extends Activity implements OnClickListener,
 		bt1 = (Button) findViewById(R.id.button1);
 		bt2 = (Button) findViewById(R.id.button2);
 		bt3 = (Button) findViewById(R.id.button3);
-		bt4 = (Button) findViewById(R.id.button4);
+		//bt4 = (Button) findViewById(R.id.button4);
 		bt5 = (Button) findViewById(R.id.button5);
 		bt1.setOnClickListener(this);
 		bt2.setOnClickListener(this);
 		bt3.setOnClickListener(this);
-		bt4.setOnClickListener(this);
+		//bt4.setOnClickListener(this);
 		bt5.setOnClickListener(this);
 
 		spinner = (Spinner) findViewById(R.id.spinner1);
@@ -171,9 +171,9 @@ public class MapShowActivity extends Activity implements OnClickListener,
 	public void initPointLayer() {
 		glayer = new GraphicsLayer();
 		glayer.setRenderer(new SimpleRenderer(new PictureMarkerSymbol(
-				getResources().getDrawable(R.drawable.ic_launcher))));
+				getResources().getDrawable(R.drawable.pointer))));
 		Graphic g = new Graphic(map.getCenter(), new PictureMarkerSymbol(
-				getResources().getDrawable(R.drawable.ic_launcher)));
+				getResources().getDrawable(R.drawable.pointer)));
 		glayer.addGraphic(g);
 		map.addLayer(glayer);
 	}
@@ -202,10 +202,7 @@ public class MapShowActivity extends Activity implements OnClickListener,
 			state = state_delating;
 			action.removeLastPoint();
 			drawCurrentLine();
-		} else if (v == bt4) {
-			state = state_nothing;
-			initLineLayer();
-		} else if (v == bt5) {
+		}  else if (v == bt5) {
 			/*
 			 * Log.e("qq", "scale" + map.getScale()); Log.e("qq", "X" +
 			 * map.getCenter().getX()); Log.e("qq", "Y" +

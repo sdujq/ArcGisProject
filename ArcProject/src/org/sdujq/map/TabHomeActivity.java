@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.sdu.bmputil.PhotoDrawerTemp;
+import org.sdu.dao.UserDao;
+import org.sdu.dbaction.Action;
 import org.sdu.gis.R;
 import org.sdu.view.buginput.BugInputActivity;
 import org.sdu.view.bugshow.BugMhActivity;
@@ -62,7 +64,11 @@ public class TabHomeActivity extends TabActivity {
 		// WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 		setContentView(R.layout.tabhost);
-
+		Intent it=getIntent();
+		int uid=it.getIntExtra("uid", -2);
+		if(uid!=-2){
+			Action.currentUser=(new UserDao(this)).get(uid);
+		}
 		tabHost = this.getTabHost();
 		manager = new LocalActivityManager(this, true);
 		manager.dispatchCreate(savedInstanceState);

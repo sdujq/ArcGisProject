@@ -1,5 +1,6 @@
 package com.jsr.controller;
 
+import org.sdu.dbaction.Action;
 import org.sdu.gis.R;
 
 import android.app.Activity;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.jsr.model.DataForecastService;
 import com.jsr.model.DataWidget;
@@ -20,11 +22,11 @@ import com.jsr.model.WeatherProvider.WeatherWidgets;
 
 public class ConfigureActivity extends Activity implements View.OnClickListener{
     /** Called when the activity is first created. */
-	private EditText editCity, editUpdatetime;
+	private EditText editUpdatetime,uname,upwd;
 	private Button btnSave;
 	private String city;
 	private int updatetime;
-
+	
     private int widgetId = AppWidgetManager.INVALID_APPWIDGET_ID;
 	
 	/** Called when the activity is first created. */
@@ -36,8 +38,9 @@ public class ConfigureActivity extends Activity implements View.OnClickListener{
         requestWindowFeature(Window.FEATURE_INDETERMINATE_PROGRESS);        
         setContentView(R.layout.configuremain);
         
-        editCity = (EditText)findViewById(R.id.editCity);
         editUpdatetime = (EditText)findViewById(R.id.editUpdatetime);
+        uname=(EditText)findViewById(R.id.uname);
+        upwd=(EditText)findViewById(R.id.upwd);
         btnSave = (Button)findViewById(R.id.btnSave);
         
         btnSave.setOnClickListener(this);        
@@ -51,10 +54,7 @@ public class ConfigureActivity extends Activity implements View.OnClickListener{
         }
         
         if (savedInstanceState != null){
-        	city = savedInstanceState.getString("city");
         	updatetime = savedInstanceState.getInt("updatetime");
-        	
-        	editCity.setText(city);
         	editUpdatetime.setText(updatetime);
         }
     }
@@ -75,16 +75,20 @@ public class ConfigureActivity extends Activity implements View.OnClickListener{
 	System.out.println("configure save!");
 		switch (v.getId()) {
 		case R.id.btnSave: {
-			city = editCity.getText().toString();
+			Action action=new Action(this);
+			if(!action.login(uname.getText().toString(), upwd.getText().toString())){
+				Toast.makeText(this, action.getInfo(), 0).show();
+				return;
+			}
 			updatetime = Integer.parseInt(editUpdatetime.getText().toString());
 			
 			ContentValues values = new ContentValues();
 			values.put(BaseColumns._ID, widgetId);
-			values.put(DataWidget.POSTCODE, city);
+			values.put(DataWidget.POSTCODE, "jinan");
 			values.put(DataWidget.UPDATEMILIS, updatetime);
 			values.put(DataWidget.LASTUPDATETIME, -1);
 			values.put(DataWidget.ISCONFIGURED, 1);
-			
+			WeatherWidget.uid=Action.currentUser.getId();
 			ContentResolver resolver = getContentResolver();
 			resolver.insert(WeatherWidgets.CONTENT_URI, values);
 			
