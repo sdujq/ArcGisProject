@@ -1,6 +1,10 @@
 package com.jsr.controller;
 
+import java.util.List;
+
+import org.sdu.dao.TaskDao;
 import org.sdu.gis.R;
+import org.sdu.pojo.Task;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -137,17 +141,20 @@ public class WeatherWidget extends AppWidgetProvider {
 		views.setImageViewResource(R.id.hour02Image, WeatherUtil.getImageNumber(hour02));
 		views.setImageViewResource(R.id.minute01Image, WeatherUtil.getImageNumber(minute01));
 		views.setImageViewResource(R.id.minute02Image, WeatherUtil.getImageNumber(minute02));
-		
-		if(id == 1){
+		TaskDao tdao=new TaskDao(context);
+		List<Task> lst=tdao.find();
+		if(id % 2==0){
 		    RemoteViews subViews = new RemoteViews(context.getPackageName(),R.layout.tv2);
 		    views.removeAllViews(R.id.message);
 		    views.addView(R.id.message, subViews);
-		    id = 2;
+		    views.setTextViewText(R.id.data, ""+lst.size());
+		    id ++;
 		}else{
 		    RemoteViews subViews = new RemoteViews(context.getPackageName(),R.layout.tv1);
 		    views.removeAllViews(R.id.message);
 		    views.addView(R.id.message, subViews); 
-		    id = 1;
+		    views.setTextViewText(R.id.data, ""+lst.size());
+		    id ++;
 		}
 		return views;
 	}
