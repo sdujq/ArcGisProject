@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/loading2"
+    android:gravity="center_vertical"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical" android:layout_marginLeft="15dp" android:background="@drawable/fog">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="管道巡视系统"
+            android:textAppearance="?android:attr/textAppearanceLarge" android:textColor="@color/black"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="140px"
+        android:layout_marginBottom="10px"
+        android:layout_marginLeft="10px"
+        android:layout_marginRight="10px"
+        android:background="@drawable/login_logedit"
+        android:orientation="vertical" >
+
+  	<LinearLayout 
+  		android:orientation="horizontal" 
+  		android:layout_width="fill_parent" 
+  		android:layout_height="70px">
+
+	<TextView android:layout_width="60px"
+		android:layout_height="70px" android:text="用户名"
+		android:textSize="18px" android:textColor="@color/black"></TextView>
+
+
+	<EditText
+	    android:id="@+id/username"
+	    android:layout_width="fill_parent"
+	    android:layout_height="70px"
+	    android:background="@null"
+	    android:hint="请输入登录账号"
+	    android:text=""
+	    android:textColor="@color/black" >
+
+</EditText>
+
+	</LinearLayout>
+
+	<LinearLayout 
+  		android:orientation="horizontal"  
+  		android:layout_width="fill_parent" 
+  		android:layout_height="70px">
+
+	<TextView android:layout_width="60px"
+		android:layout_height="70px" android:text="密码"
+		android:textSize="18px" android:textColor="@color/black"></TextView>
+
+
+	<EditText
+	    android:id="@+id/password"
+	    android:layout_width="fill_parent"
+	    android:layout_height="70px"
+	    android:layout_alignTop="@id/username"
+	    android:background="@null"
+	    android:hint="请输入密码"
+	    android:nextFocusDown="@+id/loginSubmit"
+	    android:nextFocusRight="@+id/loginSubmit"
+	    android:password="true"
+	    android:text=""
+	    android:textColor="@color/black" >
+
+	</EditText>
+
+	</LinearLayout>
+
+</LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center" >
+
+
+    </LinearLayout>
+
+
+
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center" >
+
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="130dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/login_logbutton"
+            android:text="登陆"
+            android:textColor="@color/white"
+            android:textSize="28sp" android:onClick="LoginAction"/>
+
+
+		<Button
+		    android:id="@+id/cancelLogin"
+		    android:layout_width="130dp"
+		    android:layout_height="50dp"
+		    android:layout_marginBottom="10dp"
+		    android:layout_marginLeft="10dp"
+		    android:layout_marginTop="10dp"
+		    android:background="@drawable/login_logbutton"
+		    android:text="清空"
+		    android:textColor="@color/white"
+		    android:textSize="28sp" android:onClick="LoginAction"/>
+
+    </LinearLayout>
+
+</LinearLayout>

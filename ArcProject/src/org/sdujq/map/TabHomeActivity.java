@@ -17,7 +17,6 @@ import org.sdu.view.usermanager.AccountActivity;
 import android.app.LocalActivityManager;
 import android.app.TabActivity;
 import android.content.Intent;
-import android.database.DataSetObserver;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -26,6 +25,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
@@ -152,6 +152,26 @@ public class TabHomeActivity extends TabActivity {
 			}
 		});
 		home = this;
+		TextView tv1=(TextView) findViewById(R.id.btleft);
+		tv1.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				TabHomeActivity.this.finish();
+				overridePendingTransition(R.anim.scale_rotate,
+						R.anim.my_alpha_action);
+			}
+		});
+		TextView tv2=(TextView)findViewById(R.id.btright);
+		tv2.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent it = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/sdujq/ArcGisProject"));
+				it.setClassName("com.android.browser", "com.android.browser.BrowserActivity");
+				TabHomeActivity.this.startActivity(it);
+			}
+		});
 	}
 
 	/**

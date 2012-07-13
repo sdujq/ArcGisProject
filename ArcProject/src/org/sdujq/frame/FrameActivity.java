@@ -31,8 +31,8 @@ public abstract class FrameActivity extends Activity {
 	public static final int msg_dismissDialog = 9002;
 	public static final int msg_finish = 9003;
 	public FrameInfo info;
-	TextView left;
-	TextView right;
+	//TextView left;
+	//TextView right;
 	TopMenu menu;
 	public AlertDialog alert;
 	public int screenWidth;
@@ -121,8 +121,8 @@ public abstract class FrameActivity extends Activity {
 			viewPager.setOnPageChangeListener(new SlideMenuChangeListener());
 		}
 
-		((TextView) findViewById(R.id.title)).setText(info.getTitle());
-		left = (TextView) findViewById(R.id.btleft);
+	//	((TextView) findViewById(R.id.title)).setText(info.getTitle());
+	/*	left = (TextView) findViewById(R.id.btleft);
 		right = (TextView) findViewById(R.id.btright);
 		right.setText(info.getRightText());
 		left.setText(info.getLeftText());
@@ -145,11 +145,11 @@ public abstract class FrameActivity extends Activity {
 
 				@Override
 				public void onClick(View v) {
-					/*startActivity(new Intent(FrameActivity.this,
-							NewAccountActivity.class));*/
+					startActivity(new Intent(FrameActivity.this,
+							NewAccountActivity.class));
 				}
 			});
-		}
+		}*/
 	}
 
 	// ÇÐ»»menu
