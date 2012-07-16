@@ -51,7 +51,7 @@
                     android:id="@+id/t_button_zhiding"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/bt_zhiding" />
+                    android:text="@string/bt_zhiding" />
                 -->
 
                 <Button
