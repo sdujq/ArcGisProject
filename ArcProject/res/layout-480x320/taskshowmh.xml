@@ -5,9 +5,6 @@
     android:background="@drawable/dybg"
     android:orientation="vertical" >
 
-    <include
-        android:id="@+id/item_header"
-        layout="@layout/item_header" />
 
     <org.sdujq.map.PullToRefreshListView
         android:id="@+id/listView1"

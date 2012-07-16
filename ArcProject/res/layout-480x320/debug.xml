@@ -6,10 +6,6 @@
     android:background="@color/white"
     android:orientation="vertical" >
 
-    <include
-        android:id="@+id/item_header"
-        layout="@layout/item_header" />
-
     <ScrollView
         android:id="@+id/screen"
         android:layout_width="fill_parent"
