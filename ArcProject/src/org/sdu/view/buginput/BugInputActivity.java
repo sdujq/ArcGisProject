@@ -117,9 +117,13 @@ public class BugInputActivity extends Activity {
 				Bug bug = new Bug();
 				bug.setAddress(editText5.getText().toString());
 				if (image.getDrawable() != null) {
-					Bitmap bitmap = BitmapTool.drawableToBitmap(image
-							.getDrawable());
-					bug.setAttachment(BitmapTool.Bitmap2Bytes(bitmap));
+					try {
+						Bitmap bitmap = BitmapTool.drawableToBitmap(image
+								.getDrawable());
+						bug.setAttachment(BitmapTool.Bitmap2Bytes(bitmap));
+					} finally {
+
+					}
 				}
 				bug.setBugTypeId(((BugType) bugtype_spinner.getSelectedItem())
 						.getId());
@@ -144,15 +148,17 @@ public class BugInputActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				if(image.getDrawable()==null){
-					Toast.makeText(BugInputActivity.this, "«Îœ»≈ƒ’’",0).show();;
+				if (image.getDrawable() == null) {
+					Toast.makeText(BugInputActivity.this, "«Îœ»≈ƒ’’", 0).show();
+					;
 					return;
 				}
 				PhotoDrawerTemp.shareBMP = BitmapTool.drawableToBitmap(image
 						.getDrawable());
 				Intent it = new Intent();
 				it.setClass(BugInputActivity.this, PhotoDrawerTemp.class);
-				TabHomeActivity.home.startActivityForResult(it, PhotoDrawerTemp.DrawRquest);
+				TabHomeActivity.home.startActivityForResult(it,
+						PhotoDrawerTemp.DrawRquest);
 			}
 		});
 
@@ -261,13 +267,14 @@ public class BugInputActivity extends Activity {
 					InputStream in = cr.openInputStream(Uri.fromFile(new File(
 							"/mnt/sdcard/temp100.jpg")));
 					Bitmap bitmap = BitmapFactory.decodeStream(in);
-					bitmap =BitmapTool.lessenBitmap(bitmap, 0.25f);
+					bitmap = BitmapTool.lessenBitmap(bitmap, 0.25f);
 					image.setImageBitmap(bitmap);
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				}
 			}
-		} else if (requestCode == PhotoDrawerTemp.DrawRquest && resultCode == RESULT_OK) {
+		} else if (requestCode == PhotoDrawerTemp.DrawRquest
+				&& resultCode == RESULT_OK) {
 			ContentResolver cr = getContentResolver();
 			try {
 				InputStream in = cr.openInputStream(Uri.fromFile(new File(

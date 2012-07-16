@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.sdu.dao.BugDao;
 import org.sdu.pojo.Bug;
-import org.sdu.view.bugshow.BugTypes;
 
 import android.content.Context;
 /**

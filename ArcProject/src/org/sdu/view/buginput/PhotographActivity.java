@@ -2,12 +2,11 @@ package org.sdu.view.buginput;
 
 import org.sdu.gis.R;
 
-import android.app.Activity; 
-import android.content.Intent; 
-import android.graphics.Bitmap; 
-import android.os.Bundle; 
-import android.provider.MediaStore; 
-import android.util.Log; 
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.provider.MediaStore;
 
 public class PhotographActivity extends Activity { 
     /** Called when the activity is first created. */ 

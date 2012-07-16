@@ -20,6 +20,7 @@ public class User implements Serializable{
 	private String phoneNum;
 	@Column(name="tag")
 	private String tag;
+
 	public int getId() {
 		return id;
 	}
@@ -47,6 +48,7 @@ public class User implements Serializable{
 	public String getTag() {
 		return tag;
 	}
+
 	public void setTag(String tag) {
 		this.tag = tag;
 	}

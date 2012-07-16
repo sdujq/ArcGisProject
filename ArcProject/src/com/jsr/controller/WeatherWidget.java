@@ -5,9 +5,12 @@ import java.util.List;
 import org.sdu.bmputil.BitmapTool;
 import org.sdu.dao.BugDao;
 import org.sdu.dao.TaskDao;
+import org.sdu.dao.UserDao;
+import org.sdu.dao.ValuesDao;
 import org.sdu.gis.R;
 import org.sdu.pojo.Bug;
 import org.sdu.pojo.Task;
+import org.sdu.pojo.Values;
 import org.sdu.view.usermanager.AccountActivity;
 import org.sdujq.map.TabHomeActivity;
 
@@ -29,7 +32,8 @@ import com.jsr.model.WeatherUtil;
 
 public class WeatherWidget extends AppWidgetProvider {
 	private static Time TIME_WIDGET = new Time();
-	public static int uid;
+
+	// public static int uid;
 
 	public void onEnabled(Context context) {
 		RemoteViews views = new RemoteViews(context.getPackageName(),
@@ -54,7 +58,7 @@ public class WeatherWidget extends AppWidgetProvider {
 		RemoteViews views = new RemoteViews(context.getPackageName(),
 				R.layout.weatherwidget);
 		DataWidget dataWidget = LoadDataNet.getDataWidget(context, uri, true);
-		if (dataWidget != null&&dataWidget.getDetails().size()>0) {
+		if (dataWidget != null && dataWidget.getDetails().size() > 0) {
 			System.out.println("update View from dataWidget");
 			views.setImageViewResource(R.id.forecastImage, WeatherUtil
 					.getForecastImage(dataWidget.getIcon(),
@@ -75,7 +79,11 @@ public class WeatherWidget extends AppWidgetProvider {
 
 		// Connect click intent to launch details dialog
 		Intent it = new Intent(context, TabHomeActivity.class);
-		it.putExtra("uid", uid);
+		try {
+			it.putExtra("uid", -10);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		PendingIntent pending = PendingIntent.getActivity(context, 0, it, 0);
 		views.setOnClickPendingIntent(R.id.forecastImage, pending);
 
@@ -191,8 +199,12 @@ public class WeatherWidget extends AppWidgetProvider {
 				views.removeAllViews(R.id.bugs);
 				views.addView(R.id.bugs, subViews);
 				try {
-					subViews.setImageViewBitmap(R.id.bvimageView1,
-							BitmapTool.Bytes2Bimap(bug.getAttachment()));
+					try {
+						subViews.setImageViewBitmap(R.id.bvimageView1,
+								BitmapTool.Bytes2Bimap(bug.getAttachment()));
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 					subViews.setTextViewText(R.id.bvtextView1, bug.getId()
 							+ "号问题");
 					subViews.setTextViewText(R.id.bvtextView2, bug.getAddress());
@@ -207,8 +219,12 @@ public class WeatherWidget extends AppWidgetProvider {
 				views.removeAllViews(R.id.bugs);
 				views.addView(R.id.bugs, subViews);
 				try {
-					subViews.setImageViewBitmap(R.id.bvimageView1,
-							BitmapTool.Bytes2Bimap(bug.getAttachment()));
+					try {
+						subViews.setImageViewBitmap(R.id.bvimageView1,
+								BitmapTool.Bytes2Bimap(bug.getAttachment()));
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 					subViews.setTextViewText(R.id.bvtextView1, bug.getId()
 							+ "号问题");
 					subViews.setTextViewText(R.id.bvtextView2, bug.getAddress());

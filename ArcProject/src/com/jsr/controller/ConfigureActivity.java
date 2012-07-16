@@ -1,7 +1,9 @@
 package com.jsr.controller;
 
+import org.sdu.dao.ValuesDao;
 import org.sdu.dbaction.Action;
 import org.sdu.gis.R;
+import org.sdu.pojo.Values;
 
 import android.app.Activity;
 import android.appwidget.AppWidgetManager;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 import com.jsr.model.DataForecastService;
 import com.jsr.model.DataWidget;
 import com.jsr.model.WeatherProvider.WeatherWidgets;
+import com.tgb.lk.ahibernate.dao.impl.BaseDaoImpl;
 
 public class ConfigureActivity extends Activity implements View.OnClickListener{
     /** Called when the activity is first created. */
@@ -88,10 +91,19 @@ public class ConfigureActivity extends Activity implements View.OnClickListener{
 			values.put(DataWidget.UPDATEMILIS, updatetime);
 			values.put(DataWidget.LASTUPDATETIME, -1);
 			values.put(DataWidget.ISCONFIGURED, 1);
-			WeatherWidget.uid=Action.currentUser.getId();
 			ContentResolver resolver = getContentResolver();
 			resolver.insert(WeatherWidgets.CONTENT_URI, values);
-			
+
+			ValuesDao vdao=new ValuesDao(this);
+			if(vdao.get(1)!=null){
+				Values value=vdao.get(1);
+				value.setName(Action.currentUser.getId()+"");
+				vdao.update(value);
+			}else{
+				Values value=new Values();
+				value.setName(Action.currentUser.getId()+"");
+				vdao.insert(value);
+			}
 			// start service
 		    System.out.println("start Service!");
 			DataForecastService.addWidgetIDs(new int[]{widgetId});

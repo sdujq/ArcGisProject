@@ -9,6 +9,8 @@ import org.sdu.dbaction.RoadLineAction;
 import org.sdu.gis.R;
 import org.sdu.pojo.RoadLine;
 
+import Helper.HttpRequester;
+import Helper.HttpRespons;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -22,6 +24,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.esri.android.map.GraphicsLayer;
 import com.esri.android.map.MapOnTouchListener;
@@ -115,12 +118,12 @@ public class MapShowActivity extends Activity implements OnClickListener,
 		bt1 = (Button) findViewById(R.id.button1);
 		bt2 = (Button) findViewById(R.id.button2);
 		bt3 = (Button) findViewById(R.id.button3);
-		//bt4 = (Button) findViewById(R.id.button4);
+		// bt4 = (Button) findViewById(R.id.button4);
 		bt5 = (Button) findViewById(R.id.button5);
 		bt1.setOnClickListener(this);
 		bt2.setOnClickListener(this);
 		bt3.setOnClickListener(this);
-		//bt4.setOnClickListener(this);
+		// bt4.setOnClickListener(this);
 		bt5.setOnClickListener(this);
 
 		spinner = (Spinner) findViewById(R.id.spinner1);
@@ -160,12 +163,30 @@ public class MapShowActivity extends Activity implements OnClickListener,
 		});
 	}
 
+	/**
+	 * 得到图上坐标
+	 * @param a gps（大的那个 如116）
+	 * @param b gps（小的 如32）
+	 * @return 图上坐标
+	 */
 	public Point getGPoint(double a, double b) {
-		Point p = new Point(a, b);
-		SpatialReference sp = SpatialReference.create(4326);
-		Point ptMap = (Point) GeometryEngine.project(p, sp,
-				map.getSpatialReference());
-		return ptMap;
+		try {
+			String site = "http://211.87.227.10:8090/Service1.svc/PointParse/";
+			site += a + "/" + b;
+			HttpRequester request = new HttpRequester();
+			request.setDefaultContentEncoding("gbk");
+			HttpRespons hr = request.sendGet(site, null);
+			String content = hr.getContent().trim();
+			content = content.substring(1, content.length() - 1);
+			String data[] = content.split(",");
+			Point p = new Point(Double.parseDouble(data[0]),
+					Double.parseDouble(data[1]));
+			return p;
+		} catch (Exception e) {
+			Toast.makeText(this, "查询失败", 0).show();
+			finish();
+		}
+		return null;
 	}
 
 	public void initPointLayer() {
@@ -202,7 +223,7 @@ public class MapShowActivity extends Activity implements OnClickListener,
 			state = state_delating;
 			action.removeLastPoint();
 			drawCurrentLine();
-		}  else if (v == bt5) {
+		} else if (v == bt5) {
 			/*
 			 * Log.e("qq", "scale" + map.getScale()); Log.e("qq", "X" +
 			 * map.getCenter().getX()); Log.e("qq", "Y" +
@@ -211,7 +232,7 @@ public class MapShowActivity extends Activity implements OnClickListener,
 			if (needSave) {
 				int id = 0;
 				if (roadLine != null && roadLine.getId() > 0) {
-					id=action.updateRoadLine(roadLine);
+					id = action.updateRoadLine(roadLine);
 				} else {
 					id = action.saveCurrentRoadLine("");
 				}
@@ -238,8 +259,7 @@ public class MapShowActivity extends Activity implements OnClickListener,
 	public void onStatusChanged(Object arg0, STATUS arg1) {
 		if (arg1 == STATUS.INITIALIZED) {
 			map.setScale(30000);
-			map.centerAt(new Point(60454.299497581625,55406.27427414925),
-					true);
+			map.centerAt(new Point(60454.299497581625, 55406.27427414925), true);
 			action = new RoadLineAction(MapShowActivity.this);
 			if (roadLine != null) {
 				action.getRoadLine(roadLine);
@@ -269,7 +289,7 @@ public class MapShowActivity extends Activity implements OnClickListener,
 					return false;
 				}
 			});
-			map.centerAt(new Point(55351.7478343218,50838.0816699881), true);
+			// map.centerAt(new Point(55351.7478343218,50838.0816699881), true);
 		}
 	}
 

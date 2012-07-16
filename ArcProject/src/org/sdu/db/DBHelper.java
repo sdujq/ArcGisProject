@@ -8,6 +8,7 @@ import org.sdu.pojo.RoadLine;
 import org.sdu.pojo.Task;
 import org.sdu.pojo.TaskType;
 import org.sdu.pojo.User;
+import org.sdu.pojo.Values;
 
 import android.content.Context;
 
@@ -15,9 +16,9 @@ import com.tgb.lk.ahibernate.util.MyDBHelper;
 
 public class DBHelper extends MyDBHelper {
 	private static final String DBNAME = "gis.db";
-	private static final int DBVERSION = 3;
+	private static final int DBVERSION = 4;
 	private static final Class<?>[] classes = { Task.class, Bug.class,
-			TaskType.class, BugType.class, User.class, RoadLine.class };
+			TaskType.class, BugType.class, User.class, RoadLine.class,Values.class};
 	private Context context;
 	public DBHelper(Context context) {
 		super(context, DBNAME, null, DBVERSION, classes);

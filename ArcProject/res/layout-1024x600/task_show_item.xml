@@ -8,7 +8,7 @@
 <RelativeLayout
         android:layout_width="87dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/cakeiconbg" >
+        android:background="@drawable/cakeiconbg" android:layout_marginLeft="15dip">
 
          <ImageView
              android:id="@+id/task_icon"
@@ -53,15 +53,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
-                android:textSize="22.0sp"
-                 android:gravity="center_vertical|center_horizontal|center" android:text="sj"/>
+                android:textSize="18.0sp"
+                 android:gravity="center_vertical|center_horizontal|center" android:text="sj" android:layout_marginLeft="5dp" android:layout_marginRight="5dp"/>
 
             <TextView
                 android:id="@+id/cake_brand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="lm" 
-                android:textSize="18.0sp" android:textColor="@color/black"/>
+                android:textSize="18.0sp" android:textColor="@color/black" android:layout_marginLeft="5dp"/>
 
             <TextView
                 android:id="@+id/cake_timestamp"

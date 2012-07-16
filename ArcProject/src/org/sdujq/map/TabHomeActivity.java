@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.sdu.bmputil.PhotoDrawerTemp;
 import org.sdu.dao.UserDao;
+import org.sdu.dao.ValuesDao;
 import org.sdu.dbaction.Action;
 import org.sdu.gis.R;
 import org.sdu.view.buginput.BugInputActivity;
@@ -67,7 +68,7 @@ public class TabHomeActivity extends TabActivity {
 		Intent it=getIntent();
 		int uid=it.getIntExtra("uid", -2);
 		if(uid!=-2){
-			Action.currentUser=(new UserDao(this)).get(uid);
+			Action.currentUser=(new UserDao(this)).get(Integer.parseInt(new ValuesDao(this).get(1).toString()));
 		}
 		tabHost = this.getTabHost();
 		manager = new LocalActivityManager(this, true);
