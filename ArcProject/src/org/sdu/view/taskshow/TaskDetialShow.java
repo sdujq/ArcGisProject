@@ -9,6 +9,7 @@ import org.sdu.gis.R;
 import org.sdu.pojo.RoadLine;
 import org.sdu.pojo.Task;
 import org.sdujq.map.MapShowActivity;
+import org.sdujq.map.TabHomeActivity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -80,6 +81,8 @@ public class TaskDetialShow extends Activity implements OnClickListener {
     		over="未完成";
     	}else if(over.equals("3")){
     		over="完成";			
+    	}else if(over.equals("0")){
+    		over="未发布";
     	}
 //    	
 //        ArrayList<Task>ls=(ArrayList<Task>) ta.getTaskList();
@@ -116,6 +119,12 @@ public class TaskDetialShow extends Activity implements OnClickListener {
 		}
 		if(state==3||task.getInspectionPersonId()!=Action.currentUser.getId()){
 			b3.setEnabled(false);
+		}
+		if(state==0){
+			b1.setEnabled(false);
+			b3.setEnabled(false);
+			
+			TabHomeActivity.home.mPager.setCurrentItem(0, true);
 		}
 	}
 

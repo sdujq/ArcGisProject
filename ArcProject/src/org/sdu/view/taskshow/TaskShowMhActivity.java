@@ -11,6 +11,7 @@ import org.sdu.pojo.Task;
 import org.sdujq.map.PullToRefreshListView;
 import org.sdujq.map.PullToRefreshListView.OnLoadMoreListener;
 import org.sdujq.map.PullToRefreshListView.OnRefreshListener;
+import org.sdujq.map.TabHomeActivity;
 
 import android.R.integer;
 import android.app.Activity;
@@ -160,7 +161,9 @@ public class TaskShowMhActivity extends Activity {
 					Intent it = new Intent();
 					it.setClass(TaskShowMhActivity.this, TaskDetialShow.class);
 					it.putExtra("one", t.getId() + "");
-					TaskShowMhActivity.this.startActivity(it);
+					TabHomeActivity.home.startActivity(it);
+					overridePendingTransition(R.anim.myanimation_simple,
+							R.anim.my_alpha_action);
 				}
 			});
 			return v;

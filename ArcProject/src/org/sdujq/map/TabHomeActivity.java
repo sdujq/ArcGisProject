@@ -41,7 +41,7 @@ import android.widget.TextView;
 public class TabHomeActivity extends TabActivity {
 	public static TabHomeActivity home;
 	private TabHost tabHost;
-	private ViewPager mPager;
+	public ViewPager mPager;
 	private List<View> listViews;
 	private LocalActivityManager manager = null;
 	public static MyPagerAdapter mpAdapter;
