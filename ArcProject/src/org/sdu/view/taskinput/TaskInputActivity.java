@@ -9,6 +9,7 @@ import java.util.List;
 import org.sdu.dao.RoadLineDao;
 import org.sdu.dao.TaskTypeDao;
 import org.sdu.dao.UserDao;
+import org.sdu.db.DBHelper;
 import org.sdu.dbaction.Action;
 import org.sdu.dbaction.TaskAction;
 import org.sdu.gis.R;
@@ -22,6 +23,8 @@ import org.sdujq.map.TabHomeActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -69,8 +72,8 @@ public class TaskInputActivity extends Activity {
 			timeCount2 = 0, typeOfTaskCount = 0, perCount = 0, state = 0,
 			timeState = 0;
 	private String strTime, str_mHour1, str_mHour2;
-	public static  int REQUEST_CODE = 0;
-	public static int roadLineCODE=1;
+	public static int REQUEST_CODE = 0;
+	public static int roadLineCODE = 1;
 	private String DEFAULT_TIME_FORMAT = "yyyy-MM-dd hh:mm:ss";
 	private String str_typeOfTask, str_idOfPerson, str_timeOfStart,
 			str_timeOfEnd;
@@ -166,13 +169,12 @@ public class TaskInputActivity extends Activity {
 		sp_selectTask = (Spinner) findViewById(R.id.t_spinner_selectTask);
 		// 通过createFromResource方法创建一个ArrayAdapter对象
 
-		ArrayAdapter<TaskType> adapter1 = new ArrayAdapter<TaskType>(
-				this,
+		ArrayAdapter<TaskType> adapter1 = new ArrayAdapter<TaskType>(this,
 				android.R.layout.simple_spinner_item);
 		// 设置Spinner当中每个条目的样式，引用一个Android系统提供的布局文件
 		adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		List<TaskType> bugTypelst=(new TaskTypeDao(this)).find();
-		for(TaskType b:bugTypelst){
+		List<TaskType> bugTypelst = (new TaskTypeDao(this)).find();
+		for (TaskType b : bugTypelst) {
 			adapter1.add(b);
 		}
 		sp_selectTask.setAdapter(adapter1);
@@ -183,9 +185,9 @@ public class TaskInputActivity extends Activity {
 		sp_xunjianrenyuan = (Spinner) findViewById(R.id.t_spinner_xunjianrenyuan);
 
 		List<String> list = new ArrayList<String>();
-		List<User> ulist=(new UserDao(this)).find();
-		for(User u:ulist){
-			list.add( u.getId()+ ":" + u.getName());
+		List<User> ulist = (new UserDao(this)).find();
+		for (User u : ulist) {
+			list.add(u.getId() + ":" + u.getName());
 		}
 
 		// 调用ArrayAdapter的构造函数来创建ArrayAdapter对象
@@ -193,7 +195,7 @@ public class TaskInputActivity extends Activity {
 		// 第二个参数指定了下拉菜单当中每一个条目的样式
 		// 第三个参数指定了TextView控件的ID
 		// 第四个参数为整个列表提供数据
-		ArrayAdapter<String> adapter_person = new ArrayAdapter<String> (this,
+		ArrayAdapter<String> adapter_person = new ArrayAdapter<String>(this,
 				R.layout.person_item, R.id.textViewId, list);
 		sp_xunjianrenyuan.setAdapter(adapter_person);
 		sp_xunjianrenyuan.setPrompt("请选择巡检人员");
@@ -235,8 +237,9 @@ public class TaskInputActivity extends Activity {
 
 		// 刷新时间的线程
 		handler.post(updateThread);
-		String uname=Action.currentUser==null?"无":Action.currentUser.getName();
-		tv_zhidingren.setText("制定人："+uname);
+		String uname = Action.currentUser == null ? "无" : Action.currentUser
+				.getName();
+		tv_zhidingren.setText("制定人：" + uname);
 	}
 
 	// 创建Handler对象
@@ -252,10 +255,6 @@ public class TaskInputActivity extends Activity {
 		public void run() {
 
 			handler.postDelayed(updateThread, 1000);
-			// 调用Handler的postDelayed()方法
-			// 这个方法的作用是：将要执行的线程对象放入到队列当中，待时间结束后，运行制定的线程对象
-			// 第一个参数是Runnable类型：将要执行的线程对象
-			// 第二个参数是long类型：延迟的时间，以毫秒为单位
 			SimpleDateFormat dateFormatter = new SimpleDateFormat(
 					DEFAULT_TIME_FORMAT);
 
@@ -421,9 +420,9 @@ public class TaskInputActivity extends Activity {
 
 		} else if (requestCode == 1 && resultCode == RESULT_OK) {
 			roadLineId = data.getIntExtra("id", -1);
-			if(roadLineId!=-1){
-				RoadLine line=(new RoadLineDao(this)).get(roadLineId);
-				if(line.getName()!=null&&!line.getName().equals("")){
+			if (roadLineId != -1) {
+				RoadLine line = (new RoadLineDao(this)).get(roadLineId);
+				if (line.getName() != null && !line.getName().equals("")) {
 					et_luduanming.setText(line.getName());
 				}
 			}
@@ -524,7 +523,7 @@ public class TaskInputActivity extends Activity {
 				r = (new RoadLineDao(TaskInputActivity.this)).get(roadLineId);
 			}
 			MapShowActivity.startMapForShow(TabHomeActivity.home, r, true);
-					}
+		}
 
 	}
 
@@ -584,8 +583,7 @@ public class TaskInputActivity extends Activity {
 
 			str_xunjianzhouqi = et_xunjianzhouqi.getText().toString();
 			if ((str_luduanming != null && str_luduanming.length() != 0)
-					&& (str_renwuneirong != null && str_renwuneirong.length() != 0)
-					) {
+					&& (str_renwuneirong != null && str_renwuneirong.length() != 0)) {
 				state = 1;
 			}
 
@@ -598,6 +596,14 @@ public class TaskInputActivity extends Activity {
 
 				saveTask();
 				// 设置任务状态为已发布
+				SimpleDateFormat formatter = new SimpleDateFormat(
+						"yyyyMMddHHmmss");
+				Date curDate = new Date(System.currentTimeMillis());
+				String strRealseTime = formatter.format(curDate);
+				System.out.println(strRealseTime);
+				long realseTime = Long.parseLong(strRealseTime);
+				task.setRealseTime(realseTime);
+
 				task.setState("1");
 
 				ta.establishTask(task);
@@ -609,7 +615,7 @@ public class TaskInputActivity extends Activity {
 				et_xunjianzhouqi.setText("");
 				et_gerenwu.setText("");
 			}
-			TaskInputActivity.this.roadLineId=-1;
+			TaskInputActivity.this.roadLineId = -1;
 			TaskShowMhActivity.currentActivity.refreshData();
 		}
 
@@ -655,12 +661,6 @@ public class TaskInputActivity extends Activity {
 		str_beizhu = et_beizhu.getText().toString();
 		task.setTag(str_beizhu);
 
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
-		Date curDate = new Date(System.currentTimeMillis());
-		String strRealseTime = formatter.format(curDate);
-		System.out.println(strRealseTime);
-		long realseTime = Long.parseLong(strRealseTime);
-		task.setRealseTime(realseTime);
 		if (roadLineId != -1) {
 			task.setRoadLineId(roadLineId);
 			RoadLineDao dao = new RoadLineDao(this);
@@ -669,6 +669,25 @@ public class TaskInputActivity extends Activity {
 			dao.update(line);
 		}
 		TaskShowMhActivity.currentActivity.refreshData();
+	}
+
+	private void ReadTask(int TaskId) {
+
+		DBHelper dbHelper = new DBHelper(TaskInputActivity.this);
+		SQLiteDatabase db = dbHelper.getReadableDatabase();
+		Cursor cursor = db.query("t_task", new String[] { "id", "content",
+				"taskType", "taskName", "tag", "state", "roadName",
+				"realseTime", "endTime", "startTime", "inspectionPersionId",
+				"roadlineId", "createPersonId" }, "id=?", new String[] { TaskId
+				+ "" }, null, null, null);
+		while (cursor.moveToNext()) {
+			
+			et_luduanming.setText(cursor.getString(cursor.getColumnIndex("roadlineId")));
+			et_renwuneirong.setText(cursor.getString(cursor.getColumnIndex("content")));
+			et_beizhu.setText(cursor.getString(cursor.getColumnIndex("tag")));
+
+		}
+
 	}
 
 }
