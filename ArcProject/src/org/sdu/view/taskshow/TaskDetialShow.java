@@ -8,6 +8,7 @@ import org.sdu.dbaction.TaskAction;
 import org.sdu.gis.R;
 import org.sdu.pojo.RoadLine;
 import org.sdu.pojo.Task;
+import org.sdu.view.taskinput.TaskInputActivity;
 import org.sdujq.map.MapShowActivity;
 import org.sdujq.map.TabHomeActivity;
 
@@ -123,7 +124,7 @@ public class TaskDetialShow extends Activity implements OnClickListener {
 		if(state==0){
 			b1.setEnabled(false);
 			b3.setEnabled(false);
-			
+			TaskInputActivity.currentTaskInputActivity.ReadTask(t_num);
 			TabHomeActivity.home.mPager.setCurrentItem(0, true);
 		}
 	}

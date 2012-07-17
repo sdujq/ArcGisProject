@@ -1,16 +1,19 @@
 package com.tgb.lk.ahibernate.dao.impl;
 
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 import java.lang.reflect.Field;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.log4j.Logger;
+
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.tgb.lk.ahibernate.annotation.Column;
 import com.tgb.lk.ahibernate.annotation.Id;
@@ -42,7 +45,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	private String idColumn;
 	private Class<T> clazz;
 	private List<Field> allFields;
-
+	private final Logger Log = Logger.getLogger("gis");
 	@SuppressWarnings("unchecked")
 	public BaseDaoImpl(SQLiteOpenHelper dbHelper) {
 		this.dbHelper = dbHelper;
@@ -68,7 +71,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 			}
 		}
 
-		Log.d(TAG, "clazz:" + this.clazz + " tableName:" + this.tableName
+		Log.debug( "clazz:" + this.clazz + " tableName:" + this.tableName
 				+ " idColumn:" + this.idColumn);
 	}
 
@@ -79,7 +82,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	public T get(int id) {
 		String selection = this.idColumn + " = ?";
 		String[] selectionArgs = { Integer.toString(id) };
-		Log.d(TAG, "[get]: select * from " + this.tableName + " where "
+		Log.debug("[get]: select * from " + this.tableName + " where "
 				+ this.idColumn + " = '" + id + "'");
 		List<T> list = find(null, selection, selectionArgs, null, null, null,
 				null);
@@ -90,7 +93,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	}
 
 	public List<T> rawQuery(String sql, String[] selectionArgs) {
-		Log.d(TAG, "[rawQuery]: " + sql);
+		Log.debug( "[rawQuery]: " + sql);
 
 		List<T> list = new ArrayList<T>();
 		SQLiteDatabase db = null;
@@ -101,7 +104,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
 			getListFromCursor(list, cursor);
 		} catch (Exception e) {
-			Log.e(this.TAG, "[rawQuery] from DB Exception.");
+			Log.error("[rawQuery] from DB Exception.");
 			e.printStackTrace();
 		} finally {
 			if (cursor != null) {
@@ -116,7 +119,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	}
 
 	public boolean isExist(String sql, String[] selectionArgs) {
-		Log.d(TAG, "[isExist]: " + sql);
+		Log.debug("[isExist]: " + sql);
 
 		SQLiteDatabase db = null;
 		Cursor cursor = null;
@@ -127,7 +130,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 				return true;
 			}
 		} catch (Exception e) {
-			Log.e(this.TAG, "[isExist] from DB Exception.");
+			Log.error( "[isExist] from DB Exception.");
 			e.printStackTrace();
 		} finally {
 			if (cursor != null) {
@@ -147,7 +150,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	public List<T> find(String[] columns, String selection,
 			String[] selectionArgs, String groupBy, String having,
 			String orderBy, String limit) {
-		Log.d(TAG, "[find]");
+		Log.debug("[find]");
 
 		List<T> list = new ArrayList<T>();
 		SQLiteDatabase db = null;
@@ -159,7 +162,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
 			getListFromCursor(list, cursor);
 		} catch (Exception e) {
-			Log.e(this.TAG, "[find] from DB Exception");
+			Log.error("[find] from DB Exception");
 			e.printStackTrace();
 		} finally {
 			if (cursor != null) {
@@ -226,7 +229,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	}
 
 	public long insert(T entity) {
-		Log.d(TAG, "[insert]: inset into " + this.tableName + " "
+		Log.debug("[insert]: inset into " + this.tableName + " "
 				+ entity.toString());
 		SQLiteDatabase db = null;
 		try {
@@ -236,7 +239,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 			long row = db.insert(this.tableName, null, cv);
 			return row;
 		} catch (Exception e) {
-			Log.d(this.TAG, "[insert] into DB Exception.");
+			Log.error( "[insert] into DB Exception.");
 			e.printStackTrace();
 		} finally {
 			if (db != null) {
@@ -252,7 +255,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		String where = this.idColumn + " = ?";
 		String[] whereValue = { Integer.toString(id) };
 
-		Log.d(TAG, "[delete]: delelte from " + this.tableName + " where "
+		Log.debug("[delete]: delelte from " + this.tableName + " where "
 				+ where.replace("?", String.valueOf(id)));
 
 		db.delete(this.tableName, where, whereValue);
@@ -270,7 +273,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 			String sql = "delete from " + this.tableName + " where "
 					+ this.idColumn + " in (" + sb + ")";
 
-			Log.d(TAG, "[delete]: " + sql);
+			Log.debug("[delete]: " + sql);
 
 			db.execSQL(sql, (Object[]) ids);
 			db.close();
@@ -289,13 +292,13 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 			int id = Integer.parseInt(cv.get(this.idColumn).toString());
 			cv.remove(this.idColumn);
 
-			Log.d(TAG, "[update]: update " + this.tableName + " where "
+			Log.debug("[update]: update " + this.tableName + " where "
 					+ where.replace("?", String.valueOf(id)));
 
 			String[] whereValue = { Integer.toString(id) };
 			db.update(this.tableName, cv, where, whereValue);
 		} catch (Exception e) {
-			Log.d(this.TAG, "[update] DB Exception.");
+			Log.error("[update] DB Exception.");
 			e.printStackTrace();
 		} finally {
 			if (db != null)
@@ -341,7 +344,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	 */
 	public List<Map<String, String>> query2MapList(String sql,
 			String[] selectionArgs) {
-		Log.d(TAG, "[query2MapList]: " + sql);
+		Log.debug("[query2MapList]: " + sql);
 		SQLiteDatabase db = null;
 		Cursor cursor = null;
 		List<Map<String, String>> retList = new ArrayList<Map<String, String>>();
@@ -357,7 +360,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 				retList.add(map);
 			}
 		} catch (Exception e) {
-			Log.e(TAG, "[query2MapList] from DB exception");
+			Log.error("[query2MapList] from DB exception");
 			e.printStackTrace();
 		} finally {
 			if (cursor != null) {
@@ -379,7 +382,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	 */
 	public void execSql(String sql, Object[] selectionArgs) {
 		SQLiteDatabase db = null;
-		Log.d(TAG, "[execSql]: " + sql);
+		Log.debug("[execSql]: " + sql);
 		try {
 			db = this.dbHelper.getWritableDatabase();
 			if (selectionArgs == null) {
@@ -388,7 +391,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 				db.execSQL(sql, selectionArgs);
 			}
 		} catch (Exception e) {
-			Log.e(TAG, "[execSql] DB exception.");
+			Log.error("[execSql] DB exception.");
 			e.printStackTrace();
 		} finally {
 			if (db != null) {

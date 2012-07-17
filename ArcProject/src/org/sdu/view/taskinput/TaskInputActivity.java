@@ -7,9 +7,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.sdu.dao.RoadLineDao;
+import org.sdu.dao.TaskDao;
 import org.sdu.dao.TaskTypeDao;
 import org.sdu.dao.UserDao;
-import org.sdu.db.DBHelper;
 import org.sdu.dbaction.Action;
 import org.sdu.dbaction.TaskAction;
 import org.sdu.gis.R;
@@ -23,8 +23,6 @@ import org.sdujq.map.TabHomeActivity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -80,11 +78,12 @@ public class TaskInputActivity extends Activity {
 	private int idOfPerson = 0;
 	private long long_timeOfStart, long_timeOfEnd;
 	private int roadLineId = -1;
-
+	public static TaskInputActivity currentTaskInputActivity;
 	@Override
 	public void onCreate(Bundle saved) {
 		super.onCreate(saved);
 		setContentView(R.layout.task_inputmh);
+		currentTaskInputActivity=this;
 		ta = new TaskAction(this);
 		task = new Task();
 
@@ -605,8 +604,12 @@ public class TaskInputActivity extends Activity {
 				task.setRealseTime(realseTime);
 
 				task.setState("1");
-
+				if(t!=null){
+					task.setId(t.getId());
+					ta.releaseTask(task);
+				}else{
 				ta.establishTask(task);
+				}
 				Toast.makeText(TaskInputActivity.this, "任务发布成功！",
 						Toast.LENGTH_LONG).show();
 				et_luduanming.setText("");
@@ -670,23 +673,20 @@ public class TaskInputActivity extends Activity {
 		}
 		TaskShowMhActivity.currentActivity.refreshData();
 	}
+	Task t=null;
+	public void ReadTask(int TaskId) {
 
-	private void ReadTask(int TaskId) {
+			TaskDao tdao=new TaskDao(this);
+			t=tdao.get(TaskId);
+			if(t.getRoadLineId()!=0){
+				RoadLine r=new RoadLineDao(this).get(t.getRoadLineId());
+				this.roadLineId=r.getId();
+				et_luduanming.setText(r.getName()==null?"":r.getName());
+			}
+			et_renwuneirong.setText(t.getContent()==null?"":t.getContent());
+			et_beizhu.setText(t.getTag()==null?"":t.getTag());
 
-		DBHelper dbHelper = new DBHelper(TaskInputActivity.this);
-		SQLiteDatabase db = dbHelper.getReadableDatabase();
-		Cursor cursor = db.query("t_task", new String[] { "id", "content",
-				"taskType", "taskName", "tag", "state", "roadName",
-				"realseTime", "endTime", "startTime", "inspectionPersionId",
-				"roadlineId", "createPersonId" }, "id=?", new String[] { TaskId
-				+ "" }, null, null, null);
-		while (cursor.moveToNext()) {
-			
-			et_luduanming.setText(cursor.getString(cursor.getColumnIndex("roadlineId")));
-			et_renwuneirong.setText(cursor.getString(cursor.getColumnIndex("content")));
-			et_beizhu.setText(cursor.getString(cursor.getColumnIndex("tag")));
-
-		}
+		
 
 	}
 

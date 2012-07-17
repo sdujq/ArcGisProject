@@ -152,7 +152,12 @@ public class TaskShowMhActivity extends Activity {
 			} catch (Exception e) {
 				userName = "暂无";
 			}
-			tv4.setText("发布人员:" + userName + " 发布时间:" + t.getRealseTime());
+			String time=t.getRealseTime()+"";
+			String result="";
+			if(time.length()>1){
+			  result+=time.substring(0,4)+"-"+time.substring(4,6)+"-"+time.substring(6,8)+time.substring(8, 10);
+			}
+			tv4.setText("发布人员:" + userName + " 发布时间:" + result);
 			v.setTag(data.size());
 			v.setOnClickListener(new OnClickListener() {
 			

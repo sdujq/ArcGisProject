@@ -1,5 +1,8 @@
 package org.sdu.view.usermanager;
 
+import java.io.File;
+
+import org.apache.log4j.Level;
 import org.sdu.dao.UserDao;
 import org.sdu.db.DBHelper;
 import org.sdu.dbaction.Action;
@@ -9,10 +12,12 @@ import org.sdujq.map.TabHomeActivity;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import de.mindpipe.android.logging.log4j.LogConfigurator;
 
 public class LoginActivity extends Activity {
 	private Button login, cancel;
@@ -26,9 +31,18 @@ public class LoginActivity extends Activity {
 		dbhelper.getWritableDatabase();
 		dbhelper.initDb();
 		dbhelper.close();
+		configure();
 		init();
 	}
-
+	public static void configure() {
+        final LogConfigurator logConfigurator = new LogConfigurator();
+        
+        logConfigurator.setFileName(Environment.getExternalStorageDirectory() + File.separator + "gis.log");
+        logConfigurator.setRootLevel(Level.ERROR);
+        // Set log level of a specific logger
+        //logConfigurator.setLevel("gis", Level.ERROR);
+        logConfigurator.configure();
+    }
 	/**
 	 * 该方法用来对login组件进行监听、进行登录验证或取消登录
 	 */
