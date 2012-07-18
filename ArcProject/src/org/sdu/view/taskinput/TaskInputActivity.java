@@ -59,7 +59,7 @@ public class TaskInputActivity extends Activity {
 	public Spinner sp_selectTask, sp_kaishishijian, sp_jiezhishijian,
 			sp_xunjianrenyuan;
 
-	public CheckBox chb_zidongfabu, chb_zidongshengcheng;
+//	public CheckBox chb_zidongfabu, chb_zidongshengcheng;
 
 	private Task task;
 	private TaskAction ta;
@@ -87,48 +87,48 @@ public class TaskInputActivity extends Activity {
 		ta = new TaskAction(this);
 		task = new Task();
 
-		chb_zidongfabu = (CheckBox) findViewById(R.id.t_checkBox_zidongfabu);
-		// 为自动发布按钮添加监听器
-		chb_zidongfabu
-				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-					@Override
-					public void onCheckedChanged(CompoundButton buttonView,
-							boolean isChecked) {
-						// TODO Auto-generated method stub
-						if (isChecked) {
-							Toast.makeText(TaskInputActivity.this, "该任务将自动发布！",
-									Toast.LENGTH_SHORT).show();
-
-						} else {
-							// Toast.makeText(TaskInputActivity.this,
-							// "该任务不会自动发布", Toast.LENGTH_SHORT)
-							// .show();
-
-						}
-					}
-				});
-
-		chb_zidongshengcheng = (CheckBox) findViewById(R.id.t_checkBox_zidongshengcheng);
-		// 为自动生成按钮添加监听器
-		chb_zidongshengcheng
-				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-
-					@Override
-					public void onCheckedChanged(CompoundButton buttonView,
-							boolean isChecked) {
-						// TODO Auto-generated method stub
-						if (isChecked) {
-							Toast.makeText(TaskInputActivity.this, "将自动生成多个任务",
-									Toast.LENGTH_SHORT).show();
-						} else {
-							// Toast.makeText(TaskInputActivity.this,
-							// "不会生成多个任务", Toast.LENGTH_SHORT)
-							// .show();
-
-						}
-					}
-				});
+//		chb_zidongfabu = (CheckBox) findViewById(R.id.t_checkBox_zidongfabu);
+//		// 为自动发布按钮添加监听器
+//		chb_zidongfabu
+//				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//
+//					@Override
+//					public void onCheckedChanged(CompoundButton buttonView,
+//							boolean isChecked) {
+//						// TODO Auto-generated method stub
+//						if (isChecked) {
+//							Toast.makeText(TaskInputActivity.this, "该任务将自动发布！",
+//									Toast.LENGTH_SHORT).show();
+//
+//						} else {
+//							// Toast.makeText(TaskInputActivity.this,
+//							// "该任务不会自动发布", Toast.LENGTH_SHORT)
+//							// .show();
+//
+//						}
+//					}
+//				});
+//
+//		chb_zidongshengcheng = (CheckBox) findViewById(R.id.t_checkBox_zidongshengcheng);
+//		// 为自动生成按钮添加监听器
+//		chb_zidongshengcheng
+//				.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//
+//					@Override
+//					public void onCheckedChanged(CompoundButton buttonView,
+//							boolean isChecked) {
+//						// TODO Auto-generated method stub
+//						if (isChecked) {
+//							Toast.makeText(TaskInputActivity.this, "将自动生成多个任务",
+//									Toast.LENGTH_SHORT).show();
+//						} else {
+//							// Toast.makeText(TaskInputActivity.this,
+//							// "不会生成多个任务", Toast.LENGTH_SHORT)
+//							// .show();
+//
+//						}
+//					}
+//				});
 
 		// bt_zhiding = (Button) findViewById(R.id.t_button_zhiding);
 		// bt_zhiding.setOnClickListener(new ZhidingListener());
