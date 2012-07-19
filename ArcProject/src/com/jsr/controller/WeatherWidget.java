@@ -5,12 +5,9 @@ import java.util.List;
 import org.sdu.bmputil.BitmapTool;
 import org.sdu.dao.BugDao;
 import org.sdu.dao.TaskDao;
-import org.sdu.dao.UserDao;
-import org.sdu.dao.ValuesDao;
 import org.sdu.gis.R;
 import org.sdu.pojo.Bug;
 import org.sdu.pojo.Task;
-import org.sdu.pojo.Values;
 import org.sdu.view.usermanager.AccountActivity;
 import org.sdujq.map.TabHomeActivity;
 

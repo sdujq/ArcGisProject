@@ -21,7 +21,6 @@ import android.widget.Toast;
 import com.jsr.model.DataForecastService;
 import com.jsr.model.DataWidget;
 import com.jsr.model.WeatherProvider.WeatherWidgets;
-import com.tgb.lk.ahibernate.dao.impl.BaseDaoImpl;
 
 public class ConfigureActivity extends Activity implements View.OnClickListener{
     /** Called when the activity is first created. */

@@ -5,12 +5,7 @@ import org.sdujq.frame.AbsShow;
 import org.sdujq.frame.FrameActivity;
 import org.sdujq.frame.FrameInfo;
 
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.LinearLayout.LayoutParams;
 
 public class AccountActivity extends FrameActivity{
 

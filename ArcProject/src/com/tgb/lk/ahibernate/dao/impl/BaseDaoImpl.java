@@ -13,7 +13,6 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import com.tgb.lk.ahibernate.annotation.Column;
 import com.tgb.lk.ahibernate.annotation.Id;
@@ -39,7 +38,7 @@ import com.tgb.lk.ahibernate.util.TableHelper;
  * 这里有这个框架的使用范例和源码,希望朋友们多多交流完善这个框架,共同推动中国开源事业的发展,AHibernate期待与您共创美好未来!!!
  */
 public class BaseDaoImpl<T> implements BaseDao<T> {
-	private String TAG = "AHibernate";
+	//private String TAG = "AHibernate";
 	private SQLiteOpenHelper dbHelper;
 	private String tableName;
 	private String idColumn;

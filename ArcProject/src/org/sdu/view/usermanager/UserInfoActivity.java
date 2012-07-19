@@ -12,8 +12,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class UserInfoActivity extends Activity{
-	private Button saveUpdate;
-	private Button back;
+	public Button saveUpdate;
+	public Button back;
 	private EditText nameEdit,pwdEdit1,pwdEdit2,phoneEdit,commentEdit;
 	private Bundle bundle;
 	private User user;

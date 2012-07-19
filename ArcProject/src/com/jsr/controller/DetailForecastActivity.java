@@ -24,6 +24,7 @@ import com.jsr.model.LoadDataNet;
 import com.jsr.model.WeatherProvider.WeatherWidgets;
 import com.jsr.model.WeatherUtil;
 
+@SuppressWarnings("deprecation")
 public class DetailForecastActivity extends ListActivity {
 	private static final String TAG = "DetailForecastActivity";
 
@@ -81,7 +82,6 @@ public class DetailForecastActivity extends ListActivity {
 		setListAdapter(listAdapter);
 	}
 
-	@SuppressWarnings("deprecation")
 	private void updateAnimtation(String url) {
 		// TODO Auto-generated method stub
 		int icon = WeatherUtil.getCurrentForecastIcon(url);		

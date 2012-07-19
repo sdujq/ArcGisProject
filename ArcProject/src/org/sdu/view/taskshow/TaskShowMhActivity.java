@@ -13,7 +13,6 @@ import org.sdujq.map.PullToRefreshListView.OnLoadMoreListener;
 import org.sdujq.map.PullToRefreshListView.OnRefreshListener;
 import org.sdujq.map.TabHomeActivity;
 
-import android.R.integer;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.DataSetObserver;

@@ -66,7 +66,7 @@ public class TaskInputActivity extends Activity {
 	private int year;
 	private int month;
 	private int day;
-	private int mHour1, mHour2, mTime1 = 0, mTime2 = 0, timeCount1 = 0,
+	public int mHour1, mHour2, mTime1 = 0, mTime2 = 0, timeCount1 = 0,
 			timeCount2 = 0, typeOfTaskCount = 0, perCount = 0, state = 0,
 			timeState = 0;
 	private String strTime, str_mHour1, str_mHour2;

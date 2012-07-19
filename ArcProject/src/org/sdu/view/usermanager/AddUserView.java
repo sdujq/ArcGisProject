@@ -7,7 +7,6 @@ import org.sdu.pojo.User;
 import org.sdujq.frame.AbsShow;
 import org.sdujq.frame.FrameActivity;
 
-import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -17,7 +16,7 @@ import android.widget.Toast;
 public class AddUserView extends AbsShow implements OnClickListener{
 	private Button addUser,cancelAdd;
 	private EditText name,password1,password2,comment,telphone;
-	private Action userAction;
+	public Action userAction;
 	private UserDao ud;
 	
 	public AddUserView(FrameActivity activity, int layout, String name) {

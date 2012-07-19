@@ -20,7 +20,7 @@ import android.widget.Toast;
 import de.mindpipe.android.logging.log4j.LogConfigurator;
 
 public class LoginActivity extends Activity {
-	private Button login, cancel;
+	public Button login, cancel;
 	private EditText username, password;
 	private Action userAction;
 

@@ -4,9 +4,7 @@ import org.sdu.dao.BugTypeDao;
 import org.sdu.db.DBHelper;
 import org.sdu.pojo.BugType;
 import org.sdu.view.buginput.BugInputActivity;
-import org.sdu.view.bugshow.BugShowActivity;
 import org.sdu.view.taskinput.TaskInputActivity;
-import org.sdu.view.taskshow.TaskShowActivity;
 import org.sdu.view.usermanager.LoginActivity;
 import org.sdujq.map.MapShowActivity;
 import org.sdujq.map.TabHomeActivity;
@@ -77,7 +75,7 @@ public class ArcProjectActivity extends Activity {
 						String show = "show";
 						Intent i=new Intent();
 						i.putExtra("one",show);
-						i.setClass(ArcProjectActivity.this, TaskShowActivity.class);
+					//	i.setClass(ArcProjectActivity.this, TaskShowActivity.class);
 						ArcProjectActivity.this.startActivity(i);
 						
 						
@@ -100,7 +98,7 @@ public class ArcProjectActivity extends Activity {
 					@Override
 					public void onClick(View v) {
 						Intent i=new Intent();
-						i.setClass(ArcProjectActivity.this, BugShowActivity.class);
+						//i.setClass(ArcProjectActivity.this, BugShowActivity.class);
 						ArcProjectActivity.this.startActivity(i);
 					}
 				});

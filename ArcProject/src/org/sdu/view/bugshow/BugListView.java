@@ -26,8 +26,6 @@ public class BugListView extends AbsShow {
 	private BugDao bd;
 	private BugAction ba;
 	UserDao udao;
-	private String type = "";
-	private String value = "";
 	public static BugTypes bt;
 	public static BugListView currentView;
 	private String selection = "";

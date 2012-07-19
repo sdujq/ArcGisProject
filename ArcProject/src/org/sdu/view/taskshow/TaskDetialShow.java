@@ -22,7 +22,7 @@ import android.widget.TextView;
 
 public class TaskDetialShow extends Activity implements OnClickListener {
 
-	private TextView v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13;
+	public TextView v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12, v13;
 	private Button b1, b2, b3;
 	int t_num;
 	private String t_type, r_name, t_neirong, over, beizhu;

@@ -20,7 +20,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 public class PullToRefreshListView extends ListView implements OnScrollListener {
@@ -43,7 +42,6 @@ public class PullToRefreshListView extends ListView implements OnScrollListener 
 	private LinearLayout mRefreshView, mfooterView;
 	private TextView mRefreshViewText;
 	private ImageView mRefreshViewImage;
-	private ProgressBar mRefreshViewProgress;
 	private TextView mRefreshViewLastUpdated;
 
 	private int mCurrentScrollState;
